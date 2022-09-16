@@ -427,13 +427,25 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-16T07:00:05.000Z",
+  "updatedAt": "2022-09-16T09:00:06.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "216407",
+          "user": "Бутылин Иван Яковлевич",
+          "creator": "Бутылин Иван Яковлевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 14:41:07",
+          "name": "Необходим подменный принтер",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216407"
+        },
         {
           "id": "216388",
           "user": "infodor1",
@@ -445,18 +457,6 @@
           "executor": "Лиханов Олег Олегович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/216388"
-        },
-        {
-          "id": "216384",
-          "user": "Бахтеева Мария Вадимовна",
-          "creator": "Бахтеева Мария Вадимовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-16 12:11:34",
-          "name": "не могу войти программу отчетности \"личный кабинет природопользоваьтеля\"",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/216384"
         },
         {
           "id": "216377",
@@ -483,30 +483,6 @@
           "link": "https://help.knp24.ru/request/216356"
         },
         {
-          "id": "216352",
-          "user": "АЗС № 132",
-          "creator": "АЗС № 132",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-16 10:16:04",
-          "name": "АЗС 132",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216352"
-        },
-        {
-          "id": "216348",
-          "user": "Шабарина Галина Валерьевна",
-          "creator": "Шабарина Галина Валерьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-16 10:10:16",
-          "name": "Необходима установка программы Visio",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216348"
-        },
-        {
           "id": "216328",
           "user": "Бутылин Иван Яковлевич",
           "creator": "Бутылин Иван Яковлевич",
@@ -517,18 +493,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/216328"
-        },
-        {
-          "id": "216257",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-15 18:02:02",
-          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216257"
         },
         {
           "id": "216245",
