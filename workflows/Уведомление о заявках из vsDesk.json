@@ -1,0 +1,659 @@
+{
+  "id": 1,
+  "name": "Уведомление о заявках из vsDesk",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "unit": "minutes"
+      },
+      "id": "b3ed13ca-dec8-4dc3-ab6a-fc1963af446f",
+      "name": "Интервал (выполняется каждую минуту)",
+      "type": "n8n-nodes-base.interval",
+      "typeVersion": 1,
+      "position": [
+        280,
+        180
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cf96d762-b142-41f0-9bbf-87ad32c7d5a6",
+      "name": "Начало (он же ручной запуск)",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        280,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "dateTime": [
+            {
+              "value1": "={{DateTime.now()}}",
+              "value2": "={{DateTime.now().set({ hour: 8, minute: 0, second: 0, millisecond: 0 })}}"
+            },
+            {
+              "value1": "={{DateTime.now()}}",
+              "operation": "before",
+              "value2": "={{DateTime.now().set({ hour: 18, minute: 0, second: 0, millisecond: 0 })}}"
+            }
+          ],
+          "number": [
+            {
+              "value1": "={{DateTime.now().weekday}}",
+              "value2": 6
+            }
+          ]
+        }
+      },
+      "id": "5574ec91-3c0f-454a-93a8-55f8fe3dbeca",
+      "name": "Сейчас рабочее время?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "be04cf8b-bda2-432e-b2b6-40b736121f78",
+      "name": "Ничего не делать",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        860,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "url": "=https://help.knp24.ru/api/requests",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "timestamp",
+              "value": "=>{{DateTime.now().minus({ months: 1 }).toFormat('yyyy-MM-dd') }}"
+            },
+            {
+              "name": "gfullname",
+              "value": "Группа системного администрирования"
+            }
+          ]
+        }
+      },
+      "id": "71501525-c67a-40be-8455-f92b11a608dd",
+      "name": "Получение списка заявок из vsDesk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        860,
+        200
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst current = [];\nfor(let i = 0; i < items[0].json.length; i++) {\n  if(items[0].json[i].Status === \"Завершена\" || items[0].json[i].Status === \"Отменена\") {\n    continue;\n  }\n  current.push({\n    id: items[0].json[i].id,\n    user: items[0].json[i].fullname,\n    creator: items[0].json[i].creator,\n    group: items[0].json[i].gfullname,\n    timestamp: items[0].json[i].timestamp,\n    name: items[0].json[i].Name,\n    status: items[0].json[i].Status,\n    executor: items[0].json[i].mfullname,\n    priority: items[0].json[i].Priority === \"Высокий\" ? 5 : 3,\n    link: `https://help.knp24.ru/request/${items[0].json[i].id}`\n  })\n}\n\nlet updates = [];\nconst staticData = getWorkflowStaticData('node');\n\nif(!staticData.lastExecution || ! (staticData.lastExecution instanceof Array)) {\n  updates = JSON.parse(JSON.stringify(current));\n  updates.forEach(request => {\n    request.type = \"new\";\n  });\n }\nelse {\n  current.forEach(request => {\n    const index = staticData.lastExecution.findIndex(element => request.id === element.id);\n    if (request.status === \"Открыта повторно\") {\n      if (index !== -1 && request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reopened\";\n      return;\n    }\n    if (index === -1) {\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"new\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочена реакция\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reactionTimeout\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочено исполнение\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"executionTimeout\";\n      return;\n    }\n  });\n}\nstaticData.lastExecution = JSON.parse(JSON.stringify(current));\nreturn updates;"
+      },
+      "id": "b8ed8c0b-42d7-429e-8f2c-32acb3a76ffc",
+      "name": "diff и сохранение текущего списка заявок",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "requestMethod": "POST",
+        "url": "https://ntfy.shitnsticks.top/",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "raw"
+        },
+        "bodyParametersJson": "={\n  \"topic\": \"vsdesk\",\n  \"title\": \"Новая заявка\",\n  \"priority\": {{$json[\"priority\"]}},\n  \"message\": \"Название: {{$json[\"name\"]}}\\nID: {{$json[\"id\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n \"click\": \"{{$json[\"link\"]}}\" \n}"
+      },
+      "id": "24e6ca15-2eee-4044-9624-34690334f58c",
+      "name": "Уведомить о новой заявке",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        20
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"diff и сохранение текущего списка заявок\"].json[\"type\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "new"
+            },
+            {
+              "value2": "reactionTimeout",
+              "output": 1
+            },
+            {
+              "value2": "executionTimeout",
+              "output": 2
+            },
+            {
+              "value2": "reopened",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "8a6a8bac-9068-4e7b-ad80-3ccee497437e",
+      "name": "Распределение заявок по типам",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"name\"]}}",
+              "operation": "startsWith",
+              "value2": "[Main PRTG]"
+            },
+            {
+              "value1": "={{$json[\"name\"]}}",
+              "operation": "startsWith",
+              "value2": "[PRTG Ticket]"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "53594708-e812-4051-8892-08787d9b7ecf",
+      "name": "Заявка из PRTG?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "requestMethod": "POST",
+        "url": "https://ntfy.shitnsticks.top/",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "raw"
+        },
+        "bodyParametersJson": "={\n\"topic\": \"vsdesk\",\n\"title\": \"Новая заявка из PRTG\",\n\"priority\": 2,\n\"message\": \"Название: {{$json[\"name\"]}}\\nID: {{$json[\"id\"]}}\",\n \"click\": \"{{$json[\"link\"]}}\" \n}"
+      },
+      "id": "4f84d508-6234-449a-9ae0-bad807df253a",
+      "name": "Уведомить о новой заявке из PRTG",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        -200
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "requestMethod": "POST",
+        "url": "https://ntfy.shitnsticks.top/",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "raw"
+        },
+        "bodyParametersJson": "={\n\"topic\": \"vsdesk\",\n\"title\": \"Просрочилась реакция по заявке {{$json[\"id\"]}}\",\n\"priority\": 4,\n\"message\": \"Название: {{$json[\"name\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n\"click\": \"{{$json[\"link\"]}}\"\n}"
+      },
+      "id": "49af3f71-0e07-42a9-9373-c150ec166f30",
+      "name": "Уведомить о просроченной реакции по заявке",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        240
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "requestMethod": "POST",
+        "url": "https://ntfy.shitnsticks.top/",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "raw"
+        },
+        "bodyParametersJson": "={\n\"topic\": \"vsdesk\",\n\"title\": \"Просрочилась заявка {{$json[\"id\"]}}\",\n\"priority\": 5,\n\"message\": \"Название: {{$json[\"name\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n\"click\": \"{{$json[\"link\"]}}\"\n}"
+      },
+      "id": "d07fb0f8-fcb5-499f-9e87-e25bb75ec14a",
+      "name": "Уведомить о просроченной заявке",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        460
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "requestMethod": "POST",
+        "url": "https://ntfy.shitnsticks.top/",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "raw"
+        },
+        "bodyParametersJson": "={\n\"topic\": \"vsdesk\",\n\"title\": \"Заявку {{$json[\"id\"]}} вернули в работу\",\n\"priority\": 5,\n\"message\": \"Название: {{$json[\"name\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n\"click\": \"{{$json[\"link\"]}}\"\n}"
+      },
+      "id": "cf1bd755-3ae1-401c-a3c7-da271c2ec9b6",
+      "name": "Уведомить об открытой заново заявке",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        680
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Начало (он же ручной запуск)": {
+      "main": [
+        [
+          {
+            "node": "Сейчас рабочее время?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Интервал (выполняется каждую минуту)": {
+      "main": [
+        [
+          {
+            "node": "Сейчас рабочее время?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сейчас рабочее время?": {
+      "main": [
+        [
+          {
+            "node": "Получение списка заявок из vsDesk",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ничего не делать",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение списка заявок из vsDesk": {
+      "main": [
+        [
+          {
+            "node": "diff и сохранение текущего списка заявок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "diff и сохранение текущего списка заявок": {
+      "main": [
+        [
+          {
+            "node": "Распределение заявок по типам",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Распределение заявок по типам": {
+      "main": [
+        [
+          {
+            "node": "Заявка из PRTG?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Уведомить о просроченной реакции по заявке",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Уведомить о просроченной заявке",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Уведомить об открытой заново заявке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка из PRTG?": {
+      "main": [
+        [
+          {
+            "node": "Уведомить о новой заявке из PRTG",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Уведомить о новой заявке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-09-13T03:22:39.759Z",
+  "updatedAt": "2022-09-16T05:47:43.000Z",
+  "settings": {
+    "saveDataSuccessExecution": "none",
+    "saveExecutionProgress": "DEFAULT"
+  },
+  "staticData": {
+    "node:diff и сохранение текущего списка заявок": {
+      "lastExecution": [
+        {
+          "id": "216388",
+          "user": "infodor1",
+          "creator": "infodor1",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 12:25:46",
+          "name": "свежая копия тестовой базы ERP",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/216388"
+        },
+        {
+          "id": "216384",
+          "user": "Бахтеева Мария Вадимовна",
+          "creator": "Бахтеева Мария Вадимовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 12:11:34",
+          "name": "не могу войти программу отчетности \"личный кабинет природопользоваьтеля\"",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/216384"
+        },
+        {
+          "id": "216377",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 11:40:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216377"
+        },
+        {
+          "id": "216360",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Кириллова Оксана Альбертовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 11:05:12",
+          "name": "Не открывается ЛК Честный Знак по ЭЦП ",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216360"
+        },
+        {
+          "id": "216356",
+          "user": "Юрьев Сергей Владимирович",
+          "creator": "Юрьев Сергей Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 10:33:48",
+          "name": "полосы при печати Kyocera 2530",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216356"
+        },
+        {
+          "id": "216352",
+          "user": "АЗС № 132",
+          "creator": "АЗС № 132",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 10:16:04",
+          "name": "АЗС 132",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216352"
+        },
+        {
+          "id": "216348",
+          "user": "Шабарина Галина Валерьевна",
+          "creator": "Шабарина Галина Валерьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 10:10:16",
+          "name": "Необходима установка программы Visio",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216348"
+        },
+        {
+          "id": "216328",
+          "user": "Бутылин Иван Яковлевич",
+          "creator": "Бутылин Иван Яковлевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-16 08:52:59",
+          "name": "при печати зажевывает бумагу",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216328"
+        },
+        {
+          "id": "216257",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-15 18:02:02",
+          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216257"
+        },
+        {
+          "id": "216245",
+          "user": "Чудова Елена Геннадьевна",
+          "creator": "Чудова Елена Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-15 16:32:15",
+          "name": "посторонний гул аудиоколонок ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216245"
+        },
+        {
+          "id": "216211",
+          "user": "Скрябина Галина Викторовна",
+          "creator": "Скрябина Галина Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-15 13:00:41",
+          "name": "компьютер выключается сам по себе",
+          "status": "Принята в исполнение",
+          "executor": "Дмитриев Виктор Борисович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216211"
+        },
+        {
+          "id": "216194",
+          "user": "АЗС № 110",
+          "creator": "АЗС № 110",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-15 11:11:25",
+          "name": "переполнена память в принтере",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216194"
+        },
+        {
+          "id": "215816",
+          "user": "Мутовина Ольга Леонидовна",
+          "creator": "Мутовина Ольга Леонидовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-13 08:36:54",
+          "name": "ломается монитор на АСН",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/215816"
+        },
+        {
+          "id": "215722",
+          "user": "Нечаева Юлия Григорьевна",
+          "creator": "Сударев Владислав Николаевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-12 14:51:03",
+          "name": "Microsoft Teams постоянно не подключается к ВКС",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/215722"
+        },
+        {
+          "id": "215655",
+          "user": "Лиханов Олег Олегович",
+          "creator": "Лиханов Олег Олегович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-12 09:35:13",
+          "name": "Некорректная работа сертификата Next Cloud",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/215655"
+        },
+        {
+          "id": "215654",
+          "user": "Лиханов Олег Олегович",
+          "creator": "Лиханов Олег Олегович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-12 09:32:19",
+          "name": "Установка расширения Activities for shared file downloads на Next cloud 24.0.4",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/215654"
+        },
+        {
+          "id": "215652",
+          "user": "Лиханов Олег Олегович",
+          "creator": "Лиханов Олег Олегович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-12 09:26:20",
+          "name": "Обновление Next Cloud до версии 24.0.4 (12 августа 2022)",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/215652"
+        },
+        {
+          "id": "215033",
+          "user": "Громова Валентина Юрьевна",
+          "creator": "Громова Валентина Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-07 11:20:03",
+          "name": "удалить неактуальные ссылки на ВКС",
+          "status": "Требует уточнения",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/215033"
+        }
+      ]
+    }
+  },
+  "pinData": {},
+  "tags": []
+}
