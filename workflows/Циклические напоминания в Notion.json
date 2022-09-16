@@ -4,20 +4,77 @@
   "active": false,
   "nodes": [
     {
+      "parameters": {
+        "unit": "hours"
+      },
+      "id": "d6b8ae80-bce6-4645-9144-9064c07950fd",
+      "name": "Выполнять каждый час",
+      "type": "n8n-nodes-base.interval",
+      "typeVersion": 1,
+      "position": [
+        260,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "options": {}
+      },
+      "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        500,
+        320
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
       "parameters": {},
       "id": "1b12ef44-1cc4-4a3b-9cbc-60532bbeb405",
-      "name": "Start",
+      "name": "Начало (он же ручной запуск)",
       "type": "n8n-nodes-base.start",
       "typeVersion": 1,
       "position": [
-        240,
-        300
+        260,
+        400
       ]
     }
   ],
-  "connections": {},
+  "connections": {
+    "Выполнять каждый час": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Начало (он же ручной запуск)": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-16T07:48:14.142Z",
+  "updatedAt": "2022-09-16T10:07:17.394Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
