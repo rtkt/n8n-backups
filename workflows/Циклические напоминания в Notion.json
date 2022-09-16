@@ -1,0 +1,25 @@
+{
+  "id": 3,
+  "name": "Циклические напоминания в Notion",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1b12ef44-1cc4-4a3b-9cbc-60532bbeb405",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    }
+  ],
+  "connections": {},
+  "createdAt": "2022-09-16T07:48:14.142Z",
+  "updatedAt": "2022-09-16T07:48:14.142Z",
+  "settings": {},
+  "staticData": null,
+  "pinData": {},
+  "tags": []
+}
