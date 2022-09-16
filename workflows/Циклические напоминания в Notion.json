@@ -4,40 +4,6 @@
   "active": false,
   "nodes": [
     {
-      "parameters": {
-        "unit": "hours"
-      },
-      "id": "d6b8ae80-bce6-4645-9144-9064c07950fd",
-      "name": "Выполнять каждый час",
-      "type": "n8n-nodes-base.interval",
-      "typeVersion": 1,
-      "position": [
-        260,
-        200
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "notionApi",
-        "options": {}
-      },
-      "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
-      "name": "HTTP Request",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        500,
-        320
-      ],
-      "credentials": {
-        "notionApi": {
-          "id": "4",
-          "name": "Notion"
-        }
-      }
-    },
-    {
       "parameters": {},
       "id": "1b12ef44-1cc4-4a3b-9cbc-60532bbeb405",
       "name": "Начало (он же ручной запуск)",
@@ -47,25 +13,133 @@
         260,
         400
       ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "templateDB",
+              "value": "9bfcafdd2c044073924eb32bfa7671d9"
+            },
+            {
+              "name": "tasklist",
+              "value": "cf149754de194c6cbe23a1eb821c30ca"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "973f916d-c72a-40d9-9c5e-35af6a36c4b0",
+      "name": "Глобальные значения",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "requestMethod": "POST",
+        "url": "=https://api.notion.com/v1/databases/{{$json[\"templateDB\"]}}/query",
+        "jsonParameters": true,
+        "options": {},
+        "headerParametersJson": "={\n \"Notion-Version\": \"{{$node[\"Глобальные значения\"].parameter[\"values\"][\"string\"][0][\"value\"]}}\"\n}"
+      },
+      "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
+      "name": "Запрос к БД повторяющихся задач",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        780,
+        300
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 4
+            }
+          ]
+        }
+      },
+      "id": "3a679352-70f8-479f-a6e3-a77e625ded32",
+      "name": "Выполнять каждый день",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        260,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\n// Loop over inputs and add a new field called 'myNewField' to the JSON of each one\nconst getFrequency = (humanReadable: string) => {\n  const tokens = humanReadable.split(\" \");\n\n};\n\nconst tasks = items[0].json.results.map(task => {\n  const lastExec = task[\"Последнее выполнение\"] ? DateTime.fromFormat(task[\"Последнее выполнение\"].date.start, \"YYYY-MM-dd\", {zone: 'utc'}): null;\n  const frequency = getFrequency(task[\"Периодичность\"].select.name);\n  const nextExec = lastExec ? \n\n  // return {\n  //   id: task.id,\n  //   lastExecution: lastExec,\n  //   nextExecution: \n  // };\n});"
+      },
+      "id": "82e137fb-e3ee-433e-bfcf-56b31e352163",
+      "name": "Function",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        300
+      ]
     }
   ],
   "connections": {
-    "Выполнять каждый час": {
+    "Начало (он же ручной запуск)": {
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Глобальные значения",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Начало (он же ручной запуск)": {
+    "Глобальные значения": {
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Запрос к БД повторяющихся задач",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрос к БД повторяющихся задач": {
+      "main": [
+        [
+          {
+            "node": "Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Выполнять каждый день": {
+      "main": [
+        [
+          {
+            "node": "Глобальные значения",
             "type": "main",
             "index": 0
           }
@@ -74,7 +148,7 @@
     }
   },
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-16T10:07:17.394Z",
+  "updatedAt": "2022-09-16T14:59:34.432Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
