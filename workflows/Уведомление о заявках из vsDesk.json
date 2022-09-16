@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-16T09:00:06.000Z",
+  "updatedAt": "2022-09-16T10:59:08.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,64 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "216407",
-          "user": "Бутылин Иван Яковлевич",
-          "creator": "Бутылин Иван Яковлевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-16 14:41:07",
-          "name": "Необходим подменный принтер",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216407"
-        },
-        {
           "id": "216388",
           "user": "infodor1",
           "creator": "infodor1",
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-16 12:25:46",
           "name": "свежая копия тестовой базы ERP",
-          "status": "Принята в исполнение",
+          "status": "Открыта",
           "executor": "Лиханов Олег Олегович",
-          "priority": 5,
+          "priority": 3,
           "link": "https://help.knp24.ru/request/216388"
-        },
-        {
-          "id": "216377",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-16 11:40:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216377"
-        },
-        {
-          "id": "216356",
-          "user": "Юрьев Сергей Владимирович",
-          "creator": "Юрьев Сергей Владимирович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-16 10:33:48",
-          "name": "полосы при печати Kyocera 2530",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216356"
-        },
-        {
-          "id": "216328",
-          "user": "Бутылин Иван Яковлевич",
-          "creator": "Бутылин Иван Яковлевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-16 08:52:59",
-          "name": "при печати зажевывает бумагу",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216328"
         },
         {
           "id": "216245",
@@ -501,7 +453,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-15 16:32:15",
           "name": "посторонний гул аудиоколонок ",
-          "status": "Просрочена реакция",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/216245"
@@ -543,25 +495,13 @@
           "link": "https://help.knp24.ru/request/215816"
         },
         {
-          "id": "215722",
-          "user": "Нечаева Юлия Григорьевна",
-          "creator": "Сударев Владислав Николаевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-12 14:51:03",
-          "name": "Microsoft Teams постоянно не подключается к ВКС",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/215722"
-        },
-        {
           "id": "215655",
           "user": "Лиханов Олег Олегович",
           "creator": "Лиханов Олег Олегович",
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-12 09:35:13",
           "name": "Некорректная работа сертификата Next Cloud",
-          "status": "Просрочено исполнение",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/215655"
@@ -573,7 +513,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-12 09:32:19",
           "name": "Установка расширения Activities for shared file downloads на Next cloud 24.0.4",
-          "status": "Просрочено исполнение",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/215654"
@@ -585,7 +525,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-12 09:26:20",
           "name": "Обновление Next Cloud до версии 24.0.4 (12 августа 2022)",
-          "status": "Просрочено исполнение",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/215652"
