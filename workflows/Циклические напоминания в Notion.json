@@ -139,33 +139,8 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -280
+        -260
       ]
-    },
-    {
-      "parameters": {
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "notionApi",
-        "requestMethod": "POST",
-        "url": "={{$json.api}}/databases/{{$json.dbs.templates}}/query",
-        "jsonParameters": true,
-        "options": {},
-        "headerParametersJson": "={\n \"Notion-Version\": \"{{$json.apiVersion}}\"\n}"
-      },
-      "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
-      "name": "Что там по повторяющимся задачам?",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        -100,
-        -180
-      ],
-      "credentials": {
-        "notionApi": {
-          "id": "4",
-          "name": "Notion"
-        }
-      }
     },
     {
       "parameters": {
@@ -185,8 +160,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        240,
-        -540
+        0,
+        -520
       ],
       "credentials": {
         "notionApi": {
@@ -194,19 +169,6 @@
           "name": "Notion"
         }
       }
-    },
-    {
-      "parameters": {
-        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst results = items[0].json.results;\nconst fieldNames = $node[\"Глобальные значения\"].json.strings;\nconst templates = results.map(template => {\n  let lastExec;\n  if (template.properties[fieldNames.lastExec]) {\n    const str = template.properties[fieldNames.lastExec].date.start;\n    lastExec = DateTime.fromFormat(str, \"yyyy-MM-dd\", {zone: 'utc'});\n  } else {\n    lastExec = null;\n  };\n  return {\n    id: template.id,\n    lastExec: lastExec\n  };\n}).filter(template => {\n  if(!template.lastExec) return false;\n  const yesterday = DateTime.now().minus({ days: 1 }).toFormat(\"dd MM yyyy\");\n  return template.lastExec.toFormat(\"dd MM yyyy\") === yesterday;\n});\n\nreturn templates;"
-      },
-      "id": "cae21902-53bd-4b28-8850-446c99371208",
-      "name": "Формирование списка вчерашних задач",
-      "type": "n8n-nodes-base.function",
-      "typeVersion": 1,
-      "position": [
-        540,
-        140
-      ]
     },
     {
       "parameters": {
@@ -218,7 +180,7 @@
         "options": {
           "bodyContentType": "json"
         },
-        "bodyParametersJson": "={\n \"filter\": {\n \"and\": [\n {\n \"property\": \"Шаблон\",\n \"relation\": {\n \"contains\": \"72beed4a-18b4-45ea-a4bd-9a67cd9b30bc\"\n }\n },\n {\n \"property\": \"Дата создания\",\n \"date\": {\n \"on_or_after\": \"2022-09-16\"\n }\n }\n ]\n }\n }",
+        "bodyParametersJson": "={\n \"filter\": {\n \"and\": [\n {\n \"property\": \"{{$node[\"Глобальные значения\"].json.strings.template}}\",\n \"relation\": {\n \"contains\": \"{{$json[\"id\"]}}\"\n }\n },\n {\n \"property\": \"Дата создания\",\n \"date\": {\n \"on_or_after\": \"2022-09-16\"\n }\n }\n ]\n }\n }",
         "headerParametersJson": "={\n\"Notion-Version\": \"{{$node[\"Глобальные значения\"].json.apiVersion}}\"\n}"
       },
       "id": "52263ba6-85dd-45e5-bf09-a5c1031211b6",
@@ -226,8 +188,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        360,
-        -180
+        780,
+        -520
       ],
       "credentials": {
         "notionApi": {
@@ -238,36 +200,112 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{$json[\"results\"][0][\"properties\"][\"Статус\"][\"select\"][\"name\"]}}",
-              "value2": "={{$node[\"Глобальные значения\"].json.strings.statuses.done}}"
-            }
-          ]
-        }
-      },
-      "id": "c76a3419-8aa2-4024-8ef0-f82d913f4ab3",
-      "name": "Задача выполнена?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        580,
-        -180
-      ]
-    },
-    {
-      "parameters": {
-        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst parseFrequency = tokens => {\n  const numbers = new Map();\n  numbers.set(\"один\", 1);\n  numbers.set(\"одну\", 1);\n  numbers.set(\"два\", 2);\n  numbers.set(\"две\", 2)\n  numbers.set(\"три\", 3);\n  numbers.set(\"четыре\", 4);\n  numbers.set(\"пять\", 5);\n  numbers.set(\"шесть\", 6);\n  numbers.set(\"семь\", 7);\n  numbers.set(\"восемь\", 8);\n  numbers.set(\"девять\", 9);\n  numbers.set(\"десять\", 10);\n  numbers.set(\"одиннадцать\", 11);\n  numbers.set(\"двенадцать\", 12);\n  const units = new Map()\n  units.set(\"миллисекунд\", \"milliseconds\");\n  units.set(\"секунд\", \"seconds\");\n  units.set(\"минут\", \"minutes\");\n  units.set(\"час\", \"hours\");\n  units.set(\"день\", \"days\");\n  units.set(\"дня\", \"days\");\n  units.set(\"недел\", \"weeks\");\n  units.set(\"месяц\", \"months\");\n  units.set(\"квартал\", \"quarters\");\n  units.set(\"год\", \"years\");\n  units.set(\"лет\", \"years\");\n  let number = 1;\n  let unit = undefined;\n\n  for(let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i];\n      continue;\n    };\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i]);\n      continue;\n    };\n    for(let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break;\n      }\n    }\n  };\n  const ret = {};\n  ret[unit] = number;\n  return ret;\n};\n\nconst getFrequency = humanReadable => {\n  const tokens = humanReadable.split(\" \").map(token => token.toLowerCase());\n  if (tokens[0] === \"раз\" && tokens[1] === \"в\") {\n    return parseFrequency(tokens.slice(2));\n  }\n  if (tokens[0].slice(0, 4) === \"кажд\") {\n    return parseFrequency(tokens.slice(1));\n  }\n};\n\n  const tasks = items[0].json.results.map(task => {\n    const fieldNames = $node[\"Глобальные значения\"].json.strings;\n    let lastExec;\n    if (task.properties[fieldNames.lastExec]) {\n      const str = task.properties[fieldNames.lastExec].date.start;\n      lastExec = DateTime.fromFormat(str, \"yyyy-MM-dd\", {zone: 'utc'});\n    }\n    const frequency = getFrequency(task.properties[fieldNames.frequency].select.name);\n    const nextExecv09 = lastExec ? lastExec.plus(frequency) : DateTime.now();\n    const nextExec = nextExecv09.set({ hour: task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(0, 2), minute: task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(3), second: 0, millisecond: 0 });\n    return {\n      id: task.id,\n      lastExecution: lastExec,\n      nextExecution: nextExec,\n      task: {\n        name: task.properties[fieldNames.taskName].title[0].plain_text,\n        effort: task.properties[fieldNames.effort] ? task.properties[fieldNames.effort].select.name : fieldNames.priority.medium,\n        value: task.properties[fieldNames.value] ? task.properties[fieldNames.value].select.name : fieldNames.priority.medium,\n        area: task.properties[fieldNames.area] ? task.properties[fieldNames.area].select.name : undefined,\n        project: task.properties[fieldNames.project].relation[0] ? task.properties[fieldNames.project].relation[0].id : undefined\n      }\n    };\n  });\n  return tasks;"
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst parseFrequency = tokens => {\n  const numbers = new Map();\n  numbers.set(\"один\", 1);\n  numbers.set(\"одну\", 1);\n  numbers.set(\"два\", 2);\n  numbers.set(\"две\", 2)\n  numbers.set(\"три\", 3);\n  numbers.set(\"четыре\", 4);\n  numbers.set(\"пять\", 5);\n  numbers.set(\"шесть\", 6);\n  numbers.set(\"семь\", 7);\n  numbers.set(\"восемь\", 8);\n  numbers.set(\"девять\", 9);\n  numbers.set(\"десять\", 10);\n  numbers.set(\"одиннадцать\", 11);\n  numbers.set(\"двенадцать\", 12);\n  const units = new Map()\n  units.set(\"миллисекунд\", \"milliseconds\");\n  units.set(\"секунд\", \"seconds\");\n  units.set(\"минут\", \"minutes\");\n  units.set(\"час\", \"hours\");\n  units.set(\"день\", \"days\");\n  units.set(\"дня\", \"days\");\n  units.set(\"недел\", \"weeks\");\n  units.set(\"месяц\", \"months\");\n  units.set(\"квартал\", \"quarters\");\n  units.set(\"год\", \"years\");\n  units.set(\"лет\", \"years\");\n  let number = 1;\n  let unit = undefined;\n\n  for(let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i];\n      continue;\n    };\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i]);\n      continue;\n    };\n    for(let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break;\n      }\n    }\n  };\n  const ret = {};\n  ret[unit] = number;\n  return ret;\n};\n\nconst getFrequency = humanReadable => {\n  const tokens = humanReadable.split(\" \").map(token => token.toLowerCase());\n  if (tokens[0] === \"раз\" && tokens[1] === \"в\") {\n    return parseFrequency(tokens.slice(2));\n  }\n  if (tokens[0].slice(0, 4) === \"кажд\") {\n    return parseFrequency(tokens.slice(1));\n  }\n};\n\n  const tasks = items[0].json.results.map(task => {\n    const fieldNames = $node[\"Глобальные значения\"].json.strings;\n    let lastExec;\n    if (task.properties[fieldNames.lastExec]) {\n      const str = task.properties[fieldNames.lastExec].date.start;\n      lastExec = DateTime.fromFormat(str, \"yyyy-MM-dd\", {zone: 'utc'});\n    }\n    const frequency = getFrequency(task.properties[fieldNames.frequency].select.name);\n    const nextExecv09 = lastExec ? lastExec.plus(frequency) : DateTime.now();\n    const nextExec = nextExecv09.set({ hour: task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(0, 2), minute: task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(3), second: 0, millisecond: 0 });\n    return {\n      id: task.id,\n      lastExecution: lastExec,\n      nextExecution: nextExec,\n      task: {\n        name: task.properties[fieldNames.taskName].title[0].plain_text,\n        effort: task.properties[fieldNames.effort] ? task.properties[fieldNames.effort].select.name : fieldNames.priority.medium,\n        value: task.properties[fieldNames.value] ? task.properties[fieldNames.value].select.name : fieldNames.priority.medium,\n        area: task.properties[fieldNames.area] ? task.properties[fieldNames.area].select.name : undefined,\n        project: task.properties[fieldNames.project].relation[0] ? task.properties[fieldNames.project].relation[0].id : undefined\n      }\n    };\n  });\n  return tasks.filter(task => {\n    return task.nextExecution.toFormat('yyyy MM dd') === DateTime.now().toFormat('yyyy MM dd');\n  });"
       },
       "id": "82e137fb-e3ee-433e-bfcf-56b31e352163",
       "name": "Обработка таблицы",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        140,
+        120,
         -180
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"lastExecution\"]}}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "490fe2ca-86d7-4cb2-a293-d5af547a4966",
+      "name": "Задача ранее выполнялась?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run once per input item.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.functionItem\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\n// Add a new field called 'myNewField' to the JSON of the item\nitem.lastExecution = $now.toISODate();\nreturn item;"
+      },
+      "id": "85a6d5f7-ed34-4ff2-80b2-fb59ed5f6f48",
+      "name": "Подставляем сегодняшнюю дату как последнюю...",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        540,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Значение|select",
+              "selectValue": "={{$json.task.value}}"
+            },
+            {
+              "key": "Усилие|select",
+              "selectValue": "={{$json.task.effort}}"
+            },
+            {
+              "key": "Последнее выполнение|date",
+              "includeTime": false,
+              "date": "={{$json.lastExecution}}"
+            }
+          ]
+        }
+      },
+      "id": "ecd92c9f-abd0-4589-bf71-83f1a3bb1025",
+      "name": "Обновляем шаблон",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        780,
+        -80
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "requestMethod": "POST",
+        "url": "={{$json.api}}/databases/{{$json.dbs.templates}}/query",
+        "jsonParameters": true,
+        "options": {},
+        "headerParametersJson": "={\n \"Notion-Version\": \"{{$json.apiVersion}}\"\n}"
+      },
+      "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
+      "name": "Что там по шаблонам?",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        -180
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
     }
   ],
   "connections": {
@@ -286,7 +324,7 @@
       "main": [
         [
           {
-            "node": "Что там по повторяющимся задачам?",
+            "node": "Что там по шаблонам?",
             "type": "main",
             "index": 0
           }
@@ -304,7 +342,41 @@
         ]
       ]
     },
-    "Что там по повторяющимся задачам?": {
+    "Обработка таблицы": {
+      "main": [
+        [
+          {
+            "node": "Задача ранее выполнялась?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Задача ранее выполнялась?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Подставляем сегодняшнюю дату как последнюю...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подставляем сегодняшнюю дату как последнюю...": {
+      "main": [
+        [
+          {
+            "node": "Обновляем шаблон",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Что там по шаблонам?": {
       "main": [
         [
           {
@@ -314,32 +386,10 @@
           }
         ]
       ]
-    },
-    "Формирование списка вчерашних задач": {
-      "main": [
-        [
-          {
-            "node": "Получение последней задачи по этому шаблону",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Получение последней задачи по этому шаблону": {
-      "main": [
-        [
-          {
-            "node": "Задача выполнена?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-17T12:53:57.992Z",
+  "updatedAt": "2022-09-17T14:55:26.271Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
