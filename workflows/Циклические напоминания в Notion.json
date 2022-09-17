@@ -238,7 +238,16 @@
       }
     },
     {
-      "parameters": {},
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"results\"][0][\"properties\"][\"Статус\"][\"select\"][\"name\"]}}",
+              "value2": "={{$node[\"Глобальные значения\"].json.strings.statuses.done}}"
+            }
+          ]
+        }
+      },
       "id": "c76a3419-8aa2-4024-8ef0-f82d913f4ab3",
       "name": "Задача выполнена?",
       "type": "n8n-nodes-base.if",
@@ -318,7 +327,7 @@
     }
   },
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-17T08:27:40.639Z",
+  "updatedAt": "2022-09-17T08:31:25.333Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
