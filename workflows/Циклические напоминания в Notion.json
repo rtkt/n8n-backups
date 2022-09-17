@@ -10,8 +10,8 @@
       "type": "n8n-nodes-base.start",
       "typeVersion": 1,
       "position": [
-        260,
-        400
+        -500,
+        -100
       ]
     },
     {
@@ -19,7 +19,7 @@
         "values": {
           "string": [
             {
-              "name": "Notion-Version",
+              "name": "apiVersion",
               "value": "2022-06-28"
             },
             {
@@ -37,6 +37,66 @@
             {
               "name": "dbs.tasklist",
               "value": "cf149754de194c6cbe23a1eb821c30ca"
+            },
+            {
+              "name": "strings.plannedTime",
+              "value": "Время"
+            },
+            {
+              "name": "strings.taskName",
+              "value": "Имя задачи"
+            },
+            {
+              "name": "strings.effort",
+              "value": "Усилие"
+            },
+            {
+              "name": "strings.value",
+              "value": "Значение"
+            },
+            {
+              "name": "strings.project",
+              "value": "Проект"
+            },
+            {
+              "name": "strings.area",
+              "value": "Область"
+            },
+            {
+              "name": "dbs.projects",
+              "value": "03a990b2fcba48219c0467d78ae7c2e5"
+            },
+            {
+              "name": "api",
+              "value": "https://api.notion.com/v1"
+            },
+            {
+              "name": "strings.deadline",
+              "value": "Дедлайн"
+            },
+            {
+              "name": "strings.template",
+              "value": "Шаблон"
+            },
+            {
+              "name": "strings.status",
+              "value": "Статус"
+            },
+            {
+              "name": "strings.statuses.done",
+              "value": "Сделано 🙌"
+            },
+            {
+              "name": "strings.statuses.cancelled",
+              "value": "Отменено"
+            },
+            {
+              "name": "strings.statuses.notDone",
+              "value": "Не сделано"
+            },
+            {
+              "name": "strings.statuses.paused",
+              "value": "Приостановлено"
             }
           ]
         },
@@ -47,34 +107,9 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        500,
-        300
+        -300,
+        -180
       ]
-    },
-    {
-      "parameters": {
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "notionApi",
-        "requestMethod": "POST",
-        "url": "=https://api.notion.com/v1/databases/{{$json.dbs.templates}}/query",
-        "jsonParameters": true,
-        "options": {},
-        "headerParametersJson": "={\n \"Notion-Version\": \"{{$node[\"Глобальные значения\"].parameter[\"values\"][\"string\"][0][\"value\"]}}\"\n}"
-      },
-      "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
-      "name": "Запрос к БД повторяющихся задач",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        780,
-        300
-      ],
-      "credentials": {
-        "notionApi": {
-          "id": "4",
-          "name": "Notion"
-        }
-      }
     },
     {
       "parameters": {
@@ -91,21 +126,85 @@
       "type": "n8n-nodes-base.cron",
       "typeVersion": 1,
       "position": [
-        260,
-        200
+        -500,
+        -260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9fe703e3-d76f-467e-bec3-126dbd76bece",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -180
       ]
     },
     {
       "parameters": {
-        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst parseFrequency = tokens => {\n  const numbers = new Map();\n  numbers.set(\"один\", 1);\n  numbers.set(\"два\", 2);\n  numbers.set(\"три\", 3);\n  numbers.set(\"четыре\", 4);\n  numbers.set(\"пять\", 5);\n  numbers.set(\"шесть\", 6);\n  numbers.set(\"семь\", 7);\n  numbers.set(\"восемь\", 8);\n  numbers.set(\"девять\", 9);\n  numbers.set(\"десять\", 10);\n  numbers.set(\"одиннадцать\", 11);\n  numbers.set(\"двенадцать\", 12);\n  const units = new Map()\n  units.set(\"миллисекунд\", \"milliseconds\");\n  units.set(\"секунд\", \"seconds\");\n  units.set(\"минут\", \"minutes\");\n  units.set(\"час\", \"hours\");\n  units.set(\"день\", \"days\");\n  units.set(\"дня\", \"days\");\n  units.set(\"недел\", \"weeks\");\n  units.set(\"месяц\", \"months\");\n  units.set(\"квартал\", \"quarters\");\n  units.set(\"год\", \"years\");\n  units.set(\"лет\", \"years\");\n  let number = 1;\n  let unit = undefined;\n\n  for(let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i];\n      continue;\n    };\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i]);\n      continue;\n    };\n    for(let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break;\n      }\n    }\n  };\n  const ret = {};\n  ret[unit] = number;\n  return ret;\n};\n\nconst getFrequency = humanReadable => {\n  const tokens = humanReadable.split(\" \").map(token => token.toLowerCase());\n  if (tokens[0] === \"раз\" && tokens[1] === \"в\") {\n    return parseFrequency(tokens.slice(2));\n  }\n  if (tokens[0].slice(0, 4) === \"кажд\") {\n    return parseFrequency(tokens.slice(1));\n  }\n};\n\n  const tasks = items[0].json.results.map(task => {\n    const fieldNames = $node[\"Глобальные значения\"].json.strings;\n    let lastExec;\n    if (task.properties[fieldNames.lastExec]) {\n      lastExec = DateTime.fromFormat(task.properties[fieldNames.lastExec].date.start, \"yyyy-MM-dd\", {zone: 'utc'});\n    }\n    const frequency = getFrequency(task.properties[fieldNames.frequency].select.name);\n    // const nextExec = lastExec ? : DateTime.now();\n    // return {\n    //   id: task.id,\n    //   lastExecution: lastExec,\n    //   nextExecution: \n    // };\n    return lastExec;\n  });\nreturn { frequency: tasks };"
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "requestMethod": "POST",
+        "url": "={{$json.api}}/databases/{{$json.dbs.templates}}/query",
+        "jsonParameters": true,
+        "options": {},
+        "headerParametersJson": "={\n \"Notion-Version\": \"{{$json.apiVersion}}\"\n}"
+      },
+      "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
+      "name": "Что там по повторяющимся задачам?",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        -80
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "requestMethod": "POST",
+        "url": "={{$json.api}}/databases/{{$json.dbs.tasklist}}/query",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "json"
+        },
+        "bodyParametersJson": "={\n \"filter\": {\n \"and\": [\n {\n \"property\": \"{{$json.strings.template}}\",\n \"relation\": {\n \"is_not_empty\": true\n }\n },\n {\n \"property\": \"{{$json.strings.status}}\",\n \"select\": {\n \"does_not_equal\": \"{{$json.strings.statuses.done}}\"\n }\n }\n ]\n }\n }",
+        "headerParametersJson": "={{ { \"Notion-Version\":$json.apiVersion } }}"
+      },
+      "id": "4d3c8bcb-37be-444d-b7c7-90ee6f0e6bca",
+      "name": "Что там со списком задач?",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        -280
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst parseFrequency = tokens => {\n  const numbers = new Map();\n  numbers.set(\"один\", 1);\n  numbers.set(\"одну\", 1);\n  numbers.set(\"два\", 2);\n  numbers.set(\"две\", 2)\n  numbers.set(\"три\", 3);\n  numbers.set(\"четыре\", 4);\n  numbers.set(\"пять\", 5);\n  numbers.set(\"шесть\", 6);\n  numbers.set(\"семь\", 7);\n  numbers.set(\"восемь\", 8);\n  numbers.set(\"девять\", 9);\n  numbers.set(\"десять\", 10);\n  numbers.set(\"одиннадцать\", 11);\n  numbers.set(\"двенадцать\", 12);\n  const units = new Map()\n  units.set(\"миллисекунд\", \"milliseconds\");\n  units.set(\"секунд\", \"seconds\");\n  units.set(\"минут\", \"minutes\");\n  units.set(\"час\", \"hours\");\n  units.set(\"день\", \"days\");\n  units.set(\"дня\", \"days\");\n  units.set(\"недел\", \"weeks\");\n  units.set(\"месяц\", \"months\");\n  units.set(\"квартал\", \"quarters\");\n  units.set(\"год\", \"years\");\n  units.set(\"лет\", \"years\");\n  let number = 1;\n  let unit = undefined;\n\n  for(let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i];\n      continue;\n    };\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i]);\n      continue;\n    };\n    for(let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break;\n      }\n    }\n  };\n  const ret = {};\n  ret[unit] = number;\n  return ret;\n};\n\nconst getFrequency = humanReadable => {\n  const tokens = humanReadable.split(\" \").map(token => token.toLowerCase());\n  if (tokens[0] === \"раз\" && tokens[1] === \"в\") {\n    return parseFrequency(tokens.slice(2));\n  }\n  if (tokens[0].slice(0, 4) === \"кажд\") {\n    return parseFrequency(tokens.slice(1));\n  }\n};\n\n  const tasks = items[0].json.results.map(task => {\n    const fieldNames = $node[\"Глобальные значения\"].json.strings;\n    let lastExec;\n    if (task.properties[fieldNames.lastExec]) {\n      lastExec = DateTime.fromFormat(task.properties[fieldNames.lastExec].date.start, \"yyyy-MM-dd\", {zone: 'utc'});\n    }\n    const frequency = getFrequency(task.properties[fieldNames.frequency].select.name);\n    // const nextExec = lastExec ? : DateTime.now();\n    // return {\n    //   id: task.id,\n    //   lastExecution: lastExec,\n    //   nextExecution: \n    // };\n    return lastExec;\n  });\nreturn { frequency: tasks };"
       },
       "id": "82e137fb-e3ee-433e-bfcf-56b31e352163",
-      "name": "Function",
+      "name": "Обработка данных",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        1060,
-        300
+        300,
+        -180
       ]
     }
   ],
@@ -125,18 +224,12 @@
       "main": [
         [
           {
-            "node": "Запрос к БД повторяющихся задач",
+            "node": "Что там по повторяющимся задачам?",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Запрос к БД повторяющихся задач": {
-      "main": [
-        [
+          },
           {
-            "node": "Function",
+            "node": "Что там со списком задач?",
             "type": "main",
             "index": 0
           }
@@ -153,10 +246,43 @@
           }
         ]
       ]
+    },
+    "Что там по повторяющимся задачам?": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Что там со списком задач?": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Обработка данных",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-17T04:30:31.278Z",
+  "updatedAt": "2022-09-17T06:55:10.479Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
