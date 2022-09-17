@@ -127,18 +127,7 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -260
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "9fe703e3-d76f-467e-bec3-126dbd76bece",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 1,
-      "position": [
-        100,
-        -180
+        -280
       ]
     },
     {
@@ -157,7 +146,7 @@
       "typeVersion": 2,
       "position": [
         -100,
-        -80
+        -180
       ],
       "credentials": {
         "notionApi": {
@@ -171,21 +160,21 @@
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "notionApi",
         "requestMethod": "POST",
-        "url": "={{$json.api}}/databases/{{$json.dbs.tasklist}}/query",
+        "url": "={{$node[\"Глобальные значения\"].json.api}}/databases/{{$node[\"Глобальные значения\"].json.dbs.tasklist}}/query",
         "jsonParameters": true,
         "options": {
           "bodyContentType": "json"
         },
-        "bodyParametersJson": "={\n \"filter\": {\n \"and\": [\n {\n \"property\": \"{{$json.strings.template}}\",\n \"relation\": {\n \"is_not_empty\": true\n }\n },\n {\n \"property\": \"{{$json.strings.status}}\",\n \"select\": {\n \"does_not_equal\": \"{{$json.strings.statuses.done}}\"\n }\n }\n ]\n }\n }",
-        "headerParametersJson": "={{ { \"Notion-Version\":$json.apiVersion } }}"
+        "bodyParametersJson": "={\n \"filter\": {\n \"and\": [\n {\n \"property\": \"{{$node[\"Глобальные значения\"].json.strings.template}}\",\n \"relation\": {\n \"is_not_empty\": true\n }\n },\n {\n \"property\": \"{{$node[\"Глобальные значения\"].json.strings.status}}\",\n \"select\": {\n \"does_not_equal\": \"{{$node[\"Глобальные значения\"].json.strings.statuses.done}}\"\n }\n }\n ]\n }\n }",
+        "headerParametersJson": "={{ { \"Notion-Version\":$node[\"Глобальные значения\"].json.apiVersion } }}"
       },
       "id": "4d3c8bcb-37be-444d-b7c7-90ee6f0e6bca",
       "name": "Что там со списком задач?",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -100,
-        -280
+        240,
+        -540
       ],
       "credentials": {
         "notionApi": {
@@ -203,7 +192,59 @@
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        300,
+        780,
+        -660
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst results = items[0].json.results;\nconst fieldNames = $node[\"Глобальные значения\"].json.strings;\nconst templates = results.map(template => {\n  let lastExec;\n  if (template.properties[fieldNames.lastExec]) {\n    const str = template.properties[fieldNames.lastExec].date.start;\n    lastExec = DateTime.fromFormat(str, \"yyyy-MM-dd\", {zone: 'utc'});\n  } else {\n    lastExec = null;\n  };\n  return {\n    id: template.id,\n    lastExec: lastExec\n  };\n}).filter(template => {\n  if(!template.lastExec) return false;\n  const yesterday = DateTime.now().minus({ days: 1 }).toFormat(\"dd MM yyyy\");\n  return template.lastExec.toFormat(\"dd MM yyyy\") === yesterday;\n});\n\nreturn templates;"
+      },
+      "id": "cae21902-53bd-4b28-8850-446c99371208",
+      "name": "Формирование списка вчерашних задач",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "requestMethod": "POST",
+        "url": "={{$node[\"Глобальные значения\"].json.api}}/databases/{{$node[\"Глобальные значения\"].json.dbs.tasklist}}/query",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "json"
+        },
+        "bodyParametersJson": "={\n \"filter\": {\n \"and\": [\n {\n \"property\": \"Шаблон\",\n \"relation\": {\n \"contains\": \"72beed4a-18b4-45ea-a4bd-9a67cd9b30bc\"\n }\n },\n {\n \"property\": \"Дата создания\",\n \"date\": {\n \"on_or_after\": \"2022-09-16\"\n }\n }\n ]\n }\n }",
+        "headerParametersJson": "={\n\"Notion-Version\": \"{{$node[\"Глобальные значения\"].json.apiVersion}}\"\n}"
+      },
+      "id": "52263ba6-85dd-45e5-bf09-a5c1031211b6",
+      "name": "Получение последней задачи по этому шаблону",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        360,
+        -180
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "c76a3419-8aa2-4024-8ef0-f82d913f4ab3",
+      "name": "Задача выполнена?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        580,
         -180
       ]
     }
@@ -227,11 +268,6 @@
             "node": "Что там по повторяющимся задачам?",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Что там со списком задач?",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -251,29 +287,29 @@
       "main": [
         [
           {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Что там со списком задач?": {
-      "main": [
-        [
-          {
-            "node": "Merge",
+            "node": "Формирование списка вчерашних задач",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Merge": {
+    "Формирование списка вчерашних задач": {
       "main": [
         [
           {
-            "node": "Обработка данных",
+            "node": "Получение последней задачи по этому шаблону",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение последней задачи по этому шаблону": {
+      "main": [
+        [
+          {
+            "node": "Задача выполнена?",
             "type": "main",
             "index": 0
           }
@@ -282,7 +318,7 @@
     }
   },
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-17T06:55:10.479Z",
+  "updatedAt": "2022-09-17T08:27:40.639Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
