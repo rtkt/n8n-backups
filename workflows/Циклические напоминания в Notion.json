@@ -23,11 +23,19 @@
               "value": "2022-06-28"
             },
             {
-              "name": "templateDB",
+              "name": "strings.lastExec",
+              "value": "Последнее выполнение"
+            },
+            {
+              "name": "strings.frequency",
+              "value": "Периодичность"
+            },
+            {
+              "name": "dbs.templates",
               "value": "9bfcafdd2c044073924eb32bfa7671d9"
             },
             {
-              "name": "tasklist",
+              "name": "dbs.tasklist",
               "value": "cf149754de194c6cbe23a1eb821c30ca"
             }
           ]
@@ -48,7 +56,7 @@
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "notionApi",
         "requestMethod": "POST",
-        "url": "=https://api.notion.com/v1/databases/{{$json[\"templateDB\"]}}/query",
+        "url": "=https://api.notion.com/v1/databases/{{$json.dbs.templates}}/query",
         "jsonParameters": true,
         "options": {},
         "headerParametersJson": "={\n \"Notion-Version\": \"{{$node[\"Глобальные значения\"].parameter[\"values\"][\"string\"][0][\"value\"]}}\"\n}"
@@ -89,7 +97,7 @@
     },
     {
       "parameters": {
-        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst parseFrequency = tokens => {\n  const numbers = new Map();\n  numbers.set(\"один\", 1);\n  numbers.set(\"два\", 2);\n  numbers.set(\"три\", 3);\n  numbers.set(\"четыре\", 4);\n  numbers.set(\"пять\", 5);\n  numbers.set(\"шесть\", 6);\n  numbers.set(\"семь\", 7);\n  numbers.set(\"восемь\", 8);\n  numbers.set(\"девять\", 9);\n  numbers.set(\"десять\", 10);\n  numbers.set(\"одиннадцать\", 11);\n  numbers.set(\"двенадцать\", 12);\n  const units = new Map()\n  units.set(\"миллисекунд\", \"milliseconds\");\n  units.set(\"секунд\", \"seconds\");\n  units.set(\"минут\", \"minutes\");\n  units.set(\"час\", \"hours\");\n  units.set(\"день\", \"days\");\n  units.set(\"дня\", \"days\");\n  units.set(\"недел\", \"weeks\");\n  units.set(\"месяц\", \"months\");\n  units.set(\"квартал\", \"quarters\");\n  units.set(\"год\", \"years\");\n  units.set(\"лет\", \"years\");\n  let number = 1;\n  let unit = undefined;\n\n  for(let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i];\n      continue;\n    };\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i]);\n      continue;\n    };\n    for(let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break;\n      }\n    }\n  };\n\n  return {unit: number};\n};\n\nconst getFrequency = humanReadable => {\n  const tokens = humanReadable.split(\" \").map(token => token.toLowerCase());\n  if (tokens[0] === \"раз\" && tokens[1] === \"в\") {\n    return parseFrequency(tokens.slice(2));\n  }\n  if (tokens[0].slice(0, 4) === \"кажд\") {\n    return parseFrequency(tokens.slice(1));\n  }\n};\n\nconst tasks = items[0].json.results.map(task => {\n  const lastExec = task.properties[\"Последнее выполнение\"] ? DateTime.fromFormat(task.properties[\"Последнее выполнение\"].date.start, \"YYYY-MM-dd\", {zone: 'utc'}): null;\n  const frequency = getFrequency(task.properties[\"Периодичность\"].select.name);\n  // const nextExec = lastExec ? \n  // return {\n  //   id: task.id,\n  //   lastExecution: lastExec,\n  //   nextExecution: \n  // };\n  return frequency;\n});\nreturn { frequency: tasks };"
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst parseFrequency = tokens => {\n  const numbers = new Map();\n  numbers.set(\"один\", 1);\n  numbers.set(\"два\", 2);\n  numbers.set(\"три\", 3);\n  numbers.set(\"четыре\", 4);\n  numbers.set(\"пять\", 5);\n  numbers.set(\"шесть\", 6);\n  numbers.set(\"семь\", 7);\n  numbers.set(\"восемь\", 8);\n  numbers.set(\"девять\", 9);\n  numbers.set(\"десять\", 10);\n  numbers.set(\"одиннадцать\", 11);\n  numbers.set(\"двенадцать\", 12);\n  const units = new Map()\n  units.set(\"миллисекунд\", \"milliseconds\");\n  units.set(\"секунд\", \"seconds\");\n  units.set(\"минут\", \"minutes\");\n  units.set(\"час\", \"hours\");\n  units.set(\"день\", \"days\");\n  units.set(\"дня\", \"days\");\n  units.set(\"недел\", \"weeks\");\n  units.set(\"месяц\", \"months\");\n  units.set(\"квартал\", \"quarters\");\n  units.set(\"год\", \"years\");\n  units.set(\"лет\", \"years\");\n  let number = 1;\n  let unit = undefined;\n\n  for(let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i];\n      continue;\n    };\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i]);\n      continue;\n    };\n    for(let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break;\n      }\n    }\n  };\n  const ret = {};\n  ret[unit] = number;\n  return ret;\n};\n\nconst getFrequency = humanReadable => {\n  const tokens = humanReadable.split(\" \").map(token => token.toLowerCase());\n  if (tokens[0] === \"раз\" && tokens[1] === \"в\") {\n    return parseFrequency(tokens.slice(2));\n  }\n  if (tokens[0].slice(0, 4) === \"кажд\") {\n    return parseFrequency(tokens.slice(1));\n  }\n};\n\n  const tasks = items[0].json.results.map(task => {\n    const fieldNames = $node[\"Глобальные значения\"].json.strings;\n    let lastExec;\n    if (task.properties[fieldNames.lastExec]) {\n      lastExec = DateTime.fromFormat(task.properties[fieldNames.lastExec].date.start, \"yyyy-MM-dd\", {zone: 'utc'});\n    }\n    const frequency = getFrequency(task.properties[fieldNames.frequency].select.name);\n    // const nextExec = lastExec ? : DateTime.now();\n    // return {\n    //   id: task.id,\n    //   lastExecution: lastExec,\n    //   nextExecution: \n    // };\n    return lastExec;\n  });\nreturn { frequency: tasks };"
       },
       "id": "82e137fb-e3ee-433e-bfcf-56b31e352163",
       "name": "Function",
@@ -148,7 +156,7 @@
     }
   },
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-16T18:27:14.639Z",
+  "updatedAt": "2022-09-17T04:30:31.278Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
