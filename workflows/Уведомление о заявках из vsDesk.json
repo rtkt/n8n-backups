@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-16T10:59:08.000Z",
+  "updatedAt": "2022-09-19T01:00:19.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -493,42 +493,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/215816"
-        },
-        {
-          "id": "215655",
-          "user": "Лиханов Олег Олегович",
-          "creator": "Лиханов Олег Олегович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-12 09:35:13",
-          "name": "Некорректная работа сертификата Next Cloud",
-          "status": "Требует уточнения",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/215655"
-        },
-        {
-          "id": "215654",
-          "user": "Лиханов Олег Олегович",
-          "creator": "Лиханов Олег Олегович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-12 09:32:19",
-          "name": "Установка расширения Activities for shared file downloads на Next cloud 24.0.4",
-          "status": "Требует уточнения",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/215654"
-        },
-        {
-          "id": "215652",
-          "user": "Лиханов Олег Олегович",
-          "creator": "Лиханов Олег Олегович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-12 09:26:20",
-          "name": "Обновление Next Cloud до версии 24.0.4 (12 августа 2022)",
-          "status": "Требует уточнения",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/215652"
         },
         {
           "id": "215033",
