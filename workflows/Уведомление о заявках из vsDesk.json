@@ -427,13 +427,37 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-19T01:00:19.000Z",
+  "updatedAt": "2022-09-19T02:59:57.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "216679",
+          "user": "АЗС № 43",
+          "creator": "АЗС № 43",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-19 09:49:20",
+          "name": "Удалить, добавить пользователя.",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216679"
+        },
+        {
+          "id": "216669",
+          "user": "Цишкевич Татьяна Викторовна",
+          "creator": "Цишкевич Татьяна Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-19 09:15:52",
+          "name": "На диске закончилась память",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216669"
+        },
         {
           "id": "216388",
           "user": "infodor1",
