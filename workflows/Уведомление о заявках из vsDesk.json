@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-19T09:00:01.000Z",
+  "updatedAt": "2022-09-19T10:59:02.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -447,18 +447,6 @@
           "link": "https://help.knp24.ru/request/216731"
         },
         {
-          "id": "216730",
-          "user": "Самчугова Анна Юрьевна",
-          "creator": "Самчугова Анна Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-19 14:59:06",
-          "name": "Не архивируется почта",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/216730"
-        },
-        {
           "id": "216725",
           "user": "Хабибулина Зульфия Равилевна",
           "creator": "Хабибулина Зульфия Равилевна",
@@ -469,18 +457,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/216725"
-        },
-        {
-          "id": "216724",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-19 14:40:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216724"
         },
         {
           "id": "216720",
@@ -495,18 +471,6 @@
           "link": "https://help.knp24.ru/request/216720"
         },
         {
-          "id": "216708",
-          "user": "Климас Татьяна Игоревна",
-          "creator": "Климас Татьяна Игоревна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-19 13:25:45",
-          "name": "Эл. почта делегирование прав",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216708"
-        },
-        {
           "id": "216694",
           "user": "Власова Татьяна Леонтьевна",
           "creator": "Власова Татьяна Леонтьевна",
@@ -517,18 +481,6 @@
           "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/216694"
-        },
-        {
-          "id": "216693",
-          "user": "АЗС № 145",
-          "creator": "АЗС № 145",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-19 11:35:42",
-          "name": "Принтер",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216693"
         },
         {
           "id": "216388",
