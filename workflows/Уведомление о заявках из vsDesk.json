@@ -427,13 +427,61 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-20T03:00:10.000Z",
+  "updatedAt": "2022-09-20T05:00:11.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "216828",
+          "user": "Громова Валентина Юрьевна",
+          "creator": "Громова Валентина Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 11:54:00",
+          "name": "Подключить принтер",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216828"
+        },
+        {
+          "id": "216823",
+          "user": "АЗС № 29",
+          "creator": "АЗС № 29",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 11:24:10",
+          "name": "АЗС 29",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216823"
+        },
+        {
+          "id": "216821",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 11:22:04",
+          "name": "[Main PRTG] 2 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216821"
+        },
+        {
+          "id": "216816",
+          "user": "Бутылин Иван Яковлевич",
+          "creator": "Бутылин Иван Яковлевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 10:51:51",
+          "name": "Необходим картридж для подменного МФУ Samsung SL-M3870FW",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216816"
+        },
         {
           "id": "216795",
           "user": "Быкова Олеся Юрьевна",
@@ -477,8 +525,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-19 14:26:33",
           "name": "Не открывается ярлык рабочий стол выдает ошибку",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/216720"
         },
@@ -525,7 +573,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-15 13:00:41",
           "name": "компьютер выключается сам по себе",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Дмитриев Виктор Борисович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/216211"
