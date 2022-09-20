@@ -427,13 +427,73 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-20T05:00:11.000Z",
+  "updatedAt": "2022-09-20T07:00:12.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "216853",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 13:58:03",
+          "name": "[Main PRTG] 5 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216853"
+        },
+        {
+          "id": "216847",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Кириллова Оксана Альбертовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 13:41:28",
+          "name": "Загружается под 100% оперативная память, перестает работать Снк-офис",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/216847"
+        },
+        {
+          "id": "216845",
+          "user": "Громова Валентина Юрьевна",
+          "creator": "Громова Валентина Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 13:37:02",
+          "name": "работа с 1С",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/216845"
+        },
+        {
+          "id": "216835",
+          "user": "Пожиленко Наталья Васильевна",
+          "creator": "Пожиленко Наталья Васильевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 12:14:28",
+          "name": "громко гудит системный блок",
+          "status": "Принята в исполнение",
+          "executor": "Григорьев Александр Валерьевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216835"
+        },
+        {
+          "id": "216833",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-20 12:10:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/216833"
+        },
         {
           "id": "216828",
           "user": "Громова Валентина Юрьевна",
@@ -465,7 +525,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-20 11:22:04",
           "name": "[Main PRTG] 2 Summarized Notifications",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/216821"
@@ -489,7 +549,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-20 08:25:33",
           "name": "Проблема с компьютером и монитором!",
-          "status": "Просрочена реакция",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/216795"
@@ -561,7 +621,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-15 16:32:15",
           "name": "посторонний гул аудиоколонок ",
-          "status": "Требует уточнения",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/216245"
