@@ -427,13 +427,37 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-22T07:00:37.000Z",
+  "updatedAt": "2022-09-22T09:00:37.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "217160",
+          "user": "Никитина Алена Олеговна",
+          "creator": "Никитина Алена Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-22 15:06:15",
+          "name": "прошу устранить",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/217160"
+        },
+        {
+          "id": "217152",
+          "user": "Никитина Алена Олеговна",
+          "creator": "Никитина Алена Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-22 14:19:35",
+          "name": "просьба устранить ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/217152"
+        },
         {
           "id": "217112",
           "user": "Быкова Олеся Юрьевна",
@@ -469,18 +493,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/216994"
-        },
-        {
-          "id": "216974",
-          "user": "АЗС № 29",
-          "creator": "АЗС № 29",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-21 11:37:07",
-          "name": "АЗС 29",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216974"
         },
         {
           "id": "216828",
@@ -562,7 +574,7 @@
           "timestamp": "2022-09-15 11:11:25",
           "name": "переполнена память в принтере",
           "status": "Открыта",
-          "executor": null,
+          "executor": "Дмитриев Виктор Борисович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/216194"
         },
