@@ -427,25 +427,13 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-26T08:59:44.000Z",
+  "updatedAt": "2022-09-26T10:59:45.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "217632",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-26 15:22:02",
-          "name": "[Main PRTG] 1c-cluster1 Свободное дисковое пространство (на нескольких дисках) (С=",
-          "status": "Принята в исполнение",
-          "executor": "Болсуновский Максим Александрович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/217632"
-        },
         {
           "id": "217600",
           "user": "Никишина Алена Сергеевна",
@@ -465,7 +453,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-26 12:32:41",
           "name": "не могу зайти на ЭТП  Сбербанк - ( Анастасия 8-950-400-25-55) - SEV-PRODAZHI 192.168.10.98 soglaeva",
-          "status": "Принята в исполнение",
+          "status": "Требует уточнения",
           "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/217585"
