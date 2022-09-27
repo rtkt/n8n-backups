@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-27T04:59:55.000Z",
+  "updatedAt": "2022-09-27T06:59:57.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,13 +435,61 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "217856",
+          "user": "Товарнов Алексей Владимирович",
+          "creator": "Товарнов Алексей Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-27 13:58:01",
+          "name": "Отсутствует интернет",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/217856"
+        },
+        {
+          "id": "217854",
+          "user": "Громова Валентина Юрьевна",
+          "creator": "Громова Валентина Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-27 13:48:33",
+          "name": "нет подключения в Тимс",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/217854"
+        },
+        {
+          "id": "217843",
+          "user": "Смолькин Сергей Васильевич",
+          "creator": "Смолькин Сергей Васильевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-27 13:21:47",
+          "name": "не печатает принтер",
+          "status": "Принята в исполнение",
+          "executor": "Михайлов Степан Сергеевич",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/217843"
+        },
+        {
+          "id": "217818",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Кириллова Оксана Альбертовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-27 12:06:03",
+          "name": "Не проходит авторизация  в Outlook ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/217818"
+        },
+        {
           "id": "217796",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-27 11:10:02",
           "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/217796"
