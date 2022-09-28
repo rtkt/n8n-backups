@@ -427,13 +427,37 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-28T05:00:07.000Z",
+  "updatedAt": "2022-09-28T07:00:12.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "218019",
+          "user": "Шевцов Сергей Викторович",
+          "creator": "Шевцов Сергей Викторович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-28 13:38:57",
+          "name": "О предоставлении видеоматериалов",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218019"
+        },
+        {
+          "id": "218016",
+          "user": "АЗС № 124",
+          "creator": "АЗС № 124",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-28 13:30:54",
+          "name": "принтер",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218016"
+        },
         {
           "id": "217972",
           "user": "Кротова Наталья Геннадьевна",
@@ -445,30 +469,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/217972"
-        },
-        {
-          "id": "217967",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-28 10:10:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/217967"
-        },
-        {
-          "id": "217966",
-          "user": "Колмаков Василий Александрович",
-          "creator": "Колмаков Василий Александрович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-28 10:08:01",
-          "name": "",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/217966"
         },
         {
           "id": "217961",
@@ -517,18 +517,6 @@
           "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/217585"
-        },
-        {
-          "id": "217307",
-          "user": "Славская Светлана Владимировна",
-          "creator": "Славская Светлана Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-23 13:34:35",
-          "name": "Не загружается программа площадка ЕИС",
-          "status": "Просрочено исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/217307"
         },
         {
           "id": "217192",
@@ -589,18 +577,6 @@
           "executor": "Дмитриев Виктор Борисович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/216194"
-        },
-        {
-          "id": "215816",
-          "user": "Мутовина Ольга Леонидовна",
-          "creator": "Мутовина Ольга Леонидовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-13 08:36:54",
-          "name": "ломается монитор на АСН",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/215816"
         }
       ]
     }
