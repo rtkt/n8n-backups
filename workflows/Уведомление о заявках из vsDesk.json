@@ -427,13 +427,49 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-28T03:00:06.000Z",
+  "updatedAt": "2022-09-28T05:00:07.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "217972",
+          "user": "Кротова Наталья Геннадьевна",
+          "creator": "Кротова Наталья Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-28 10:26:38",
+          "name": "Принтер ECOSYS M5526cdn - шумы при печати документов",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/217972"
+        },
+        {
+          "id": "217967",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-28 10:10:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/217967"
+        },
+        {
+          "id": "217966",
+          "user": "Колмаков Василий Александрович",
+          "creator": "Колмаков Василий Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-28 10:08:01",
+          "name": "",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/217966"
+        },
         {
           "id": "217961",
           "user": "Сиденко Ирина Анатольевна",
