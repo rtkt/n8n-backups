@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-28T10:59:11.000Z",
+  "updatedAt": "2022-09-29T01:00:17.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -465,8 +465,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-28 10:26:38",
           "name": "Принтер ECOSYS M5526cdn - шумы при печати документов",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/217972"
         },
