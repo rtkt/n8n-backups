@@ -427,13 +427,49 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-29T10:59:23.000Z",
+  "updatedAt": "2022-09-30T01:00:32.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "218265",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Шарыпов Олег Олегович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-30 05:06:54",
+          "name": "Сброс пароля учётной записи",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218265"
+        },
+        {
+          "id": "218241",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-29 23:29:03",
+          "name": "[PRTG Ticket] VM-SNK Memory (Память WMI) «Ошибка» (ранее: «Предупреждение») ",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218241"
+        },
+        {
+          "id": "218229",
+          "user": "АЗС № 121",
+          "creator": "АЗС № 121",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-09-29 18:35:53",
+          "name": "АЗС-121",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218229"
+        },
         {
           "id": "218218",
           "user": "Чмакало Виктор Николаевич",
