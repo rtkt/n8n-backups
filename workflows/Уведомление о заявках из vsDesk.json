@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-03T05:00:11.000Z",
+  "updatedAt": "2022-10-03T07:00:12.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,13 +435,37 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "218667",
+          "user": "АЗС № 107",
+          "creator": "АЗС № 107",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 13:08:51",
+          "name": "Принтер.",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218667"
+        },
+        {
+          "id": "218665",
+          "user": "АЗС № 107",
+          "creator": "test1",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 13:06:03",
+          "name": "Спам в электронной почте",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218665"
+        },
+        {
           "id": "218654",
           "user": "АЗС № 118",
           "creator": "АЗС № 118",
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-03 11:38:18",
           "name": "на почту приходят не понятные сообщения",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/218654"
@@ -453,7 +477,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-03 11:01:42",
           "name": "заявка на организацию раб. места",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/218647"
