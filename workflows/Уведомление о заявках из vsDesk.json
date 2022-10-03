@@ -427,13 +427,25 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-09-30T10:59:36.000Z",
+  "updatedAt": "2022-10-03T01:00:08.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "218587",
+          "user": "АЗС № 1",
+          "creator": "АЗС № 1",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 01:26:04",
+          "name": "АЗС № 1",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218587"
+        },
         {
           "id": "218157",
           "user": "Бахтеева Мария Вадимовна",
