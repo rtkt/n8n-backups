@@ -427,13 +427,85 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-03T09:00:13.000Z",
+  "updatedAt": "2022-10-03T10:59:14.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "218730",
+          "user": "Шевцов Сергей Викторович",
+          "creator": "Шевцов Сергей Викторович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 17:55:22",
+          "name": "об организации доступа к единому документу",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218730"
+        },
+        {
+          "id": "218727",
+          "user": "test1",
+          "creator": "test1",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 17:47:02",
+          "name": "Пропущенный вызов в группе Группа системного администрирования",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218727"
+        },
+        {
+          "id": "218723",
+          "user": "Старцев Олег Валерьевич",
+          "creator": "Старцев Олег Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 17:35:51",
+          "name": "Дубликаты новой электронной подписи О. В. Старцева",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/218723"
+        },
+        {
+          "id": "218718",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 17:18:02",
+          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218718"
+        },
+        {
+          "id": "218710",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 16:40:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218710"
+        },
+        {
+          "id": "218665",
+          "user": "АЗС № 107",
+          "creator": "test1",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-03 13:06:03",
+          "name": "Спам в электронной почте",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218665"
+        },
         {
           "id": "218654",
           "user": "АЗС № 118",
@@ -453,7 +525,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-09-29 10:34:21",
           "name": "периодически гудит вентилятор на ПК Бахтеевой М.В.",
-          "status": "Требует уточнения",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/218157"
