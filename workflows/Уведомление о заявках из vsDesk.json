@@ -427,37 +427,13 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-03T07:00:12.000Z",
+  "updatedAt": "2022-10-03T09:00:13.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "218667",
-          "user": "АЗС № 107",
-          "creator": "АЗС № 107",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-03 13:08:51",
-          "name": "Принтер.",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218667"
-        },
-        {
-          "id": "218665",
-          "user": "АЗС № 107",
-          "creator": "test1",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-03 13:06:03",
-          "name": "Спам в электронной почте",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218665"
-        },
         {
           "id": "218654",
           "user": "АЗС № 118",
@@ -469,54 +445,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/218654"
-        },
-        {
-          "id": "218647",
-          "user": "Ситдиков Расим Раисович",
-          "creator": "Ситдиков Расим Раисович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-03 11:01:42",
-          "name": "заявка на организацию раб. места",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218647"
-        },
-        {
-          "id": "218646",
-          "user": "Бойко Алексей Владимирович",
-          "creator": "Бойко Алексей Владимирович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-03 10:50:28",
-          "name": "Спам почты на АЗС.",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/218646"
-        },
-        {
-          "id": "218637",
-          "user": "Сизиков Леонид Юрьевич",
-          "creator": "Сизиков Леонид Юрьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-03 10:35:07",
-          "name": "Активация учетной записи сотрудника.",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/218637"
-        },
-        {
-          "id": "218633",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-03 10:10:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218633"
         },
         {
           "id": "218157",
