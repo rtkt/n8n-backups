@@ -427,13 +427,37 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-03T10:59:14.000Z",
+  "updatedAt": "2022-10-04T01:00:21.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "218766",
+          "user": "АЗС № 135",
+          "creator": "Григорьев Александр Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-04 07:26:23",
+          "name": "Щелчки при печати ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218766"
+        },
+        {
+          "id": "218765",
+          "user": "Григорьев Александр Валерьевич",
+          "creator": "Григорьев Александр Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-04 07:21:42",
+          "name": "Блок питания ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/218765"
+        },
         {
           "id": "218730",
           "user": "Шевцов Сергей Викторович",
