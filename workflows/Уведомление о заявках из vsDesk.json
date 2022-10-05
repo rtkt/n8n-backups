@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-05T09:00:39.000Z",
+  "updatedAt": "2022-10-05T10:59:41.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,16 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "219001",
-          "user": "Дробинина Анастасия Геннадьевна",
-          "creator": "Дробинина Анастасия Геннадьевна",
+          "id": "219020",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-05 15:00:07",
-          "name": "Заявка на доступ к информационным ресурсам",
+          "timestamp": "2022-10-05 17:36:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/219001"
+          "link": "https://help.knp24.ru/request/219020"
         },
         {
           "id": "219000",
@@ -453,22 +453,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-05 14:58:56",
           "name": "Заявка на доступ к информационным ресурсам",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219000"
-        },
-        {
-          "id": "218986",
-          "user": "Бутылин Иван Яковлевич",
-          "creator": "Бутылин Иван Яковлевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-05 13:30:43",
-          "name": "склонировать HDD диск на SSD диск",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218986"
         },
         {
           "id": "218924",
@@ -481,42 +469,6 @@
           "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/218924"
-        },
-        {
-          "id": "218862",
-          "user": "Нестерова Елена Ивановна",
-          "creator": "Нестерова Елена Ивановна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-04 16:58:21",
-          "name": "Необходима заправка картриджей ф-л Восточный",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218862"
-        },
-        {
-          "id": "218821",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-04 12:06:03",
-          "name": "[Main PRTG] 6 Summarized Notifications",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218821"
-        },
-        {
-          "id": "218819",
-          "user": "Тимощенко Андрей Юрьевич",
-          "creator": "Тимощенко Андрей Юрьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-04 11:49:38",
-          "name": "Требуется установить второй монитор",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218819"
         },
         {
           "id": "218157",
