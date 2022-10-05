@@ -427,13 +427,37 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-05T07:00:37.000Z",
+  "updatedAt": "2022-10-05T09:00:39.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "219001",
+          "user": "Дробинина Анастасия Геннадьевна",
+          "creator": "Дробинина Анастасия Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-05 15:00:07",
+          "name": "Заявка на доступ к информационным ресурсам",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/219001"
+        },
+        {
+          "id": "219000",
+          "user": "Дробинина Анастасия Геннадьевна",
+          "creator": "Дробинина Анастасия Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-05 14:58:56",
+          "name": "Заявка на доступ к информационным ресурсам",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/219000"
+        },
         {
           "id": "218986",
           "user": "Бутылин Иван Яковлевич",
@@ -447,39 +471,15 @@
           "link": "https://help.knp24.ru/request/218986"
         },
         {
-          "id": "218971",
-          "user": "Ошов Владимир Сергеевич",
-          "creator": "Ошов Владимир Сергеевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-05 12:03:47",
-          "name": "Не открывается Publik. ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/218971"
-        },
-        {
-          "id": "218954",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-05 10:10:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218954"
-        },
-        {
           "id": "218924",
           "user": "Деева Татьяна Николаевна",
           "creator": "Деева Татьяна Николаевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-05 08:45:03",
           "name": "Печатает с полосой",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 5,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
           "link": "https://help.knp24.ru/request/218924"
         },
         {
@@ -493,18 +493,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/218862"
-        },
-        {
-          "id": "218841",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-04 14:51:02",
-          "name": "[Main PRTG] Cisco System Health Значения температуры (Работоспособность системы у=?utf-8?B?0YHRgt",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/218841"
         },
         {
           "id": "218821",
