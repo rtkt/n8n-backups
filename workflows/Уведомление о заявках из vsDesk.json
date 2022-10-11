@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-11T05:00:17.000Z",
+  "updatedAt": "2022-10-11T07:00:13.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,16 +435,64 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "219854",
+          "id": "219882",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 11:40:02",
-          "name": "[Main PRTG] 2 Summarized Notifications",
+          "timestamp": "2022-10-11 13:38:02",
+          "name": "[Main PRTG] Exchange_delayDB Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/219854"
+          "link": "https://help.knp24.ru/request/219882"
+        },
+        {
+          "id": "219878",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-11 13:26:02",
+          "name": "[Main PRTG] 3 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/219878"
+        },
+        {
+          "id": "219877",
+          "user": "Поспелова Татьяна Геннадьевна",
+          "creator": "Поспелова Татьяна Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-11 13:12:58",
+          "name": "Отсутствует внешняя телефонная связь",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/219877"
+        },
+        {
+          "id": "219876",
+          "user": "Шабарина Галина Валерьевна",
+          "creator": "Шабарина Галина Валерьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-11 13:12:57",
+          "name": "Отсутствие связи",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/219876"
+        },
+        {
+          "id": "219867",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-11 12:42:02",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (256 мс =?utf-8?B?KNCS0YDQt",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/219867"
         },
         {
           "id": "219845",
@@ -453,7 +501,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-11 11:10:02",
           "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/219845"
@@ -477,8 +525,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-11 10:24:27",
           "name": "Свежая копия ERP",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Болсуновский Максим Александрович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/219829"
         },
@@ -489,8 +537,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-11 10:03:17",
           "name": "ООО КиТ VPN ",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Болсуновский Максим Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219819"
         },
@@ -541,30 +589,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/219708"
-        },
-        {
-          "id": "219694",
-          "user": "Посметухина Ирина Валерьевна",
-          "creator": "Посметухина Ирина Валерьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-10 14:51:33",
-          "name": "ошибка отправки эл.почты",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219694"
-        },
-        {
-          "id": "219678",
-          "user": "Никитина Алена Олеговна",
-          "creator": "Никитина Алена Олеговна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-10 13:47:13",
-          "name": "нет доставки писем до контрагента ( во вложение смотреть ошибку)",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219678"
         },
         {
           "id": "219633",
