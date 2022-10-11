@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-11T07:00:13.000Z",
+  "updatedAt": "2022-10-11T09:00:14.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,88 +435,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "219882",
+          "id": "219900",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 13:38:02",
-          "name": "[Main PRTG] Exchange_delayDB Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219882"
-        },
-        {
-          "id": "219878",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 13:26:02",
-          "name": "[Main PRTG] 3 Summarized Notifications",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219878"
-        },
-        {
-          "id": "219877",
-          "user": "Поспелова Татьяна Геннадьевна",
-          "creator": "Поспелова Татьяна Геннадьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 13:12:58",
-          "name": "Отсутствует внешняя телефонная связь",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/219877"
-        },
-        {
-          "id": "219876",
-          "user": "Шабарина Галина Валерьевна",
-          "creator": "Шабарина Галина Валерьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 13:12:57",
-          "name": "Отсутствие связи",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219876"
-        },
-        {
-          "id": "219867",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 12:42:02",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (256 мс =?utf-8?B?KNCS0YDQt",
+          "timestamp": "2022-10-11 14:55:09",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (273 мс =?utf-8?B?KNCS0YDQt",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/219867"
+          "link": "https://help.knp24.ru/request/219900"
         },
         {
-          "id": "219845",
+          "id": "219894",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 11:10:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "timestamp": "2022-10-11 14:25:02",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (359 мс =?utf-8?B?KNCS0YDQt",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/219845"
+          "link": "https://help.knp24.ru/request/219894"
         },
         {
-          "id": "219830",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "219888",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Кириллова Оксана Альбертовна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 10:25:02",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (478 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "timestamp": "2022-10-11 14:00:36",
+          "name": "Мониторинг производительности на 192.168.5.27 ",
+          "status": "Принята в исполнение",
+          "executor": "Болсуновский Максим Александрович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/219830"
+          "link": "https://help.knp24.ru/request/219888"
         },
         {
           "id": "219829",
@@ -525,7 +477,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-11 10:24:27",
           "name": "Свежая копия ERP",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Болсуновский Максим Александрович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/219829"
@@ -553,30 +505,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/219818"
-        },
-        {
-          "id": "219807",
-          "user": "Стекляев Юрий Андреевич",
-          "creator": "Стекляев Юрий Андреевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 09:13:06",
-          "name": "Подключение учетной записи",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219807"
-        },
-        {
-          "id": "219801",
-          "user": "Агафонов Евгений Викторович",
-          "creator": "Агафонов Евгений Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 08:52:34",
-          "name": "Включить базу в список баз Павловой Т.Н.",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219801"
         },
         {
           "id": "219708",
@@ -633,7 +561,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-07 08:42:54",
           "name": "Прошу установить ViPNet Монитор в режим \"Внутренняя сеть\" АСТ ГОЗ",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219206"
