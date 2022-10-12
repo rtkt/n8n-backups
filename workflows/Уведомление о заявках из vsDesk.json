@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-12T04:59:23.000Z",
+  "updatedAt": "2022-10-12T06:59:24.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,13 +435,37 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "220101",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-12 13:40:02",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (534 мс (Время Ping) выше предела ошибки 250 =?ut",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220101"
+        },
+        {
+          "id": "220078",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-12 12:40:02",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (536 мс =?utf-8?B?KNCS0YDQt",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220078"
+        },
+        {
           "id": "220070",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-12 11:09:07",
           "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (519 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220070"
@@ -457,18 +481,6 @@
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/220057"
-        },
-        {
-          "id": "220055",
-          "user": "Орлова Мария Владимировна",
-          "creator": "Орлова Мария Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 10:33:34",
-          "name": "Windows 10 нет доступа к интернету",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220055"
         },
         {
           "id": "220051",
@@ -519,52 +531,16 @@
           "link": "https://help.knp24.ru/request/220032"
         },
         {
-          "id": "220024",
-          "user": "Никитина Алена Олеговна",
-          "creator": "Никитина Алена Олеговна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 09:01:09",
-          "name": "Прошу заменить клавиатуру",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220024"
-        },
-        {
           "id": "220023",
           "user": "Коровина Вера Николаевна",
           "creator": "Коровина Вера Николаевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-12 08:58:14",
           "name": "Филиал \"Северный\" Енисейская нефтебаза .",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/220023"
-        },
-        {
-          "id": "220022",
-          "user": "Скомаровская Ольга Анатольевна",
-          "creator": "Скомаровская Ольга Анатольевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 08:57:30",
-          "name": "12.10.2022 нужен микрофон и динамик для участия видео конференции начало в 14:00",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220022"
-        },
-        {
-          "id": "219998",
-          "user": "Злобина Наталья Николаевна",
-          "creator": "Злобина Наталья Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 08:07:12",
-          "name": "Сотрудник не может войти  в компьютер. Учетная запись отключена",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/219998"
         },
         {
           "id": "219937",
