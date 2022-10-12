@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-12T06:59:24.000Z",
+  "updatedAt": "2022-10-12T08:59:27.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,13 +435,49 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "220134",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-12 15:55:02",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (493 мс =?utf-8?B?KNCS0YDQt",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220134"
+        },
+        {
+          "id": "220126",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-12 15:24:08",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (315 мс =?utf-8?B?KNCS0YDQt",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220126"
+        },
+        {
+          "id": "220114",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-12 14:26:05",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (309 мс =?utf-8?B?KNCS0YDQt",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220114"
+        },
+        {
           "id": "220101",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-12 13:40:02",
           "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (534 мс (Время Ping) выше предела ошибки 250 =?ut",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220101"
@@ -555,30 +591,6 @@
           "link": "https://help.knp24.ru/request/219937"
         },
         {
-          "id": "219924",
-          "user": "Гарманова Ирина Вячеславовна",
-          "creator": "Гарманова Ирина Вячеславовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 16:47:30",
-          "name": "настроить печать и сканирование",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219924"
-        },
-        {
-          "id": "219900",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 14:55:09",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (273 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219900"
-        },
-        {
           "id": "219888",
           "user": "Кириллова Оксана Альбертовна",
           "creator": "Кириллова Оксана Альбертовна",
@@ -589,18 +601,6 @@
           "executor": "Болсуновский Максим Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219888"
-        },
-        {
-          "id": "219829",
-          "user": "infodor1",
-          "creator": "infodor1",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 10:24:27",
-          "name": "Свежая копия ERP",
-          "status": "Просрочено исполнение",
-          "executor": "Болсуновский Максим Александрович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/219829"
         },
         {
           "id": "219819",
