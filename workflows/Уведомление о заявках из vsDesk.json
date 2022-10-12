@@ -427,13 +427,25 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-11T10:59:15.000Z",
+  "updatedAt": "2022-10-12T01:00:22.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "219992",
+          "user": "Кочетова Анна Олеговна",
+          "creator": "Кочетова Анна Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-12 07:39:02",
+          "name": "RE: Ошибка. Диапазон талонов от 11.10.2022",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/219992"
+        },
         {
           "id": "219937",
           "user": "PRTG alert",
