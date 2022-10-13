@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-13T08:59:50.000Z",
+  "updatedAt": "2022-10-13T10:59:51.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -441,7 +441,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-13 15:57:24",
           "name": "замена картриджа",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220322"
@@ -529,18 +529,6 @@
           "executor": "Болсуновский Максим Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219888"
-        },
-        {
-          "id": "219819",
-          "user": "Низовцев Эдуард Сергеевич",
-          "creator": "Низовцев Эдуард Сергеевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 10:03:17",
-          "name": "ООО КиТ VPN ",
-          "status": "Принята в исполнение",
-          "executor": "Болсуновский Максим Александрович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219819"
         },
         {
           "id": "219633",
