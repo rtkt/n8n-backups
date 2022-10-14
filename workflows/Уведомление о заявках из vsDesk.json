@@ -427,13 +427,25 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-14T09:00:01.000Z",
+  "updatedAt": "2022-10-14T10:59:02.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "220532",
+          "user": "Кукушкин Андрей Александрович",
+          "creator": "Кукушкин Андрей Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-14 17:38:33",
+          "name": "не вижу заявку",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220532"
+        },
         {
           "id": "220387",
           "user": "АЗС № 99",
@@ -471,16 +483,16 @@
           "link": "https://help.knp24.ru/request/220146"
         },
         {
-          "id": "220143",
-          "user": "PRTG alert",
+          "id": "220125",
+          "user": "АЗС № 74",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 16:43:08",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (347 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "timestamp": "2022-10-12 15:20:14",
+          "name": "[PRTG Ticket] ПК (М АЗС№74) Свободное дисковое пространство",
+          "status": "На рассмотрении",
+          "executor": "Томилов Артем Александрович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/220143"
+          "link": "https://help.knp24.ru/request/220125"
         },
         {
           "id": "220057",
@@ -493,6 +505,18 @@
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/220057"
+        },
+        {
+          "id": "220031",
+          "user": "АЗС № 29",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-12 09:18:22",
+          "name": "[PRTG Ticket] ПК (О-2 АЗС№29) Свободное дисковое пространство (на нескол=?utf-8?B?",
+          "status": "На рассмотрении",
+          "executor": "Томилов Артем Александрович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220031"
         },
         {
           "id": "219888",
