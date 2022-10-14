@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-14T04:59:59.000Z",
+  "updatedAt": "2022-10-14T07:00:00.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,28 +435,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "220469",
-          "user": "Низовцев Эдуард Сергеевич",
-          "creator": "Низовцев Эдуард Сергеевич",
+          "id": "220496",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 11:40:52",
-          "name": "Удалить ПК из AD",
+          "timestamp": "2022-10-14 13:56:04",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/220469"
+          "link": "https://help.knp24.ru/request/220496"
         },
         {
-          "id": "220465",
-          "user": "Какаулина Евгения Григорьевна",
-          "creator": "Какаулина Евгения Григорьевна",
+          "id": "220495",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Кириллова Оксана Альбертовна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 11:16:00",
-          "name": "смена пароля",
+          "timestamp": "2022-10-14 13:54:57",
+          "name": "Не включается компьютер-стенд  кабинет 5-11",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/220495"
+        },
+        {
+          "id": "220485",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-14 13:25:08",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (379 мс (Время Ping) выше предела ошибки 250 =?ut",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/220465"
+          "link": "https://help.knp24.ru/request/220485"
         },
         {
           "id": "220457",
@@ -465,7 +477,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-14 10:56:02",
           "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (283 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220457"
