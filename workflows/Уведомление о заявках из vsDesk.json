@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-14T02:59:57.000Z",
+  "updatedAt": "2022-10-14T04:59:59.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,13 +435,61 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "220469",
+          "user": "Низовцев Эдуард Сергеевич",
+          "creator": "Низовцев Эдуард Сергеевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-14 11:40:52",
+          "name": "Удалить ПК из AD",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220469"
+        },
+        {
+          "id": "220465",
+          "user": "Какаулина Евгения Григорьевна",
+          "creator": "Какаулина Евгения Григорьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-14 11:16:00",
+          "name": "смена пароля",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220465"
+        },
+        {
+          "id": "220457",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-14 10:56:02",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (283 мс =?utf-8?B?KNCS0YDQt",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220457"
+        },
+        {
+          "id": "220445",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-14 10:11:08",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220445"
+        },
+        {
           "id": "220441",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-14 09:41:02",
           "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (319 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220441"
@@ -469,18 +517,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220363"
-        },
-        {
-          "id": "220322",
-          "user": "Кузина Ирина Геннадьевна",
-          "creator": "Кузина Ирина Геннадьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-13 15:57:24",
-          "name": "замена картриджа",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220322"
         },
         {
           "id": "220271",
@@ -549,7 +585,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-11 14:00:36",
           "name": "Мониторинг производительности на 192.168.5.27 ",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Болсуновский Максим Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219888"
