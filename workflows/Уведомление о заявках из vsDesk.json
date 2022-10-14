@@ -427,85 +427,13 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-14T07:00:00.000Z",
+  "updatedAt": "2022-10-14T09:00:01.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "220496",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 13:56:04",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220496"
-        },
-        {
-          "id": "220495",
-          "user": "Кириллова Оксана Альбертовна",
-          "creator": "Кириллова Оксана Альбертовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 13:54:57",
-          "name": "Не включается компьютер-стенд  кабинет 5-11",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/220495"
-        },
-        {
-          "id": "220485",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 13:25:08",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (379 мс (Время Ping) выше предела ошибки 250 =?ut",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220485"
-        },
-        {
-          "id": "220457",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 10:56:02",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (283 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220457"
-        },
-        {
-          "id": "220445",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 10:11:08",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220445"
-        },
-        {
-          "id": "220441",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 09:41:02",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) «Ошибка» (ранее: «Предупреждение»)  (319 мс =?utf-8?B?KNCS0YDQt",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220441"
-        },
         {
           "id": "220387",
           "user": "АЗС № 99",
@@ -514,33 +442,9 @@
           "timestamp": "2022-10-13 23:25:16",
           "name": "Принтер не печатает.",
           "status": "Принята в исполнение",
-          "executor": null,
+          "executor": "Бутылин Иван Яковлевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/220387"
-        },
-        {
-          "id": "220363",
-          "user": "АЗС № 121",
-          "creator": "АЗС № 121",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-13 18:44:31",
-          "name": "АЗС-121",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220363"
-        },
-        {
-          "id": "220271",
-          "user": "Мергинёва Светлана Юрьевна",
-          "creator": "Мергинёва Светлана Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-13 11:23:57",
-          "name": "вышла из строя компьютерная мышь",
-          "status": "Просрочено исполнение",
-          "executor": "Дмитриев Виктор Борисович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/220271"
         },
         {
           "id": "220253",
@@ -549,8 +453,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-13 10:17:02",
           "name": "Оптимизация работы Консультант+",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/220253"
         },
@@ -597,34 +501,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-11 14:00:36",
           "name": "Мониторинг производительности на 192.168.5.27 ",
-          "status": "Просрочено исполнение",
+          "status": "Открыта",
           "executor": "Болсуновский Максим Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219888"
-        },
-        {
-          "id": "219633",
-          "user": "Шевцов Сергей Викторович",
-          "creator": "Шевцов Сергей Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-10 11:06:25",
-          "name": "Организация рабочего места",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219633"
-        },
-        {
-          "id": "219000",
-          "user": "Дробинина Анастасия Геннадьевна",
-          "creator": "Дробинина Анастасия Геннадьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-05 14:58:56",
-          "name": "Заявка на доступ к информационным ресурсам",
-          "status": "Просрочено исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219000"
         },
         {
           "id": "218157",
