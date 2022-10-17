@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-14T10:59:02.000Z",
+  "updatedAt": "2022-10-17T02:59:45.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,16 +435,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "220532",
-          "user": "Кукушкин Андрей Александрович",
-          "creator": "Кукушкин Андрей Александрович",
+          "id": "220784",
+          "user": "Пирогова Ольга Александровна",
+          "creator": "Пирогова Ольга Александровна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-14 17:38:33",
-          "name": "не вижу заявку",
+          "timestamp": "2022-10-17 09:48:57",
+          "name": "Проблема со входом на площадку",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/220532"
+          "link": "https://help.knp24.ru/request/220784"
+        },
+        {
+          "id": "220776",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-17 09:36:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220776"
+        },
+        {
+          "id": "220749",
+          "user": "Кочетова Анна Олеговна",
+          "creator": "Кочетова Анна Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-17 08:39:04",
+          "name": "изменить состав группы для рассылки Главные бухгалтеры филиалов",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220749"
+        },
+        {
+          "id": "220724",
+          "user": "АЗС № 152",
+          "creator": "test1",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-17 00:08:05",
+          "name": "Не печатает принтер",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220724"
         },
         {
           "id": "220387",
@@ -565,18 +601,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/216816"
-        },
-        {
-          "id": "216194",
-          "user": "АЗС № 110",
-          "creator": "АЗС № 110",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-09-15 11:11:25",
-          "name": "переполнена память в принтере",
-          "status": "Логистика",
-          "executor": "Дмитриев Виктор Борисович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/216194"
         }
       ]
     }
