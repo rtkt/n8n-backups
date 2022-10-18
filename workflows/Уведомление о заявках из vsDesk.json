@@ -427,25 +427,13 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-17T10:59:49.000Z",
+  "updatedAt": "2022-10-18T02:59:57.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "220889",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-17 17:09:06",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220889"
-        },
         {
           "id": "220811",
           "user": "Шматков Роман Олегович",
