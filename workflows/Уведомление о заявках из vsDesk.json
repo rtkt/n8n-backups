@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-18T07:00:00.000Z",
+  "updatedAt": "2022-10-18T09:00:00.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
@@ -435,16 +435,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "221005",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "221024",
+          "user": "Шеина Мария Ильинична",
+          "creator": "Шеина Мария Ильинична",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-18 13:59:07",
-          "name": "[Main PRTG] 1C-Test.knp.local [Windows] Загрузка ЦП SNMP (Загрузка ЦП SNMP) Ошибка  (No response (ch",
+          "timestamp": "2022-10-18 15:36:03",
+          "name": "Закончился тонер",
           "status": "Открыта",
           "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/221024"
+        },
+        {
+          "id": "221022",
+          "user": "АЗС № 85",
+          "creator": "АЗС № 85",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-18 15:27:23",
+          "name": "принтер",
+          "status": "Принята в исполнение",
+          "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/221005"
+          "link": "https://help.knp24.ru/request/221022"
+        },
+        {
+          "id": "221012",
+          "user": "Климас Татьяна Игоревна",
+          "creator": "Климас Татьяна Игоревна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-18 14:27:57",
+          "name": "Контур Диадок",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/221012"
         },
         {
           "id": "221002",
@@ -453,22 +477,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-18 13:36:33",
           "name": "Вышла из строя мышь. Прошу заменить, по возможности беспроводную  и коврик для мыши ",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/221002"
-        },
-        {
-          "id": "221000",
-          "user": "Альховка Татьяна Михайловна",
-          "creator": "Коробицына Анастасия Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-18 13:30:19",
-          "name": "заявка на установку ОФД ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/221000"
         },
         {
           "id": "220811",
@@ -489,7 +501,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-13 23:25:16",
           "name": "Принтер не печатает.",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Бутылин Иван Яковлевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/220387"
