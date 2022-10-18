@@ -427,13 +427,49 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-18T04:59:58.000Z",
+  "updatedAt": "2022-10-18T07:00:00.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "221005",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-18 13:59:07",
+          "name": "[Main PRTG] 1C-Test.knp.local [Windows] Загрузка ЦП SNMP (Загрузка ЦП SNMP) Ошибка  (No response (ch",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/221005"
+        },
+        {
+          "id": "221002",
+          "user": "Белобородова Надежда Васильевна",
+          "creator": "Белобородова Надежда Васильевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-18 13:36:33",
+          "name": "Вышла из строя мышь. Прошу заменить, по возможности беспроводную  и коврик для мыши ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/221002"
+        },
+        {
+          "id": "221000",
+          "user": "Альховка Татьяна Михайловна",
+          "creator": "Коробицына Анастасия Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-18 13:30:19",
+          "name": "заявка на установку ОФД ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/221000"
+        },
         {
           "id": "220811",
           "user": "Шматков Роман Олегович",
