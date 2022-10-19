@@ -427,13 +427,25 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-18T11:00:00.000Z",
+  "updatedAt": "2022-10-19T01:00:08.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "221036",
+          "user": "Никитина Алена Олеговна",
+          "creator": "Никитина Алена Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-18 16:48:42",
+          "name": "закончился тонер, требует замены .",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/221036"
+        },
         {
           "id": "221022",
           "user": "АЗС № 85",
