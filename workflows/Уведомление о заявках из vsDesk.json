@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-25T06:59:58.000Z",
+  "updatedAt": "2022-10-25T08:59:58.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,6 +435,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "222165",
+          "user": "Кузина Ирина Геннадьевна",
+          "creator": "Кузина Ирина Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-25 15:40:01",
+          "name": "переадресация эл.почты",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/222165"
+        },
         {
           "id": "221877",
           "user": "Морозова Светлана Федоровна",
