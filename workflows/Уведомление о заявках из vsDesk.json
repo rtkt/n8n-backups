@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-25T04:59:57.000Z",
+  "updatedAt": "2022-10-25T06:59:58.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,18 +435,6 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "222110",
-          "user": "Гарманова Ирина Вячеславовна",
-          "creator": "Гарманова Ирина Вячеславовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-25 11:21:51",
-          "name": "не работает удаленный доступ ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/222110"
-        },
         {
           "id": "221877",
           "user": "Морозова Светлана Федоровна",
