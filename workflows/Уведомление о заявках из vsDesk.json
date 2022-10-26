@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-26T01:00:50.000Z",
+  "updatedAt": "2022-10-26T03:00:49.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,16 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "222237",
-          "user": "Чудова Елена Геннадьевна",
-          "creator": "Чудова Елена Геннадьевна",
+          "id": "222256",
+          "user": "Зверко Татьяна Олеговна",
+          "creator": "Зверко Татьяна Олеговна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-26 07:48:26",
-          "name": "Прошу обновить программу СНК",
+          "timestamp": "2022-10-26 09:23:58",
+          "name": "заправка картриджей в количестве 9 шт.",
           "status": "Открыта",
           "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/222237"
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/222256"
         },
         {
           "id": "222231",
@@ -466,8 +466,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-25 17:20:22",
           "name": "доступ сотруднику Минусинской нефтебазы",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/222188"
         },
@@ -478,22 +478,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-25 17:19:24",
           "name": "Организация вебинара",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/222187"
-        },
-        {
-          "id": "222183",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-25 17:10:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/222183"
         },
         {
           "id": "222173",
@@ -526,7 +514,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-21 11:57:32",
           "name": "Тормозит интернет, 1С виснет",
-          "status": "Просрочена реакция",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/221531"
