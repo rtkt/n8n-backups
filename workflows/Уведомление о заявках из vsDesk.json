@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-25T10:59:59.000Z",
+  "updatedAt": "2022-10-26T01:00:50.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,6 +435,30 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "222237",
+          "user": "Чудова Елена Геннадьевна",
+          "creator": "Чудова Елена Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-26 07:48:26",
+          "name": "Прошу обновить программу СНК",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/222237"
+        },
+        {
+          "id": "222231",
+          "user": "АЗС № 216",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-26 04:56:03",
+          "name": "[PRTG Ticket] ПК (М АЗС№216) Свободное дисковое пространство (на несколь=?utf-",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/222231"
+        },
         {
           "id": "222188",
           "user": "Петрова Анна Сергеевна",
