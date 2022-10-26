@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-26T08:59:52.000Z",
+  "updatedAt": "2022-10-26T10:59:53.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,14 +436,38 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "222359",
+          "user": "Денисова Татьяна Ивановна",
+          "creator": "Денисова Татьяна Ивановна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-26 16:46:30",
+          "name": " Новый почтовый ящик для сотрудника",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/222359"
+        },
+        {
+          "id": "222354",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-26 16:40:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/222354"
+        },
+        {
           "id": "222325",
           "user": "Богонос Артем Сергеевич",
           "creator": "Богонос Артем Сергеевич",
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-26 14:56:15",
           "name": "Не могу зайти в лайт каб",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/222325"
         },
@@ -556,30 +580,6 @@
           "link": "https://help.knp24.ru/request/220811"
         },
         {
-          "id": "220146",
-          "user": "Белошапкин Павел Александрович",
-          "creator": "Белошапкин Павел Александрович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 16:57:40",
-          "name": "Kaspersky Lab",
-          "status": "На рассмотрении",
-          "executor": "Томилов Артем Александрович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/220146"
-        },
-        {
-          "id": "220125",
-          "user": "АЗС № 74",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 15:20:14",
-          "name": "[PRTG Ticket] ПК (М АЗС№74) Свободное дисковое пространство",
-          "status": "На рассмотрении",
-          "executor": "Томилов Артем Александрович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220125"
-        },
-        {
           "id": "220057",
           "user": "Климас Татьяна Игоревна",
           "creator": "Климас Татьяна Игоревна",
@@ -590,18 +590,6 @@
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/220057"
-        },
-        {
-          "id": "220031",
-          "user": "АЗС № 29",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 09:18:22",
-          "name": "[PRTG Ticket] ПК (О-2 АЗС№29) Свободное дисковое пространство (на нескол=?utf-8?B?",
-          "status": "На рассмотрении",
-          "executor": "Томилов Артем Александрович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220031"
         },
         {
           "id": "219888",
