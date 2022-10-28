@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-28T03:00:15.000Z",
+  "updatedAt": "2022-10-28T05:00:15.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,6 +435,30 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "222637",
+          "user": "Буш Татьяна Юрьевна",
+          "creator": "Буш Татьяна Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-28 11:46:06",
+          "name": "Настройка доступа и установка приложения сотруднику группы по бух.учету по ф.Северный Яричиной Д.А.",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/222637"
+        },
+        {
+          "id": "222623",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-28 10:10:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/222623"
+        },
         {
           "id": "222611",
           "user": "Варнавская Елена Игоревна",
@@ -502,7 +526,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-27 15:36:01",
           "name": "Не работает электронная почта, прошу наладить и увеличить объем памяти",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Лиханов Олег Олегович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/222520"
