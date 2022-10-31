@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-28T10:59:17.000Z",
+  "updatedAt": "2022-10-31T01:00:50.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,6 +435,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "222836",
+          "user": "Разманов Владимир Викторович",
+          "creator": "Разманов Владимир Викторович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-29 18:06:48",
+          "name": "Доступ к сайту сбер инкассации",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/222836"
+        },
         {
           "id": "222592",
           "user": "АЗС № 83",
@@ -554,6 +566,18 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220811"
+        },
+        {
+          "id": "220495",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Кириллова Оксана Альбертовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-14 13:54:57",
+          "name": "Не включается компьютер-стенд  кабинет 5-11",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/220495"
         },
         {
           "id": "220057",
