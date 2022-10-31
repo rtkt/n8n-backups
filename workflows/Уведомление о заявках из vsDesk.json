@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-31T08:59:52.000Z",
+  "updatedAt": "2022-10-31T10:59:54.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -444,7 +444,7 @@
           "name": "Доступ к сайту сбер инкассации",
           "status": "Открыта",
           "executor": null,
-          "priority": 5,
+          "priority": 3,
           "link": "https://help.knp24.ru/request/222836"
         },
         {
