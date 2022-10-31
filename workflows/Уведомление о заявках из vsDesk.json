@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-31T03:00:50.000Z",
+  "updatedAt": "2022-10-31T05:00:51.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -442,8 +442,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-31 10:00:44",
           "name": "Папка \"ежемесячный отчет по закупкам\"",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Требует уточнения",
+          "executor": "Лиханов Олег Олегович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/222959"
         },
@@ -454,7 +454,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-26 10:43:14",
           "name": "проблемы с ИБП на АСН (Канская нефтебаза) ",
-          "status": "Просрочена реакция",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/222273"
