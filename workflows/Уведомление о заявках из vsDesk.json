@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-10-31T06:59:51.000Z",
+  "updatedAt": "2022-10-31T08:59:52.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,16 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "222959",
-          "user": "Шлыкова Ия Сергеевна",
-          "creator": "Шлыкова Ия Сергеевна",
+          "id": "222836",
+          "user": "Разманов Владимир Викторович",
+          "creator": "Разманов Владимир Викторович",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-10-31 10:00:44",
-          "name": "Папка \"ежемесячный отчет по закупкам\"",
+          "timestamp": "2022-10-29 18:06:48",
+          "name": "Доступ к сайту сбер инкассации",
           "status": "Открыта",
-          "executor": "Лиханов Олег Олегович",
+          "executor": null,
           "priority": 5,
-          "link": "https://help.knp24.ru/request/222959"
+          "link": "https://help.knp24.ru/request/222836"
         },
         {
           "id": "222273",
