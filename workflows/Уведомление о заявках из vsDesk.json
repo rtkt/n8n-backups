@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-01T03:00:01.000Z",
+  "updatedAt": "2022-11-01T05:00:02.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,40 +436,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "223144",
-          "user": "Пимурзина Ксения Вячеславовна",
-          "creator": "Пимурзина Ксения Вячеславовна",
+          "id": "223188",
+          "user": "test1",
+          "creator": "test1",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 09:19:31",
-          "name": "ПК пишет, что нет места на диске",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223144"
-        },
-        {
-          "id": "223143",
-          "user": "Кузина Ирина Геннадьевна",
-          "creator": "Кузина Ирина Геннадьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 09:17:34",
-          "name": "отмена переадресации с ЭП",
+          "timestamp": "2022-11-01 11:53:01",
+          "name": "Новое голосовое сообщение на группу",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/223143"
+          "link": "https://help.knp24.ru/request/223188"
         },
         {
-          "id": "223135",
-          "user": "АЗС № 109",
-          "creator": "АЗС № 109",
+          "id": "223174",
+          "user": "Чмакало Виктор Николаевич",
+          "creator": "Чмакало Виктор Николаевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 08:58:01",
-          "name": "Закончился тонер.",
+          "timestamp": "2022-11-01 11:09:48",
+          "name": "новый сотрудник филиала",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/223174"
+        },
+        {
+          "id": "223170",
+          "user": "Кочетова Анна Олеговна",
+          "creator": "Кочетова Анна Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 11:02:04",
+          "name": "RE: Доступ к сетевой папке бухгалтеру-кассиру Яричиной Д.А.",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/223135"
+          "link": "https://help.knp24.ru/request/223170"
+        },
+        {
+          "id": "223154",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 10:10:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223154"
         },
         {
           "id": "223125",
