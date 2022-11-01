@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-01T09:00:05.000Z",
+  "updatedAt": "2022-11-01T10:59:05.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,16 +436,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "223243",
-          "user": "Скрупская Вера Николаевна",
-          "creator": "Скрупская Вера Николаевна",
+          "id": "223279",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 15:20:09",
-          "name": "Установить Teams",
+          "timestamp": "2022-11-01 17:40:03",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/223243"
+          "link": "https://help.knp24.ru/request/223279"
+        },
+        {
+          "id": "223255",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 16:10:03",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223255"
         },
         {
           "id": "223242",
@@ -454,8 +466,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-01 15:20:02",
           "name": "установить  Тeams",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223242"
         },
@@ -470,54 +482,6 @@
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223235"
-        },
-        {
-          "id": "223234",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 14:40:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223234"
-        },
-        {
-          "id": "223230",
-          "user": "Даммер Кристина Андреевна",
-          "creator": "Даммер Кристина Андреевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 14:21:19",
-          "name": "Необходимо проверить и настроить рабочее место на котором установлена система ЕПТ",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223230"
-        },
-        {
-          "id": "223210",
-          "user": "test1",
-          "creator": "test1",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 13:16:02",
-          "name": "Новое голосовое сообщение на группу",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223210"
-        },
-        {
-          "id": "223188",
-          "user": "test1",
-          "creator": "test1",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-01 11:53:01",
-          "name": "Новое голосовое сообщение на группу",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223188"
         },
         {
           "id": "223174",
@@ -554,18 +518,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223125"
-        },
-        {
-          "id": "222983",
-          "user": "АЗС № 238",
-          "creator": "АЗС № 238",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-31 11:56:26",
-          "name": "принтер",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/222983"
         },
         {
           "id": "222273",
@@ -634,7 +586,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-20 13:21:48",
           "name": "Прошу установить на  компьютер  приложение, для использования сканера.",
-          "status": "Просрочено исполнение",
+          "status": "Требует уточнения",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/221355"
