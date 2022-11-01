@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-01T07:00:04.000Z",
+  "updatedAt": "2022-11-01T09:00:05.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,13 +436,73 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "223243",
+          "user": "Скрупская Вера Николаевна",
+          "creator": "Скрупская Вера Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 15:20:09",
+          "name": "Установить Teams",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223243"
+        },
+        {
+          "id": "223242",
+          "user": "Степанова Юлия Валерьевна",
+          "creator": "Степанова Юлия Валерьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 15:20:02",
+          "name": "установить  Тeams",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223242"
+        },
+        {
+          "id": "223235",
+          "user": "Михайлов Степан Сергеевич",
+          "creator": "Михайлов Степан Сергеевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 14:41:41",
+          "name": "Учетная запись отключена",
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223235"
+        },
+        {
+          "id": "223234",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 14:40:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223234"
+        },
+        {
+          "id": "223230",
+          "user": "Даммер Кристина Андреевна",
+          "creator": "Даммер Кристина Андреевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-01 14:21:19",
+          "name": "Необходимо проверить и настроить рабочее место на котором установлена система ЕПТ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223230"
+        },
+        {
           "id": "223210",
           "user": "test1",
           "creator": "test1",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-01 13:16:02",
           "name": "Новое голосовое сообщение на группу",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/223210"
@@ -466,9 +526,9 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-01 11:09:48",
           "name": "новый сотрудник филиала",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
           "link": "https://help.knp24.ru/request/223174"
         },
         {
@@ -638,6 +698,18 @@
           "executor": "Болсуновский Максим Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/219888"
+        },
+        {
+          "id": "219235",
+          "user": "Федосова Наталья Юрьевна",
+          "creator": "Федосова Наталья Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-10-07 10:36:40",
+          "name": "Нужен носитель для электронной подписи",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/219235"
         }
       ]
     }
