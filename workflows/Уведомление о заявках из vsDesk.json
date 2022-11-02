@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-02T05:00:15.000Z",
+  "updatedAt": "2022-11-02T07:00:16.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,13 +436,49 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "223395",
+          "user": "Агафонов Евгений Викторович",
+          "creator": "Агафонов Евгений Викторович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-02 13:25:05",
+          "name": "FW: требования к платформе",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223395"
+        },
+        {
+          "id": "223390",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-02 12:40:02",
+          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223390"
+        },
+        {
+          "id": "223389",
+          "user": "Альховка Татьяна Михайловна",
+          "creator": "Коробицына Анастасия Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-02 12:38:53",
+          "name": "двусторонний скан МФУ 2040",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/223389"
+        },
+        {
           "id": "223380",
           "user": "Кочетова Анна Олеговна",
           "creator": "Кочетова Анна Олеговна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 11:57:02",
           "name": "вопрос по прерыванию сессий при работе с 1С",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/223380"
@@ -454,22 +490,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 11:31:50",
           "name": "Установить Teams",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223375"
-        },
-        {
-          "id": "223366",
-          "user": "Коробицына Анастасия Николаевна",
-          "creator": "Коробицына Анастасия Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-02 10:49:29",
-          "name": "двусторонний скан",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/223366"
+          "link": "https://help.knp24.ru/request/223375"
         },
         {
           "id": "223362",
