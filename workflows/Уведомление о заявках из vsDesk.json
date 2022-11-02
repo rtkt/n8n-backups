@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-02T09:00:17.000Z",
+  "updatedAt": "2022-11-02T10:59:19.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,26 +436,14 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "223412",
-          "user": "Пожиленко Наталья Васильевна",
-          "creator": "Григорьев Александр Валерьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-02 14:34:37",
-          "name": "Ошибка сканера",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223412"
-        },
-        {
           "id": "223410",
           "user": "Степанова Юлия Валерьевна",
           "creator": "Степанова Юлия Валерьевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 14:26:59",
           "name": "​Прошу установить Тeams. ",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223410"
         },
@@ -466,8 +454,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 14:04:16",
           "name": "установка teams",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223403"
         },
@@ -478,7 +466,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 14:01:30",
           "name": "Права доступа на папку",
-          "status": "Просрочена реакция",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/223401"
@@ -502,8 +490,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 11:31:50",
           "name": "Установить Teams",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223375"
         },
@@ -526,8 +514,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 10:16:16",
           "name": "ПереУстановить Microsoft Teams",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223356"
         },
@@ -550,7 +538,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-10-26 10:43:14",
           "name": "проблемы с ИБП на АСН (Канская нефтебаза) ",
-          "status": "Просрочена реакция",
+          "status": "Логистика",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/222273"
