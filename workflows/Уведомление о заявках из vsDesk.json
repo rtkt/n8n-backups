@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-04T01:00:37.000Z",
+  "updatedAt": "2022-11-04T03:00:38.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,16 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "223626",
+          "id": "223677",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-03 16:50:02",
-          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка IC",
+          "timestamp": "2022-11-04 09:16:02",
+          "name": "[Main PRTG] Postfix Черный список IP-адресов на DNS (Черный список IP-адресов на =?utf",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/223626"
+          "link": "https://help.knp24.ru/request/223677"
         },
         {
           "id": "223605",
