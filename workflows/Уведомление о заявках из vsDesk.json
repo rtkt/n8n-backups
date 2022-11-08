@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-08T05:00:27.000Z",
+  "updatedAt": "2022-11-08T07:00:27.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,13 +436,25 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "224219",
+          "user": "Бернаучис Андрей Робертович",
+          "creator": "Бернаучис Андрей Робертович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-08 12:00:40",
+          "name": "Заправка картриджей",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224219"
+        },
+        {
           "id": "224204",
           "user": "Шепилев Сергей Александрович",
           "creator": "Шепилев Сергей Александрович",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-08 11:28:54",
           "name": "Подключение интернет АРМ специалистов КИПиА",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224204"
@@ -472,26 +484,14 @@
           "link": "https://help.knp24.ru/request/224181"
         },
         {
-          "id": "224172",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-08 10:09:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224172"
-        },
-        {
           "id": "224130",
           "user": "Разманов Владимир Викторович",
           "creator": "Разманов Владимир Викторович",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-08 06:05:01",
           "name": "Проблемы со сберинкассацией",
-          "status": "Принята в исполнение",
-          "executor": "Болсуновский Максим Александрович",
+          "status": "Открыта",
+          "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224130"
         },
@@ -514,7 +514,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-02 11:31:50",
           "name": "Установить Teams",
-          "status": "Просрочено исполнение",
+          "status": "Требует уточнения",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223375"
