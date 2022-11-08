@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-07T10:59:18.000Z",
+  "updatedAt": "2022-11-08T01:00:24.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,6 +435,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "224130",
+          "user": "Разманов Владимир Викторович",
+          "creator": "Разманов Владимир Викторович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-08 06:05:01",
+          "name": "Проблемы со сберинкассацией",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224130"
+        },
         {
           "id": "224042",
           "user": "Глушкова Дарья Владимировна",
