@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-08T10:59:29.000Z",
+  "updatedAt": "2022-11-09T01:00:37.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,6 +435,30 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "224307",
+          "user": "Коробицына Анастасия Николаевна",
+          "creator": "Коробицына Анастасия Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-09 01:23:29",
+          "name": "статус заявок ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224307"
+        },
+        {
+          "id": "224284",
+          "user": "Верещагин Александр Александрович",
+          "creator": "Верещагин Александр Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-08 18:30:01",
+          "name": "Заявка на установку ПО",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224284"
+        },
         {
           "id": "224265",
           "user": "Агафонов Евгений Викторович",
