@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-09T10:59:42.000Z",
+  "updatedAt": "2022-11-10T01:00:49.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,6 +435,66 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "224493",
+          "user": "Самчугова Анна Юрьевна",
+          "creator": "Самчугова Анна Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-10 07:59:27",
+          "name": "Не работает 1С",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/224493"
+        },
+        {
+          "id": "224492",
+          "user": "Шабарина Галина Валерьевна",
+          "creator": "Шабарина Галина Валерьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-10 07:59:23",
+          "name": "Отсутствует связь с 1С",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224492"
+        },
+        {
+          "id": "224489",
+          "user": "Гладкова Наталья Александровна",
+          "creator": "Гладкова Наталья Александровна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-10 07:54:29",
+          "name": "Не найдена лицензия 1С",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/224489"
+        },
+        {
+          "id": "224477",
+          "user": "Данилевская Елена Владимировна",
+          "creator": "Данилевская Елена Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-10 05:54:29",
+          "name": "работа программы 1С УАТ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/224477"
+        },
+        {
+          "id": "224452",
+          "user": "test1",
+          "creator": "test1",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-09 20:18:02",
+          "name": "Новое голосовое сообщение на группу",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224452"
+        },
         {
           "id": "224438",
           "user": "Редкозубова Галина Николаевна",
