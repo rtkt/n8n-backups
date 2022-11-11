@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-11T03:00:02.000Z",
+  "updatedAt": "2022-11-11T05:00:03.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,13 +436,49 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "224729",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-11 11:56:02",
+          "name": "[Main PRTG] 3 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224729"
+        },
+        {
+          "id": "224722",
+          "user": "Соглаева Анастасия Владимировна",
+          "creator": "Соглаева Анастасия Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-11 11:33:35",
+          "name": "не могу зайти на ЭТП  - ( Анастасия 8-950-400-25-55) - SEV-PRODAZHI 192.168.10.98 soglaeva",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/224722"
+        },
+        {
+          "id": "224720",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-11 11:26:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224720"
+        },
+        {
           "id": "224613",
           "user": "Рогачева Марина Анатольевна",
           "creator": "Рогачева Марина Анатольевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-10 15:34:36",
           "name": "грязно печатает",
-          "status": "Просрочена реакция",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/224613"
