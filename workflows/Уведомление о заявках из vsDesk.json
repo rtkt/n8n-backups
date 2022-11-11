@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-11T07:00:03.000Z",
+  "updatedAt": "2022-11-11T09:00:05.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,16 +436,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "224746",
-          "user": "Славская Светлана Владимировна",
-          "creator": "Славская Светлана Владимировна",
+          "id": "224771",
+          "user": "Дробинина Анастасия Геннадьевна",
+          "creator": "Дробинина Анастасия Геннадьевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-11 13:56:46",
-          "name": "Не работает программа ЕИС, нет возможности в раздел исполнение контрактов",
+          "timestamp": "2022-11-11 15:42:18",
+          "name": "Невозможно зайти в сетевой архив в почте",
           "status": "Открыта",
           "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/224746"
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224771"
+        },
+        {
+          "id": "224752",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-11 14:26:03",
+          "name": "[Main PRTG] 4 Summarized Notifications",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224752"
         },
         {
           "id": "224745",
@@ -454,22 +466,22 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-11 13:56:02",
           "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224745"
         },
         {
-          "id": "224722",
-          "user": "Соглаева Анастасия Владимировна",
-          "creator": "Соглаева Анастасия Владимировна",
+          "id": "224743",
+          "user": "Морозова Светлана Федоровна",
+          "creator": "Морозова Светлана Федоровна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-11 11:33:35",
-          "name": "не могу зайти на ЭТП  - ( Анастасия 8-950-400-25-55) - SEV-PRODAZHI 192.168.10.98 soglaeva",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/224722"
+          "timestamp": "2022-11-11 13:51:07",
+          "name": "Не работает принтер",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224743"
         },
         {
           "id": "224613",
@@ -538,7 +550,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-09 01:23:29",
           "name": "статус заявок ",
-          "status": "Просрочена реакция",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224307"
