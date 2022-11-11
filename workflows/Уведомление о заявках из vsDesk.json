@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-11T05:00:03.000Z",
+  "updatedAt": "2022-11-11T07:00:03.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,16 +436,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "224729",
+          "id": "224746",
+          "user": "Славская Светлана Владимировна",
+          "creator": "Славская Светлана Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-11 13:56:46",
+          "name": "Не работает программа ЕИС, нет возможности в раздел исполнение контрактов",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/224746"
+        },
+        {
+          "id": "224745",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-11 11:56:02",
-          "name": "[Main PRTG] 3 Summarized Notifications",
+          "timestamp": "2022-11-11 13:56:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/224729"
+          "link": "https://help.knp24.ru/request/224745"
         },
         {
           "id": "224722",
@@ -454,22 +466,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-11 11:33:35",
           "name": "не могу зайти на ЭТП  - ( Анастасия 8-950-400-25-55) - SEV-PRODAZHI 192.168.10.98 soglaeva",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/224722"
-        },
-        {
-          "id": "224720",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-11 11:26:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224720"
         },
         {
           "id": "224613",
