@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-10T10:59:54.000Z",
+  "updatedAt": "2022-11-11T03:00:02.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -435,18 +435,6 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "224644",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-10 17:57:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224644"
-        },
         {
           "id": "224613",
           "user": "Рогачева Марина Анатольевна",
@@ -554,18 +542,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223375"
-        },
-        {
-          "id": "221979",
-          "user": "Белошапкин Павел Александрович",
-          "creator": "Белошапкин Павел Александрович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-24 14:20:57",
-          "name": "Дисковое пространство azs74manager",
-          "status": "Принята в исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/221979"
         },
         {
           "id": "221877",
