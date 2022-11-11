@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-11T09:00:05.000Z",
+  "updatedAt": "2022-11-11T10:59:06.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -436,14 +436,26 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "224803",
+          "user": "АЗС № 112",
+          "creator": "АЗС № 112",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-11 17:22:46",
+          "name": "Принтер",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/224803"
+        },
+        {
           "id": "224771",
           "user": "Дробинина Анастасия Геннадьевна",
           "creator": "Дробинина Анастасия Геннадьевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-11 15:42:18",
           "name": "Невозможно зайти в сетевой архив в почте",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/224771"
         },
