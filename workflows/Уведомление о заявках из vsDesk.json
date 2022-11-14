@@ -427,7 +427,7 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-11T10:59:06.000Z",
+  "updatedAt": "2022-11-14T01:00:38.000Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT",
     "saveDataSuccessExecution": "all"
@@ -460,52 +460,16 @@
           "link": "https://help.knp24.ru/request/224771"
         },
         {
-          "id": "224752",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-11 14:26:03",
-          "name": "[Main PRTG] 4 Summarized Notifications",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224752"
-        },
-        {
-          "id": "224745",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-11 13:56:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224745"
-        },
-        {
           "id": "224743",
           "user": "Морозова Светлана Федоровна",
           "creator": "Морозова Светлана Федоровна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-11 13:51:07",
           "name": "Не работает принтер",
-          "status": "Просрочена реакция",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224743"
-        },
-        {
-          "id": "224613",
-          "user": "Рогачева Марина Анатольевна",
-          "creator": "Рогачева Марина Анатольевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-10 15:34:36",
-          "name": "грязно печатает",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/224613"
         },
         {
           "id": "224611",
@@ -514,8 +478,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-10 15:06:19",
           "name": "Шум при запуске",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/224611"
         },
@@ -544,25 +508,13 @@
           "link": "https://help.knp24.ru/request/224522"
         },
         {
-          "id": "224452",
-          "user": "test1",
-          "creator": "test1",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-09 20:18:02",
-          "name": "Новое голосовое сообщение на группу",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224452"
-        },
-        {
           "id": "224307",
           "user": "Коробицына Анастасия Николаевна",
           "creator": "Коробицына Анастасия Николаевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-09 01:23:29",
           "name": "статус заявок ",
-          "status": "Просрочено исполнение",
+          "status": "Требует уточнения",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224307"
@@ -650,42 +602,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/220811"
-        },
-        {
-          "id": "220271",
-          "user": "Мергинёва Светлана Юрьевна",
-          "creator": "Мергинёва Светлана Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-13 11:23:57",
-          "name": "вышла из строя компьютерная мышь",
-          "status": "Принята в исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220271"
-        },
-        {
-          "id": "220057",
-          "user": "Климас Татьяна Игоревна",
-          "creator": "Климас Татьяна Игоревна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-12 10:39:53",
-          "name": "Новый сотрудник стандартные настройки повторно",
-          "status": "Приостановлена",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/220057"
-        },
-        {
-          "id": "219807",
-          "user": "Стекляев Юрий Андреевич",
-          "creator": "Стекляев Юрий Андреевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-11 09:13:06",
-          "name": "Подключение учетной записи",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/219807"
         }
       ]
     }
