@@ -1,4 +1,6 @@
 {
+  "createdAt": "2022-09-16T03:22:30.639Z",
+  "updatedAt": "2022-09-16T06:59:14.013Z",
   "id": 2,
   "name": "Back Up Your n8n Workflows To Github",
   "active": true,
@@ -528,8 +530,6 @@
       ]
     }
   },
-  "createdAt": "2022-09-16T03:22:30.639Z",
-  "updatedAt": "2022-09-16T06:59:14.013Z",
   "settings": {
     "saveExecutionProgress": "DEFAULT"
   },
