@@ -1,4 +1,6 @@
 {
+  "createdAt": "2022-09-16T07:48:14.142Z",
+  "updatedAt": "2022-09-19T01:36:41.807Z",
   "id": 3,
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -398,8 +400,6 @@
       ]
     }
   },
-  "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2022-09-19T01:36:41.807Z",
   "settings": {},
   "staticData": null,
   "pinData": {},
