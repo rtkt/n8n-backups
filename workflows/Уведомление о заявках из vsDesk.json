@@ -427,14 +427,49 @@
     }
   },
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-14T01:00:38.000Z",
+  "updatedAt": "2022-11-14T02:59:59.000Z",
   "settings": {
-    "saveExecutionProgress": "DEFAULT",
-    "saveDataSuccessExecution": "all"
+    "saveExecutionProgress": "DEFAULT"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "225035",
+          "user": "Кузина Ирина Геннадьевна",
+          "creator": "Кузина Ирина Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-14 09:26:49",
+          "name": "проблема с телефоном",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/225035"
+        },
+        {
+          "id": "225031",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-14 09:12:02",
+          "name": "[Main PRTG] Внешний IP РТК Ping из облакa (Пинг из облака) Ошибка  (1,12=?utf-8?B?MyDQvNGBIChH",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/225031"
+        },
+        {
+          "id": "225026",
+          "user": "Бутылин Иван Яковлевич",
+          "creator": "Бутылин Иван Яковлевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-14 09:08:34",
+          "name": "Необходимо заправить картриджи",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/225026"
+        },
         {
           "id": "224803",
           "user": "АЗС № 112",
@@ -446,18 +481,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224803"
-        },
-        {
-          "id": "224771",
-          "user": "Дробинина Анастасия Геннадьевна",
-          "creator": "Дробинина Анастасия Геннадьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-11 15:42:18",
-          "name": "Невозможно зайти в сетевой архив в почте",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224771"
         },
         {
           "id": "224743",
@@ -494,18 +517,6 @@
           "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/224529"
-        },
-        {
-          "id": "224522",
-          "user": "Агафонов Евгений Викторович",
-          "creator": "Агафонов Евгений Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-10 09:55:57",
-          "name": "Доступ к базе bit_uat",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224522"
         },
         {
           "id": "224307",
