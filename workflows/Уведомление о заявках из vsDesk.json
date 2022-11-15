@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-15T07:00:55.000Z",
+  "updatedAt": "2022-11-15T09:00:06.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,64 +435,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "225300",
+          "user": "Коробицына Анастасия Николаевна",
+          "creator": "Коробицына Анастасия Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-15 15:48:28",
+          "name": "нет звука на видео ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/225300"
+        },
+        {
           "id": "225247",
           "user": "Чириков Артем Эдуардович",
           "creator": "Чириков Артем Эдуардович",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-15 12:12:08",
           "name": "проблема ПО",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225247"
-        },
-        {
-          "id": "225238",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-15 11:22:02",
-          "name": "[Main PRTG] 3 Summarized Notifications",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225238"
-        },
-        {
-          "id": "225231",
-          "user": "Варнавская Елена Игоревна",
-          "creator": "Варнавская Елена Игоревна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-15 11:12:40",
-          "name": "настройка сканера",
           "status": "Принята в исполнение",
           "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/225231"
-        },
-        {
-          "id": "225225",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-15 10:52:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Просрочена реакция",
-          "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/225225"
-        },
-        {
-          "id": "225210",
-          "user": "Родионова Оксана Борисовна",
-          "creator": "Родионова Оксана Борисовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-15 10:11:24",
-          "name": "Прошу дать доступ ",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/225210"
+          "link": "https://help.knp24.ru/request/225247"
         },
         {
           "id": "225196",
@@ -507,18 +471,6 @@
           "link": "https://help.knp24.ru/request/225196"
         },
         {
-          "id": "225168",
-          "user": "АЗС № 5",
-          "creator": "АЗС № 5",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-14 23:23:00",
-          "name": "проблема с картриджем",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225168"
-        },
-        {
           "id": "225110",
           "user": "Старцев Олег Валерьевич",
           "creator": "Старцев Олег Валерьевич",
@@ -529,18 +481,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/225110"
-        },
-        {
-          "id": "225065",
-          "user": "Маркушева Наталья Михайловна",
-          "creator": "Маркушева Наталья Михайловна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-14 11:08:35",
-          "name": "принтер печатает не четко",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225065"
         },
         {
           "id": "224743",
@@ -613,18 +553,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/223375"
-        },
-        {
-          "id": "222273",
-          "user": "АСН",
-          "creator": "Коробицына Анастасия Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-10-26 10:43:14",
-          "name": "проблемы с ИБП на АСН (Канская нефтебаза) ",
-          "status": "Открыта",
-          "executor": "Коробицына Анастасия Николаевна",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/222273"
         },
         {
           "id": "221877",
