@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-15T05:00:54.000Z",
+  "updatedAt": "2022-11-15T07:00:55.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "225240",
-          "user": "Вяткина Анна Петровна",
-          "creator": "Вяткина Анна Петровна",
+          "id": "225247",
+          "user": "Чириков Артем Эдуардович",
+          "creator": "Чириков Артем Эдуардович",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-15 11:26:11",
-          "name": "Установка консультант +",
-          "status": "Открыта",
+          "timestamp": "2022-11-15 12:12:08",
+          "name": "проблема ПО",
+          "status": "Просрочена реакция",
           "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/225240"
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/225247"
         },
         {
           "id": "225238",
@@ -453,7 +453,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-15 11:22:02",
           "name": "[Main PRTG] 3 Summarized Notifications",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/225238"
@@ -465,8 +465,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-15 11:12:40",
           "name": "настройка сканера",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/225231"
         },
@@ -493,18 +493,6 @@
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/225210"
-        },
-        {
-          "id": "225198",
-          "user": "Бутылин Иван Яковлевич",
-          "creator": "Бутылин Иван Яковлевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-15 09:16:11",
-          "name": "Скопировать профиль Яричиной Д.А. с ПК SEV-BUH3 на ПК SEV-BUH5. ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225198"
         },
         {
           "id": "225196",
@@ -565,18 +553,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224743"
-        },
-        {
-          "id": "224611",
-          "user": "Безуглов Дмитрий Андреевич",
-          "creator": "Безуглов Дмитрий Андреевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-10 15:06:19",
-          "name": "Шум при запуске",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/224611"
         },
         {
           "id": "224529",
