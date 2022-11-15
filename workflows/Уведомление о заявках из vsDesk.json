@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-15T03:00:52.000Z",
+  "updatedAt": "2022-11-15T05:00:54.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,64 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "225204",
-          "user": "Скрябина Галина Викторовна",
-          "creator": "Скрябина Галина Викторовна",
+          "id": "225240",
+          "user": "Вяткина Анна Петровна",
+          "creator": "Вяткина Анна Петровна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-15 09:50:24",
-          "name": "Не соответствие выручки с Z-отчетом с ОФД и данными СНК",
+          "timestamp": "2022-11-15 11:26:11",
+          "name": "Установка консультант +",
           "status": "Открыта",
           "executor": null,
           "priority": 5,
-          "link": "https://help.knp24.ru/request/225204"
+          "link": "https://help.knp24.ru/request/225240"
+        },
+        {
+          "id": "225238",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-15 11:22:02",
+          "name": "[Main PRTG] 3 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/225238"
+        },
+        {
+          "id": "225231",
+          "user": "Варнавская Елена Игоревна",
+          "creator": "Варнавская Елена Игоревна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-15 11:12:40",
+          "name": "настройка сканера",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/225231"
+        },
+        {
+          "id": "225225",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-15 10:52:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/225225"
+        },
+        {
+          "id": "225210",
+          "user": "Родионова Оксана Борисовна",
+          "creator": "Родионова Оксана Борисовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-15 10:11:24",
+          "name": "Прошу дать доступ ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/225210"
         },
         {
           "id": "225198",
@@ -505,18 +553,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/225065"
-        },
-        {
-          "id": "225035",
-          "user": "Кузина Ирина Геннадьевна",
-          "creator": "Кузина Ирина Геннадьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-14 09:26:49",
-          "name": "проблема с телефоном",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225035"
         },
         {
           "id": "224743",
