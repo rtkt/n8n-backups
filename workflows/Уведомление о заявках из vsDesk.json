@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-18T07:00:31.000Z",
+  "updatedAt": "2022-11-18T09:00:36.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,64 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "225798",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "225829",
+          "user": "Никитина Алена Олеговна",
+          "creator": "Никитина Алена Олеговна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-11-18 12:42:02",
-          "name": "[Main PRTG] CL1-NODE4 1C-cluster1 (Виртуальная машина Hyper-V) Ошибка  (WMI: Сенсору не уд=?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "timestamp": "2022-11-18 15:35:10",
+          "name": "не печатает документ. Во вложение смотреть",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/225798"
-        },
-        {
-          "id": "225793",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-18 12:11:02",
-          "name": "[Main PRTG] CL1-NODE4 Squid (Виртуальная машина Hyper-V) Ошибка  (WMI: Сенсору не=?utf-8?B?INGD0LTQs",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225793"
-        },
-        {
-          "id": "225791",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-18 12:04:03",
-          "name": "[Main PRTG] 5 Summarized Notifications",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225791"
-        },
-        {
-          "id": "225783",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-18 11:34:02",
-          "name": "[Main PRTG] veem Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225783"
-        },
-        {
-          "id": "225735",
-          "user": "Бутылин Иван Яковлевич",
-          "creator": "Бутылин Иван Яковлевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-18 08:15:44",
-          "name": "необходимо получить картриджи согласно акта",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/225735"
+          "link": "https://help.knp24.ru/request/225829"
         },
         {
           "id": "225704",
@@ -541,30 +493,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/225658"
-        },
-        {
-          "id": "225614",
-          "user": "Васягина Ирина Леонидовна",
-          "creator": "Васягина Ирина Леонидовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-17 13:33:36",
-          "name": "Установка TEAMS",
-          "status": "Просрочено исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/225614"
-        },
-        {
-          "id": "225605",
-          "user": "Агафонов Евгений Викторович",
-          "creator": "Агафонов Евгений Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-17 13:03:44",
-          "name": "Выгрузка рабочей базы ЕРП  в тестовую базу Srvr=\"1c-test\";Ref=\"knp_erp_copy_08_04_2019\";",
-          "status": "Принята в исполнение",
-          "executor": "Болсуновский Максим Александрович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/225605"
         },
         {
           "id": "225571",
@@ -681,7 +609,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-16 08:37:30",
           "name": "доступ к тестовой базе Srvr=\"1c-test:1641\";Ref=\"bit_uat\"",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/225378"
