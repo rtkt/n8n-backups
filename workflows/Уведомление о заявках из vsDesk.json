@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-21T03:00:05.000Z",
+  "updatedAt": "2022-11-21T05:00:39.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -107,7 +107,7 @@
     },
     {
       "parameters": {
-        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst current = [];\nfor(let i = 0; i < items[0].json.length; i++) {\n  if(items[0].json[i].Status === \"Завершена\" || items[0].json[i].Status === \"Отменена\") {\n    continue;\n  }\n  current.push({\n    id: items[0].json[i].id,\n    user: items[0].json[i].fullname,\n    creator: items[0].json[i].creator,\n    group: items[0].json[i].gfullname,\n    timestamp: items[0].json[i].timestamp,\n    name: items[0].json[i].Name,\n    status: items[0].json[i].Status,\n    executor: items[0].json[i].mfullname,\n    priority: items[0].json[i].Priority === \"Высокий\" ? 5 : 3,\n    link: `https://help.knp24.ru/request/${items[0].json[i].id}`\n  })\n}\n\nlet updates = [];\nconst staticData = getWorkflowStaticData('node');\n\nif(!staticData.lastExecution || ! (staticData.lastExecution instanceof Array)) {\n  updates = JSON.parse(JSON.stringify(current));\n  updates.forEach(request => {\n    request.type = \"new\";\n  });\n }\nelse {\n  current.forEach(request => {\n    const index = staticData.lastExecution.findIndex(element => request.id === element.id);\n    if (request.status === \"Открыта повторно\") {\n      if (index !== -1 && request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reopened\";\n      return;\n    }\n    if (index === -1) {\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"new\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочена реакция\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reactionTimeout\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочено исполнение\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"executionTimeout\";\n      return;\n    }\n  });\n}\nstaticData.lastExecution = JSON.parse(JSON.stringify(current));\nreturn updates;"
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst current = [];\nfor(let i = 0; i < items[0].json.length; i++) {\n  if(items[0].json[i].Status === \"Завершена\" || items[0].json[i].Status === \"Отменена\") {\n    continue;\n  }\n  current.push({\n    id: items[0].json[i].id,\n    user: items[0].json[i].fullname,\n    creator: items[0].json[i].creator,\n    group: items[0].json[i].gfullname,\n    timestamp: items[0].json[i].timestamp,\n    name: items[0].json[i].Name.replaceAll('\"', ''),\n    status: items[0].json[i].Status,\n    executor: items[0].json[i].mfullname,\n    priority: items[0].json[i].Priority === \"Высокий\" ? 5 : 3,\n    link: `https://help.knp24.ru/request/${items[0].json[i].id}`\n  })\n}\n\nlet updates = [];\nconst staticData = getWorkflowStaticData('node');\n\nif(!staticData.lastExecution || ! (staticData.lastExecution instanceof Array)) {\n  updates = JSON.parse(JSON.stringify(current));\n  updates.forEach(request => {\n    request.type = \"new\";\n  });\n }\nelse {\n  current.forEach(request => {\n    const index = staticData.lastExecution.findIndex(element => request.id === element.id);\n    if (request.status === \"Открыта повторно\") {\n      if (index !== -1 && request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reopened\";\n      return;\n    }\n    if (index === -1) {\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"new\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочена реакция\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reactionTimeout\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочено исполнение\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"executionTimeout\";\n      return;\n    }\n  });\n}\nstaticData.lastExecution = JSON.parse(JSON.stringify(current));\nreturn updates;"
       },
       "id": "b8ed8c0b-42d7-429e-8f2c-32acb3a76ffc",
       "name": "diff и сохранение текущего списка заявок",
@@ -435,52 +435,76 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "226128",
+          "user": "Власов Анатолий Владимирович",
+          "creator": "Власов Анатолий Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-21 11:53:23",
+          "name": "Добрый день, необходимо оборудовать рабочее место комплектом для видеоконференций",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226128"
+        },
+        {
+          "id": "226113",
+          "user": "Зимина Наталья Владимировна",
+          "creator": "Зимина Наталья Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-21 11:04:46",
+          "name": "О подготовке к энергофоруму",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/226113"
+        },
+        {
+          "id": "226108",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-21 10:49:04",
+          "name": "[Main PRTG] Exchange02 Загрузка ЦП (Загрузка ЦП Windows) Ошибка  (100 % (Всего) выше преде",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226108"
+        },
+        {
+          "id": "226107",
+          "user": "Поспелова Татьяна Геннадьевна",
+          "creator": "Поспелова Татьяна Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-21 10:46:36",
+          "name": "не могу войти по ссылке  https://knp24-my.sharepoint.com/:x:/g/personal/kzamyatin_knp24_ru/EYKWIiqQ4",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/226107"
+        },
+        {
+          "id": "226092",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-21 10:01:12",
+          "name": "[Main PRTG] 1c-cluster1 Свободное дисковое пространство (на нескольких дисках) (С=",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226092"
+        },
+        {
           "id": "226088",
           "user": "Егорова Наталья Владимировна",
           "creator": "Егорова Наталья Владимировна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-21 09:48:59",
           "name": "установить Яндекс браузер",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/226088"
-        },
-        {
-          "id": "226083",
-          "user": "Громова Валентина Юрьевна",
-          "creator": "Громова Валентина Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-21 09:36:56",
-          "name": "нет подключения к 1С Документооборот",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/226083"
-        },
-        {
-          "id": "226080",
-          "user": "Пикарская Людмила Сергеевна",
-          "creator": "Пикарская Людмила Сергеевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-21 09:34:15",
-          "name": "Не открывается 1С (ERP, МДМ, Документооборот) ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/226080"
-        },
-        {
-          "id": "226075",
-          "user": "Скобелина Ольга Владимировна",
-          "creator": "Скобелина Ольга Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-21 09:14:03",
-          "name": "не работает 1С (не грузится программа) ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/226075"
         },
         {
           "id": "226072",
@@ -489,7 +513,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-21 09:12:24",
           "name": "Некорректный урл в некстклауде",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/226072"
@@ -501,22 +525,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-21 09:02:38",
           "name": "Нет доступа для прохождения тестирования",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/226070"
-        },
-        {
-          "id": "226069",
-          "user": "Гарманова Ирина Вячеславовна",
-          "creator": "Гарманова Ирина Вячеславовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-21 08:59:06",
-          "name": "настроить печать и сканирование на ПК sev-yurist",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/226069"
         },
         {
           "id": "225849",
@@ -536,7 +548,7 @@
           "creator": "Егорова Наталья Владимировна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-17 16:49:46",
-          "name": "в некоторых документах word нет выбора \"двухсторонняя печать\"",
+          "name": "в некоторых документах word нет выбора двухсторонняя печать",
           "status": "Принята в исполнение",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
@@ -644,7 +656,7 @@
           "creator": "Агафонов Евгений Викторович",
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-16 08:37:30",
-          "name": "доступ к тестовой базе Srvr=\"1c-test:1641\";Ref=\"bit_uat\"",
+          "name": "доступ к тестовой базе Srvr=1c-test:1641;Ref=bit_uat",
           "status": "Просрочено исполнение",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
@@ -685,18 +697,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/224022"
-        },
-        {
-          "id": "223375",
-          "user": "Макарова Светлана Евгеньевна",
-          "creator": "Макарова Светлана Евгеньевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-02 11:31:50",
-          "name": "Установить Teams",
-          "status": "Требует уточнения",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/223375"
         },
         {
           "id": "221877",
