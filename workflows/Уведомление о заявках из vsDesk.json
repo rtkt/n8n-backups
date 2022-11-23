@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-23T01:00:02.000Z",
+  "updatedAt": "2022-11-23T03:00:04.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -434,6 +434,66 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "226464",
+          "user": "Петрова Елена Генадьевна",
+          "creator": "Петрова Елена Генадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-23 09:45:45",
+          "name": "​Установить на компьютер PDF редактор",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226464"
+        },
+        {
+          "id": "226461",
+          "user": "Власов Анатолий Владимирович",
+          "creator": "Власов Анатолий Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-23 09:43:37",
+          "name": "Добрый день, необходимо оборудовать рабочее место комплектом для видеоконференций",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226461"
+        },
+        {
+          "id": "226459",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-23 09:43:02",
+          "name": "[Main PRTG] 2 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226459"
+        },
+        {
+          "id": "226455",
+          "user": "Игумнова Людмила Федоровна",
+          "creator": "Игумнова Людмила Федоровна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-23 09:39:02",
+          "name": "сканер не читает штрих-код талонов",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226455"
+        },
+        {
+          "id": "226434",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-11-23 09:13:02",
+          "name": "[Main PRTG] Node Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/226434"
+        },
         {
           "id": "226329",
           "user": "Нестерова Елена Ивановна",
