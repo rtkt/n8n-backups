@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-11-29T07:00:19.000Z",
+  "updatedAt": "2022-11-29T09:00:20.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -441,7 +441,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-11-29 13:30:30",
           "name": "проблемы с ПК",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/227477"
