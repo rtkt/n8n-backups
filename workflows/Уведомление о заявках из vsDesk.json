@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-02T08:59:58.000Z",
+  "updatedAt": "2022-12-02T11:00:00.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,13 +435,49 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "228063",
+          "user": "Берестнева Полина Владимировна",
+          "creator": "Берестнева Полина Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-02 16:51:30",
+          "name": "создание папки",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/228063"
+        },
+        {
+          "id": "228061",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-02 16:34:06",
+          "name": "[Main PRTG] 16 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/228061"
+        },
+        {
+          "id": "228059",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-02 16:04:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/228059"
+        },
+        {
           "id": "228054",
           "user": "Макарова Светлана Евгеньевна",
           "creator": "Макарова Светлана Евгеньевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-02 15:44:10",
           "name": "Заявка на нового пользователя",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/228054"
@@ -453,7 +489,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-02 15:29:02",
           "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228045"
@@ -541,18 +577,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/227631"
-        },
-        {
-          "id": "227465",
-          "user": "Бахтеева Мария Вадимовна",
-          "creator": "Бахтеева Мария Вадимовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-11-29 11:27:14",
-          "name": "подключение ПК на новом рабочем месте",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/227465"
         },
         {
           "id": "226579",
