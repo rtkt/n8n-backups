@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-06T05:00:46.000Z",
+  "updatedAt": "2022-12-06T07:00:47.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,13 +435,25 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "228590",
+          "user": "Григорьев Александр Валерьевич",
+          "creator": "Григорьев Александр Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-06 12:47:50",
+          "name": "Новый картридж",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/228590"
+        },
+        {
           "id": "228583",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-06 11:54:06",
           "name": "[Main PRTG] 14 Summarized Notifications",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228583"
@@ -453,7 +465,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-06 11:25:05",
           "name": "отсутствие доступа к 1С Документооборот тестовая база",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228578"
@@ -465,7 +477,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-06 11:24:02",
           "name": "[Main PRTG] Назарово НБ ЖД2 Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228577"
@@ -549,7 +561,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-06 08:54:44",
           "name": "Сбой входа в 1С ERP",
-          "status": "Просрочена реакция",
+          "status": "Открыта",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/228532"
