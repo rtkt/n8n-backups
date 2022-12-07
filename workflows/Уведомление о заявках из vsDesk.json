@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-06T10:59:50.000Z",
+  "updatedAt": "2022-12-07T02:59:56.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,28 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "228635",
-          "user": "Стекляев Юрий Андреевич",
-          "creator": "Стекляев Юрий Андреевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-06 16:09:42",
-          "name": "Не работа почта, не работает тех. поддержка",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228635"
-        },
-        {
-          "id": "228633",
+          "id": "228711",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-06 16:06:05",
-          "name": "[Main PRTG] 13 Summarized Notifications",
-          "status": "Просрочена реакция",
+          "timestamp": "2022-12-07 09:40:02",
+          "name": "[Main PRTG] Cam6 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/228633"
+          "link": "https://help.knp24.ru/request/228711"
         },
         {
           "id": "228631",
@@ -483,18 +471,6 @@
           "link": "https://help.knp24.ru/request/228590"
         },
         {
-          "id": "228577",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-06 11:24:02",
-          "name": "[Main PRTG] Назарово НБ ЖД2 Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228577"
-        },
-        {
           "id": "228566",
           "user": "Yamschikov_GA@ic-iskra.ru",
           "creator": "Yamschikov_GA@ic-iskra.ru",
@@ -505,18 +481,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/228566"
-        },
-        {
-          "id": "228554",
-          "user": "Козловский Владимир Николаевич",
-          "creator": "Козловский Владимир Николаевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-06 09:59:18",
-          "name": "необходимы видеозаписи с Абалаковской нефтебазы",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228554"
         },
         {
           "id": "228528",
