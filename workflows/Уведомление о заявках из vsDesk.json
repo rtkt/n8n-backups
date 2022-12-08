@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-08T09:00:13.000Z",
+  "updatedAt": "2022-12-08T10:59:14.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,28 +435,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "228965",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-08 17:40:02",
+          "name": "[Main PRTG] Аналоговый регистратор НБ Канск Пинг (Пинг) Ошибка  (Request timed ou=?utf-8?B?dCAo0L7Ri",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/228965"
+        },
+        {
+          "id": "228954",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-08 17:10:02",
+          "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/228954"
+        },
+        {
           "id": "228941",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-08 15:55:03",
           "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228941"
-        },
-        {
-          "id": "228940",
-          "user": "Гофман Евгения Владимировна",
-          "creator": "Гофман Евгения Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 15:50:12",
-          "name": "подключение onedrive",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228940"
         },
         {
           "id": "228933",
@@ -483,52 +495,16 @@
           "link": "https://help.knp24.ru/request/228928"
         },
         {
-          "id": "228924",
-          "user": "Ошов Владимир Сергеевич",
-          "creator": "Ошов Владимир Сергеевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 14:28:35",
-          "name": "Открыть доступ в паблик папка УПРАВЛЕНИЕ ПО ЭКСПЛУАТАЦИИ И РАЗВИТИЮ АЗС",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228924"
-        },
-        {
           "id": "228923",
           "user": "Шепилев Сергей Александрович",
           "creator": "Шепилев Сергей Александрович",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-08 14:24:21",
           "name": "Удаленное подключение АРМ АСКДК на Игарской НБ",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/228923"
-        },
-        {
-          "id": "228920",
-          "user": "Томилов Эдуард Анатольевич",
-          "creator": "Томилов Эдуард Анатольевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 14:08:57",
-          "name": "Обновление СНК-ПЦ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/228920"
-        },
-        {
-          "id": "228903",
-          "user": "Сиденко Ирина Анатольевна",
-          "creator": "Сиденко Ирина Анатольевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 13:38:59",
-          "name": "прошу принять заявку на предоставления доступа к информационным ресурсам",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/228903"
         },
         {
           "id": "228795",
