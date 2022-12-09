@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-09T09:00:24.000Z",
+  "updatedAt": "2022-12-09T10:59:25.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,13 +435,25 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "229156",
+          "user": "Гофман Евгения Владимировна",
+          "creator": "Гофман Евгения Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 17:40:57",
+          "name": "не подписываются документы в Диадоке",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229156"
+        },
+        {
           "id": "229132",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-09 15:49:02",
           "name": "[Main PRTG] Postfix Черный список IP-адресов на DNS (Черный список IP-адресов на =?utf",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/229132"
@@ -453,8 +465,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-09 15:24:13",
           "name": "не работает приложение Teams",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/229126"
         },
@@ -465,8 +477,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-09 15:11:53",
           "name": "Переустановка ПО",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/229123"
         },
@@ -477,8 +489,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-09 14:54:23",
           "name": "Microsoft Teams",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/229121"
         },
