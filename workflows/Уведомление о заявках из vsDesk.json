@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-09T03:00:23.000Z",
+  "updatedAt": "2022-12-09T05:00:23.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,13 +435,49 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "229085",
+          "user": "Зверко Татьяна Олеговна",
+          "creator": "Зверко Татьяна Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 11:40:00",
+          "name": "заправка картриджей в количестве 6 шт.",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229085"
+        },
+        {
+          "id": "229078",
+          "user": "Гофман Евгения Владимировна",
+          "creator": "Гофман Евгения Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 11:19:26",
+          "name": "отсутствует доступ к архивному ящику Ксении Шевердак",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229078"
+        },
+        {
+          "id": "229065",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 10:25:02",
+          "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229065"
+        },
+        {
           "id": "229054",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-09 09:40:04",
           "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/229054"
@@ -453,7 +489,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-09 09:31:34",
           "name": "не приходят оповещения на эл.почту о завершенных заявках службы ТП",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/229049"
