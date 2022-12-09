@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-08T10:59:14.000Z",
+  "updatedAt": "2022-12-09T01:00:20.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -434,6 +434,30 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "229025",
+          "user": "Степанова Юлия Валерьевна",
+          "creator": "Степанова Юлия Валерьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 07:57:43",
+          "name": "Обновление ПЦ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229025"
+        },
+        {
+          "id": "228974",
+          "user": "Замятин Константин Георгиевич",
+          "creator": "Замятин Константин Георгиевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-08 19:12:01",
+          "name": "Re: [Main PRTG] Аналоговый регистратор НБ Канск Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/228974"
+        },
         {
           "id": "228965",
           "user": "PRTG alert",
