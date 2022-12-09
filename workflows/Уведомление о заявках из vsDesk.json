@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-09T07:00:25.000Z",
+  "updatedAt": "2022-12-09T09:00:24.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "229085",
-          "user": "Зверко Татьяна Олеговна",
-          "creator": "Зверко Татьяна Олеговна",
+          "id": "229132",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-09 11:40:00",
-          "name": "заправка картриджей в количестве 6 шт.",
+          "timestamp": "2022-12-09 15:49:02",
+          "name": "[Main PRTG] Postfix Черный список IP-адресов на DNS (Черный список IP-адресов на =?utf",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229132"
+        },
+        {
+          "id": "229126",
+          "user": "Ситдиков Расим Раисович",
+          "creator": "Ситдиков Расим Раисович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 15:24:13",
+          "name": "не работает приложение Teams",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229126"
+        },
+        {
+          "id": "229123",
+          "user": "Неустроев Дмитрий Николаевич",
+          "creator": "Неустроев Дмитрий Николаевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 15:11:53",
+          "name": "Переустановка ПО",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229123"
+        },
+        {
+          "id": "229121",
+          "user": "Михайлов Павел Сергеевич",
+          "creator": "Михайлов Павел Сергеевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 14:54:23",
+          "name": "Microsoft Teams",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/229085"
+          "link": "https://help.knp24.ru/request/229121"
         },
         {
           "id": "229078",
@@ -457,30 +493,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/229078"
-        },
-        {
-          "id": "229065",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-09 10:25:02",
-          "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/229065"
-        },
-        {
-          "id": "229054",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-09 09:40:04",
-          "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/229054"
         },
         {
           "id": "229049",
@@ -507,42 +519,6 @@
           "link": "https://help.knp24.ru/request/228974"
         },
         {
-          "id": "228965",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 17:40:02",
-          "name": "[Main PRTG] Аналоговый регистратор НБ Канск Пинг (Пинг) Ошибка  (Request timed ou=?utf-8?B?dCAo0L7Ri",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228965"
-        },
-        {
-          "id": "228954",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 17:10:02",
-          "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228954"
-        },
-        {
-          "id": "228941",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 15:55:03",
-          "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228941"
-        },
-        {
           "id": "228933",
           "user": "Шатунова Валентина Павловна",
           "creator": "Бернаучис Андрей Робертович",
@@ -553,18 +529,6 @@
           "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/228933"
-        },
-        {
-          "id": "228928",
-          "user": "Нестерова Елена Ивановна",
-          "creator": "Нестерова Елена Ивановна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-08 14:47:39",
-          "name": "Необходима заправка картриджей ф-л Восточный",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228928"
         },
         {
           "id": "228923",
