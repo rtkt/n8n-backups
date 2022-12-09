@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-09T01:00:20.000Z",
+  "updatedAt": "2022-12-09T03:00:23.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "229025",
-          "user": "Степанова Юлия Валерьевна",
-          "creator": "Степанова Юлия Валерьевна",
+          "id": "229054",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-09 07:57:43",
-          "name": "Обновление ПЦ",
+          "timestamp": "2022-12-09 09:40:04",
+          "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/229025"
+          "link": "https://help.knp24.ru/request/229054"
+        },
+        {
+          "id": "229049",
+          "user": "Шепилев Сергей Александрович",
+          "creator": "Шепилев Сергей Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 09:31:34",
+          "name": "не приходят оповещения на эл.почту о завершенных заявках службы ТП",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229049"
+        },
+        {
+          "id": "229029",
+          "user": "Коробицын Юрий Владимирович",
+          "creator": "Коробицын Юрий Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-09 08:05:00",
+          "name": "на АСН Канской нефтебазы нет интернета ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/229029"
         },
         {
           "id": "228974",
@@ -453,7 +477,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-08 19:12:01",
           "name": "Re: [Main PRTG] Аналоговый регистратор НБ Канск Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP ",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228974"
@@ -465,7 +489,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-08 17:40:02",
           "name": "[Main PRTG] Аналоговый регистратор НБ Канск Пинг (Пинг) Ошибка  (Request timed ou=?utf-8?B?dCAo0L7Ri",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228965"
@@ -477,7 +501,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-08 17:10:02",
           "name": "[Main PRTG] Cam1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/228954"
@@ -541,18 +565,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/228795"
-        },
-        {
-          "id": "228251",
-          "user": "Коробицын Юрий Владимирович",
-          "creator": "Коробицын Юрий Владимирович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-04 22:19:04",
-          "name": "проблема подключения к рабочему ПК через удаленный доступ ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/228251"
         },
         {
           "id": "226072",
