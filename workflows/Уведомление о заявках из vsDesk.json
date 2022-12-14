@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-14T09:00:02.000Z",
+  "updatedAt": "2022-12-14T10:59:02.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,64 +435,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "229997",
+          "user": "Маркушева Наталья Михайловна",
+          "creator": "Маркушева Наталья Михайловна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-14 15:40:53",
+          "name": "Гудит процессорный блок.",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/229997"
+        },
+        {
           "id": "229996",
           "user": "Гофман Евгения Владимировна",
           "creator": "Гофман Евгения Владимировна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-14 15:38:16",
           "name": "перемещение рабочего места",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/229996"
-        },
-        {
-          "id": "229995",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-14 15:32:02",
-          "name": "[Main PRTG] Cam3 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/229995"
-        },
-        {
-          "id": "229989",
-          "user": "Шевцов Сергей Викторович",
-          "creator": "Шевцов Сергей Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-14 15:09:00",
-          "name": "Заявка на предоставление доступа к информационным ресурсам",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/229989"
-        },
-        {
-          "id": "229984",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-14 14:56:03",
-          "name": "[Main PRTG] 6 Summarized Notifications",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/229984"
-        },
-        {
-          "id": "229976",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-14 14:26:02",
-          "name": "[Main PRTG] R3-3 Пинг (Пинг) Ошибка  (Host not found. This message indicates that the key (name, add",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/229976"
+          "link": "https://help.knp24.ru/request/229996"
         },
         {
           "id": "229968",
@@ -513,34 +477,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-14 13:45:48",
           "name": "Не работает клавиатура на АСН",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/229965"
-        },
-        {
-          "id": "229963",
-          "user": "Коровина Вера Николаевна",
-          "creator": "Коровина Вера Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-14 13:43:07",
-          "name": "Филиал Северный Енисейская нефтебаза .",
           "status": "Принята в исполнение",
           "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
-          "link": "https://help.knp24.ru/request/229963"
-        },
-        {
-          "id": "229120",
-          "user": "Доронькин Евгений Валентинович",
-          "creator": "Доронькин Евгений Валентинович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-09 14:48:24",
-          "name": "Настройка эл. почты",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/229120"
+          "link": "https://help.knp24.ru/request/229965"
         },
         {
           "id": "228923",
