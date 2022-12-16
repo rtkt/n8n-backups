@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-15T10:59:16.000Z",
+  "updatedAt": "2022-12-16T03:00:40.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "230094",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "230305",
+          "user": "Свентицкая Галина Николаевна",
+          "creator": "Свентицкая Галина Николаевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-15 10:16:02",
-          "name": "[Main PRTG] Аналоговый регистратор НБ Канск Пинг (Пинг) Ошибка  (Request timed ou=?utf-8?B?dCAo0L7Ri",
-          "status": "Просрочена реакция",
+          "timestamp": "2022-12-16 09:28:00",
+          "name": "проблема с СНК",
+          "status": "Открыта",
           "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/230094"
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/230305"
+        },
+        {
+          "id": "230302",
+          "user": "Кильтре Ольга Викторовна",
+          "creator": "Кильтре Ольга Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-16 09:23:36",
+          "name": "Зависание ПК",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/230302"
         },
         {
           "id": "230054",
