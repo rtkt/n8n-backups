@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-19T06:59:51.000Z",
+  "updatedAt": "2022-12-19T08:59:55.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,13 +435,25 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "230734",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-19 14:38:01",
+          "name": "[Main PRTG] Внешний IP РТК Ping из облакa (Пинг из облака) Ошибка  (2,27=?utf-8?B?NiDQvNGBIChH",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/230734"
+        },
+        {
           "id": "230716",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-19 12:59:02",
           "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/230716"
@@ -457,18 +469,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/230677"
-        },
-        {
-          "id": "230673",
-          "user": "Игнатова Оксана Николаевна",
-          "creator": "Игнатова Оксана Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-19 10:02:36",
-          "name": "Прошу дать доступ для работы P:\\ГРУППА БУХГАЛТЕРСКОГО УЧЕТА",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/230673"
         },
         {
           "id": "230653",
