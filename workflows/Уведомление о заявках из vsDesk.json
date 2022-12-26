@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-26T01:00:05.000Z",
+  "updatedAt": "2022-12-26T03:00:06.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,40 +435,64 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "231711",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "231840",
+          "user": "Стаханов Сергей Владимирович",
+          "creator": "Стаханов Сергей Владимирович",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-24 23:26:02",
-          "name": "[PRTG Ticket] VM-SNK Memory (Память WMI) «Ошибка» (ранее: «Предупреждение») ",
+          "timestamp": "2022-12-26 09:36:58",
+          "name": "калькулятор",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/231711"
+          "link": "https://help.knp24.ru/request/231840"
         },
         {
-          "id": "231709",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "231839",
+          "user": "Григорьев Александр Валерьевич",
+          "creator": "Григорьев Александр Валерьевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-24 21:11:03",
-          "name": "[PRTG Ticket] VM-SNK Memory (Память WMI) «Ошибка» (ранее: «Предупреждение») ",
+          "timestamp": "2022-12-26 09:34:09",
+          "name": "Заправка картриджей",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/231709"
+          "link": "https://help.knp24.ru/request/231839"
         },
         {
-          "id": "231612",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "231838",
+          "user": "Григорьев Александр Валерьевич",
+          "creator": "Григорьев Александр Валерьевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-24 00:11:02",
-          "name": "[PRTG Ticket] VM-SNK Memory (Память WMI) «Ошибка» (ранее: «Предупреждение») ",
-          "status": "Просрочено исполнение",
+          "timestamp": "2022-12-26 09:29:34",
+          "name": "Новые картриджи",
+          "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/231612"
+          "link": "https://help.knp24.ru/request/231838"
+        },
+        {
+          "id": "231835",
+          "user": "Редкозубова Галина Николаевна",
+          "creator": "Редкозубова Галина Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-26 09:20:56",
+          "name": "1 с документооборот не дает войти",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/231835"
+        },
+        {
+          "id": "231832",
+          "user": "Сазонов Евгений Александрович",
+          "creator": "Сазонов Евгений Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-26 09:10:57",
+          "name": "Нет доступа к 1С",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/231832"
         },
         {
           "id": "231572",
@@ -477,7 +501,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-23 17:08:50",
           "name": "отключились все видеокамеры на Тихом, 1-а.",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/231572"
