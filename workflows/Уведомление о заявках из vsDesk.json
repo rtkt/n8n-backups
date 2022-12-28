@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-27T10:59:19.000Z",
+  "updatedAt": "2022-12-28T01:00:52.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -434,6 +434,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "232193",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-28 02:11:03",
+          "name": "[PRTG Ticket] VM-SNK Memory (Память WMI) «Ошибка» (ранее: «Предупреждение») ",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232193"
+        },
         {
           "id": "230878",
           "user": "Козловский Владимир Николаевич",
