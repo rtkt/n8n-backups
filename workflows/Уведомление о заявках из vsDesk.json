@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-28T07:00:55.000Z",
+  "updatedAt": "2022-12-28T08:59:57.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "232326",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "232334",
+          "user": "Скомаровская Ольга Анатольевна",
+          "creator": "Скомаровская Ольга Анатольевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 13:56:02",
-          "name": "[Main PRTG] R-Most-Slave Ужур Лаборатория Ping R-Most-Slave НБ Ужур (Пинг) Ошибка  (Destination host",
-          "status": "Открыта",
+          "timestamp": "2022-12-28 14:46:30",
+          "name": "Настроить компьютер для работы в ДИАДОК с электронной подписью",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/232326"
+          "link": "https://help.knp24.ru/request/232334"
         },
         {
           "id": "232311",
@@ -453,22 +453,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-28 13:02:10",
           "name": "Заправка картриджей",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/232311"
-        },
-        {
-          "id": "232306",
-          "user": "Игнатова Оксана Николаевна",
-          "creator": "Игнатова Оксана Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 12:25:38",
-          "name": "Расхождение данных сменного отчета АЗС № 94 за 14.12.2022 с данными СОВ по сч.50.02 и сч 57.03",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232306"
         },
         {
           "id": "232303",
@@ -483,18 +471,6 @@
           "link": "https://help.knp24.ru/request/232303"
         },
         {
-          "id": "232301",
-          "user": "Шипулин Владимир Иванович",
-          "creator": "Шипулин Владимир Иванович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 12:09:07",
-          "name": "доступ к завкам сервисной службы ",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232301"
-        },
-        {
           "id": "232279",
           "user": "Коробицына Анастасия Николаевна",
           "creator": "Коробицына Анастасия Николаевна",
@@ -505,18 +481,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/232279"
-        },
-        {
-          "id": "232275",
-          "user": "Кравчук Татьяна Анатольевна",
-          "creator": "Кравчук Татьяна Анатольевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 10:54:58",
-          "name": "Почта",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/232275"
         },
         {
           "id": "232272",
@@ -543,25 +507,13 @@
           "link": "https://help.knp24.ru/request/232269"
         },
         {
-          "id": "232259",
-          "user": "Шипулин Владимир Иванович",
-          "creator": "Коробицына Анастасия Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 10:17:33",
-          "name": "отключена учетная запись Шипулин В.И. ",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232259"
-        },
-        {
           "id": "232256",
           "user": "Артемьев Иван Валерьевич",
           "creator": "Коробицына Анастасия Николаевна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-28 10:11:12",
           "name": "не включается ПК",
-          "status": "Просрочена реакция",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/232256"
@@ -577,18 +529,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/232242"
-        },
-        {
-          "id": "232227",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 09:15:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232227"
         },
         {
           "id": "232222",
@@ -615,25 +555,13 @@
           "link": "https://help.knp24.ru/request/232219"
         },
         {
-          "id": "232193",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 02:11:03",
-          "name": "[PRTG Ticket] VM-SNK Memory (Память WMI) «Ошибка» (ранее: «Предупреждение») ",
-          "status": "Принята в исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232193"
-        },
-        {
           "id": "232048",
           "user": "АЗС № 109",
           "creator": "АЗС № 109",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-27 09:03:17",
           "name": "Проблема с принтером.",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/232048"
