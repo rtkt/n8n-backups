@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-29T04:59:36.000Z",
+  "updatedAt": "2022-12-29T06:59:38.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,13 +435,37 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "232530",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 13:23:02",
+          "name": "[Main PRTG] Назарово НБ АСН3 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?utf-8?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232530"
+        },
+        {
+          "id": "232514",
+          "user": "Трегубенко Лидия Вячеславовна",
+          "creator": "Трегубенко Лидия Вячеславовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 12:31:32",
+          "name": "Просьба сделать отдельную папку для принтера на Маерчака (у Бухгалтерии)",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232514"
+        },
+        {
           "id": "232497",
           "user": "Кригер Андрей Александрович",
           "creator": "Кригер Андрей Александрович",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-29 11:14:57",
           "name": "Доступ в 1С: Документооборот",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/232497"
@@ -467,20 +491,8 @@
           "name": "Перенос рабочего места",
           "status": "Требует уточнения",
           "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/232424"
-        },
-        {
-          "id": "232389",
-          "user": "АЗС № 28",
-          "creator": "АЗС № 28",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 19:29:35",
-          "name": "Электронная почта.",
-          "status": "Просрочена реакция",
-          "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/232389"
+          "link": "https://help.knp24.ru/request/232424"
         },
         {
           "id": "232365",
@@ -489,7 +501,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-28 17:14:32",
           "name": "Копия базы ЗУП от 30.12.22 на 16:00, СТАЦИОНАРНО",
-          "status": "Требует уточнения",
+          "status": "Просрочено исполнение",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/232365"
