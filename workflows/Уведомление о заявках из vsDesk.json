@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-28T10:59:58.000Z",
+  "updatedAt": "2022-12-29T02:59:35.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,13 +435,109 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "232472",
+          "user": "Свентицкая Галина Николаевна",
+          "creator": "Свентицкая Галина Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 09:58:40",
+          "name": "Не выгружаются отчеты с СНК ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/232472"
+        },
+        {
+          "id": "232443",
+          "user": "Бахтеева Мария Вадимовна",
+          "creator": "Бахтеева Мария Вадимовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 08:35:36",
+          "name": "удаленный доступ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232443"
+        },
+        {
+          "id": "232424",
+          "user": "Денисова Татьяна Ивановна",
+          "creator": "Денисова Татьяна Ивановна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 07:07:13",
+          "name": "Перенос рабочего места",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/232424"
+        },
+        {
+          "id": "232421",
+          "user": "АЗС № 223",
+          "creator": "АЗС № 223",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 04:59:26",
+          "name": "АЗС№223",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232421"
+        },
+        {
+          "id": "232389",
+          "user": "АЗС № 28",
+          "creator": "АЗС № 28",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-28 19:29:35",
+          "name": "Электронная почта.",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232389"
+        },
+        {
+          "id": "232386",
+          "user": "АЗС № 112",
+          "creator": "АЗС № 112",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-28 19:16:06",
+          "name": "не работает почта",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232386"
+        },
+        {
+          "id": "232382",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-28 18:41:02",
+          "name": "[Main PRTG] 1C-Test.knp.local [Windows] Ethernet Traffic (Трафик по SNMP) Ошибка  (No Error (1C-Test",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232382"
+        },
+        {
+          "id": "232381",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-28 18:39:03",
+          "name": "[Main PRTG] 2 Summarized Notifications",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232381"
+        },
+        {
           "id": "232365",
           "user": "Житнова Елена Ефремовна",
           "creator": "Житнова Елена Ефремовна",
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-28 17:14:32",
           "name": "Копия базы ЗУП от 30.12.22 на 16:00, СТАЦИОНАРНО",
-          "status": "Требует уточнения",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/232365"
@@ -469,6 +565,18 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/232303"
+        },
+        {
+          "id": "232238",
+          "user": "Дубровская Светлана Викторовна",
+          "creator": "Дубровская Светлана Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-28 09:33:29",
+          "name": "MIN-DOC",
+          "status": "Открыта повторно",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232238"
         },
         {
           "id": "232219",
