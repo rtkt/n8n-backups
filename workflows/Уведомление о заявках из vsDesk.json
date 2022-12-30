@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-30T02:59:47.000Z",
+  "updatedAt": "2022-12-30T04:59:48.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "232711",
-          "user": "Нагимов Олег Вавилович",
-          "creator": "Нагимов Олег Вавилович",
+          "id": "232757",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-30 09:51:30",
-          "name": "Различаются версии 1с",
+          "timestamp": "2022-12-30 11:55:02",
+          "name": "[Main PRTG] Назарово НБ РВС Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?ut",
           "status": "Открыта",
           "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/232711"
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232757"
         },
         {
           "id": "232605",
@@ -457,18 +457,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/232605"
-        },
-        {
-          "id": "232530",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-29 13:23:02",
-          "name": "[Main PRTG] Назарово НБ АСН3 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?utf-8?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232530"
         },
         {
           "id": "232443",
@@ -490,7 +478,7 @@
           "timestamp": "2022-12-29 07:07:13",
           "name": "Перенос рабочего места",
           "status": "Требует уточнения",
-          "executor": null,
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/232424"
         },
