@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2022-12-30T10:59:51.000Z",
+  "updatedAt": "2023-01-02T01:00:04.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,40 +435,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "232825",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "232884",
+          "user": "Стекляев Юрий Андреевич",
+          "creator": "Стекляев Юрий Андреевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2022-12-30 17:17:02",
-          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
-          "status": "Открыта",
-          "executor": null,
+          "timestamp": "2022-12-31 12:26:17",
+          "name": "Плотномер",
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/232825"
-        },
-        {
-          "id": "232822",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-30 16:54:02",
-          "name": "[Main PRTG] 4 Summarized Notifications",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232822"
-        },
-        {
-          "id": "232820",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-30 16:24:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232820"
+          "link": "https://help.knp24.ru/request/232884"
         },
         {
           "id": "232605",
@@ -495,18 +471,6 @@
           "link": "https://help.knp24.ru/request/232424"
         },
         {
-          "id": "232365",
-          "user": "Житнова Елена Ефремовна",
-          "creator": "Житнова Елена Ефремовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-28 17:14:32",
-          "name": "Копия базы ЗУП от 30.12.22 на 16:00, СТАЦИОНАРНО",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/232365"
-        },
-        {
           "id": "232303",
           "user": "Шипулин Владимир Иванович",
           "creator": "Шипулин Владимир Иванович",
@@ -529,18 +493,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/232219"
-        },
-        {
-          "id": "230878",
-          "user": "Козловский Владимир Николаевич",
-          "creator": "Козловский Владимир Николаевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2022-12-20 10:07:45",
-          "name": "Не работают видеокамеры на Тихом,1-А",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/230878"
         },
         {
           "id": "228795",
