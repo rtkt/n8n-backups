@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-02T05:00:04.000Z",
+  "updatedAt": "2023-01-02T07:00:04.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -434,6 +434,30 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "233014",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-02 13:55:04",
+          "name": "[Main PRTG] 7 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233014"
+        },
+        {
+          "id": "233012",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-02 13:25:01",
+          "name": "[Main PRTG] Назарово НБ ЖД2 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233012"
+        },
         {
           "id": "233006",
           "user": "PRTG alert",
