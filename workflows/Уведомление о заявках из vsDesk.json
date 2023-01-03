@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-02T10:59:06.000Z",
+  "updatedAt": "2023-01-03T02:59:14.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,16 +435,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "233028",
+          "id": "233054",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-02 17:33:02",
-          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
+          "timestamp": "2023-01-03 09:37:02",
+          "name": "[Main PRTG] 2 Summarized Notifications",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/233028"
+          "link": "https://help.knp24.ru/request/233054"
+        },
+        {
+          "id": "233053",
+          "user": "АЗС № 133",
+          "creator": "АЗС № 133",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-03 09:31:07",
+          "name": "на главном ПК, с монитора СБП все ушло на монитор видеонаблюдения, видеонаблюдение исчезло",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233053"
+        },
+        {
+          "id": "233052",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-03 09:07:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233052"
         },
         {
           "id": "233012",
@@ -453,8 +477,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-02 13:25:01",
           "name": "[Main PRTG] Назарово НБ ЖД2 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?B?",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/233012"
         },
