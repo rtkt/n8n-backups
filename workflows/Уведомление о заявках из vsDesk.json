@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-04T10:59:05.000Z",
+  "updatedAt": "2023-01-05T02:59:11.000Z",
   "id": 1,
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -434,30 +434,6 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "233172",
-          "user": "Скрябина Галина Викторовна",
-          "creator": "Скрябина Галина Викторовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-04 14:40:48",
-          "name": "Неверно отражены проводки в 1С по сменным отчетам",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/233172"
-        },
-        {
-          "id": "233142",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-04 10:11:02",
-          "name": "[Main PRTG] Unifi Ubiquity СОТ Декабристов Скрипт проверки записи видео Unifi (Ск=?utf-8?B?0YDQuNC/0",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/233142"
-        },
         {
           "id": "233012",
           "user": "PRTG alert",
