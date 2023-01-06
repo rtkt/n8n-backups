@@ -1,7 +1,7 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-06T09:00:34.000Z",
-  "id": 1,
+  "updatedAt": "2023-01-06T10:59:56.000Z",
+  "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
   "nodes": [
@@ -522,5 +522,7 @@
     }
   },
   "pinData": {},
+  "versionId": "e8b8f857-bf20-4a19-8c5d-6d4c71aea943",
+  "triggerCount": 1,
   "tags": []
 }
