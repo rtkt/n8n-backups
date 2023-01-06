@@ -1,7 +1,7 @@
 {
   "createdAt": "2022-09-16T03:22:30.639Z",
-  "updatedAt": "2022-09-16T06:59:14.013Z",
-  "id": 2,
+  "updatedAt": "2023-01-06T09:11:54.000Z",
+  "id": "2",
   "name": "Back Up Your n8n Workflows To Github",
   "active": true,
   "nodes": [
@@ -535,5 +535,7 @@
   },
   "staticData": null,
   "pinData": {},
+  "versionId": "130e6dc1-c4c3-4adc-920d-5c55fc560d15",
+  "triggerCount": 1,
   "tags": []
 }
