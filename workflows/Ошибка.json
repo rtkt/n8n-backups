@@ -1,0 +1,15 @@
+{
+  "createdAt": "2023-01-07T08:51:10.161Z",
+  "updatedAt": "2023-01-07T08:51:10.161Z",
+  "id": "4",
+  "name": "Ошибка",
+  "active": false,
+  "nodes": [],
+  "connections": {},
+  "settings": {},
+  "staticData": null,
+  "pinData": {},
+  "versionId": "5f13cb80-db36-4009-a851-75222447b271",
+  "triggerCount": 0,
+  "tags": []
+}
