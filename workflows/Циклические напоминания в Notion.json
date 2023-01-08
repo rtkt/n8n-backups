@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-01-07T08:50:30.000Z",
+  "updatedAt": "2023-01-08T10:47:32.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -127,25 +127,6 @@
       "position": [
         -300,
         -180
-      ]
-    },
-    {
-      "parameters": {
-        "triggerTimes": {
-          "item": [
-            {
-              "mode": "everyHour"
-            }
-          ]
-        }
-      },
-      "id": "3a679352-70f8-479f-a6e3-a77e625ded32",
-      "name": "Выполнять каждый день",
-      "type": "n8n-nodes-base.cron",
-      "typeVersion": 1,
-      "position": [
-        -500,
-        -260
       ]
     },
     {
@@ -312,6 +293,25 @@
           "name": "Notion"
         }
       }
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        }
+      },
+      "id": "3a679352-70f8-479f-a6e3-a77e625ded32",
+      "name": "Выполнять каждый час",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -260
+      ]
     }
   ],
   "connections": {
@@ -331,17 +331,6 @@
         [
           {
             "node": "Что там по шаблонам?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Выполнять каждый день": {
-      "main": [
-        [
-          {
-            "node": "Глобальные значения",
             "type": "main",
             "index": 0
           }
@@ -398,12 +387,23 @@
           }
         ]
       ]
+    },
+    "Выполнять каждый час": {
+      "main": [
+        [
+          {
+            "node": "Глобальные значения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "c1313b89-4490-4b2e-b3c6-328ee073e975",
+  "versionId": "e7bf2aec-7a47-465e-941e-d305c9584a73",
   "triggerCount": 0,
   "tags": []
 }
