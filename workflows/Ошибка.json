@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-07T08:51:10.161Z",
-  "updatedAt": "2023-01-08T07:04:18.000Z",
+  "updatedAt": "2023-01-08T10:41:51.000Z",
   "id": "4",
   "name": "Ошибка",
   "active": false,
@@ -8,20 +8,63 @@
     {
       "parameters": {},
       "id": "b0b7723f-dac5-41b4-ac2d-ec283146406e",
-      "name": "Error Trigger",
+      "name": "Ошибка",
       "type": "n8n-nodes-base.errorTrigger",
       "typeVersion": 1,
       "position": [
         280,
         520
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ntfy.shitnsticks.top",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"topic\": \"errors\",\n  \"title\": \"Ошибка в задаче {{ $json.workflow.name }}\",\n  \"priority\": 5,\n  \"message\": \"{{ $json.execution.error.message }}\",\n  \"click\": \"{{ $json.execution.url }}\"\n}",
+        "options": {}
+      },
+      "id": "3c836cce-fecf-4686-86aa-a79725d25617",
+      "name": "Уведомить об ошибке в Ntfy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        560,
+        520
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
     }
   ],
-  "connections": {},
-  "settings": {},
+  "connections": {
+    "Ошибка": {
+      "main": [
+        [
+          {
+            "node": "Уведомить об ошибке в Ntfy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
   "staticData": null,
   "pinData": {},
-  "versionId": "f470cb49-c437-4fba-9f61-bd4b41b2e4e9",
+  "versionId": "e9d893ca-8a71-4f4a-83ff-66e1ac7595b9",
   "triggerCount": 0,
   "tags": []
 }
