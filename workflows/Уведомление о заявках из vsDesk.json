@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-06T10:59:56.000Z",
+  "updatedAt": "2023-01-08T10:31:42.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -215,7 +215,7 @@
         "options": {
           "bodyContentType": "raw"
         },
-        "bodyParametersJson": "={\n\"topic\": \"vsdesk\",\n\"title\": \"Новая заявка из PRTG\",\n\"priority\": 2,\n\"message\": \"Название: {{$json[\"name\"]}}\\nID: {{$json[\"id\"]}}\",\n \"click\": \"{{$json[\"link\"]}}\" \n}"
+        "bodyParametersJson": "={\n\"topic\": \"vsdesk\",\n\"title\": \"Новая заявка из PRTG\",\n\"priority\": 2,\n\"message\": \"Название: {{$json[\"name\"]}}\\nID: {{$json[\"id\"]}}\",\n\"click\": \"{{$json[\"link\"]}}\" \n}"
       },
       "id": "4f84d508-6234-449a-9ae0-bad807df253a",
       "name": "Уведомить о новой заявке из PRTG",
@@ -429,7 +429,10 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": "DEFAULT"
+    "saveExecutionProgress": "DEFAULT",
+    "saveManualExecutions": false,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
@@ -522,7 +525,7 @@
     }
   },
   "pinData": {},
-  "versionId": "e8b8f857-bf20-4a19-8c5d-6d4c71aea943",
+  "versionId": "a0b13811-5cf9-433b-97c9-c31d369b869b",
   "triggerCount": 1,
   "tags": []
 }
