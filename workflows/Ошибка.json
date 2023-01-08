@@ -1,15 +1,27 @@
 {
   "createdAt": "2023-01-07T08:51:10.161Z",
-  "updatedAt": "2023-01-07T08:51:10.161Z",
+  "updatedAt": "2023-01-08T07:04:18.000Z",
   "id": "4",
   "name": "Ошибка",
   "active": false,
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b0b7723f-dac5-41b4-ac2d-ec283146406e",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        280,
+        520
+      ]
+    }
+  ],
   "connections": {},
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "5f13cb80-db36-4009-a851-75222447b271",
+  "versionId": "f470cb49-c437-4fba-9f61-bd4b41b2e4e9",
   "triggerCount": 0,
   "tags": []
 }
