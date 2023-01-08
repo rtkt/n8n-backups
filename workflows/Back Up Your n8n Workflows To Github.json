@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T03:22:30.639Z",
-  "updatedAt": "2023-01-06T09:11:54.000Z",
+  "updatedAt": "2023-01-08T10:43:38.000Z",
   "id": "2",
   "name": "Back Up Your n8n Workflows To Github",
   "active": true,
@@ -156,7 +156,7 @@
         "triggerTimes": {
           "item": [
             {
-              "mode": "everyX"
+              "mode": "everyMinute"
             }
           ]
         }
@@ -531,11 +531,14 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": "DEFAULT"
+    "saveExecutionProgress": "DEFAULT",
+    "saveManualExecutions": false,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "130e6dc1-c4c3-4adc-920d-5c55fc560d15",
+  "versionId": "30c60e2b-825c-4605-95ae-db7bb55f0711",
   "triggerCount": 1,
   "tags": []
 }
