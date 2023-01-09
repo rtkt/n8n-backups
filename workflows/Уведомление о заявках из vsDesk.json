@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-09T06:59:54.000Z",
+  "updatedAt": "2023-01-09T08:59:55.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,64 +438,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "233677",
-          "user": "Золин Александр Борисович",
-          "creator": "Золин Александр Борисович",
+          "id": "233704",
+          "user": "callcenter",
+          "creator": "callcenter",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 13:59:14",
-          "name": "Рабочее место ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/233677"
-        },
-        {
-          "id": "233675",
-          "user": "Золин Александр Борисович",
-          "creator": "Золин Александр Борисович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 13:50:24",
-          "name": "Рабочее место ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/233675"
-        },
-        {
-          "id": "233674",
-          "user": "Тимощенко Андрей Юрьевич",
-          "creator": "Тимощенко Андрей Юрьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 13:48:58",
-          "name": "Новый картридж для принтера на АЗС №232",
+          "timestamp": "2023-01-09 14:58:38",
+          "name": "Недозвон в приёмную",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/233674"
+          "link": "https://help.knp24.ru/request/233704"
         },
         {
-          "id": "233668",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "233683",
+          "user": "Сударев Владислав Николаевич",
+          "creator": "Сударев Владислав Николаевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 13:25:02",
-          "name": "[Main PRTG] 1c-cluster1 Свободное дисковое пространство (на нескольких дисках) (С=",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/233668"
-        },
-        {
-          "id": "233652",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 12:32:02",
-          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "timestamp": "2023-01-09 14:07:40",
+          "name": "Заправка картриджей",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/233652"
+          "link": "https://help.knp24.ru/request/233683"
         },
         {
           "id": "233643",
@@ -508,30 +472,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/233643"
-        },
-        {
-          "id": "233636",
-          "user": "Гарманова Ирина Вячеславовна",
-          "creator": "Гарманова Ирина Вячеславовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 11:21:56",
-          "name": "настроить печать и сканирование",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/233636"
-        },
-        {
-          "id": "233611",
-          "user": "Ильина Альбина Владимировна",
-          "creator": "Ильина Альбина Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 09:56:54",
-          "name": "Письма-уведомления в Outlook",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/233611"
         },
         {
           "id": "233012",
