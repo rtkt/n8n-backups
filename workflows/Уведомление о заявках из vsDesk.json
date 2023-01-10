@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-09T10:59:54.000Z",
+  "updatedAt": "2023-01-10T03:00:03.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "233704",
-          "user": "callcenter",
-          "creator": "callcenter",
+          "id": "233792",
+          "user": "АЗС № 41",
+          "creator": "АЗС № 41",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-09 14:58:38",
-          "name": "Недозвон в приёмную",
-          "status": "Просрочена реакция",
+          "timestamp": "2023-01-10 05:58:50",
+          "name": "Принтер ",
+          "status": "Принята в исполнение",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/233704"
+          "link": "https://help.knp24.ru/request/233792"
         },
         {
           "id": "233683",
@@ -472,6 +472,18 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/233643"
+        },
+        {
+          "id": "233615",
+          "user": "Алексеева Анастасия Юрьевна",
+          "creator": "Алексеева Анастасия Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-09 10:11:44",
+          "name": "Сливной Пункт Минусинского участка",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233615"
         },
         {
           "id": "233012",
