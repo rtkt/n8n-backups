@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-01-11T13:23:07.000Z",
+  "updatedAt": "2023-01-11T16:05:03.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDeskt",
   "active": false,
@@ -15,7 +15,7 @@
       "typeVersion": 1,
       "position": [
         280,
-        220
+        240
       ]
     },
     {
@@ -26,7 +26,7 @@
       "typeVersion": 1,
       "position": [
         280,
-        -20
+        20
       ]
     },
     {
@@ -373,6 +373,20 @@
           "name": "КНП"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// console.log(item.json.data)\n// return JSON.parse(\n// console.log(data)\n// const subs = data.subs.map(sub => sub.id)\n// console.log(subs)\n// return { subs: data.subs }\nreturn JSON.parse(item)"
+      },
+      "id": "335b0fa8-ebb4-45a4-b3ce-49e8dd2140df",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        -120
+      ]
     }
   ],
   "connections": {
@@ -493,6 +507,17 @@
         [
           {
             "node": "Запроси данные о конкретной заявке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запроси данные о конкретной заявке": {
+      "main": [
+        [
+          {
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -717,7 +742,7 @@
     }
   },
   "pinData": {},
-  "versionId": "b8ecbd55-4a8b-48bd-b03f-cd320b91a497",
+  "versionId": "169f9817-96ca-4646-a413-74bf958166d7",
   "triggerCount": 1,
   "tags": []
 }
