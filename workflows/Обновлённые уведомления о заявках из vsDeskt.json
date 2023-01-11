@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-01-11T12:54:19.000Z",
+  "updatedAt": "2023-01-11T13:23:07.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDeskt",
   "active": false,
@@ -15,7 +15,7 @@
       "typeVersion": 1,
       "position": [
         280,
-        180
+        220
       ]
     },
     {
@@ -56,8 +56,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        600,
-        300
+        500,
+        240
       ]
     },
     {
@@ -67,8 +67,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        860,
-        440
+        760,
+        360
       ]
     },
     {
@@ -95,8 +95,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        860,
-        200
+        760,
+        100
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -114,8 +114,8 @@
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        1800,
-        20
+        3360,
+        -60
       ]
     },
     {
@@ -135,8 +135,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        2420,
-        -40
+        3980,
+        -120
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -174,8 +174,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        2000,
-        20
+        3560,
+        -60
       ]
     },
     {
@@ -201,8 +201,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2180,
-        -180
+        3740,
+        -260
       ]
     },
     {
@@ -222,8 +222,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        2420,
-        -240
+        3980,
+        -320
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -249,8 +249,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        2440,
-        160
+        4000,
+        80
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -276,8 +276,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        2420,
-        380
+        3980,
+        300
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -303,8 +303,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        2440,
-        580
+        4000,
+        500
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -315,17 +315,64 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "// Add a new field called 'myNewField' to the\n// JSON of the item\n$input.item.json.myNewField = 1;\n\nreturn $input.item;"
+        "jsCode": "return items[0].json.map(request => {\n  return {\n    id: request.id,\n    user: request.fullname,\n    creator: request.creator,\n    group: request.gfullname,\n    name: request.Name.replaceAll('\"', ''),\n    status: request.Status,\n    priority: request.Priority === \"Высокий\" ? 5 : 3,\n    subs: []\n  }\n})"
       },
-      "id": "81c86114-2e8b-455a-9a6d-1e7d4151985e",
-      "name": "Обработка полученных данных",
+      "id": "87d89e9d-2f71-4c04-983c-4724d65b21d3",
+      "name": "Грубая очистка данных",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1100,
-        200
+        1020,
+        100
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json[\"status\"] }}",
+              "operation": "notEqual",
+              "value2": "Завершена"
+            },
+            {
+              "value1": "={{ $json[\"status\"] }}",
+              "operation": "notEqual",
+              "value2": "Отменена"
+            }
+          ]
+        }
+      },
+      "id": "5439a370-e529-4aea-a7c8-2db240442d87",
+      "name": "Заявка актуальна?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://help.knp24.ru/api/requests/{{ $json[\"id\"] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "id": "2f8578e9-1b76-481a-883a-51f64f26bf67",
+      "name": "Запроси данные о конкретной заявке",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1500,
+        -120
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
     }
   ],
   "connections": {
@@ -334,17 +381,6 @@
         [
           {
             "node": "Получение списка заявок из vsDesk",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Интервал (выполняется каждую минуту)": {
-      "main": [
-        [
-          {
-            "node": "Сейчас рабочее время?",
             "type": "main",
             "index": 0
           }
@@ -363,17 +399,6 @@
         [
           {
             "node": "Ничего не делать",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Получение списка заявок из vsDesk": {
-      "main": [
-        [
-          {
-            "node": "Обработка полученных данных",
             "type": "main",
             "index": 0
           }
@@ -435,6 +460,39 @@
         [
           {
             "node": "Уведомить о новой заявке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение списка заявок из vsDesk": {
+      "main": [
+        [
+          {
+            "node": "Грубая очистка данных",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Грубая очистка данных": {
+      "main": [
+        [
+          {
+            "node": "Заявка актуальна?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка актуальна?": {
+      "main": [
+        [
+          {
+            "node": "Запроси данные о конкретной заявке",
             "type": "main",
             "index": 0
           }
@@ -659,7 +717,7 @@
     }
   },
   "pinData": {},
-  "versionId": "45ccdaa6-5b6e-4c7a-937e-c636321e4933",
+  "versionId": "b8ecbd55-4a8b-48bd-b03f-cd320b91a497",
   "triggerCount": 1,
   "tags": []
 }
