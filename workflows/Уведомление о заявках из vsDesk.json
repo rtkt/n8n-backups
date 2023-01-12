@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-12T02:59:35.000Z",
+  "updatedAt": "2023-01-12T04:59:36.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,52 +438,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "234203",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "234271",
+          "user": "Димухаметова Ксения Анатольевна",
+          "creator": "Димухаметова Ксения Анатольевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-12 09:42:02",
-          "name": "[Main PRTG] 192.168.15.200 [HP Printer] Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка IC",
+          "timestamp": "2023-01-12 11:54:55",
+          "name": "Долгая работы 1С ERP",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/234203"
+          "link": "https://help.knp24.ru/request/234271"
         },
         {
-          "id": "234202",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "234243",
+          "user": "Пикарская Людмила Сергеевна",
+          "creator": "Пикарская Людмила Сергеевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-12 09:35:03",
-          "name": "[Main PRTG] 4 Summarized Notifications",
+          "timestamp": "2023-01-12 11:01:19",
+          "name": "В Outlook необходимо обновить список сотрудников ",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/234202"
+          "link": "https://help.knp24.ru/request/234243"
         },
         {
-          "id": "234199",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "234217",
+          "user": "Никишина Алена Сергеевна",
+          "creator": "Никишина Алена Сергеевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-12 09:05:02",
-          "name": "[Main PRTG] VM-SNK Port (Порт) Ошибка  (Connection refused (ошибка сокета № 10061))",
-          "status": "Открыта",
-          "executor": null,
+          "timestamp": "2023-01-12 10:26:17",
+          "name": "Microsoft Teams ",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/234199"
+          "link": "https://help.knp24.ru/request/234217"
         },
         {
-          "id": "234197",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "234209",
+          "user": "Петров Евгений Николаевич",
+          "creator": "Петров Евгений Николаевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-12 08:56:03",
-          "name": "[PRTG Ticket] VM-SNK Port (Порт) Ошибка ",
-          "status": "Открыта",
+          "timestamp": "2023-01-12 10:06:16",
+          "name": "Заявка",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/234197"
+          "link": "https://help.knp24.ru/request/234209"
         },
         {
           "id": "234196",
@@ -510,18 +510,6 @@
           "link": "https://help.knp24.ru/request/234188"
         },
         {
-          "id": "234138",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-11 18:12:02",
-          "name": "[Main PRTG] Радиомост (Цех слива) филиал Северный Ping (Пинг) Ошибка  (Destination hos",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/234138"
-        },
-        {
           "id": "234136",
           "user": "Золин Александр Борисович",
           "creator": "Золин Александр Борисович",
@@ -546,18 +534,6 @@
           "link": "https://help.knp24.ru/request/234134"
         },
         {
-          "id": "234133",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-11 17:42:02",
-          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/234133"
-        },
-        {
           "id": "234132",
           "user": "Золин Александр Борисович",
           "creator": "Золин Александр Борисович",
@@ -568,30 +544,6 @@
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/234132"
-        },
-        {
-          "id": "234127",
-          "user": "Родионова Оксана Борисовна",
-          "creator": "Родионова Оксана Борисовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-11 17:05:27",
-          "name": "Доступ к программе Диадок",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/234127"
-        },
-        {
-          "id": "234072",
-          "user": "Максимов Евгений Вадимович",
-          "creator": "Максимов Евгений Вадимович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-11 13:53:10",
-          "name": "Заявка на предоставление доступа к информационным ресурсам.",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/234072"
         },
         {
           "id": "234045",
@@ -648,9 +600,9 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-10 15:01:12",
           "name": "Предоставление доступа к видео по АЗС №121",
-          "status": "Просрочена реакция",
+          "status": "Открыта",
           "executor": null,
-          "priority": 3,
+          "priority": 5,
           "link": "https://help.knp24.ru/request/233902"
         },
         {
@@ -684,7 +636,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2022-12-29 16:53:07",
           "name": "Проблема с виндовс",
-          "status": "Принята в исполнение",
+          "status": "Открыта повторно",
           "executor": "Дмитриев Виктор Борисович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/232605"
