@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-13T08:59:57.000Z",
+  "updatedAt": "2023-01-13T11:00:00.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "234541",
-          "user": "Романенко Светлана Николаевна",
-          "creator": "Романенко Светлана Николаевна",
+          "id": "234584",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-13 15:22:44",
-          "name": "Canon image RUNNER 1133A",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
+          "timestamp": "2023-01-13 17:42:03",
+          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/234541"
+          "link": "https://help.knp24.ru/request/234584"
         },
         {
           "id": "234513",
@@ -462,18 +462,6 @@
           "link": "https://help.knp24.ru/request/234513"
         },
         {
-          "id": "234502",
-          "user": "Бутылин Иван Яковлевич",
-          "creator": "Бутылин Иван Яковлевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-13 11:55:51",
-          "name": "Необходимо заправить картриджи",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/234502"
-        },
-        {
           "id": "234490",
           "user": "Бутылин Иван Яковлевич",
           "creator": "Бутылин Иван Яковлевич",
@@ -486,30 +474,6 @@
           "link": "https://help.knp24.ru/request/234490"
         },
         {
-          "id": "234481",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-13 11:03:01",
-          "name": "[Main PRTG] SMB-126(storage) Свободное пространство диска по SSH (Свободное прост=?utf-8?B?0YDQsNC90",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/234481"
-        },
-        {
-          "id": "234473",
-          "user": "Самчугова Анна Юрьевна",
-          "creator": "Самчугова Анна Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-13 10:24:16",
-          "name": "Принтер не работает",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/234473"
-        },
-        {
           "id": "234471",
           "user": "Дмитриев Виктор Борисович",
           "creator": "Дмитриев Виктор Борисович",
@@ -520,18 +484,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/234471"
-        },
-        {
-          "id": "234468",
-          "user": "Дмитриев Виктор Борисович",
-          "creator": "Дмитриев Виктор Борисович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-13 10:07:53",
-          "name": "Заправка картриджей ф Рыбинский",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/234468"
         },
         {
           "id": "234429",
@@ -589,7 +541,7 @@
           "timestamp": "2022-12-29 07:07:13",
           "name": "Перенос рабочего места",
           "status": "Просрочено исполнение",
-          "executor": "Лиханов Олег Олегович",
+          "executor": "Михайлов Степан Сергеевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/232424"
         }
