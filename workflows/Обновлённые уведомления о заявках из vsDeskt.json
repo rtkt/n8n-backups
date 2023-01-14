@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-01-11T16:05:03.000Z",
+  "updatedAt": "2023-01-14T15:01:11.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDeskt",
   "active": false,
@@ -377,7 +377,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// console.log(item.json.data)\n// return JSON.parse(\n// console.log(data)\n// const subs = data.subs.map(sub => sub.id)\n// console.log(subs)\n// return { subs: data.subs }\nreturn JSON.parse(item)"
+        "jsCode": "// console.log(item.json.data)\n// return JSON.parse(\n// console.log(data)\n// const subs = data.subs.map(sub => sub.id)\n// console.log(subs)\n// return { subs: data.subs }\n// return JSON.parse(items[0])\n\nconsole.log(item.json.data)\nreturn item.json"
       },
       "id": "335b0fa8-ebb4-45a4-b3ce-49e8dd2140df",
       "name": "Code",
@@ -742,7 +742,7 @@
     }
   },
   "pinData": {},
-  "versionId": "169f9817-96ca-4646-a413-74bf958166d7",
+  "versionId": "658fa289-e4d6-4ee5-801b-a6e062a8440a",
   "triggerCount": 1,
   "tags": []
 }
