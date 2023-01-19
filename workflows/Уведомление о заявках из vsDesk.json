@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-19T02:59:39.000Z",
+  "updatedAt": "2023-01-19T04:59:42.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "235379",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "235411",
+          "user": "АЗС № 237",
+          "creator": "АЗС № 237",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-19 09:42:03",
-          "name": "[Main PRTG] 4 Summarized Notifications",
+          "timestamp": "2023-01-19 11:30:22",
+          "name": "Вход в учетную запись",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/235379"
+          "link": "https://help.knp24.ru/request/235411"
+        },
+        {
+          "id": "235407",
+          "user": "Коробицына Анастасия Николаевна",
+          "creator": "Коробицына Анастасия Николаевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-19 11:06:44",
+          "name": "не распечатывается документы ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235407"
         },
         {
           "id": "235288",
@@ -474,18 +486,6 @@
           "link": "https://help.knp24.ru/request/235285"
         },
         {
-          "id": "235261",
-          "user": "Руденова Екатерина Евгеньевна",
-          "creator": "Руденова Екатерина Евгеньевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-18 14:59:22",
-          "name": "проблемы с тимс",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/235261"
-        },
-        {
           "id": "235260",
           "user": "Валецкий Сергей Викторович",
           "creator": "Валецкий Сергей Викторович",
@@ -496,18 +496,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/235260"
-        },
-        {
-          "id": "235073",
-          "user": "Артемьева Алена Михайловна",
-          "creator": "Артемьева Алена Михайловна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-17 10:49:23",
-          "name": "Прошу выделить подменный картридж KUOCERA ECOSYS FS-1135MFP КУРАГИНСКИЙ УЧАСТОК ЮГО-ВОСТОЧНЫЙ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/235073"
         },
         {
           "id": "234852",
