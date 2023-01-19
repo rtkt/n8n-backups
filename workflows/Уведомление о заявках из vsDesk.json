@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-19T06:59:44.000Z",
+  "updatedAt": "2023-01-19T08:59:46.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,64 +438,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "235441",
-          "user": "Цветковская Юлия Геннадьевна",
-          "creator": "Цветковская Юлия Геннадьевна",
+          "id": "235471",
+          "user": "Скрупская Вера Николаевна",
+          "creator": "Скрупская Вера Николаевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-19 13:34:53",
-          "name": "Нужно обновить ПЦ",
+          "timestamp": "2023-01-19 15:44:52",
+          "name": "СРОЧНО обновление ПЦ ",
           "status": "Принята в исполнение",
           "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/235441"
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235471"
         },
         {
-          "id": "235440",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "235463",
+          "user": "Дондо Анастасия Сергеевна",
+          "creator": "Дондо Анастасия Сергеевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-19 13:33:03",
-          "name": "[Main PRTG] 3 Summarized Notifications",
+          "timestamp": "2023-01-19 15:09:40",
+          "name": "ПРОШУ УСТАНОВИТЬ MICROSOFT TEAMS",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/235440"
-        },
-        {
-          "id": "235439",
-          "user": "Чудова Елена Геннадьевна",
-          "creator": "Чудова Елена Геннадьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-19 13:31:54",
-          "name": "Прошу обновить программу СНК",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/235439"
-        },
-        {
-          "id": "235432",
-          "user": "Томилов Эдуард Анатольевич",
-          "creator": "Томилов Эдуард Анатольевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-19 13:12:49",
-          "name": "Обновление СНК-ПЦ",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/235432"
-        },
-        {
-          "id": "235426",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-19 13:03:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/235426"
+          "link": "https://help.knp24.ru/request/235463"
         },
         {
           "id": "235411",
