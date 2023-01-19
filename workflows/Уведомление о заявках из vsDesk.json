@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-19T04:59:42.000Z",
+  "updatedAt": "2023-01-19T06:59:44.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,28 +438,76 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "235441",
+          "user": "Цветковская Юлия Геннадьевна",
+          "creator": "Цветковская Юлия Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-19 13:34:53",
+          "name": "Нужно обновить ПЦ",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/235441"
+        },
+        {
+          "id": "235440",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-19 13:33:03",
+          "name": "[Main PRTG] 3 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235440"
+        },
+        {
+          "id": "235439",
+          "user": "Чудова Елена Геннадьевна",
+          "creator": "Чудова Елена Геннадьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-19 13:31:54",
+          "name": "Прошу обновить программу СНК",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/235439"
+        },
+        {
+          "id": "235432",
+          "user": "Томилов Эдуард Анатольевич",
+          "creator": "Томилов Эдуард Анатольевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-19 13:12:49",
+          "name": "Обновление СНК-ПЦ",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/235432"
+        },
+        {
+          "id": "235426",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-19 13:03:02",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235426"
+        },
+        {
           "id": "235411",
           "user": "АЗС № 237",
           "creator": "АЗС № 237",
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-19 11:30:22",
           "name": "Вход в учетную запись",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/235411"
-        },
-        {
-          "id": "235407",
-          "user": "Коробицына Анастасия Николаевна",
-          "creator": "Коробицына Анастасия Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-19 11:06:44",
-          "name": "не распечатывается документы ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/235407"
         },
         {
           "id": "235288",
@@ -496,6 +544,18 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/235260"
+        },
+        {
+          "id": "235073",
+          "user": "Артемьева Алена Михайловна",
+          "creator": "Артемьева Алена Михайловна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-17 10:49:23",
+          "name": "Прошу выделить подменный картридж KUOCERA ECOSYS FS-1135MFP КУРАГИНСКИЙ УЧАСТОК ЮГО-ВОСТОЧНЫЙ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235073"
         },
         {
           "id": "234852",
