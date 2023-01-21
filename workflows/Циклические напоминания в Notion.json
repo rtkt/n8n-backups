@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-01-19T09:33:08.000Z",
+  "updatedAt": "2023-01-21T14:22:44.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -147,8 +147,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        540,
-        -300
+        -1020,
+        -1140
       ],
       "credentials": {
         "notionApi": {
@@ -173,8 +173,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        340,
-        -180
+        -1240,
+        -1080
       ]
     },
     {
@@ -186,8 +186,8 @@
       "type": "n8n-nodes-base.functionItem",
       "typeVersion": 1,
       "position": [
-        540,
-        -80
+        -1020,
+        -920
       ]
     },
     {
@@ -218,8 +218,8 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2,
       "position": [
-        760,
-        -80
+        -780,
+        -920
       ],
       "credentials": {
         "notionApi": {
@@ -274,7 +274,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const parseFrequency = (tokens) => {\n  const numbers = new Map()\n  numbers.set('один', 1)\n  numbers.set('одну', 1)\n  numbers.set('два', 2)\n  numbers.set('две', 2)\n  numbers.set('второй', 2)\n  numbers.set('три', 3)\n  numbers.set('третий', 3)\n  numbers.set('четыре', 4)\n  numbers.set('четвёртый', 4)\n  numbers.set('пять', 5)\n  numbers.set('пятый', 5)\n  numbers.set('шесть', 6)\n  numbers.set('шестой', 6)\n  numbers.set('семь', 7)\n  numbers.set('седьмой', 7)\n  numbers.set('восемь', 8)\n  numbers.set('восьмой', 8)\n  numbers.set('девять', 9)\n  numbers.set('девятый', 9)\n  numbers.set('десять', 10)\n  numbers.set('десятый', 10)\n  numbers.set('одиннадцать', 11)\n  numbers.set('двенадцать', 12)\n  const units = new Map()\n  units.set('миллисекунд', 'milliseconds')\n  units.set('секунд', 'seconds')\n  units.set('минут', 'minutes')\n  units.set('час', 'hours')\n  units.set('день', 'days')\n  units.set('дня', 'days')\n  units.set('недел', 'weeks')\n  units.set('месяц', 'months')\n  units.set('квартал', 'quarters')\n  units.set('год', 'years')\n  units.set('лет', 'years')\n  let number = 1\n  let unit\n\n  for (let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i]\n      continue\n    }\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i])\n      continue\n    }\n    for (let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break\n      }\n    }\n  }\n  const ret = {}\n  ret[unit] = number\n  return ret\n}\n\nconst getFrequency = (humanReadable) => {\n  const tokens = humanReadable.split(' ').map((token) => token.toLowerCase())\n  if (tokens[0] === 'раз' && tokens[1] === 'в') {\n    return parseFrequency(tokens.slice(2))\n  }\n  if (tokens[0].slice(0, 4) === 'кажд') {\n    return parseFrequency(tokens.slice(1))\n  }\n}\n\nconst tasks = items[0].json.results.map((task) => {\n  const fieldNames = $node['Глобальные значения'].json.strings\n  \n  let lastExec\n  if (task.properties[fieldNames.lastExec]) {\n    const str = task.properties[fieldNames.lastExec].date.start\n    lastExec = DateTime.fromFormat(str, 'yyyy-MM-dd', { zone: 'utc' })\n  }\n  const frequency = getFrequency(\n    task.properties[fieldNames.frequency].select.name\n  )\n  const nextExecv09 = lastExec ? lastExec.plus(frequency) : DateTime.now()\n  const nextExec = nextExecv09.set({\n    hour: task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(\n      0,\n      2\n    ),\n    minute:\n      task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(3),\n    second: 0,\n    millisecond: 0\n  })\n  return {\n    id: task.id,\n    lastExecution: lastExec,\n    nextExecution: nextExec,\n    task: {\n      name: JSON.parse(JSON.stringify(task.properties[fieldNames.taskName])),\n      effort: task.properties[fieldNames.effort].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.effort]))\n        : undefined,\n      value: task.properties[fieldNames.value].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.value]))\n        : undefined,\n      area: task.properties[fieldNames.area].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.area]))\n        : undefined,\n      project: task.properties[fieldNames.project].relation[0]\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.project]))\n        : undefined,\n      postponable: JSON.parse(JSON.stringify(task.properties[fieldNames.postponable].checkbox))\n    }\n  }\n})\nreturn tasks"
+        "jsCode": "const parseFrequency = (tokens) => {\n  const numbers = new Map()\n  numbers.set('один', 1)\n  numbers.set('одну', 1)\n  numbers.set('два', 2)\n  numbers.set('две', 2)\n  numbers.set('второй', 2)\n  numbers.set('три', 3)\n  numbers.set('третий', 3)\n  numbers.set('четыре', 4)\n  numbers.set('четвёртый', 4)\n  numbers.set('пять', 5)\n  numbers.set('пятый', 5)\n  numbers.set('шесть', 6)\n  numbers.set('шестой', 6)\n  numbers.set('семь', 7)\n  numbers.set('седьмой', 7)\n  numbers.set('восемь', 8)\n  numbers.set('восьмой', 8)\n  numbers.set('девять', 9)\n  numbers.set('девятый', 9)\n  numbers.set('десять', 10)\n  numbers.set('десятый', 10)\n  numbers.set('одиннадцать', 11)\n  numbers.set('двенадцать', 12)\n  const units = new Map()\n  units.set('миллисекунд', 'milliseconds')\n  units.set('секунд', 'seconds')\n  units.set('минут', 'minutes')\n  units.set('час', 'hours')\n  units.set('день', 'days')\n  units.set('дня', 'days')\n  units.set('недел', 'weeks')\n  units.set('месяц', 'months')\n  units.set('квартал', 'quarters')\n  units.set('год', 'years')\n  units.set('лет', 'years')\n  let number = 1\n  let unit\n\n  for (let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i]\n      continue\n    }\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i])\n      continue\n    }\n    for (let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break\n      }\n    }\n  }\n  const ret = {}\n  ret[unit] = number\n  return ret\n}\n\nconst getFrequency = (humanReadable) => {\n  const tokens = humanReadable.split(' ').map((token) => token.toLowerCase())\n  if (tokens[0] === 'раз' && tokens[1] === 'в') {\n    return parseFrequency(tokens.slice(2))\n  }\n  if (tokens[0].slice(0, 4) === 'кажд') {\n    return parseFrequency(tokens.slice(1))\n  }\n}\n\nconst tasks = items[0].json.results.map((task) => {\n  const fieldNames = $node['Глобальные значения'].json.strings\n  let lastExec\n  if (task.properties[fieldNames.lastExec]) {\n    const str = task.properties[fieldNames.lastExec].date.start\n    lastExec = DateTime.fromFormat(str, 'yyyy-MM-dd', { zone: 'utc' })\n  }\n  const frequency = getFrequency(\n    task.properties[fieldNames.frequency].select.name\n  )\n  // const nextExecv09 = lastExec ? lastExec.plus(frequency) : DateTime.now()\n  // const nextExec = nextExecv09.set({\n  //   hour: task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(\n  //     0,\n  //     2\n  //   ),\n  //   minute:\n  //     task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(3),\n  //   second: 0,\n  //   millisecond: 0\n  // })\n  return {\n    id: task.id,\n    lastExecution: lastExec,\n    // nextExecution: nextExec,\n    task: {\n      frequency: frequency,\n      name: JSON.parse(JSON.stringify(task.properties[fieldNames.taskName])),\n      effort: task.properties[fieldNames.effort].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.effort]))\n        : undefined,\n      value: task.properties[fieldNames.value].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.value]))\n        : undefined,\n      area: task.properties[fieldNames.area].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.area]))\n        : undefined,\n      project: task.properties[fieldNames.project].relation[0]\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.project]))\n        : undefined,\n      postponable: JSON.parse(\n        JSON.stringify(task.properties[fieldNames.postponable])\n      ),\n    }\n  }\n})\nreturn tasks"
       },
       "id": "b33f7c02-40fd-4db0-bf93-8329085ad8bf",
       "name": "Обработка таблицы",
@@ -362,20 +362,14 @@
     },
     "Обработка таблицы": {
       "main": [
-        [
-          {
-            "node": "Задача ранее выполнялась?",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "cf796aa6-4564-44f1-8cb2-1e0b7bec506f",
+  "versionId": "b21916dd-c35a-4824-873f-975944fc5f42",
   "triggerCount": 0,
   "tags": []
 }
