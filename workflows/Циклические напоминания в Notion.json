@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-01-21T14:22:44.000Z",
+  "updatedAt": "2023-01-22T05:00:23.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -243,8 +243,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -100,
-        -180
+        -80,
+        -40
       ],
       "credentials": {
         "notionApi": {
@@ -282,8 +282,39 @@
       "typeVersion": 1,
       "position": [
         120,
-        -180
+        -40
       ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.notion.com/v1/blocks/{{ $json[\"id\"].replaceAll('-', '') }}/children",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "=2022-06-28"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5c6df6e1-5e1b-4937-ba7e-bef719d1f347",
+      "name": "Получение содержимого страницы",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        220,
+        -280
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
     }
   ],
   "connections": {
@@ -303,6 +334,11 @@
         [
           {
             "node": "Что там по шаблонам?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Получение содержимого страницы",
             "type": "main",
             "index": 0
           }
@@ -362,14 +398,20 @@
     },
     "Обработка таблицы": {
       "main": [
-        []
+        [
+          {
+            "node": "Получение содержимого страницы",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "b21916dd-c35a-4824-873f-975944fc5f42",
+  "versionId": "2efd9339-b87e-4bc8-a168-dedba07daa4c",
   "triggerCount": 0,
   "tags": []
 }
