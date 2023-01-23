@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-23T01:00:12.000Z",
+  "updatedAt": "2023-01-23T03:00:13.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,13 +438,73 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "235882",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-23 09:43:03",
+          "name": "[Main PRTG] 4 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235882"
+        },
+        {
+          "id": "235880",
+          "user": "Козина Вера Сергеевна",
+          "creator": "Козина Вера Сергеевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-23 09:35:34",
+          "name": "Настройка сканера.",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235880"
+        },
+        {
+          "id": "235878",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-23 09:13:03",
+          "name": "[Main PRTG] 192.168.15.200 [HP Printer] Разность напечатанных страниц (Пользовательские па=?utf-8",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235878"
+        },
+        {
+          "id": "235877",
+          "user": "Епифанова Виктория Евгеньевна",
+          "creator": "Епифанова Виктория Евгеньевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-23 09:10:53",
+          "name": "Охлаждающая жидкость",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235877"
+        },
+        {
+          "id": "235864",
+          "user": "Клявин Антон Александрович",
+          "creator": "Клявин Антон Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-23 08:24:52",
+          "name": "Не открываются программы",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/235864"
+        },
+        {
           "id": "235741",
           "user": "test1",
           "creator": "test1",
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-21 17:42:03",
           "name": "Пропущенный вызов в группе Группа системного администрирования",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/235741"
@@ -468,7 +528,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-20 16:52:08",
           "name": "Увеличение объема оперативной памяти",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/235650"
@@ -492,8 +552,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-20 14:48:09",
           "name": "Перебои в работе телефона и интернета",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/235624"
         },
