@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-01-22T05:00:23.000Z",
+  "updatedAt": "2023-01-23T13:36:41.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -244,7 +244,7 @@
       "typeVersion": 2,
       "position": [
         -80,
-        -40
+        -180
       ],
       "credentials": {
         "notionApi": {
@@ -281,8 +281,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        120,
-        -40
+        100,
+        -180
       ]
     },
     {
@@ -306,8 +306,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        220,
-        -280
+        360,
+        -180
       ],
       "credentials": {
         "notionApi": {
@@ -334,11 +334,6 @@
         [
           {
             "node": "Что там по шаблонам?",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Получение содержимого страницы",
             "type": "main",
             "index": 0
           }
@@ -411,7 +406,7 @@
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "2efd9339-b87e-4bc8-a168-dedba07daa4c",
+  "versionId": "c3675835-1910-4dd6-ad57-921df679d02b",
   "triggerCount": 0,
   "tags": []
 }
