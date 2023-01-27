@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-27T04:59:55.000Z",
+  "updatedAt": "2023-01-27T06:59:32.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,6 +438,42 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "236545",
+          "user": "Денисова Татьяна Ивановна",
+          "creator": "Денисова Татьяна Ивановна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-27 12:52:57",
+          "name": "Паблик – Петрова – Вагонооборот – Курагино (Минусинск) – Документы РЖД – Нужный год – Нужный месяц –",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/236545"
+        },
+        {
+          "id": "236541",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-27 12:32:02",
+          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
+          "status": "Принята в исполнение",
+          "executor": "Григорьев Александр Валерьевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236541"
+        },
+        {
+          "id": "236538",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-27 12:02:02",
+          "name": "[Main PRTG] АТЦ Ачинск гараж Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?ut",
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236538"
+        },
+        {
           "id": "236536",
           "user": "Григорьев Александр Валерьевич",
           "creator": "Григорьев Александр Валерьевич",
@@ -456,8 +492,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-27 10:03:27",
           "name": "пропуска",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/236518"
         },
