@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-30T02:59:07.000Z",
+  "updatedAt": "2023-01-30T04:59:08.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,6 +438,30 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "236841",
+          "user": "Воробьева Вероника Леонтьевна",
+          "creator": "Воробьева Вероника Леонтьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-30 11:27:37",
+          "name": "установка программы техэксперт",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236841"
+        },
+        {
+          "id": "236828",
+          "user": "Шматков Роман Олегович",
+          "creator": "Шматков Роман Олегович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-30 10:35:41",
+          "name": "проблема с принтером",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236828"
+        },
+        {
           "id": "236614",
           "user": "АЗС № 256",
           "creator": "АЗС № 256",
@@ -460,42 +484,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/236599"
-        },
-        {
-          "id": "236590",
-          "user": "Климас Татьяна Игоревна",
-          "creator": "Климас Татьяна Игоревна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-27 15:49:11",
-          "name": "Эл. почта",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/236590"
-        },
-        {
-          "id": "236541",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-27 12:32:02",
-          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/236541"
-        },
-        {
-          "id": "236538",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-27 12:02:02",
-          "name": "[Main PRTG] АТЦ Ачинск гараж Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?ut",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/236538"
         },
         {
           "id": "236536",
@@ -532,18 +520,6 @@
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/236182"
-        },
-        {
-          "id": "235971",
-          "user": "АЗС № 65",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-23 15:31:03",
-          "name": "[PRTG Ticket] ПК - Менеджер 2 (АЗС№65) Свободное дисковое пространство (=?utf-8?B?",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/235971"
         },
         {
           "id": "235590",
