@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-31T02:59:18.000Z",
+  "updatedAt": "2023-01-31T04:59:19.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,13 +438,61 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "236994",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-31 11:18:05",
+          "name": "[Main PRTG] 9 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236994"
+        },
+        {
+          "id": "236988",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-31 10:47:01",
+          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236988"
+        },
+        {
+          "id": "236984",
+          "user": "Лиханов Олег Олегович",
+          "creator": "Лиханов Олег Олегович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-31 10:32:01",
+          "name": "RE: Олег, устраните уже этот косяк, не отправляется сообщение!!!!! запрос уж=?utf-8?B?0LUg0L3QsNC/0Y",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236984"
+        },
+        {
+          "id": "236977",
+          "user": "Зверко Татьяна Олеговна",
+          "creator": "Зверко Татьяна Олеговна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-31 10:00:44",
+          "name": "заправка картриджей в количестве 8 шт.",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/236977"
+        },
+        {
           "id": "236973",
           "user": "Бадьин Василий Алексеевич",
           "creator": "Бадьин Василий Алексеевич",
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-31 09:53:47",
           "name": "гарнитура",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/236973"
@@ -456,7 +504,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-31 09:50:38",
           "name": "Гудит системный блок",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/236971"
