@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-01-31T08:59:21.000Z",
+  "updatedAt": "2023-01-31T10:59:22.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "237054",
-          "user": "Никитина Алена Олеговна",
-          "creator": "Никитина Алена Олеговна",
+          "id": "237090",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-01-31 15:22:37",
-          "name": "не поступают письма входящие на электронный ящик",
+          "timestamp": "2023-01-31 17:48:02",
+          "name": "[Main PRTG] Cisco (003) FastEthernet2 Traffic (Трафик по SNMP) Ошибка  (No response (check: firewall",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/237054"
+          "link": "https://help.knp24.ru/request/237090"
+        },
+        {
+          "id": "237085",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-31 17:20:03",
+          "name": "[Main PRTG] 4 Summarized Notifications",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/237085"
+        },
+        {
+          "id": "237082",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-31 16:50:02",
+          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/237082"
+        },
+        {
+          "id": "237073",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-31 16:07:02",
+          "name": "[Main PRTG] VPN тунель Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/237073"
         },
         {
           "id": "237047",
@@ -456,8 +492,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-31 14:30:55",
           "name": "Выгрузить рабочую базу ERP в тестовую",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/237047"
         },
@@ -522,18 +558,6 @@
           "link": "https://help.knp24.ru/request/236973"
         },
         {
-          "id": "236971",
-          "user": "Кильтре Ольга Викторовна",
-          "creator": "Кильтре Ольга Викторовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-31 09:50:38",
-          "name": "Гудит системный блок",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/236971"
-        },
-        {
           "id": "236953",
           "user": "Скрябина Галина Викторовна",
           "creator": "Скрябина Галина Викторовна",
@@ -556,18 +580,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/236952"
-        },
-        {
-          "id": "236947",
-          "user": "Лексина Татьяна Владимировна",
-          "creator": "Лексина Татьяна Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-01-31 08:04:32",
-          "name": "Не печатает принтер кабинет 5-12",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/236947"
         },
         {
           "id": "236941",
@@ -624,7 +636,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-01-27 10:03:27",
           "name": "пропуска",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/236518"
