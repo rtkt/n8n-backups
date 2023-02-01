@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-01T02:59:32.000Z",
+  "updatedAt": "2023-02-01T04:59:31.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,40 +438,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "237188",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "237225",
+          "user": "Чулпанова Дания Аликовна",
+          "creator": "Чулпанова Дания Аликовна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-02-01 09:53:10",
-          "name": "[Main PRTG] 25 Summarized Notifications",
+          "timestamp": "2023-02-01 11:58:01",
+          "name": "установить сертификат обмена данными с ФСС",
           "status": "Открыта",
           "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/237188"
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/237225"
         },
         {
-          "id": "237184",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "237223",
+          "user": "Деева Татьяна Николаевна",
+          "creator": "Деева Татьяна Николаевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-02-01 09:32:02",
-          "name": "[Main PRTG] OpenVPN Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "timestamp": "2023-02-01 11:52:15",
+          "name": "Прошу установить программу зоом",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/237184"
-        },
-        {
-          "id": "237182",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-01 09:31:05",
-          "name": "[Main PRTG] 9 Summarized Notifications",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/237182"
+          "link": "https://help.knp24.ru/request/237223"
         },
         {
           "id": "237181",
@@ -480,8 +468,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-02-01 09:31:01",
           "name": "Плохой интернет",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/237181"
         },
@@ -492,34 +480,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-02-01 09:18:33",
           "name": "Работа c компьютером",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/237178"
-        },
-        {
-          "id": "237174",
-          "user": "Громова Валентина Юрьевна",
-          "creator": "Громова Валентина Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-01 09:02:03",
-          "name": "У Фельдмана Л.А. пришло приглашение на собрание ВКС от Громовой В.Ю. , по факту ВКС не создавалось",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/237174"
-        },
-        {
-          "id": "237173",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-01 09:01:02",
-          "name": "[Main PRTG] Cisco (004) FastEthernet3 Traffic (Трафик по SNMP) Ошибка  (No response (check: firewall",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/237173"
         },
         {
           "id": "237167",
@@ -528,8 +492,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-02-01 08:47:33",
           "name": "НЕТ ИНТЕРНЕТА Минусинская НБ",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/237167"
         },
