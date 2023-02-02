@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-02T04:59:43.000Z",
+  "updatedAt": "2023-02-02T07:00:11.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "237365",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "237381",
+          "user": "Коханова Татьяна Валентиновна",
+          "creator": "Коханова Татьяна Валентиновна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-02-02 11:42:03",
-          "name": "[Main PRTG] 2 Summarized Notifications",
+          "timestamp": "2023-02-02 13:22:40",
+          "name": "заявка на сотрудника Бочкарева Ю.Н. ",
           "status": "Открыта",
           "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/237365"
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/237381"
+        },
+        {
+          "id": "237379",
+          "user": "Коханова Татьяна Валентиновна",
+          "creator": "Коханова Татьяна Валентиновна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-02 13:13:53",
+          "name": "Заявка на cотрудника филиала Жижова",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/237379"
         },
         {
           "id": "236518",
