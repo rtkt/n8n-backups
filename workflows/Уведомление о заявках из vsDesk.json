@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-13T06:59:36.000Z",
+  "updatedAt": "2023-02-13T08:59:38.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,88 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "238824",
+          "id": "238868",
+          "user": "Сафронова Татьяна Александровна",
+          "creator": "Сафронова Татьяна Александровна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 14:41:29",
+          "name": "Отсутствует интернет",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/238868"
+        },
+        {
+          "id": "238866",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 11:12:01",
+          "timestamp": "2023-02-13 14:39:07",
+          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238866"
+        },
+        {
+          "id": "238865",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 14:39:05",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238865"
+        },
+        {
+          "id": "238864",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 14:39:03",
           "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/238824"
+          "link": "https://help.knp24.ru/request/238864"
+        },
+        {
+          "id": "238863",
+          "user": "Автайкина Мария Владимировна",
+          "creator": "Автайкина Мария Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 14:38:25",
+          "name": "Проблема с интернетом",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238863"
+        },
+        {
+          "id": "238861",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 14:36:03",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (570 мс (Время Ping) выше предела ошибки 500 =?ut",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238861"
+        },
+        {
+          "id": "238859",
+          "user": "Нестерова Елена Ивановна",
+          "creator": "Нестерова Елена Ивановна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 14:29:31",
+          "name": "Необходима заправка картриджей ф-л Восточный",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238859"
         },
         {
           "id": "238823",
@@ -484,78 +556,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/238814"
-        },
-        {
-          "id": "238811",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:08:08",
-          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238811"
-        },
-        {
-          "id": "238810",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:08:05",
-          "name": "[Main PRTG] Ачинск АТЦ inet Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238810"
-        },
-        {
-          "id": "238809",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:08:03",
-          "name": "[Main PRTG] АТЦ Ачинск площадка Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 1101",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238809"
-        },
-        {
-          "id": "238808",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:07:04",
-          "name": "[Main PRTG] АТЦ Ачинск коридор Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238808"
-        },
-        {
-          "id": "238807",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:07:02",
-          "name": "[Main PRTG] АТЦ Ачинск гараж Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP =?utf-8?B?4oSWIDE",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238807"
-        },
-        {
-          "id": "238806",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:06:02",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238806"
         },
         {
           "id": "238803",
