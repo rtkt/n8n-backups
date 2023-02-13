@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-13T08:59:38.000Z",
+  "updatedAt": "2023-02-13T10:59:39.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,76 +438,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "238868",
-          "user": "Сафронова Татьяна Александровна",
-          "creator": "Сафронова Татьяна Александровна",
+          "id": "238903",
+          "user": "Колесникова Юлия Сергеевна",
+          "creator": "Колесникова Юлия Сергеевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 14:41:29",
-          "name": "Отсутствует интернет",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/238868"
-        },
-        {
-          "id": "238866",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 14:39:07",
-          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
-          "status": "Просрочена реакция",
+          "timestamp": "2023-02-13 16:53:48",
+          "name": "необходимо обновить ПЦ",
+          "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/238866"
-        },
-        {
-          "id": "238865",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 14:39:05",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238865"
-        },
-        {
-          "id": "238864",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 14:39:03",
-          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238864"
-        },
-        {
-          "id": "238863",
-          "user": "Автайкина Мария Владимировна",
-          "creator": "Автайкина Мария Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 14:38:25",
-          "name": "Проблема с интернетом",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238863"
-        },
-        {
-          "id": "238861",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 14:36:03",
-          "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (570 мс (Время Ping) выше предела ошибки 500 =?ut",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238861"
+          "link": "https://help.knp24.ru/request/238903"
         },
         {
           "id": "238859",
@@ -516,8 +456,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-02-13 14:29:31",
           "name": "Необходима заправка картриджей ф-л Восточный",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/238859"
         },
@@ -532,30 +472,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/238823"
-        },
-        {
-          "id": "238819",
-          "user": "Агафонов Евгений Викторович",
-          "creator": "Агафонов Евгений Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:39:46",
-          "name": "Выгрузить рабочую базу ЗУП в тестовую",
-          "status": "Принята в исполнение",
-          "executor": "Болсуновский Максим Александрович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238819"
-        },
-        {
-          "id": "238814",
-          "user": "Артышко Людмила Викторовна",
-          "creator": "Артышко Людмила Викторовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 10:14:09",
-          "name": "На Назаровском ПУ необходимо подключить принтер после ремонта.",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238814"
         },
         {
           "id": "238803",
@@ -616,18 +532,6 @@
           "executor": "Григорьев Александр Валерьевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/238246"
-        },
-        {
-          "id": "238107",
-          "user": "Блюдникова Наталья Михайловна",
-          "creator": "Блюдникова Наталья Михайловна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-08 11:34:20",
-          "name": "Трещит и застревает бумага",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238107"
         },
         {
           "id": "237714",
