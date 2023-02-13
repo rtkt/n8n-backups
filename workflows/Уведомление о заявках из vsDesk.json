@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-13T02:59:33.000Z",
+  "updatedAt": "2023-02-13T04:59:35.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,28 +438,124 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "238824",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 11:12:01",
+          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238824"
+        },
+        {
+          "id": "238819",
+          "user": "Агафонов Евгений Викторович",
+          "creator": "Агафонов Евгений Викторович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:39:46",
+          "name": "Выгрузить рабочую базу ЗУП в тестовую",
+          "status": "Принята в исполнение",
+          "executor": "Болсуновский Максим Александрович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238819"
+        },
+        {
+          "id": "238814",
+          "user": "Артышко Людмила Викторовна",
+          "creator": "Артышко Людмила Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:14:09",
+          "name": "На Назаровском ПУ необходимо подключить принтер после ремонта.",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238814"
+        },
+        {
+          "id": "238811",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:08:08",
+          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238811"
+        },
+        {
+          "id": "238810",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:08:05",
+          "name": "[Main PRTG] Ачинск АТЦ inet Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238810"
+        },
+        {
+          "id": "238809",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:08:03",
+          "name": "[Main PRTG] АТЦ Ачинск площадка Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 1101",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238809"
+        },
+        {
+          "id": "238808",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:07:04",
+          "name": "[Main PRTG] АТЦ Ачинск коридор Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238808"
+        },
+        {
+          "id": "238807",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:07:02",
+          "name": "[Main PRTG] АТЦ Ачинск гараж Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP =?utf-8?B?4oSWIDE",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238807"
+        },
+        {
+          "id": "238806",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 10:06:02",
+          "name": "[Main PRTG] Microt-Local Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238806"
+        },
+        {
           "id": "238803",
           "user": "Болсуновский Максим Александрович",
           "creator": "Болсуновский Максим Александрович",
           "group": "Группа системного администрирования",
           "timestamp": "2023-02-13 09:53:22",
           "name": "Почистить ящик",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/238803"
-        },
-        {
-          "id": "238797",
-          "user": "Стаханов Сергей Владимирович",
-          "creator": "Стаханов Сергей Владимирович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-13 09:17:29",
-          "name": "экран",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238797"
         },
         {
           "id": "238657",
@@ -472,18 +568,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/238657"
-        },
-        {
-          "id": "238601",
-          "user": "Прибытова Наталья Владимировна",
-          "creator": "Прибытова Наталья Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-10 16:54:12",
-          "name": "доступ к файлу ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238601"
         },
         {
           "id": "238593",
