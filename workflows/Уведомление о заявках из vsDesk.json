@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-13T04:59:35.000Z",
+  "updatedAt": "2023-02-13T06:59:36.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -444,10 +444,22 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-02-13 11:12:01",
           "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/238824"
+        },
+        {
+          "id": "238823",
+          "user": "АЗС № 19",
+          "creator": "АЗС № 19",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-13 11:02:23",
+          "name": "принтер",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/238823"
         },
         {
           "id": "238819",
@@ -568,18 +580,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/238657"
-        },
-        {
-          "id": "238593",
-          "user": "Невзорова Дарья Александровна",
-          "creator": "Невзорова Дарья Александровна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-10 15:59:21",
-          "name": "рассылка маерчака",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/238593"
         },
         {
           "id": "238457",
