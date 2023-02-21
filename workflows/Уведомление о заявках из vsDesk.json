@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-21T08:59:29.000Z",
+  "updatedAt": "2023-02-21T10:59:35.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "240081",
-          "user": "Ильина Альбина Владимировна",
-          "creator": "Ильина Альбина Владимировна",
+          "id": "240106",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-02-21 14:52:07",
-          "name": "Установка второго монитора на рабочее место",
+          "timestamp": "2023-02-21 16:52:06",
+          "name": "[Main PRTG] НБ Ачинск-Опер Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
           "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/240081"
+          "link": "https://help.knp24.ru/request/240106"
+        },
+        {
+          "id": "240105",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-21 16:52:04",
+          "name": "[Main PRTG] НБ Ачинск-КПП2 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/240105"
+        },
+        {
+          "id": "240104",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-21 16:52:03",
+          "name": "[Main PRTG] НБ Ачинск-КПП1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/240104"
         },
         {
           "id": "240040",
@@ -460,18 +484,6 @@
           "executor": "Михайлов Степан Сергеевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/240040"
-        },
-        {
-          "id": "240039",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-21 11:08:02",
-          "name": "[Main PRTG] cam2-НБ-Курагино КПП1 Пинг (Пинг) Ошибка  (Destination host unreachable (ошибк=?utf-8?B?",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/240039"
         },
         {
           "id": "239974",
