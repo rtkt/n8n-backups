@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-01-23T13:36:41.000Z",
+  "updatedAt": "2023-02-21T13:44:32.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -281,8 +281,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        100,
-        -180
+        -100,
+        -780
       ]
     },
     {
@@ -306,7 +306,42 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        360,
+        -640,
+        -640
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const tasks = items[0].json.results.map((task) => {\n  const ret = JSON.parse(JSON.stringify(task));\n  ret.__got_body = false;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  return ret;\n});\n\nreturn tasks"
+      },
+      "id": "f0ad2e1e-7364-4e05-b268-87674f629b19",
+      "name": "Первоначальная обработка",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.notion.com/v1/blocks/{{ $json[\"id\"].replaceAll('-', '') }}/children",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "options": {}
+      },
+      "id": "f525706b-24b7-4984-b246-7dad9e85a491",
+      "name": "Подгрузка потомков",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        380,
         -180
       ],
       "credentials": {
@@ -315,6 +350,20 @@
           "name": "Notion"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($input.item.json.results.length === 0) {\n  return { json: {} };\n}\nconst blocks = $input.item.json.results.map((block) => {\n  const ret = JSON.parse(JSON.stringify(block));\n    delete ret.created_time;\n    delete ret.last_edited_time;\n    delete ret.created_by;\n    delete ret.last_edited_by;\n  return ret;\n});\nreturn { json: {blocks}};"
+      },
+      "id": "f5a9068a-e779-4126-8169-5458de3765df",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        600,
+        -180
+      ]
     }
   ],
   "connections": {
@@ -373,7 +422,7 @@
       "main": [
         [
           {
-            "node": "Обработка таблицы",
+            "node": "Первоначальная обработка",
             "type": "main",
             "index": 0
           }
@@ -391,22 +440,38 @@
         ]
       ]
     },
-    "Обработка таблицы": {
+    "Первоначальная обработка": {
       "main": [
         [
           {
-            "node": "Получение содержимого страницы",
+            "node": "Подгрузка потомков",
             "type": "main",
             "index": 0
           }
         ]
+      ]
+    },
+    "Подгрузка потомков": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        []
       ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "c3675835-1910-4dd6-ad57-921df679d02b",
+  "versionId": "51b01f91-97f7-4d1f-9802-84aa47a1417b",
   "triggerCount": 0,
   "tags": []
 }
