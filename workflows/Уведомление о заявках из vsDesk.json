@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-22T05:00:15.000Z",
+  "updatedAt": "2023-02-22T07:00:17.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,102 +438,6 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "240233",
-          "user": "АЗС № 231",
-          "creator": "АЗС № 231",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-22 11:48:39",
-          "name": "не работает считыватель бонусных карт",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/240233"
-        },
-        {
-          "id": "240231",
-          "user": "АЗС № 225",
-          "creator": "АЗС № 225",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-22 11:48:03",
-          "name": "заявка",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/240231"
-        },
-        {
-          "id": "240214",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-22 11:41:01",
-          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/240214"
-        },
-        {
-          "id": "240206",
-          "user": "АЗС № 242",
-          "creator": "АЗС № 242",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-22 11:34:41",
-          "name": "не работаю дисконтные карты",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/240206"
-        },
-        {
-          "id": "240190",
-          "user": "Шувалова Вера Васильевна",
-          "creator": "Шувалова Вера Васильевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-22 09:50:32",
-          "name": "грязная печать принтера ",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/240190"
-        },
-        {
-          "id": "240106",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-21 16:52:06",
-          "name": "[Main PRTG] НБ Ачинск-Опер Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/240106"
-        },
-        {
-          "id": "240105",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-21 16:52:04",
-          "name": "[Main PRTG] НБ Ачинск-КПП2 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/240105"
-        },
-        {
-          "id": "240104",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-21 16:52:03",
-          "name": "[Main PRTG] НБ Ачинск-КПП1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/240104"
-        },
-        {
           "id": "240040",
           "user": "PRTG alert",
           "creator": "PRTG alert",
@@ -568,18 +472,6 @@
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/239806"
-        },
-        {
-          "id": "239797",
-          "user": "Доронькин Евгений Валентинович",
-          "creator": "Доронькин Евгений Валентинович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-02-20 13:38:24",
-          "name": "Видеонаблюдение на нефтебазе",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/239797"
         },
         {
           "id": "238412",
