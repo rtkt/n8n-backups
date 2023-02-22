@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-02-22T09:00:18.000Z",
+  "updatedAt": "2023-02-22T10:59:18.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -437,6 +437,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "240330",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-02-22 17:59:02",
+          "name": "[Main PRTG] Дакабристов 1 этаж (УРСТ) Пинг (Пинг) Ошибка  (Request timed out (оши=?utf-8?B?0LH",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/240330"
+        },
         {
           "id": "240040",
           "user": "PRTG alert",
