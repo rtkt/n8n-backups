@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-02-21T13:44:32.000Z",
+  "updatedAt": "2023-02-28T14:29:23.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -357,7 +357,7 @@
         "jsCode": "if ($input.item.json.results.length === 0) {\n  return { json: {} };\n}\nconst blocks = $input.item.json.results.map((block) => {\n  const ret = JSON.parse(JSON.stringify(block));\n    delete ret.created_time;\n    delete ret.last_edited_time;\n    delete ret.created_by;\n    delete ret.last_edited_by;\n  return ret;\n});\nreturn { json: {blocks}};"
       },
       "id": "f5a9068a-e779-4126-8169-5458de3765df",
-      "name": "Code",
+      "name": "Подгрузка блоков",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
@@ -455,23 +455,18 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Подгрузка блоков",
             "type": "main",
             "index": 0
           }
         ]
-      ]
-    },
-    "Code": {
-      "main": [
-        []
       ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "51b01f91-97f7-4d1f-9802-84aa47a1417b",
+  "versionId": "ec87b5f2-85e6-4ae5-91f9-6002cc540411",
   "triggerCount": 0,
   "tags": []
 }
