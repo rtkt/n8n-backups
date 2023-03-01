@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-01T03:00:12.000Z",
+  "updatedAt": "2023-03-01T05:00:11.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -437,6 +437,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "241044",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-01 11:16:02",
+          "name": "[Main PRTG] www.knp24.ru Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/241044"
+        },
         {
           "id": "241012",
           "user": "Сенченко Владимир Андреевич",
