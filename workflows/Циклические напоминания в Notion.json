@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-07T14:45:20.000Z",
+  "updatedAt": "2023-03-07T16:21:19.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -318,7 +318,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const tasks = items[0].json.results.map((task) => {\n  const ret = JSON.parse(JSON.stringify(task));\n  ret.__got_body = false;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  return ret;\n});\n\nreturn tasks"
+        "jsCode": "const tasks = items[0].json.results.map((task) => {\n  const ret = JSON.parse(JSON.stringify(task));\n  ret.__got_body = false;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  return ret;\n});\n\nconsole.log();\nreturn tasks"
       },
       "id": "f0ad2e1e-7364-4e05-b268-87674f629b19",
       "name": "Первоначальная обработка",
@@ -341,7 +341,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        500,
+        400,
         -180
       ],
       "credentials": {
@@ -358,8 +358,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        440,
-        200
+        320,
+        340
       ]
     },
     {
@@ -371,19 +371,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        660,
-        200
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "62c62277-4a36-4bd5-a037-a06ccb3e66be",
-      "name": "No Operation, do nothing",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        960,
-        -280
+        600,
+        340
       ]
     },
     {
@@ -396,7 +385,7 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        1240,
+        1060,
         -100
       ]
     },
@@ -416,7 +405,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        740,
+        640,
         -180
       ]
     },
@@ -436,8 +425,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1460,
-        -100
+        1320,
+        -60
       ]
     },
     {
@@ -450,8 +439,54 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        960,
+        860,
         -100
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let finishedLoading = false;\nitems.forEach(block => {\n  if (block.json.has_children) {\n    finishedLoading = true;\n  };\n})\nfinishedLoading = ! finishedLoading;\nreturn { json: { finishedLoading: finishedLoading } };"
+      },
+      "id": "3a82122b-3c51-4f65-b6b3-d5ffc249bc94",
+      "name": "Уплощение объектов",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json[\"finishedLoading\"] }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "320c4db7-2962-4b22-a2ab-f7d1c65faa0e",
+      "name": "Больше нет неподгруженных блоков?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "d6991c5a-b5d8-4e0a-b55d-28b9367517f2",
+      "name": "Объединяем подгруженные потомки",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        -240
       ]
     }
   ],
@@ -536,11 +571,6 @@
             "node": "Подгрузка потомков",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Объединение результатов",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -574,19 +604,18 @@
             "node": "У блока есть потомки?",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Уплощение объектов",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
     },
     "Это пустой объект?": {
       "main": [
-        [
-          {
-            "node": "No Operation, do nothing",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         [
           {
             "node": "Зачистка полученного объекта",
@@ -617,12 +646,34 @@
           }
         ]
       ]
+    },
+    "Уплощение объектов": {
+      "main": [
+        [
+          {
+            "node": "Больше нет неподгруженных блоков?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Больше нет неподгруженных блоков?": {
+      "main": [
+        [
+          {
+            "node": "Объединяем подгруженные потомки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "77f5d64f-57e5-43c4-b284-0583c94d6d91",
+  "versionId": "fff18954-b308-44ca-8349-9e7888c692d0",
   "triggerCount": 0,
   "tags": []
 }
