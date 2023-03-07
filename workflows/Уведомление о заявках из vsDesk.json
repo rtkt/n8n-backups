@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-07T06:59:58.000Z",
+  "updatedAt": "2023-03-07T08:59:59.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -444,8 +444,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-07 13:54:04",
           "name": "[Main PRTG] D7-cam6-jdvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Дмитриев Виктор Борисович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/241974"
         },
@@ -456,34 +456,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-07 13:54:02",
           "name": "[Main PRTG] D4-cam4-rezervuar Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Дмитриев Виктор Борисович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/241973"
-        },
-        {
-          "id": "241966",
-          "user": "Нестерова Елена Ивановна",
-          "creator": "Нестерова Елена Ивановна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-07 13:17:36",
-          "name": "Необходима заправка картриджей",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/241966"
-        },
-        {
-          "id": "241939",
-          "user": "Григорьев Александр Валерьевич",
-          "creator": "Григорьев Александр Валерьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-07 11:05:39",
-          "name": "Заправка картриджей",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/241939"
         },
         {
           "id": "241799",
@@ -492,8 +468,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-06 16:02:00",
           "name": "Создать новую эл. почту",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Требует уточнения",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/241799"
         },
