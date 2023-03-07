@@ -1,0 +1,163 @@
+{
+  "createdAt": "2023-03-07T15:26:55.515Z",
+  "updatedAt": "2023-03-07T15:27:33.000Z",
+  "id": "6",
+  "name": "Merge data for multiple executions",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        380,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "98214aaa-fcfc-41ee-9960-7dcd99a6fd51"
+    },
+    {
+      "parameters": {
+        "functionCode": "const allData = []\n\nlet counter = 0;\ndo {\n  try {\n    const items = $items(\"RSS Feed Read\", 0, counter).map(item => item.json);\n    allData.push.apply(allData, items);\n  } catch (error) {\n    return [{json: {allData}}];  \n  }\n\n  counter++;\n} while(true);\n\n\n"
+      },
+      "name": "Merge Data",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        1420,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "1134c4d9-293f-4bc7-8ef4-ec0f47f26623"
+    },
+    {
+      "parameters": {
+        "functionCode": "return [\n  {\n    json: {\n      url: 'https://medium.com/feed/n8n-io',\n    }\n  },\n  {\n    json: {\n      url: 'https://dev.to/feed/n8n',\n    }\n  }\n];"
+      },
+      "name": "Function",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        580,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "f7d22a16-7d76-47e1-848b-5093f0f20103"
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"url\"]}}"
+      },
+      "name": "RSS Feed Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "position": [
+        980,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "50a73f4a-7a3f-42a6-b883-7d28d48171c7"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        780,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "5d4a41c9-881b-4d23-add0-6852d176c6b2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": true,
+              "value2": "={{$node[\"SplitInBatches\"].context[\"noItemsLeft\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1200,
+        420
+      ],
+      "typeVersion": 1,
+      "id": "7d6abb8d-87ad-4edc-98df-650e69bd5188"
+    }
+  ],
+  "connections": {
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Function": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Feed Read": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "RSS Feed Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null,
+  "pinData": {},
+  "versionId": "fef76778-f42d-4d86-a965-a5b16c2e88c7",
+  "triggerCount": 0,
+  "tags": []
+}
