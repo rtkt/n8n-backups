@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-08T14:42:37.000Z",
+  "updatedAt": "2023-03-08T15:26:39.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -360,8 +360,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        1380,
-        -260
+        800,
+        -240
       ]
     },
     {
@@ -373,8 +373,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1760,
-        -420
+        980,
+        -240
       ]
     },
     {
@@ -507,7 +507,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\n// for (const item of $input.all()) {\n//   item.json.myNewField = 1;\n// }\n\n// return $input.all();\n\nconst processedBlocks = [];\n"
+        "jsCode": "const processedBlocks = [];\nconst data = [];\nitems.forEach(block => {\n  if (block.json.parent.type === \"page_id\") {\n    processedBlocks.push(block.json.id)\n    data.push(JSON.parse(JSON.stringify(block.json)))\n  }\n});\n\nconsole.log(`Processed blocks IDs are ${processedBlocks}`);\nreturn data;"
       },
       "id": "4414a203-b7c6-4ed3-8724-79e5a3d774cd",
       "name": "Собираем все блоки воедино",
@@ -724,12 +724,23 @@
           }
         ]
       ]
+    },
+    "Собираем все блоки воедино": {
+      "main": [
+        [
+          {
+            "node": "Объединение результатов",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "7d9fa883-dcb3-4dc5-bac6-dc73ae609506",
+  "versionId": "6988e976-148e-490a-901a-4bfba08b1704",
   "triggerCount": 0,
   "tags": []
 }
