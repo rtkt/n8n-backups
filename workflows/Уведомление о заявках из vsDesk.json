@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-09T09:00:23.000Z",
+  "updatedAt": "2023-03-09T10:59:23.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,16 +438,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "242268",
-          "user": "Бутылин Иван Яковлевич",
-          "creator": "Бутылин Иван Яковлевич",
+          "id": "242289",
+          "user": "Коробицын Юрий Владимирович",
+          "creator": "Коробицын Юрий Владимирович",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-03-09 15:35:54",
-          "name": "Прошу выдать два оптических медиаконвертера",
+          "timestamp": "2023-03-09 16:52:25",
+          "name": "Проблема с вагонооборотом",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/242268"
+          "link": "https://help.knp24.ru/request/242289"
+        },
+        {
+          "id": "242287",
+          "user": "АЗС № 76",
+          "creator": "АЗС № 76",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-09 16:45:43",
+          "name": "Принтер",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/242287"
         },
         {
           "id": "242171",
@@ -462,30 +474,6 @@
           "link": "https://help.knp24.ru/request/242171"
         },
         {
-          "id": "241974",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-07 13:54:04",
-          "name": "[Main PRTG] D7-cam6-jdvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
-          "status": "Принята в исполнение",
-          "executor": "Дмитриев Виктор Борисович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/241974"
-        },
-        {
-          "id": "241973",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-07 13:54:02",
-          "name": "[Main PRTG] D4-cam4-rezervuar Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003",
-          "status": "Принята в исполнение",
-          "executor": "Дмитриев Виктор Борисович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/241973"
-        },
-        {
           "id": "241799",
           "user": "Нестерова Елена Ивановна",
           "creator": "Нестерова Елена Ивановна",
@@ -498,25 +486,13 @@
           "link": "https://help.knp24.ru/request/241799"
         },
         {
-          "id": "241758",
-          "user": "Шульгин Максим Игоревич",
-          "creator": "Шульгин Максим Игоревич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-06 13:51:52",
-          "name": "Обеспечение пресс-службы принтером ",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/241758"
-        },
-        {
           "id": "241710",
           "user": "Тур Елена Владимировна",
           "creator": "Тур Елена Владимировна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-06 10:15:40",
           "name": "Не работает мобильное приложение на ПК",
-          "status": "Принята в исполнение",
+          "status": "Требует уточнения",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/241710"
