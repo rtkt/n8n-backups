@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-08T15:26:39.000Z",
+  "updatedAt": "2023-03-10T14:00:27.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -234,9 +234,15 @@
         "nodeCredentialType": "notionApi",
         "requestMethod": "POST",
         "url": "={{$json.api}}/databases/{{$json.dbs.templates}}/query",
-        "jsonParameters": true,
         "options": {},
-        "headerParametersJson": "={\n \"Notion-Version\": \"{{$json.apiVersion}}\"\n}"
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Notion-Version",
+              "value": "={{ $json[\"apiVersion\"] }}"
+            }
+          ]
+        }
       },
       "id": "588aaeda-d1cd-4e82-8749-4aeb337e1aa5",
       "name": "Что там по шаблонам?",
@@ -287,38 +293,7 @@
     },
     {
       "parameters": {
-        "url": "=https://api.notion.com/v1/blocks/{{ $json[\"id\"].replaceAll('-', '') }}/children",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "notionApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Notion-Version",
-              "value": "=2022-06-28"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "5c6df6e1-5e1b-4937-ba7e-bef719d1f347",
-      "name": "Получение содержимого страницы",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        800,
-        -720
-      ],
-      "credentials": {
-        "notionApi": {
-          "id": "4",
-          "name": "Notion"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "const tasks = items[0].json.results.map((task) => {\n  const ret = task;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  return ret;\n});\n\nconsole.log();\nreturn tasks"
+        "jsCode": "const tasks = items[0].json.results.map((task) => {\n  const ret = task;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  return ret;\n});\n\nreturn tasks"
       },
       "id": "f0ad2e1e-7364-4e05-b268-87674f629b19",
       "name": "Первоначальная обработка",
@@ -334,6 +309,15 @@
         "url": "=https://api.notion.com/v1/blocks/{{ $json[\"id\"].replaceAll('-', '') }}/children",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "={{ $node[\"Глобальные значения\"].json[\"apiVersion\"] }}"
+            }
+          ]
+        },
         "options": {}
       },
       "id": "f525706b-24b7-4984-b246-7dad9e85a491",
@@ -350,32 +334,6 @@
           "name": "Notion"
         }
       }
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "62c14b46-0ee4-4f01-a121-8e45c6412671",
-      "name": "Объединение результатов",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2,
-      "position": [
-        800,
-        -240
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
-      },
-      "id": "9e99b64d-fffd-409e-bbc1-5fd50b6bae30",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        980,
-        -240
-      ]
     },
     {
       "parameters": {
@@ -428,7 +386,7 @@
       "typeVersion": 1,
       "position": [
         740,
-        260
+        120
       ]
     },
     {
@@ -454,8 +412,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        420,
-        -60
+        1200,
+        -460
       ]
     },
     {
@@ -474,8 +432,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        580,
-        -60
+        1380,
+        -460
       ]
     },
     {
@@ -487,8 +445,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        800,
-        -60
+        1580,
+        -460
       ]
     },
     {
@@ -501,8 +459,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        980,
-        -60
+        1760,
+        -460
       ]
     },
     {
@@ -514,8 +472,21 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1200,
-        -60
+        1980,
+        -460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// const tasks = items[0].json.results.map((task) => {\n//   const ret = task;\n//   delete ret.created_time;\n//   delete ret.last_edited_time;\n//   delete ret.last_edited_by;\n//   delete ret.created_by;\n//   return ret;\n// });\n\n// return tasks\n\nconst output = {};\n\n// items[0].json.forEach(page => {\n//   output[page.id] = page;\n//   delete output[page.id].id;\n//   output[page.id].parent.database_id = $('Глобальные значения').json.\n  \n// });\n\nconsole.log($('Глобальные значения').all()[0].json) //.dbs.projects.tasklist) //.json.dbs.projects.tasklist)\n"
+      },
+      "id": "5d5c9fdf-66be-4449-97ad-de28e3443bd7",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -180
       ]
     }
   ],
@@ -602,7 +573,7 @@
             "index": 0
           },
           {
-            "node": "Объединение результатов",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -620,27 +591,11 @@
         ]
       ]
     },
-    "Объединение результатов": {
-      "main": [
-        [
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Разбиение на блоки": {
       "main": [
         [
           {
             "node": "У блока есть потомки?",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Уплощение объектов",
             "type": "main",
             "index": 0
           }
@@ -727,20 +682,14 @@
     },
     "Собираем все блоки воедино": {
       "main": [
-        [
-          {
-            "node": "Объединение результатов",
-            "type": "main",
-            "index": 1
-          }
-        ]
+        []
       ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "6988e976-148e-490a-901a-4bfba08b1704",
+  "versionId": "a8598ebc-99ab-471f-a749-1464490f545c",
   "triggerCount": 0,
   "tags": []
 }
