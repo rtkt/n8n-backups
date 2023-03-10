@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-10T06:59:36.000Z",
+  "updatedAt": "2023-03-10T08:59:36.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -437,6 +437,42 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "242423",
+          "user": "Шепилев Сергей Александрович",
+          "creator": "Шепилев Сергей Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-10 15:23:55",
+          "name": "Не открываются заявки vsDesk",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/242423"
+        },
+        {
+          "id": "242418",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-10 14:41:06",
+          "name": "[Main PRTG] cam1-НБ-КурагиноКПП Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка =?utf-8?B?",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/242418"
+        },
+        {
+          "id": "242417",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-10 14:41:04",
+          "name": "[Main PRTG] cam2-НБ-Курагино КПП1 Пинг (Пинг) Ошибка  (Destination host unreachable (ошибк=?utf-8?B?",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/242417"
+        },
         {
           "id": "242287",
           "user": "АЗС № 76",
