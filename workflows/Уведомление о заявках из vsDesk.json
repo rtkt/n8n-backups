@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-10T04:59:35.000Z",
+  "updatedAt": "2023-03-10T06:59:36.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -437,42 +437,6 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "242387",
-          "user": "Никитина Алена Олеговна",
-          "creator": "Никитина Алена Олеговна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-10 11:56:08",
-          "name": "закончился тонер, требует замены .",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/242387"
-        },
-        {
-          "id": "242370",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-10 10:44:05",
-          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/242370"
-        },
-        {
-          "id": "242369",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-10 10:44:03",
-          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/242369"
-        },
         {
           "id": "242287",
           "user": "АЗС № 76",
