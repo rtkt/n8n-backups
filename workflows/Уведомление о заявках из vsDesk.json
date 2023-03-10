@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-10T08:59:36.000Z",
+  "updatedAt": "2023-03-10T10:59:37.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -444,8 +444,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-10 15:23:55",
           "name": "Не открываются заявки vsDesk",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/242423"
         },
@@ -456,8 +456,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-10 14:41:06",
           "name": "[Main PRTG] cam1-НБ-КурагиноКПП Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка =?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/242418"
         },
@@ -468,22 +468,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-10 14:41:04",
           "name": "[Main PRTG] cam2-НБ-Курагино КПП1 Пинг (Пинг) Ошибка  (Destination host unreachable (ошибк=?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/242417"
-        },
-        {
-          "id": "242287",
-          "user": "АЗС № 76",
-          "creator": "АЗС № 76",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-09 16:45:43",
-          "name": "Принтер",
-          "status": "Принята в исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/242287"
         },
         {
           "id": "241799",
