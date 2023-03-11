@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-10T14:00:27.000Z",
+  "updatedAt": "2023-03-11T08:02:19.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -34,11 +34,11 @@
             },
             {
               "name": "dbs.templates",
-              "value": "9bfcafdd2c044073924eb32bfa7671d9"
+              "value": "9bfcafdd-2c04-4073-924e-b32bfa7671d9"
             },
             {
               "name": "dbs.tasklist",
-              "value": "cf149754de194c6cbe23a1eb821c30ca"
+              "value": "cf149754-de19-4c6c-be23-a1eb821c30ca"
             },
             {
               "name": "strings.plannedTime",
@@ -66,7 +66,7 @@
             },
             {
               "name": "dbs.projects",
-              "value": "03a990b2fcba48219c0467d78ae7c2e5"
+              "value": "03a990b2-fcba-4821-9c04-67d78ae7c2e5"
             },
             {
               "name": "api",
@@ -233,7 +233,7 @@
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "notionApi",
         "requestMethod": "POST",
-        "url": "={{$json.api}}/databases/{{$json.dbs.templates}}/query",
+        "url": "={{$json.api}}/databases/{{$json.dbs.templates.replaceAll('-', '')}}/query",
         "options": {},
         "headerParametersUi": {
           "parameter": [
@@ -478,7 +478,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// const tasks = items[0].json.results.map((task) => {\n//   const ret = task;\n//   delete ret.created_time;\n//   delete ret.last_edited_time;\n//   delete ret.last_edited_by;\n//   delete ret.created_by;\n//   return ret;\n// });\n\n// return tasks\n\nconst output = {};\n\n// items[0].json.forEach(page => {\n//   output[page.id] = page;\n//   delete output[page.id].id;\n//   output[page.id].parent.database_id = $('Глобальные значения').json.\n  \n// });\n\nconsole.log($('Глобальные значения').all()[0].json) //.dbs.projects.tasklist) //.json.dbs.projects.tasklist)\n"
+        "jsCode": "// const tasks = items[0].json.results.map((task) => {\n//   const ret = task;\n//   delete ret.created_time;\n//   delete ret.last_edited_time;\n//   delete ret.last_edited_by;\n//   delete ret.created_by;\n//   return ret;\n// });\n\n// return tasks\n\nconst output = {};\n\n$input.all().forEach(page => {\n  output[page.json.id] = page.json;\n  const newPage = output[page.json.id];\n  console.log(newPage)\n  delete newPage.id;\n  newPage.parent.database_id = $('Глобальные значения').all()[0].json.dbs.tasklist;\n  \n});\n\n// console.log($input.all())\n\nreturn output;\n"
       },
       "id": "5d5c9fdf-66be-4449-97ad-de28e3443bd7",
       "name": "Code",
@@ -689,7 +689,7 @@
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "a8598ebc-99ab-471f-a749-1464490f545c",
+  "versionId": "7c901ef1-fdf3-4b78-a478-a03514802d10",
   "triggerCount": 0,
   "tags": []
 }
