@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-11T12:56:36.000Z",
+  "updatedAt": "2023-03-11T15:00:15.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -236,8 +236,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1300,
-        -600
+        160,
+        -420
       ]
     },
     {
@@ -408,7 +408,8 @@
     },
     {
       "parameters": {
-        "jsCode": "const output = $input.all().map(page => {\n  const ret = page.json;\n  ret.oldId = ret.id;\n  delete ret.id;\n  delete ret.url;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  ret.parent.database_id = $('Глобальные значения').all()[0].json.dbs.tasklist;\n  for (const property in ret.properties) {\n    const ptr = ret.properties[property];\n    delete ptr.id;\n    if (ptr.type === \"select\" &&\n        ptr.select &&\n        ptr.select.id) {\n      delete ptr.select.id;\n      delete ptr.select.color;\n    }\n    if (ptr.type === \"multi_select\" && ptr.multi_select.length) {\n      ptr.multi_select.forEach(tag => {\n        delete tag.id;\n        delete tag.color;\n      })\n    }\n  }\n  return ret;\n});\nreturn output;\n"
+        "mode": "runOnceForEachItem",
+        "jsCode": "const page = $input.item.json;\nconsole.log(page);\npage.oldId = page.id;\ndelete page.id;\ndelete page.url;\ndelete page.created_time;\ndelete page.last_edited_time;\ndelete page.last_edited_by;\ndelete page.created_by;\npage.parent.database_id = $('Глобальные значения').all()[0].json.dbs.tasklist;\nfor (const property in page.properties) {\n  const ptr = page.properties[property];\n  delete ptr.id;\n  if (ptr.type === \"select\" &&\n      ptr.select &&\n      ptr.select.id) {\n    delete ptr.select.id;\n    delete ptr.select.color;\n  }\n  if (ptr.type === \"multi_select\" && ptr.multi_select.length) {\n    ptr.multi_select.forEach(tag => {\n      delete tag.id;\n      delete tag.color;\n    })\n  }\n}\nreturn $input.item;"
       },
       "id": "5d5c9fdf-66be-4449-97ad-de28e3443bd7",
       "name": "Первоначальная обработка страниц",
@@ -435,7 +436,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1080,
+        1060,
         -320
       ]
     },
@@ -485,7 +486,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        860,
+        840,
         -60
       ],
       "credentials": {
@@ -518,6 +519,20 @@
       "name": "Ещё раз разделяем страницы",
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
+      "position": [
+        1480,
+        -600
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $input.item.json.results.reduce((previous, current) => {\n  const prevDate = DateTime.fromISO(previous.properties[$('Глобальные значения').all()[0].json.strings.creationDate].created_time);\n  const currDate = DateTime.fromISO(current.properties[$('Глобальные значения').all()[0].json.strings.creationDate].created_time);\n  return currDate.diff(prevDate).toMillis() > 0 ? current : previous\n});\nreturn { json: output };"
+      },
+      "id": "b38b0cf6-3ef4-4d8b-a276-764ef7ccbadf",
+      "name": "Находим и вычленяем последнюю задачу",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
       "position": [
         1300,
         -320
@@ -740,7 +755,7 @@
       "main": [
         [
           {
-            "node": "Ещё раз разделяем страницы",
+            "node": "Находим и вычленяем последнюю задачу",
             "type": "main",
             "index": 0
           }
@@ -753,17 +768,12 @@
           }
         ]
       ]
-    },
-    "Возвращаем обратно шаблон": {
-      "main": [
-        []
-      ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "3294bbf8-2119-4b72-9167-1cdf07a398c9",
+  "versionId": "c606e4cc-8dd7-4fe9-bcf4-d5e32aa6bf41",
   "triggerCount": 0,
   "tags": []
 }
