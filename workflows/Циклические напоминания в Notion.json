@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-11T16:56:54.000Z",
+  "updatedAt": "2023-03-11T17:50:57.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -13,7 +13,7 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -100
+        -140
       ]
     },
     {
@@ -126,7 +126,7 @@
       "typeVersion": 1,
       "position": [
         -300,
-        -180
+        -220
       ]
     },
     {
@@ -147,8 +147,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        840,
-        -260
+        860,
+        -640
       ],
       "credentials": {
         "notionApi": {
@@ -173,8 +173,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        560,
-        -180
+        580,
+        -540
       ]
     },
     {
@@ -199,7 +199,7 @@
       "typeVersion": 2,
       "position": [
         -80,
-        -180
+        -220
       ],
       "credentials": {
         "notionApi": {
@@ -224,7 +224,7 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -280
+        -320
       ]
     },
     {
@@ -236,8 +236,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -560,
-        -540
+        -960,
+        -760
       ]
     },
     {
@@ -261,8 +261,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -260,
-        280
+        360,
+        200
       ],
       "credentials": {
         "notionApi": {
@@ -281,8 +281,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        500,
-        280
+        1120,
+        200
       ]
     },
     {
@@ -301,8 +301,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        740,
-        280
+        1360,
+        200
       ]
     },
     {
@@ -315,8 +315,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        240,
-        280
+        860,
+        200
       ]
     },
     {
@@ -328,8 +328,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -560,
-        -760
+        -960,
+        -980
       ]
     },
     {
@@ -348,8 +348,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -380,
-        -760
+        -780,
+        -980
       ]
     },
     {
@@ -361,8 +361,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -180,
-        -760
+        -580,
+        -980
       ]
     },
     {
@@ -375,8 +375,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        0,
-        -760
+        -400,
+        -980
       ]
     },
     {
@@ -388,8 +388,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        220,
-        -760
+        -180,
+        -980
       ]
     },
     {
@@ -403,7 +403,7 @@
       "typeVersion": 2,
       "position": [
         140,
-        -180
+        -220
       ]
     },
     {
@@ -416,8 +416,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        380,
-        -180
+        400,
+        -540
       ]
     },
     {
@@ -437,7 +437,7 @@
       "typeVersion": 1,
       "position": [
         1060,
-        -260
+        -640
       ]
     },
     {
@@ -456,43 +456,9 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -20,
-        280
+        600,
+        200
       ]
-    },
-    {
-      "parameters": {
-        "method": "PATCH",
-        "url": "=https://api.notion.com/v1/pages/{{ $json[\"id\"].replaceAll('-', '') }}",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "notionApi",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Notion-Version",
-              "value": "={{ $(\"Глобальные значения\").all()[0].json.apiVersion}}"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "options": {}
-      },
-      "id": "3af546ef-8bf7-4dab-9245-700237e28d5a",
-      "name": "Обновляем шаблон и начинаем сначала",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        840,
-        -80
-      ],
-      "credentials": {
-        "notionApi": {
-          "id": "4",
-          "name": "Notion"
-        }
-      }
     },
     {
       "parameters": {
@@ -504,8 +470,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1260,
-        -60
+        2360,
+        -540
       ]
     },
     {
@@ -518,8 +484,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1280,
-        -260
+        1240,
+        -740
       ]
     },
     {
@@ -543,8 +509,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1480,
-        -260
+        1420,
+        -740
       ]
     },
     {
@@ -563,8 +529,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1700,
-        -460
+        1620,
+        -980
       ]
     },
     {
@@ -577,8 +543,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1920,
-        -460
+        1840,
+        -980
       ]
     },
     {
@@ -606,8 +572,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        2160,
-        -460
+        2060,
+        -980
       ],
       "credentials": {
         "notionApi": {
@@ -626,8 +592,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        2380,
-        -460
+        2360,
+        -740
       ]
     },
     {
@@ -646,8 +612,67 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1660,
-        -220
+        1620,
+        -760
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "09bf471e-4027-408f-9c2d-853119680052",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        -620
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $json[\"id\"].replaceAll('-', '') }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "={{ $(\"Глобальные значения\").all()[0].json.apiVersion}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"properties\": {\n    \"{{ $(\"Глобальные значения\").all()[0].json.strings.lastExec }}\": {\n      \"date\": {\n        \"start\": \"{{ DateTime.now().toISO() }}\"\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "3af546ef-8bf7-4dab-9245-700237e28d5a",
+      "name": "Обновляем шаблон",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        860,
+        -440
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "9d826bdf-2596-48d1-81f3-84bbe3cd36e4",
+      "name": "Забиваем",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        -800
       ]
     }
   ],
@@ -685,7 +710,7 @@
         ],
         [
           {
-            "node": "Обновляем шаблон и начинаем сначала",
+            "node": "Обновляем шаблон",
             "type": "main",
             "index": 0
           }
@@ -852,17 +877,6 @@
         ]
       ]
     },
-    "Обновляем шаблон и начинаем сначала": {
-      "main": [
-        [
-          {
-            "node": "Первоначальная обработка страниц",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Что-нибудь нашлось?": {
       "main": [
         [
@@ -949,12 +963,63 @@
           }
         ]
       ]
+    },
+    "А переносимость указана?": {
+      "main": [
+        [
+          {
+            "node": "Забиваем",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Возвращаем обратно шаблон",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обрабатываем обновлённый шаблон": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Возвращаем обратно шаблон": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обновляем шаблон": {
+      "main": [
+        [
+          {
+            "node": "Обрабатываем обновлённый шаблон",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "6409fef2-f42c-46ec-9642-0d400e50fcda",
+  "versionId": "e88ecd9e-9c7b-404c-a774-5085f31fd903",
   "triggerCount": 0,
   "tags": []
 }
