@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-11T08:02:19.000Z",
+  "updatedAt": "2023-03-11T10:36:55.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -13,7 +13,7 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -120
+        -100
       ]
     },
     {
@@ -46,7 +46,7 @@
             },
             {
               "name": "strings.taskName",
-              "value": "Имя задачи"
+              "value": "Имя"
             },
             {
               "name": "strings.effort",
@@ -115,6 +115,10 @@
             {
               "name": "strings.postponable",
               "value": "Переносимое?"
+            },
+            {
+              "name": "strings.creationDate",
+              "value": "Дата создания"
             }
           ]
         },
@@ -139,7 +143,7 @@
         "options": {
           "bodyContentType": "json"
         },
-        "bodyParametersJson": "={\n \"filter\": {\n \"and\": [\n {\n \"property\": \"{{$node[\"Глобальные значения\"].json.strings.template}}\",\n \"relation\": {\n \"contains\": \"{{$json[\"id\"]}}\"\n }\n },\n {\n \"property\": \"Дата создания\",\n \"date\": {\n \"on_or_after\": \"{{$json.lastExecution}}\"\n }\n }\n ]\n }\n }",
+        "bodyParametersJson": "={\n  \"filter\": {\n    \"and\": [\n      {\n        \"property\": \"{{$node[\"Глобальные значения\"].json.strings.template}}\",\n        \"relation\": {\n          \"contains\": \"{{ $json[\"oldId\"] }}\"\n        }\n      },\n      {\n        \"property\": \"{{ $node[\"Глобальные значения\"].json[\"strings\"][\"creationDate\"] }}\",\n        \"date\": {\n          \"on_or_after\": \"{{ $json[\"properties\"][$node[\"Глобальные значения\"].json[\"strings\"][\"lastExec\"]][\"date\"][\"start\"] }}\"\n        }\n      }\n    ]\n  }\n}",
         "headerParametersJson": "={\n\"Notion-Version\": \"{{$node[\"Глобальные значения\"].json.apiVersion}}\"\n}"
       },
       "id": "52263ba6-85dd-45e5-bf09-a5c1031211b6",
@@ -147,8 +151,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        280,
-        -800
+        760,
+        -280
       ],
       "credentials": {
         "notionApi": {
@@ -162,7 +166,7 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{$json[\"lastExecution\"]}}",
+              "value1": "={{ $json[\"properties\"][$node[\"Глобальные значения\"].json[\"strings\"][\"lastExec\"]][\"date\"][\"start\"] }}",
               "operation": "isNotEmpty"
             }
           ]
@@ -173,8 +177,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        60,
-        -740
+        560,
+        -180
       ]
     },
     {
@@ -186,8 +190,8 @@
       "type": "n8n-nodes-base.functionItem",
       "typeVersion": 1,
       "position": [
-        280,
-        -580
+        760,
+        -80
       ]
     },
     {
@@ -218,8 +222,8 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2,
       "position": [
-        520,
-        -580
+        940,
+        -80
       ],
       "credentials": {
         "notionApi": {
@@ -275,7 +279,7 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -300
+        -280
       ]
     },
     {
@@ -289,19 +293,6 @@
       "position": [
         1180,
         -700
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const tasks = items[0].json.results.map((task) => {\n  const ret = task;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  return ret;\n});\n\nreturn tasks"
-      },
-      "id": "f0ad2e1e-7364-4e05-b268-87674f629b19",
-      "name": "Первоначальная обработка",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        140,
-        -180
       ]
     },
     {
@@ -352,26 +343,6 @@
     {
       "parameters": {
         "conditions": {
-          "number": [
-            {
-              "value1": "={{ $json.results.length }}",
-              "operation": "equal"
-            }
-          ]
-        }
-      },
-      "id": "cf7a5485-c868-41b0-bdae-d85e058379eb",
-      "name": "Это пустой объект?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        -20,
-        120
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
           "boolean": [
             {
               "value1": "={{ $json.has_children }}",
@@ -412,8 +383,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1200,
-        -460
+        -240,
+        -720
       ]
     },
     {
@@ -432,8 +403,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1380,
-        -460
+        -60,
+        -720
       ]
     },
     {
@@ -445,8 +416,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1580,
-        -460
+        140,
+        -720
       ]
     },
     {
@@ -459,8 +430,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        1760,
-        -460
+        320,
+        -720
       ]
     },
     {
@@ -472,21 +443,75 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1980,
-        -460
+        540,
+        -720
       ]
     },
     {
       "parameters": {
-        "jsCode": "// const tasks = items[0].json.results.map((task) => {\n//   const ret = task;\n//   delete ret.created_time;\n//   delete ret.last_edited_time;\n//   delete ret.last_edited_by;\n//   delete ret.created_by;\n//   return ret;\n// });\n\n// return tasks\n\nconst output = {};\n\n$input.all().forEach(page => {\n  output[page.json.id] = page.json;\n  const newPage = output[page.json.id];\n  console.log(newPage)\n  delete newPage.id;\n  newPage.parent.database_id = $('Глобальные значения').all()[0].json.dbs.tasklist;\n  \n});\n\n// console.log($input.all())\n\nreturn output;\n"
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "id": "09767a55-c116-4444-a830-83015ea3c9ee",
+      "name": "Разделение страниц",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 2,
+      "position": [
+        140,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const output = $input.all().map(page => {\n  const ret = page.json;\n  ret.oldId = ret.id;\n  delete ret.id;\n  delete ret.url;\n  delete ret.created_time;\n  delete ret.last_edited_time;\n  delete ret.last_edited_by;\n  delete ret.created_by;\n  ret.parent.database_id = $('Глобальные значения').all()[0].json.dbs.tasklist;\n  for (const property in ret.properties) {\n    const ptr = ret.properties[property];\n    delete ptr.id;\n    if (ptr.type === \"select\" &&\n        ptr.select &&\n        ptr.select.id) {\n      delete ptr.select.id;\n      delete ptr.select.color;\n    }\n    if (ptr.type === \"multi_select\" && ptr.multi_select.length) {\n      ptr.multi_select.forEach(tag => {\n        delete tag.id;\n        delete tag.color;\n      })\n    }\n  }\n  return ret;\n});\nreturn output;\n"
       },
       "id": "5d5c9fdf-66be-4449-97ad-de28e3443bd7",
-      "name": "Code",
+      "name": "Первоначальная обработка страниц",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        340,
+        380,
         -180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.results.length }}",
+              "operation": "equal"
+            }
+          ]
+        }
+      },
+      "id": "e4bf1fe4-ea9a-4663-b042-bc362420abb3",
+      "name": "Что-нибудь нашлось?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        940,
+        -280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.results.length }}",
+              "operation": "equal"
+            }
+          ]
+        }
+      },
+      "id": "cf7a5485-c868-41b0-bdae-d85e058379eb",
+      "name": "Нашлись потомки?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        120
       ]
     }
   ],
@@ -546,7 +571,7 @@
       "main": [
         [
           {
-            "node": "Первоначальная обработка",
+            "node": "Разделение страниц",
             "type": "main",
             "index": 0
           }
@@ -564,27 +589,11 @@
         ]
       ]
     },
-    "Первоначальная обработка": {
-      "main": [
-        [
-          {
-            "node": "Подгрузка потомков",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Подгрузка потомков": {
       "main": [
         [
           {
-            "node": "Это пустой объект?",
+            "node": "Нашлись потомки?",
             "type": "main",
             "index": 0
           }
@@ -596,18 +605,6 @@
         [
           {
             "node": "У блока есть потомки?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Это пустой объект?": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Зачистка полученного объекта",
             "type": "main",
             "index": 0
           }
@@ -680,16 +677,73 @@
         ]
       ]
     },
-    "Собираем все блоки воедино": {
+    "Разделение страниц": {
       "main": [
-        []
+        [
+          {
+            "node": "Первоначальная обработка страниц",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Подгрузка потомков",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Первоначальная обработка страниц": {
+      "main": [
+        [
+          {
+            "node": "Задача ранее выполнялась?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение последней задачи по этому шаблону": {
+      "main": [
+        [
+          {
+            "node": "Что-нибудь нашлось?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Что-нибудь нашлось?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Обновляем шаблон",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нашлись потомки?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Зачистка полученного объекта",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "7c901ef1-fdf3-4b78-a478-a03514802d10",
+  "versionId": "64fb52b3-93d2-4153-a3e9-5ac2257a4b23",
   "triggerCount": 0,
   "tags": []
 }
