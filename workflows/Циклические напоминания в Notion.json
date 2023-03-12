@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-12T12:32:57.000Z",
+  "updatedAt": "2023-03-12T14:56:36.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -263,7 +263,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        440,
+        260,
         180
       ]
     },
@@ -727,7 +727,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        200,
+        160,
         -100
       ]
     },
@@ -755,7 +755,7 @@
       "typeVersion": 1,
       "position": [
         1240,
-        -80
+        -120
       ]
     },
     {
@@ -851,7 +851,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const block = $input.item.json;\ndelete block.id;\ndelete block.created_time;\ndelete block.last_edited_time;\ndelete block.created_by;\ndelete block.last_edited_by;\ndelete block.parent;\ndelete block.has_children;\n\nreturn { json: { block }};"
+        "jsCode": "const block = $input.item.json;\ndelete block.created_time;\ndelete block.last_edited_time;\ndelete block.created_by;\ndelete block.last_edited_by;\ndelete block.parent;\ndelete block.has_children;\n\nblock.new = true;\n\nreturn { json: block };"
       },
       "id": "d7763fac-f8ca-495f-8cb8-de57a16413d5",
       "name": "Зачищаем полученный от API ответ",
@@ -865,7 +865,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const block = $input.item.json;\ndelete block.id;\ndelete block.parent;\ndelete block.has_children;\n\nreturn { json: { block }};"
+        "jsCode": "const block = $input.item.json;\ndelete block.parent;\ndelete block.has_children;\n\nblock.new = false;\n\nreturn { json: block };"
       },
       "id": "416fbc4d-c5bd-4074-a5a5-ecc20fd6b5ab",
       "name": "Ещё немного зачищаем блок",
@@ -884,7 +884,7 @@
       "typeVersion": 1,
       "position": [
         700,
-        -560
+        -520
       ]
     },
     {
@@ -919,8 +919,21 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        1100,
-        120
+        1080,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.all();\nconst old_blocks = [];\nconst new_blocks = [];\nfor(let i = 0; i < input.length; i++) {\n  if (input.json.new) {\n    new_blocks.push(JSON.parse(JSON.stringify(input[i].json)));\n    delete new_blocks[new_blocks.length - 1].new;\n  } else {\n    old_blocks.push(JSON.parse(JSON.stringify(input[i].json)));\n    delete old_blocks[old_blocks.length - 1].new;\n  }\n}\n\nconsole.log(old_blocks);\nconsole.log(new_blocks);"
+      },
+      "id": "12fc8648-8510-493f-806b-7836791467ff",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        160
       ]
     }
   ],
@@ -1424,9 +1437,14 @@
     },
     "Возвращаем обратно блок со старым ID": {
       "main": [
+        []
+      ]
+    },
+    "Объединяем результаты": {
+      "main": [
         [
           {
-            "node": "Подгрузка потомков",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -1437,7 +1455,7 @@
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "61365e4a-16ed-4a4a-9e91-5fb37b125e83",
+  "versionId": "95310198-191f-4176-8af0-131778509140",
   "triggerCount": 0,
   "tags": []
 }
