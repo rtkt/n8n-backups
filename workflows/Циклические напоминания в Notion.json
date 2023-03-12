@@ -1,21 +1,10 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-11T17:50:57.000Z",
+  "updatedAt": "2023-03-12T06:46:08.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
   "nodes": [
-    {
-      "parameters": {},
-      "id": "1b12ef44-1cc4-4a3b-9cbc-60532bbeb405",
-      "name": "Начало (он же ручной запуск)",
-      "type": "n8n-nodes-base.start",
-      "typeVersion": 1,
-      "position": [
-        -500,
-        -140
-      ]
-    },
     {
       "parameters": {
         "values": {
@@ -147,8 +136,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        860,
-        -640
+        -100,
+        -740
       ],
       "credentials": {
         "notionApi": {
@@ -173,8 +162,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        580,
-        -540
+        -360,
+        -620
       ]
     },
     {
@@ -224,7 +213,7 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -320
+        -220
       ]
     },
     {
@@ -236,8 +225,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -960,
-        -760
+        1340,
+        -340
       ]
     },
     {
@@ -261,7 +250,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        360,
+        -540,
         200
       ],
       "credentials": {
@@ -281,7 +270,7 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        1120,
+        220,
         200
       ]
     },
@@ -301,7 +290,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1360,
+        460,
         200
       ]
     },
@@ -315,7 +304,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        860,
+        -40,
         200
       ]
     },
@@ -328,8 +317,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -960,
-        -980
+        1060,
+        140
       ]
     },
     {
@@ -348,8 +337,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -780,
-        -980
+        1240,
+        140
       ]
     },
     {
@@ -361,8 +350,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -580,
-        -980
+        1440,
+        140
       ]
     },
     {
@@ -375,8 +364,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        -400,
-        -980
+        1620,
+        140
       ]
     },
     {
@@ -388,8 +377,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -180,
-        -980
+        1840,
+        140
       ]
     },
     {
@@ -416,8 +405,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        400,
-        -540
+        -540,
+        -620
       ]
     },
     {
@@ -436,8 +425,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1060,
-        -640
+        100,
+        -740
       ]
     },
     {
@@ -456,22 +445,22 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        600,
+        -300,
         200
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "\nreturn $('Задача ранее выполнялась?').item;"
+        "jsCode": "return $('Задача ранее выполнялась?').item;"
       },
       "id": "6ef48fea-0d37-4121-aa3d-2b03f6a5c143",
       "name": "Возвращаем обратно шаблон",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        2360,
-        -540
+        1360,
+        -620
       ]
     },
     {
@@ -484,8 +473,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1240,
-        -740
+        300,
+        -820
       ]
     },
     {
@@ -509,8 +498,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1420,
-        -740
+        480,
+        -820
       ]
     },
     {
@@ -529,8 +518,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1620,
-        -980
+        680,
+        -1060
       ]
     },
     {
@@ -543,8 +532,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1840,
-        -980
+        900,
+        -1060
       ]
     },
     {
@@ -572,8 +561,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        2060,
-        -980
+        1120,
+        -1060
       ],
       "credentials": {
         "notionApi": {
@@ -592,8 +581,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        2360,
-        -740
+        1360,
+        -820
       ]
     },
     {
@@ -612,21 +601,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1620,
-        -760
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
-      },
-      "id": "09bf471e-4027-408f-9c2d-853119680052",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        2600,
-        -620
+        680,
+        -840
       ]
     },
     {
@@ -654,8 +630,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        860,
-        -440
+        -100,
+        -520
       ],
       "credentials": {
         "notionApi": {
@@ -671,23 +647,26 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        1840,
-        -800
+        900,
+        -880
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parseFrequency = (tokens) => {\n  const numbers = new Map()\n  numbers.set('один', 1)\n  numbers.set('одну', 1)\n  numbers.set('два', 2)\n  numbers.set('две', 2)\n  numbers.set('второй', 2)\n  numbers.set('три', 3)\n  numbers.set('третий', 3)\n  numbers.set('четыре', 4)\n  numbers.set('четвёртый', 4)\n  numbers.set('пять', 5)\n  numbers.set('пятый', 5)\n  numbers.set('шесть', 6)\n  numbers.set('шестой', 6)\n  numbers.set('семь', 7)\n  numbers.set('седьмой', 7)\n  numbers.set('восемь', 8)\n  numbers.set('восьмой', 8)\n  numbers.set('девять', 9)\n  numbers.set('девятый', 9)\n  numbers.set('десять', 10)\n  numbers.set('десятый', 10)\n  numbers.set('одиннадцать', 11)\n  numbers.set('двенадцать', 12)\n  const units = new Map()\n  units.set('миллисекунд', 'milliseconds')\n  units.set('секунд', 'seconds')\n  units.set('минут', 'minutes')\n  units.set('час', 'hours')\n  units.set('день', 'days')\n  units.set('дней', 'days')\n  units.set('дня', 'days')\n  units.set('недел', 'weeks')\n  units.set('месяц', 'months')\n  units.set('квартал', 'quarters')\n  units.set('год', 'years')\n  units.set('лет', 'years')\n  let number = 1;\n  let unit\n\n  for (let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i]\n      continue\n    }\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i])\n      continue\n    }\n    for (let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break\n      }\n    }\n  }\n  if (!unit || !number) throw new Error(\"Couldn't parse the frequency string\")\n  const ret = {}\n  ret[unit] = number\n  return ret\n}\n\nconst getFrequency = (humanReadable) => {\n  const tokens = humanReadable.split(' ').map((token) => token.toLowerCase())\n  if (tokens[0] === 'раз' && tokens[1] === 'в') {\n    return parseFrequency(tokens.slice(2))\n  }\n  if (tokens[0].slice(0, 4) === 'кажд') {\n    return parseFrequency(tokens.slice(1))\n  }\n}\n\nconst fieldNames = $(\"Глобальные значения\").all()[0].json.strings\nconst frequency = getFrequency(\n  $input.item.json.properties[fieldNames.frequency].select.name\n)\n$input.item.json.frequency = frequency;\nreturn $input.item;"
+      },
+      "id": "09bf471e-4027-408f-9c2d-853119680052",
+      "name": "Парсим частоту выполнения и вставляем результат в шаблон",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        -720
       ]
     }
   ],
   "connections": {
-    "Начало (он же ручной запуск)": {
-      "main": [
-        [
-          {
-            "node": "Глобальные значения",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Глобальные значения": {
       "main": [
         [
@@ -986,7 +965,7 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Парсим частоту выполнения и вставляем результат в шаблон",
             "type": "main",
             "index": 0
           }
@@ -997,7 +976,7 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Парсим частоту выполнения и вставляем результат в шаблон",
             "type": "main",
             "index": 0
           }
@@ -1019,7 +998,7 @@
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "e88ecd9e-9c7b-404c-a774-5085f31fd903",
+  "versionId": "38c2a19b-e21b-4351-8e3e-46b56440eae0",
   "triggerCount": 0,
   "tags": []
 }
