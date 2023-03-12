@@ -1,9 +1,9 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-12T14:56:36.000Z",
+  "updatedAt": "2023-03-12T16:29:42.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
-  "active": false,
+  "active": true,
   "nodes": [
     {
       "parameters": {
@@ -136,8 +136,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -100,
-        -740
+        -120,
+        -720
       ],
       "credentials": {
         "notionApi": {
@@ -218,7 +218,7 @@
     },
     {
       "parameters": {
-        "url": "=https://api.notion.com/v1/blocks/{{ $json[\"id\"].replaceAll('-', '') }}/children",
+        "url": "=https://api.notion.com/v1/blocks/{{ $json.page[\"id\"].replaceAll('-', '') }}/children",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "notionApi",
         "sendHeaders": true,
@@ -263,81 +263,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        260,
-        180
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "let finishedLoading = false;\nitems.forEach(block => {\n  if (block.json.has_children) {\n    finishedLoading = true;\n  };\n})\nfinishedLoading = ! finishedLoading;\nreturn { json: { finishedLoading: finishedLoading } };"
-      },
-      "id": "3a82122b-3c51-4f65-b6b3-d5ffc249bc94",
-      "name": "Уплощение объектов",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        960,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ $json[\"finishedLoading\"] }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "320c4db7-2962-4b22-a2ab-f7d1c65faa0e",
-      "name": "Больше нет неподгруженных блоков?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        1140,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const mergedBlocks = [];\nfor(let i = 0; true; i++) {\n  try {\n    const items = $items(\"Разбиение на блоки\", 0, i).map(block => block.json);\n    mergedBlocks.push.apply(mergedBlocks, items);\n    console.log($items(\"Разбиение на блоки\", 0, i));\n  } catch (error) {\n    return [{json: {mergedBlocks}}];\n  }\n}"
-      },
-      "id": "d6991c5a-b5d8-4e0a-b55d-28b9367517f2",
-      "name": "Объединяем подгруженные потомки",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1340,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "mergedBlocks",
-        "options": {}
-      },
-      "id": "13cf6dc7-c40d-4e39-8a85-5a5f826386a2",
-      "name": "Ещё раз разбиваем объект на части",
-      "type": "n8n-nodes-base.itemLists",
-      "typeVersion": 2,
-      "position": [
-        1520,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const processedBlocks = [];\nconst data = [];\nitems.forEach(block => {\n  if (block.json.parent.type === \"page_id\") {\n    processedBlocks.push(block.json.id)\n    data.push(JSON.parse(JSON.stringify(block.json)))\n  }\n});\n\nconsole.log(`Processed blocks IDs are ${processedBlocks}`);\nreturn data;"
-      },
-      "id": "4414a203-b7c6-4ed3-8724-79e5a3d774cd",
-      "name": "Собираем все блоки воедино",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1740,
-        540
+        200,
+        80
       ]
     },
     {
@@ -385,7 +312,7 @@
       "typeVersion": 1,
       "position": [
         100,
-        -740
+        -680
       ]
     },
     {
@@ -418,7 +345,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1360,
+        1120,
         -620
       ]
     },
@@ -432,8 +359,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        300,
-        -820
+        340,
+        -780
       ]
     },
     {
@@ -457,8 +384,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        480,
-        -820
+        500,
+        -800
       ]
     },
     {
@@ -477,8 +404,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        680,
-        -1060
+        700,
+        -1000
       ]
     },
     {
@@ -491,8 +418,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        900,
-        -1060
+        940,
+        -1020
       ]
     },
     {
@@ -520,8 +447,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1120,
-        -1060
+        1140,
+        -980
       ],
       "credentials": {
         "notionApi": {
@@ -540,8 +467,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1360,
-        -820
+        1280,
+        -740
       ]
     },
     {
@@ -560,8 +487,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        680,
-        -840
+        740,
+        -820
       ]
     },
     {
@@ -589,7 +516,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -100,
+        -120,
         -520
       ],
       "credentials": {
@@ -609,8 +536,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1620,
-        -720
+        1480,
+        -560
       ]
     },
     {
@@ -623,8 +550,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1840,
-        -560
+        1660,
+        -540
       ]
     },
     {
@@ -706,14 +633,14 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const template = $('Первоначальная обработка страниц').item;\ntemplate.json.current_task_id = $input.item.json.id;\nreturn template;"
+        "jsCode": "return { json: { page: $('Первоначальная обработка страниц').item.json, id: $input.item.json.id}};"
       },
       "id": "00dd4cfc-743a-42df-9788-fa8c5de0770e",
       "name": "Снова возвращаем шаблон, но указав ID новой задачи",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1040,
+        1020,
         -340
       ]
     },
@@ -727,7 +654,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        160,
+        440,
         -100
       ]
     },
@@ -741,68 +668,27 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        -40,
+        240,
         -100
       ]
     },
     {
       "parameters": {
-        "jsCode": "const ids = [];\nconst children = $input.all().map(block => {\n  const ret = block.json;\n  ids.push(ret.id);\n  delete ret.id;\n  return ret;\n});\nreturn { json: { children, ids } };"
+        "jsCode": "const children = $input.all().map(block => {\n  const ret = block.json;\n  delete ret.id;\n  return ret;\n});\nreturn { json: { children } };"
       },
       "id": "00aec5a1-39d2-4726-85bc-bce9d092a256",
       "name": "Готовим JSON для отправки в API",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1240,
-        -120
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json[\"parent\"][\"type\"] }}",
-              "value2": "page_id"
-            }
-          ]
-        }
-      },
-      "id": "b834349e-688c-4769-822f-e5a4f71a95a0",
-      "name": "Это прямой потомок страницы?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        520,
+        640,
         -100
       ]
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "parent.page_id",
-              "value": "={{ $(\"И создаём её\").item.json[\"id\"] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "b12df8cd-7e9f-4d1b-a75a-7c1a1214d013",
-      "name": "Подменяем ID родителя",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        820,
-        40
-      ]
-    },
-    {
-      "parameters": {
         "method": "PATCH",
-        "url": "=https://api.notion.com/v1/blocks/{{ $json.children[0].parent.page_id.replaceAll('-', '') }}/children",
+        "url": "=https://api.notion.com/v1/blocks/{{ $json.children[0].parent[$json.children[0].parent.type].replaceAll('-', '') }}/children",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "notionApi",
         "sendHeaders": true,
@@ -824,7 +710,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1460,
+        840,
         -100
       ],
       "credentials": {
@@ -844,7 +730,7 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        1680,
+        1060,
         -100
       ]
     },
@@ -858,7 +744,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1880,
+        1260,
         -100
       ]
     },
@@ -872,8 +758,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        680,
-        180
+        420,
+        80
       ]
     },
     {
@@ -894,22 +780,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        -40,
-        180
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return { json: $('У блока есть потомки?').item.json };"
-      },
-      "id": "6e2d47de-74d7-4035-a848-3e376af42c95",
-      "name": "Возвращаем обратно блок со старым ID",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1800,
-        240
+        -80,
+        80
       ]
     },
     {
@@ -919,21 +791,35 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        1080,
-        160
+        660,
+        100
       ]
     },
     {
       "parameters": {
-        "jsCode": "const input = $input.all();\nconst old_blocks = [];\nconst new_blocks = [];\nfor(let i = 0; i < input.length; i++) {\n  if (input.json.new) {\n    new_blocks.push(JSON.parse(JSON.stringify(input[i].json)));\n    delete new_blocks[new_blocks.length - 1].new;\n  } else {\n    old_blocks.push(JSON.parse(JSON.stringify(input[i].json)));\n    delete old_blocks[old_blocks.length - 1].new;\n  }\n}\n\nconsole.log(old_blocks);\nconsole.log(new_blocks);"
+        "jsCode": "const input = $input.all();\nconst old_blocks = [];\nconst new_blocks = [];\nfor(let i = 0; i < input.length; i++) {\n  if (input[i].json.new) {\n    new_blocks.push(input[i].json);\n    delete new_blocks[new_blocks.length - 1].new;\n  } else {\n    old_blocks.push(input[i].json);\n    delete old_blocks[old_blocks.length - 1].new;\n  }\n}\nconst stringify = blocks => {\n  return blocks.map(block => {\n    const clone = JSON.parse(JSON.stringify(block));\n    delete clone.id;\n    return JSON.stringify(clone);\n  });\n};\nconst new_strings = stringify(new_blocks);\nconst old_strings = stringify(old_blocks);\n\nconst output = [];\nfor(let i = 0; i < old_blocks.length; i++) {\n  const matchIndex = new_strings.indexOf(old_strings[i]);\n  if (matchIndex !== -1) {\n    output.push({\n      json: {\n        page: old_blocks[i],\n        id: new_blocks[matchIndex].id\n      },\n      pairedItem: i\n    });\n  }\n}\n\nreturn output;"
       },
-      "id": "12fc8648-8510-493f-806b-7836791467ff",
-      "name": "Code",
+      "id": "a17d1cc8-6862-4359-a042-5718467097e5",
+      "name": "Скрещиваем ежа с ужом",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1300,
-        160
+        860,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.json.results.forEach(block => {\n  if (block.parent.type === \"page_id\") {\n    const id = $('Снова возвращаем шаблон, но указав ID новой задачи').item.json.id;\n    block.parent.page_id = id;\n  } else {\n    const id = $('Скрещиваем ежа с ужом').item.json.id;\n    block.parent.block_id = id;\n  }\n});\n\nreturn $input.item;"
+      },
+      "id": "19dee9ff-8296-4873-b4dc-79ce8254eec5",
+      "name": "Подменяем ID родителя у блоков",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -100
       ]
     }
   ],
@@ -989,50 +875,6 @@
         ]
       ]
     },
-    "Уплощение объектов": {
-      "main": [
-        [
-          {
-            "node": "Больше нет неподгруженных блоков?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Больше нет неподгруженных блоков?": {
-      "main": [
-        [
-          {
-            "node": "Объединяем подгруженные потомки",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Объединяем подгруженные потомки": {
-      "main": [
-        [
-          {
-            "node": "Ещё раз разбиваем объект на части",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Ещё раз разбиваем объект на части": {
-      "main": [
-        [
-          {
-            "node": "Собираем все блоки воедино",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Разделение страниц": {
       "main": [
         [
@@ -1070,7 +912,7 @@
       "main": [
         [
           {
-            "node": "Разбиваем на блоки",
+            "node": "Подменяем ID родителя у блоков",
             "type": "main",
             "index": 0
           }
@@ -1310,12 +1152,12 @@
       "main": [
         [
           {
-            "node": "Это прямой потомок страницы?",
+            "node": "У блока есть потомки?",
             "type": "main",
             "index": 0
           },
           {
-            "node": "У блока есть потомки?",
+            "node": "Готовим JSON для отправки в API",
             "type": "main",
             "index": 0
           }
@@ -1345,35 +1187,6 @@
         [
           {
             "node": "Нашлись потомки?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Это прямой потомок страницы?": {
-      "main": [
-        [
-          {
-            "node": "Подменяем ID родителя",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Готовим JSON для отправки в API",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Подменяем ID родителя": {
-      "main": [
-        [
-          {
-            "node": "Готовим JSON для отправки в API",
             "type": "main",
             "index": 0
           }
@@ -1435,16 +1248,33 @@
         ]
       ]
     },
-    "Возвращаем обратно блок со старым ID": {
-      "main": [
-        []
-      ]
-    },
     "Объединяем результаты": {
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Скрещиваем ежа с ужом",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Скрещиваем ежа с ужом": {
+      "main": [
+        [
+          {
+            "node": "Подгрузка потомков",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подменяем ID родителя у блоков": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем на блоки",
             "type": "main",
             "index": 0
           }
@@ -1452,10 +1282,14 @@
       ]
     }
   },
-  "settings": {},
+  "settings": {
+    "saveExecutionProgress": "DEFAULT",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
+  },
   "staticData": null,
   "pinData": {},
-  "versionId": "95310198-191f-4176-8af0-131778509140",
-  "triggerCount": 0,
+  "versionId": "b1cb5c80-a032-44f6-8d02-d1478dbc4655",
+  "triggerCount": 1,
   "tags": []
 }
