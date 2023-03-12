@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-12T10:57:42.000Z",
+  "updatedAt": "2023-03-12T12:32:57.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -264,7 +264,7 @@
       "typeVersion": 1,
       "position": [
         440,
-        80
+        180
       ]
     },
     {
@@ -600,17 +600,6 @@
       }
     },
     {
-      "parameters": {},
-      "id": "9d826bdf-2596-48d1-81f3-84bbe3cd36e4",
-      "name": "Забиваем",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        900,
-        -880
-      ]
-    },
-    {
       "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "const parseFrequency = (tokens) => {\n  const numbers = new Map()\n  numbers.set('один', 1)\n  numbers.set('одну', 1)\n  numbers.set('два', 2)\n  numbers.set('две', 2)\n  numbers.set('второй', 2)\n  numbers.set('три', 3)\n  numbers.set('третий', 3)\n  numbers.set('четыре', 4)\n  numbers.set('четвёртый', 4)\n  numbers.set('пять', 5)\n  numbers.set('пятый', 5)\n  numbers.set('шесть', 6)\n  numbers.set('шестой', 6)\n  numbers.set('семь', 7)\n  numbers.set('седьмой', 7)\n  numbers.set('восемь', 8)\n  numbers.set('восьмой', 8)\n  numbers.set('девять', 9)\n  numbers.set('девятый', 9)\n  numbers.set('десять', 10)\n  numbers.set('десятый', 10)\n  numbers.set('одиннадцать', 11)\n  numbers.set('двенадцать', 12)\n  const units = new Map()\n  units.set('миллисекунд', 'milliseconds')\n  units.set('секунд', 'seconds')\n  units.set('минут', 'minutes')\n  units.set('час', 'hours')\n  units.set('день', 'days')\n  units.set('дней', 'days')\n  units.set('дня', 'days')\n  units.set('недел', 'weeks')\n  units.set('месяц', 'months')\n  units.set('квартал', 'quarters')\n  units.set('год', 'years')\n  units.set('лет', 'years')\n  let number = 1;\n  let unit\n\n  for (let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i]\n      continue\n    }\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i])\n      continue\n    }\n    for (let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break\n      }\n    }\n  }\n  if (!unit || !number) throw new Error(\"Couldn't parse the frequency string\")\n  const ret = {}\n  ret[unit] = number\n  return ret\n}\n\nconst getFrequency = (humanReadable) => {\n  const tokens = humanReadable.split(' ').map((token) => token.toLowerCase())\n  if (tokens[0] === 'раз' && tokens[1] === 'в') {\n    return parseFrequency(tokens.slice(2))\n  }\n  if (tokens[0].slice(0, 4) === 'кажд') {\n    return parseFrequency(tokens.slice(1))\n  }\n}\n\nconst fieldNames = $(\"Глобальные значения\").all()[0].json.strings\nconst frequency = getFrequency(\n  $input.item.json.properties[fieldNames.frequency].select.name\n)\n$input.item.json.frequency = frequency;\nreturn $input.item;"
@@ -663,17 +652,6 @@
       "position": [
         400,
         -320
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "8721ad53-b523-49ff-b554-550a387db858",
-      "name": "Опять забиваем",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        680,
-        -560
       ]
     },
     {
@@ -740,17 +718,6 @@
       ]
     },
     {
-      "parameters": {},
-      "id": "4506502a-88a1-4cbc-904f-7994bc786bf6",
-      "name": "И снова забиваем",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        -40,
-        80
-      ]
-    },
-    {
       "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "const block = $input.item.json;\ndelete block.created_time;\ndelete block.last_edited_time;\ndelete block.created_by;\ndelete block.last_edited_by;\n\nreturn $input.item;"
@@ -788,18 +755,7 @@
       "typeVersion": 1,
       "position": [
         1240,
-        -100
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "e8fec483-3071-47a5-9d06-6e466c69591f",
-      "name": "И опять забиваем",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        200,
-        80
+        -80
       ]
     },
     {
@@ -818,7 +774,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        700,
+        520,
         -100
       ]
     },
@@ -839,8 +795,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        980,
-        -100
+        820,
+        40
       ]
     },
     {
@@ -880,25 +836,6 @@
     },
     {
       "parameters": {
-        "mode": "combine",
-        "mergeByFields": {
-          "values": [
-            {}
-          ]
-        },
-        "options": {}
-      },
-      "id": "6d3fba65-5f04-4411-bd3e-7e1a9ff92b2a",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2,
-      "position": [
-        180,
-        560
-      ]
-    },
-    {
-      "parameters": {
         "fieldToSplitOut": "results",
         "options": {}
       },
@@ -914,7 +851,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const block = $input.item.json;\nconst id = block.id;\ndelete block.created_time;\ndelete block.last_edited_time;\ndelete block.created_by;\ndelete block.last_edited_by;\ndelete block.id;\ndelete block.parent;\ndelete block.has_children;\n\nreturn { json: { block }}; //, id: id } };"
+        "jsCode": "const block = $input.item.json;\ndelete block.id;\ndelete block.created_time;\ndelete block.last_edited_time;\ndelete block.created_by;\ndelete block.last_edited_by;\ndelete block.parent;\ndelete block.has_children;\n\nreturn { json: { block }};"
       },
       "id": "d7763fac-f8ca-495f-8cb8-de57a16413d5",
       "name": "Зачищаем полученный от API ответ",
@@ -928,51 +865,62 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const block = $input.item.json;\nconst id = block.id;\ndelete block.created_time;\ndelete block.last_edited_time;\ndelete block.created_by;\ndelete block.last_edited_by;\ndelete block.id;\ndelete block.parent;\ndelete block.has_children;\n\nreturn { json: { block }}; //, id: id } };"
+        "jsCode": "const block = $input.item.json;\ndelete block.id;\ndelete block.parent;\ndelete block.has_children;\n\nreturn { json: { block }};"
       },
       "id": "416fbc4d-c5bd-4074-a5a5-ecc20fd6b5ab",
       "name": "Ещё немного зачищаем блок",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
+        680,
+        180
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8721ad53-b523-49ff-b554-550a387db858",
+      "name": "Забиваем",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
         700,
-        100
+        -560
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4506502a-88a1-4cbc-904f-7994bc786bf6",
+      "name": "Снова забиваем",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        180
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "console.log($('Разбиваем полученный результат на блоки').item.json);"
+        "jsCode": "return { json: $('У блока есть потомки?').item.json };"
       },
       "id": "6e2d47de-74d7-4035-a848-3e376af42c95",
-      "name": "Code",
+      "name": "Возвращаем обратно блок со старым ID",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1240,
-        100
+        1800,
+        240
       ]
     },
     {
-      "parameters": {
-        "mergeByFields": {
-          "values": [
-            {
-              "field1": "block",
-              "field2": "block"
-            }
-          ]
-        },
-        "resolve": "preferInput1",
-        "options": {}
-      },
-      "id": "052bbbc0-224b-4ac5-aa90-153bb0f7f749",
-      "name": "Ищем одинаковые блоки",
-      "type": "n8n-nodes-base.compareDatasets",
+      "parameters": {},
+      "id": "6d3fba65-5f04-4411-bd3e-7e1a9ff92b2a",
+      "name": "Объединяем результаты",
+      "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        1020,
-        100
+        1100,
+        120
       ]
     }
   ],
@@ -1116,7 +1064,7 @@
         ],
         [
           {
-            "node": "И снова забиваем",
+            "node": "Снова забиваем",
             "type": "main",
             "index": 0
           }
@@ -1294,7 +1242,7 @@
         ],
         [
           {
-            "node": "Опять забиваем",
+            "node": "Забиваем",
             "type": "main",
             "index": 0
           }
@@ -1372,7 +1320,7 @@
         ],
         [
           {
-            "node": "И опять забиваем",
+            "node": "Снова забиваем",
             "type": "main",
             "index": 0
           }
@@ -1395,6 +1343,13 @@
         [
           {
             "node": "Подменяем ID родителя",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Готовим JSON для отправки в API",
             "type": "main",
             "index": 0
           }
@@ -1449,7 +1404,7 @@
       "main": [
         [
           {
-            "node": "Ищем одинаковые блоки",
+            "node": "Объединяем результаты",
             "type": "main",
             "index": 0
           }
@@ -1460,19 +1415,18 @@
       "main": [
         [
           {
-            "node": "Ищем одинаковые блоки",
+            "node": "Объединяем результаты",
             "type": "main",
             "index": 1
           }
         ]
       ]
     },
-    "Ищем одинаковые блоки": {
+    "Возвращаем обратно блок со старым ID": {
       "main": [
-        [],
         [
           {
-            "node": "Code",
+            "node": "Подгрузка потомков",
             "type": "main",
             "index": 0
           }
@@ -1483,7 +1437,7 @@
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "a4b54fab-d62a-4afe-bd0d-a8399bc097ff",
+  "versionId": "61365e4a-16ed-4a4a-9e91-5fb37b125e83",
   "triggerCount": 0,
   "tags": []
 }
