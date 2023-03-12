@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-12T06:46:08.000Z",
+  "updatedAt": "2023-03-12T08:57:53.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": false,
@@ -115,7 +115,7 @@
       "typeVersion": 1,
       "position": [
         -300,
-        -220
+        -320
       ]
     },
     {
@@ -188,7 +188,7 @@
       "typeVersion": 2,
       "position": [
         -80,
-        -220
+        -320
       ],
       "credentials": {
         "notionApi": {
@@ -213,20 +213,7 @@
       "typeVersion": 1,
       "position": [
         -500,
-        -220
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const parseFrequency = (tokens) => {\n  const numbers = new Map()\n  numbers.set('один', 1)\n  numbers.set('одну', 1)\n  numbers.set('два', 2)\n  numbers.set('две', 2)\n  numbers.set('второй', 2)\n  numbers.set('три', 3)\n  numbers.set('третий', 3)\n  numbers.set('четыре', 4)\n  numbers.set('четвёртый', 4)\n  numbers.set('пять', 5)\n  numbers.set('пятый', 5)\n  numbers.set('шесть', 6)\n  numbers.set('шестой', 6)\n  numbers.set('семь', 7)\n  numbers.set('седьмой', 7)\n  numbers.set('восемь', 8)\n  numbers.set('восьмой', 8)\n  numbers.set('девять', 9)\n  numbers.set('девятый', 9)\n  numbers.set('десять', 10)\n  numbers.set('десятый', 10)\n  numbers.set('одиннадцать', 11)\n  numbers.set('двенадцать', 12)\n  const units = new Map()\n  units.set('миллисекунд', 'milliseconds')\n  units.set('секунд', 'seconds')\n  units.set('минут', 'minutes')\n  units.set('час', 'hours')\n  units.set('день', 'days')\n  units.set('дня', 'days')\n  units.set('недел', 'weeks')\n  units.set('месяц', 'months')\n  units.set('квартал', 'quarters')\n  units.set('год', 'years')\n  units.set('лет', 'years')\n  let number = 1\n  let unit\n\n  for (let i = 0; i < tokens.length; i++) {\n    if (Number.isInteger(Number.parseInt(tokens[i]))) {\n      number = tokens[i]\n      continue\n    }\n    if (numbers.has(tokens[i])) {\n      number = numbers.get(tokens[i])\n      continue\n    }\n    for (let i2 = tokens[i].length; i2 > 0; i2--) {\n      if (units.has(tokens[i].slice(0, i2))) {\n        unit = units.get(tokens[i].slice(0, i2))\n        break\n      }\n    }\n  }\n  const ret = {}\n  ret[unit] = number\n  return ret\n}\n\nconst getFrequency = (humanReadable) => {\n  const tokens = humanReadable.split(' ').map((token) => token.toLowerCase())\n  if (tokens[0] === 'раз' && tokens[1] === 'в') {\n    return parseFrequency(tokens.slice(2))\n  }\n  if (tokens[0].slice(0, 4) === 'кажд') {\n    return parseFrequency(tokens.slice(1))\n  }\n}\n\nconst tasks = items[0].json.results.map((task) => {\n  const fieldNames = $node['Глобальные значения'].json.strings\n  let lastExec\n  if (task.properties[fieldNames.lastExec]) {\n    const str = task.properties[fieldNames.lastExec].date.start\n    lastExec = DateTime.fromFormat(str, 'yyyy-MM-dd', { zone: 'utc' })\n  }\n  const frequency = getFrequency(\n    task.properties[fieldNames.frequency].select.name\n  )\n  // const nextExecv09 = lastExec ? lastExec.plus(frequency) : DateTime.now()\n  // const nextExec = nextExecv09.set({\n  //   hour: task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(\n  //     0,\n  //     2\n  //   ),\n  //   minute:\n  //     task.properties[fieldNames.plannedTime].rich_text[0].plain_text.slice(3),\n  //   second: 0,\n  //   millisecond: 0\n  // })\n  return {\n    id: task.id,\n    lastExecution: lastExec,\n    // nextExecution: nextExec,\n    task: {\n      frequency: frequency,\n      name: JSON.parse(JSON.stringify(task.properties[fieldNames.taskName])),\n      effort: task.properties[fieldNames.effort].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.effort]))\n        : undefined,\n      value: task.properties[fieldNames.value].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.value]))\n        : undefined,\n      area: task.properties[fieldNames.area].select\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.area]))\n        : undefined,\n      project: task.properties[fieldNames.project].relation[0]\n        ? JSON.parse(JSON.stringify(task.properties[fieldNames.project]))\n        : undefined,\n      postponable: JSON.parse(\n        JSON.stringify(task.properties[fieldNames.postponable])\n      ),\n    }\n  }\n})\nreturn tasks"
-      },
-      "id": "b33f7c02-40fd-4db0-bf93-8329085ad8bf",
-      "name": "Обработка таблицы",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1340,
-        -340
+        -320
       ]
     },
     {
@@ -250,8 +237,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -540,
-        200
+        1200,
+        -120
       ],
       "credentials": {
         "notionApi": {
@@ -270,8 +257,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        220,
-        200
+        1960,
+        -120
       ]
     },
     {
@@ -290,8 +277,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        460,
-        200
+        2200,
+        -120
       ]
     },
     {
@@ -304,8 +291,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -40,
-        200
+        1700,
+        -120
       ]
     },
     {
@@ -317,8 +304,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1060,
-        140
+        1080,
+        300
       ]
     },
     {
@@ -337,8 +324,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1240,
-        140
+        1260,
+        300
       ]
     },
     {
@@ -350,8 +337,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1440,
-        140
+        1460,
+        300
       ]
     },
     {
@@ -364,8 +351,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        1620,
-        140
+        1640,
+        300
       ]
     },
     {
@@ -377,8 +364,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1840,
-        140
+        1860,
+        300
       ]
     },
     {
@@ -392,7 +379,7 @@
       "typeVersion": 2,
       "position": [
         140,
-        -220
+        -320
       ]
     },
     {
@@ -445,14 +432,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -300,
-        200
+        1440,
+        -120
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "return $('Задача ранее выполнялась?').item;"
+        "jsCode": "return $('Первоначальная обработка страниц').item;"
       },
       "id": "6ef48fea-0d37-4121-aa3d-2b03f6a5c143",
       "name": "Возвращаем обратно шаблон",
@@ -661,8 +648,123 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1640,
+        1620,
         -720
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const nextExecCoarse = DateTime.fromISO($input.item.json.properties[$('Глобальные значения').all()[0].json.strings.lastExec].date.start).plus($input.item.json.frequency);\nconst timeString = $input.item.json.properties[$('Глобальные значения').all()[0].json.strings.plannedTime].rich_text[0].plain_text;\nconst plannedTime = {\n  hour: timeString.substring(0,2),\n  minute: timeString.substring(3,5)\n}\n$input.item.json.nextExec = nextExecCoarse.set(plannedTime);;\nreturn $input.item;"
+      },
+      "id": "59f6537d-bd79-4a2e-96d0-4501af6f57bd",
+      "name": "Когда там следующее выполнение?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        -560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ DateTime.now().toISODate() }}",
+              "value2": "={{ DateTime.fromISO($json.nextExec).toISODate() }}"
+            }
+          ],
+          "dateTime": [
+            {
+              "value1": "={{ DateTime.now().toISODate() }}",
+              "value2": "={{ DateTime.fromISO($json.nextExec).toISODate() }}"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "f920286e-2cf5-42de-b9cf-bedf266077b1",
+      "name": "Время для создания новой задачи пришло?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -320
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8721ad53-b523-49ff-b554-550a387db858",
+      "name": "Опять забиваем",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const props = $input.item.json.properties;\nconst strings = $(\"Глобальные значения\").all()[0].json.strings;\nprops[strings.template] = {\n  type: \"relation\",\n  relation: [\n    { id: $input.item.json.id }\n  ]\n};\nprops[strings.deadline] = {\n  type: \"date\",\n  date: {\n    start: $input.item.json.nextExec\n  }\n};\nprops[strings.status] = {\n  type: \"select\",\n  select: {\n    name: strings.statuses.notDone\n  }\n};\n\ndelete $input.item.json.id;\ndelete $input.item.json.frequency;\ndelete $input.item.json.nextExec;\ndelete props[strings.postponable];\ndelete props[strings.lastExec];\ndelete props[strings.frequency];\ndelete props[strings.plannedTime];\n\nreturn $input.item;"
+      },
+      "id": "7bbd9f12-e597-48c1-ae0d-f262889d4872",
+      "name": "Формируем страничку, которую будем создавать",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        620,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "={{ $(\"Глобальные значения\").all()[0].json.apiVersion }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "525dcdea-8276-42c0-b654-dfca8b4c53be",
+      "name": "И создаём её",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        820,
+        -340
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const template = $('Первоначальная обработка страниц').item;\ntemplate.json.current_task_id = $input.item.json.id;\nreturn template;"
+      },
+      "id": "00dd4cfc-743a-42df-9788-fa8c5de0770e",
+      "name": "Снова возвращаем шаблон, но указав ID новой задачи",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        -340
       ]
     }
   ],
@@ -811,11 +913,6 @@
         [
           {
             "node": "Первоначальная обработка страниц",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Подгрузка потомков",
             "type": "main",
             "index": 0
           }
@@ -993,12 +1090,74 @@
           }
         ]
       ]
+    },
+    "Парсим частоту выполнения и вставляем результат в шаблон": {
+      "main": [
+        [
+          {
+            "node": "Когда там следующее выполнение?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Когда там следующее выполнение?": {
+      "main": [
+        [
+          {
+            "node": "Время для создания новой задачи пришло?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Время для создания новой задачи пришло?": {
+      "main": [
+        [
+          {
+            "node": "Формируем страничку, которую будем создавать",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Опять забиваем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем страничку, которую будем создавать": {
+      "main": [
+        [
+          {
+            "node": "И создаём её",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "И создаём её": {
+      "main": [
+        [
+          {
+            "node": "Снова возвращаем шаблон, но указав ID новой задачи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {},
   "staticData": null,
   "pinData": {},
-  "versionId": "38c2a19b-e21b-4351-8e3e-46b56440eae0",
+  "versionId": "5948f0d3-05a7-4c73-bbb7-79209599649a",
   "triggerCount": 0,
   "tags": []
 }
