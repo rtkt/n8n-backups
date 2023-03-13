@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-13T02:59:47.000Z",
+  "updatedAt": "2023-03-13T03:40:24.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -104,6 +104,10 @@
             {
               "name": "strings.creationDate",
               "value": "Дата создания"
+            },
+            {
+              "name": "strings.priorityValue",
+              "value": "Значение приоритета"
             }
           ]
         },
@@ -218,8 +222,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -420,
-        -100
+        -160,
+        -140
       ],
       "credentials": {
         "notionApi": {
@@ -244,8 +248,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        200,
-        80
+        460,
+        40
       ]
     },
     {
@@ -312,8 +316,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -260,
-        -100
+        0,
+        -140
       ]
     },
     {
@@ -620,8 +624,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -640,
-        -100
+        -380,
+        -140
       ]
     },
     {
@@ -634,8 +638,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        440,
-        -100
+        700,
+        -140
       ]
     },
     {
@@ -648,8 +652,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        240,
-        -100
+        500,
+        -140
       ]
     },
     {
@@ -661,8 +665,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        640,
-        -100
+        900,
+        -140
       ]
     },
     {
@@ -690,8 +694,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        840,
-        -100
+        1100,
+        -140
       ],
       "credentials": {
         "notionApi": {
@@ -710,8 +714,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        1060,
-        -100
+        1320,
+        -140
       ]
     },
     {
@@ -724,8 +728,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1260,
-        -100
+        1520,
+        -140
       ]
     },
     {
@@ -738,8 +742,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        420,
-        80
+        680,
+        40
       ]
     },
     {
@@ -760,8 +764,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        -80,
-        80
+        180,
+        40
       ]
     },
     {
@@ -771,8 +775,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        660,
-        100
+        920,
+        60
       ]
     },
     {
@@ -784,8 +788,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        860,
-        120
+        1120,
+        80
       ]
     },
     {
@@ -798,8 +802,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -20,
-        -100
+        240,
+        -140
       ]
     },
     {
@@ -830,8 +834,9 @@
         "authentication": "genericCredentialType",
         "genericAuthType": "httpBasicAuth",
         "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"topic\": \"notion\",\n  \"title\": \"{{  }}\",\n  \"priority\": \"{{  }}\",\n  \"click\": \"https://www.notion.so/{{ $json.page.id.replaceAll('-', '') }}\"\n}",
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"topic\": \"notion\",\n  \"title\": \"{{ $json.properties[$('Глобальные значения').all()[0].json.strings.taskName].title[0].plain_text }}\",\n  \"message\": \"Новая запланированная задача\",\n  \"priority\": {{ $json.properties[$('Глобальные значения').all()[0].json.strings.priorityValue].formula.number }},\n  \"click\": \"{{ $json.url }}\"\n}",
         "options": {}
       },
       "id": "2ef72d3a-7431-43cd-844b-b16be29baae1",
@@ -1321,7 +1326,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "82a783b8-e0bb-4f44-8a49-5a7135e73230",
+  "versionId": "ea178bdc-42ba-44ea-86de-a0f7dc4c3b8d",
   "triggerCount": 1,
   "tags": []
 }
