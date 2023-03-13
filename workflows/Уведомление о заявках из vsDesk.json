@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-13T01:00:11.000Z",
+  "updatedAt": "2023-03-13T02:59:49.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -429,25 +429,37 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": "DEFAULT",
-    "saveManualExecutions": false,
+    "saveExecutionProgress": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4"
+    "errorWorkflow": "4",
+    "saveDataSuccessExecution": "all"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "242578",
-          "user": "АЗС № 217",
-          "creator": "АЗС № 217",
+          "id": "242674",
+          "user": "Агафонов Евгений Викторович",
+          "creator": "Агафонов Евгений Викторович",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-03-12 10:34:02",
-          "name": "Не работает cloud",
+          "timestamp": "2023-03-13 09:41:54",
+          "name": "Настройка сканера штрихкода",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/242674"
+        },
+        {
+          "id": "242672",
+          "user": "Бернаучис Андрей Робертович",
+          "creator": "Бернаучис Андрей Робертович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-13 09:17:43",
+          "name": "Заправка картриджей",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/242578"
+          "link": "https://help.knp24.ru/request/242672"
         },
         {
           "id": "242484",
@@ -549,7 +561,7 @@
     }
   },
   "pinData": {},
-  "versionId": "a0b13811-5cf9-433b-97c9-c31d369b869b",
+  "versionId": "1a952e55-6c71-405f-a4a4-f71a6af549c1",
   "triggerCount": 1,
   "tags": []
 }
