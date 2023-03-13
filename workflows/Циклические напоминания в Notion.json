@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-12T16:29:42.000Z",
+  "updatedAt": "2023-03-13T02:59:47.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -114,8 +114,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        -300,
-        -320
+        -340,
+        -980
       ]
     },
     {
@@ -187,8 +187,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -80,
-        -320
+        -120,
+        -980
       ],
       "credentials": {
         "notionApi": {
@@ -196,25 +196,6 @@
           "name": "Notion"
         }
       }
-    },
-    {
-      "parameters": {
-        "triggerTimes": {
-          "item": [
-            {
-              "mode": "everyHour"
-            }
-          ]
-        }
-      },
-      "id": "3a679352-70f8-479f-a6e3-a77e625ded32",
-      "name": "Выполнять каждый час",
-      "type": "n8n-nodes-base.cron",
-      "typeVersion": 1,
-      "position": [
-        -500,
-        -320
-      ]
     },
     {
       "parameters": {
@@ -237,7 +218,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -500,
+        -420,
         -100
       ],
       "credentials": {
@@ -277,8 +258,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        140,
-        -320
+        100,
+        -980
       ]
     },
     {
@@ -565,12 +546,11 @@
           ],
           "dateTime": [
             {
-              "value1": "={{ DateTime.now().toISODate() }}",
-              "value2": "={{ DateTime.fromISO($json.nextExec).toISODate() }}"
+              "value1": "={{ DateTime.now().plus({\"hour\": 1}).toISO() }}",
+              "value2": "={{ DateTime.fromISO($json.nextExec).toISO() }}"
             }
           ]
-        },
-        "combineOperation": "any"
+        }
       },
       "id": "f920286e-2cf5-42de-b9cf-bedf266077b1",
       "name": "Время для создания новой задачи пришло?",
@@ -640,8 +620,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1020,
-        -340
+        -640,
+        -100
       ]
     },
     {
@@ -821,6 +801,53 @@
         -20,
         -100
       ]
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 10,
+              "unit": "minutes"
+            }
+          ]
+        }
+      },
+      "id": "3a679352-70f8-479f-a6e3-a77e625ded32",
+      "name": "Выполнять каждые 10 минут",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        -980
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ntfy.shitnsticks.top/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"topic\": \"notion\",\n  \"title\": \"{{  }}\",\n  \"priority\": \"{{  }}\",\n  \"click\": \"https://www.notion.so/{{ $json.page.id.replaceAll('-', '') }}\"\n}",
+        "options": {}
+      },
+      "id": "2ef72d3a-7431-43cd-844b-b16be29baae1",
+      "name": "Уведомляем через Ntfy",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1060,
+        -340
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
     }
   ],
   "connections": {
@@ -858,17 +885,6 @@
         [
           {
             "node": "Разделение страниц",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Выполнять каждый час": {
-      "main": [
-        [
-          {
-            "node": "Глобальные значения",
             "type": "main",
             "index": 0
           }
@@ -1122,6 +1138,11 @@
             "node": "Снова возвращаем шаблон, но указав ID новой задачи",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Уведомляем через Ntfy",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -1280,6 +1301,17 @@
           }
         ]
       ]
+    },
+    "Выполнять каждые 10 минут": {
+      "main": [
+        [
+          {
+            "node": "Глобальные значения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1289,7 +1321,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "b1cb5c80-a032-44f6-8d02-d1478dbc4655",
+  "versionId": "82a783b8-e0bb-4f44-8a49-5a7135e73230",
   "triggerCount": 1,
   "tags": []
 }
