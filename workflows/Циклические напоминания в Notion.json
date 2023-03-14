@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-14T11:21:52.000Z",
+  "updatedAt": "2023-03-14T14:48:16.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -118,8 +118,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        -340,
-        -980
+        -220,
+        -740
       ]
     },
     {
@@ -140,8 +140,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -120,
-        -720
+        0,
+        -540
       ],
       "credentials": {
         "notionApi": {
@@ -166,8 +166,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -360,
-        -620
+        -240,
+        -440
       ]
     },
     {
@@ -191,8 +191,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -120,
-        -980
+        0,
+        -740
       ],
       "credentials": {
         "notionApi": {
@@ -248,8 +248,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        460,
-        40
+        260,
+        80
       ]
     },
     {
@@ -262,8 +262,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        100,
-        -980
+        220,
+        -740
       ]
     },
     {
@@ -276,8 +276,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        -540,
-        -620
+        -420,
+        -440
       ]
     },
     {
@@ -296,8 +296,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        100,
-        -680
+        220,
+        -500
       ]
     },
     {
@@ -316,8 +316,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        0,
-        -140
+        40,
+        80
       ]
     },
     {
@@ -331,7 +331,7 @@
       "typeVersion": 1,
       "position": [
         1120,
-        -620
+        -540
       ]
     },
     {
@@ -344,8 +344,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        340,
-        -780
+        460,
+        -620
       ]
     },
     {
@@ -369,8 +369,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        500,
-        -800
+        520,
+        -940
       ]
     },
     {
@@ -390,7 +390,7 @@
       "typeVersion": 1,
       "position": [
         700,
-        -1000
+        -940
       ]
     },
     {
@@ -404,7 +404,7 @@
       "typeVersion": 1,
       "position": [
         940,
-        -1020
+        -940
       ]
     },
     {
@@ -432,8 +432,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1160,
-        -960
+        1140,
+        -940
       ],
       "credentials": {
         "notionApi": {
@@ -452,8 +452,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1280,
-        -740
+        1140,
+        -720
       ]
     },
     {
@@ -472,8 +472,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        740,
-        -820
+        680,
+        -740
       ]
     },
     {
@@ -501,8 +501,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -120,
-        -520
+        0,
+        -340
       ],
       "credentials": {
         "notionApi": {
@@ -521,8 +521,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1480,
-        -560
+        1380,
+        -540
       ]
     },
     {
@@ -535,8 +535,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1660,
-        -540
+        520,
+        -340
       ]
     },
     {
@@ -561,8 +561,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        400,
-        -320
+        700,
+        -340
       ]
     },
     {
@@ -575,7 +575,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        620,
+        900,
         -340
       ]
     },
@@ -604,7 +604,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        820,
+        1120,
         -340
       ],
       "credentials": {
@@ -638,7 +638,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        700,
+        500,
         -140
       ]
     },
@@ -652,7 +652,7 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        500,
+        300,
         -140
       ]
     },
@@ -665,7 +665,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        900,
+        700,
         -140
       ]
     },
@@ -694,7 +694,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1100,
+        900,
         -140
       ],
       "credentials": {
@@ -714,7 +714,7 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2,
       "position": [
-        1320,
+        1120,
         -140
       ]
     },
@@ -728,7 +728,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1520,
+        1320,
         -140
       ]
     },
@@ -742,30 +742,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        680,
-        40
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "8721ad53-b523-49ff-b554-550a387db858",
-      "name": "Забиваем",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        700,
-        -520
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "4506502a-88a1-4cbc-904f-7994bc786bf6",
-      "name": "Снова забиваем",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        180,
-        40
+        480,
+        80
       ]
     },
     {
@@ -775,8 +753,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        920,
-        60
+        720,
+        80
       ]
     },
     {
@@ -788,8 +766,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1120,
-        80
+        920,
+        100
       ]
     },
     {
@@ -802,7 +780,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        240,
+        80,
         -140
       ]
     },
@@ -823,8 +801,8 @@
       "type": "n8n-nodes-base.cron",
       "typeVersion": 1,
       "position": [
-        -540,
-        -980
+        -420,
+        -740
       ]
     },
     {
@@ -844,7 +822,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1040,
+        1320,
         -340
       ],
       "credentials": {
@@ -853,17 +831,6 @@
           "name": "Ntfy admin"
         }
       }
-    },
-    {
-      "parameters": {},
-      "id": "b05c5fd2-887c-4159-97e3-ca0ee6bb8bfc",
-      "name": "Переносимость в шаблоне указана?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        -380,
-        80
-      ]
     },
     {
       "parameters": {
@@ -890,7 +857,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -140,
+        -160,
         80
       ],
       "credentials": {
@@ -899,6 +866,26 @@
           "name": "Notion"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.page.properties[$('Глобальные значения').all()[0].json.strings.postponable].checkbox }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "7f0b6268-7fc4-49c3-841c-d0aafd91d47d",
+      "name": "Так что там с переносимостью?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        80
+      ]
     }
   ],
   "connections": {
@@ -984,13 +971,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Снова забиваем",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Что-нибудь нашлось?": {
@@ -1082,13 +1063,7 @@
     },
     "А переносимость указана?": {
       "main": [
-        [
-          {
-            "node": "Забиваем",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         [
           {
             "node": "Возвращаем обратно шаблон",
@@ -1162,13 +1137,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Забиваем",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Формируем страничку, которую будем создавать": {
@@ -1207,7 +1176,7 @@
             "index": 0
           },
           {
-            "node": "Переносимость в шаблоне указана?",
+            "node": "Так что там с переносимостью?",
             "type": "main",
             "index": 0
           }
@@ -1250,13 +1219,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Снова забиваем",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Подгрузка потомков": {
@@ -1369,7 +1332,7 @@
         ]
       ]
     },
-    "Переносимость в шаблоне указана?": {
+    "Так что там с переносимостью?": {
       "main": [
         [],
         [
@@ -1379,6 +1342,11 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Подставляем сегодняшнюю дату в шаблон": {
+      "main": [
+        []
       ]
     }
   },
@@ -1391,7 +1359,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "3d5843e1-bbc6-4954-8723-8243390c5566",
+  "versionId": "c915ae5e-caa8-42be-814d-8c115e655a5b",
   "triggerCount": 1,
   "tags": []
 }
