@@ -1,9 +1,9 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-13T03:40:24.000Z",
+  "updatedAt": "2023-03-14T10:09:24.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
-  "active": true,
+  "active": false,
   "nodes": [
     {
       "parameters": {
@@ -432,8 +432,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1140,
-        -980
+        1160,
+        -960
       ],
       "credentials": {
         "notionApi": {
@@ -493,7 +493,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"properties\": {\n    \"{{ $(\"Глобальные значения\").all()[0].json.strings.lastExec }}\": {\n      \"date\": {\n        \"start\": \"{{ DateTime.now().toISO() }}\"\n      }\n    }\n  }\n}",
+        "jsonBody": "={\n  \"properties\": {\n    \"{{ $(\"Глобальные значения\").all()[0].json.strings.lastExec }}\": {\n      \"date\": {\n        \"start\": \"{{ DateTime.now().toISODate() }}\"\n      }\n    }\n  }\n}",
         "options": {}
       },
       "id": "3af546ef-8bf7-4dab-9245-700237e28d5a",
@@ -844,13 +844,59 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1060,
+        1040,
         -340
       ],
       "credentials": {
         "httpBasicAuth": {
           "id": "2",
           "name": "Ntfy admin"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "b05c5fd2-887c-4159-97e3-ca0ee6bb8bfc",
+      "name": "Переносимость в шаблоне указана?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.notion.com/v1/pages/{{ $json.page[\"id\"].replaceAll('-', '') }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "={{ $(\"Глобальные значения\").all()[0].json.apiVersion}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"properties\": {\n    \"{{ $(\"Глобальные значения\").all()[0].json.strings.lastExec }}\": {\n      \"date\": {\n        \"start\": \"{{ DateTime.now().toISODate() }}\"\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "b508be04-66de-469f-b447-7e5bf2be9e41",
+      "name": "Подставляем сегодняшнюю дату в шаблон",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -140,
+        80
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
         }
       }
     }
@@ -1159,6 +1205,11 @@
             "node": "Подгрузка потомков",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Переносимость в шаблоне указана?",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -1317,16 +1368,30 @@
           }
         ]
       ]
+    },
+    "Переносимость в шаблоне указана?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Подставляем сегодняшнюю дату в шаблон",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
-    "saveExecutionProgress": "DEFAULT",
+    "saveExecutionProgress": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4"
+    "errorWorkflow": "4",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": false
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "ea178bdc-42ba-44ea-86de-a0f7dc4c3b8d",
+  "versionId": "d660e5cb-a6fb-45e5-a7f9-d199969901c8",
   "triggerCount": 1,
   "tags": []
 }
