@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-14T05:00:01.000Z",
+  "updatedAt": "2023-03-14T06:59:28.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -107,7 +107,7 @@
     },
     {
       "parameters": {
-        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst current = [];\nfor(let i = 0; i < items[0].json.length; i++) {\n  if(items[0].json[i].Status === \"Завершена\" || items[0].json[i].Status === \"Отменена\") {\n    continue;\n  }\n  current.push({\n    id: items[0].json[i].id,\n    user: items[0].json[i].fullname,\n    creator: items[0].json[i].creator,\n    group: items[0].json[i].gfullname,\n    timestamp: items[0].json[i].timestamp,\n    name: items[0].json[i].Name.replaceAll('\"', ''),\n    status: items[0].json[i].Status,\n    executor: items[0].json[i].mfullname,\n    priority: items[0].json[i].Priority === \"Высокий\" ? 5 : 3,\n    link: `https://help.knp24.ru/request/${items[0].json[i].id}`\n  })\n}\n\nlet updates = [];\nconst staticData = getWorkflowStaticData('node');\n\nif(!staticData.lastExecution || ! (staticData.lastExecution instanceof Array)) {\n  updates = JSON.parse(JSON.stringify(current));\n  updates.forEach(request => {\n    request.type = \"new\";\n  });\n }\nelse {\n  current.forEach(request => {\n    const index = staticData.lastExecution.findIndex(element => request.id === element.id);\n    if (request.status === \"Открыта повторно\") {\n      if (index !== -1 && request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reopened\";\n      return;\n    }\n    if (index === -1) {\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"new\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочена реакция\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reactionTimeout\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочено исполнение\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"executionTimeout\";\n      return;\n    }\n  });\n}\nstaticData.lastExecution = JSON.parse(JSON.stringify(current));\nreturn updates;"
+        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst current = [];\nfor(let i = 0; i < items[0].json.length; i++) {\n  if(items[0].json[i].Status === \"Завершена\" || items[0].json[i].Status === \"Отменена\") {\n    continue;\n  }\n  current.push({\n    id: items[0].json[i].id,\n    user: items[0].json[i].fullname,\n    creator: items[0].json[i].creator,\n    group: items[0].json[i].gfullname,\n    timestamp: items[0].json[i].timestamp,\n    name: items[0].json[i].Name.replaceAll(/[\"'«»]/g, ''),\n    status: items[0].json[i].Status,\n    executor: items[0].json[i].mfullname,\n    priority: items[0].json[i].Priority === \"Высокий\" ? 5 : 3,\n    link: `https://help.knp24.ru/request/${items[0].json[i].id}`\n  })\n}\n\nlet updates = [];\nconst staticData = getWorkflowStaticData('node');\n\nif(!staticData.lastExecution || ! (staticData.lastExecution instanceof Array)) {\n  updates = JSON.parse(JSON.stringify(current));\n  updates.forEach(request => {\n    request.type = \"new\";\n  });\n }\nelse {\n  current.forEach(request => {\n    const index = staticData.lastExecution.findIndex(element => request.id === element.id);\n    if (request.status === \"Открыта повторно\") {\n      if (index !== -1 && request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reopened\";\n      return;\n    }\n    if (index === -1) {\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"new\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочена реакция\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reactionTimeout\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочено исполнение\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"executionTimeout\";\n      return;\n    }\n  });\n}\nstaticData.lastExecution = JSON.parse(JSON.stringify(current));\nreturn updates;"
       },
       "id": "b8ed8c0b-42d7-429e-8f2c-32acb3a76ffc",
       "name": "diff и сохранение текущего списка заявок",
@@ -438,6 +438,30 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "242895",
+          "user": "Сударев Владислав Николаевич",
+          "creator": "Сударев Владислав Николаевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-14 13:54:23",
+          "name": "тестовая заявка",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/242895"
+        },
+        {
+          "id": "242892",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-14 13:45:02",
+          "name": "[Main PRTG] 1C-Test.knp.local [Windows] Disk Free: C:\\ (Свободное пространство по SNMP) Ошибка (р=",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/242892"
+        },
+        {
           "id": "242865",
           "user": "Коробицына Анастасия Николаевна",
           "creator": "Коробицына Анастасия Николаевна",
@@ -456,8 +480,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-14 10:58:02",
           "name": "Оборудование рабочего места начальника РСУ",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/242861"
         },
@@ -484,18 +508,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/242681"
-        },
-        {
-          "id": "242672",
-          "user": "Бернаучис Андрей Робертович",
-          "creator": "Бернаучис Андрей Робертович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-13 09:17:43",
-          "name": "Заправка картриджей",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/242672"
         },
         {
           "id": "241799",
@@ -525,7 +537,7 @@
     }
   },
   "pinData": {},
-  "versionId": "1a952e55-6c71-405f-a4a4-f71a6af549c1",
+  "versionId": "0b919fa7-48ad-4ef0-89d1-b0dff9b4acf0",
   "triggerCount": 1,
   "tags": []
 }
