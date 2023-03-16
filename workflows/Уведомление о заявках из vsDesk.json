@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-16T08:59:45.000Z",
+  "updatedAt": "2023-03-16T10:59:46.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -437,30 +437,6 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "243287",
-          "user": "ВАТС РТК",
-          "creator": "ВАТС РТК",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-16 15:20:04",
-          "name": "Пропущенный вызов в группе Группа системного администрирования",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/243287"
-        },
-        {
-          "id": "243250",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-16 14:15:02",
-          "name": "[Main PRTG] 1c-cluster1 Память (Память WMI) Ошибка  (1 % (Процент доступной памят=?utf-8?B",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/243250"
-        },
         {
           "id": "243161",
           "user": "Кравчук Татьяна Анатольевна",
