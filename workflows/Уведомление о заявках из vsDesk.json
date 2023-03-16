@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-16T10:59:46.000Z",
+  "updatedAt": "2023-03-16T15:00:59.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -429,10 +429,9 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": true,
+    "saveExecutionProgress": "DEFAULT",
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4",
-    "saveDataSuccessExecution": "all"
+    "errorWorkflow": "4"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
@@ -477,7 +476,7 @@
     }
   },
   "pinData": {},
-  "versionId": "0b919fa7-48ad-4ef0-89d1-b0dff9b4acf0",
+  "versionId": "95fcccf1-62b9-42c1-99cf-7264114b390f",
   "triggerCount": 1,
   "tags": []
 }
