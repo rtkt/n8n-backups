@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-17T06:24:13.000Z",
+  "updatedAt": "2023-03-17T08:56:58.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -919,21 +919,8 @@
     },
     {
       "parameters": {
-        "workflowId": "4"
-      },
-      "id": "82b59ddb-67f9-4bf2-bbc1-20a5b825f62a",
-      "name": "Сообщаем об ошибке",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        -720
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const error = {\n  execution: $execution,\n  workflow: $workflow,\n};\nconst generateMessage = () => {\n  let message = \"\";\n  let emptyFields = 0;\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.frequency].select) {\n    message += `- ${$('Глобальные значения').all()[0].json.strings.frequency};\\n`;\n    emptyFields++;\n  }\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.taskName].title.length) {\n    message += `- ${$('Глобальные значения').all()[0].json.strings.taskName};\\n`;\n    emptyFields++;\n  }\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.plannedTime].rich_text.length) {\n    message += `- ${$('Глобальные значения').all()[0].json.strings.plannedTime};\\n`;\n    emptyFields++;\n  }\n  if (emptyFields > 0) {\n    message = \"Не заполнены следующие поля в шаблоне:\\n\" + message;\n  } else {\n    message = \"Не заполнено следующее поле в шаблоне:\\n\" + message;\n  }\n  return message;\n};\nerror.execution.error = {};\nerror.execution.error.message = generateMessage();\nreturn { json: error };"
+        "jsCode": "const generateMessage = () => {\n  let message = \"\";\n  let emptyFields = 0;\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.frequency].select) {\n    emptyFields++;\n    message += ` ${emptyFields.toString()}) ${$('Глобальные значения').all()[0].json.strings.frequency};`;\n  }\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.taskName].title.length) {\n    emptyFields++;\n    message += ` ${emptyFields.toString()}) ${$('Глобальные значения').all()[0].json.strings.taskName};`; \n  }\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.plannedTime].rich_text.length) {\n    emptyFields++;\n    message += ` ${emptyFields.toString()}) ${$('Глобальные значения').all()[0].json.strings.plannedTime};`;\n  }\n  if (emptyFields > 0) {\n    message = \"Не заполнены следующие поля в шаблоне:\" + message;\n  } else {\n    message = \"Не заполнено следующее поле в шаблоне:\" + message;\n  }\n  return message;\n};\n$input.item.json.message = generateMessage();\n\nreturn $input.item;"
       },
       "id": "c5561c64-f68f-4cd9-a410-83fab7760354",
       "name": "Подготавливаем сообщение об ошибке",
@@ -943,6 +930,33 @@
         1120,
         -720
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ntfy.shitnsticks.top",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"topic\": \"errors\",\n  \"title\": \"Ошибка в задаче {{ $workflow.name }}\",\n  \"priority\": 5,\n  \"message\": \"{{ $json.message }}\",\n}",
+        "options": {}
+      },
+      "id": "72f4d485-8fe2-4191-bc62-d817bb454a67",
+      "name": "Сообщаем об ошибке",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1340,
+        -720
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "2",
+          "name": "Ntfy admin"
+        }
+      }
     }
   ],
   "connections": {
@@ -1433,11 +1447,11 @@
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "4",
     "saveDataSuccessExecution": "all",
-    "saveManualExecutions": false
+    "saveManualExecutions": true
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "22b1b116-aedc-46ba-8fb7-fc81a55a9f1d",
+  "versionId": "2a2d0537-1b1e-4b77-ac7c-a5701de25af0",
   "triggerCount": 1,
   "tags": []
 }
