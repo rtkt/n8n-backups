@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-07T08:51:10.161Z",
-  "updatedAt": "2023-03-17T06:21:58.000Z",
+  "updatedAt": "2023-03-17T08:26:17.000Z",
   "id": "4",
   "name": "Ошибка",
   "active": false,
@@ -13,7 +13,7 @@
       "typeVersion": 1,
       "position": [
         320,
-        280
+        520
       ]
     },
     {
@@ -41,102 +41,10 @@
           "name": "Ntfy admin"
         }
       }
-    },
-    {
-      "parameters": {},
-      "id": "a7fc6a77-b540-48a0-91e6-585845a8222e",
-      "name": "Вызов из другого воркфлоу",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1,
-      "position": [
-        -180,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.execution.error.message }}",
-              "operation": "isNotEmpty"
-            }
-          ]
-        }
-      },
-      "id": "5811326c-121b-4afe-a77e-26ded7ef28a8",
-      "name": "Сообщение об ошибке указано?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        100,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "execution.error.message",
-              "value": "Что-то пошло не так..."
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "a803662f-579f-4bb9-9624-61cc4bb305d8",
-      "name": "Добавляем общее, но дружелюбное сообщение",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        340,
-        700
-      ]
     }
   ],
   "connections": {
     "Ошибка": {
-      "main": [
-        [
-          {
-            "node": "Уведомить об ошибке в Ntfy",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Вызов из другого воркфлоу": {
-      "main": [
-        [
-          {
-            "node": "Сообщение об ошибке указано?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Сообщение об ошибке указано?": {
-      "main": [
-        [
-          {
-            "node": "Уведомить об ошибке в Ntfy",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Добавляем общее, но дружелюбное сообщение",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Добавляем общее, но дружелюбное сообщение": {
       "main": [
         [
           {
@@ -156,7 +64,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "3e3eae79-0443-4b74-b4c4-4053dc19eb1d",
+  "versionId": "5adc1643-9aea-48f0-ab83-2886f119cc6f",
   "triggerCount": 0,
   "tags": []
 }
