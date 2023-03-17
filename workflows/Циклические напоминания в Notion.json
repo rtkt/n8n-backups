@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-14T14:48:16.000Z",
+  "updatedAt": "2023-03-17T06:24:13.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -140,7 +140,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        0,
+        -80,
         -540
       ],
       "credentials": {
@@ -166,7 +166,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -240,
+        -280,
         -440
       ]
     },
@@ -296,8 +296,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        220,
-        -500
+        140,
+        -540
       ]
     },
     {
@@ -330,7 +330,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1120,
+        880,
         -540
       ]
     },
@@ -344,8 +344,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        460,
-        -620
+        420,
+        -700
       ]
     },
     {
@@ -369,7 +369,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        520,
+        480,
         -940
       ]
     },
@@ -452,8 +452,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1140,
-        -720
+        900,
+        -700
       ]
     },
     {
@@ -472,8 +472,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        680,
-        -740
+        620,
+        -760
       ]
     },
     {
@@ -501,7 +501,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        0,
+        -80,
         -340
       ],
       "credentials": {
@@ -521,8 +521,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1380,
-        -540
+        340,
+        -340
       ]
     },
     {
@@ -886,6 +886,63 @@
         -380,
         80
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.properties[$('Глобальные значения').all()[0].json.strings.frequency].select }}",
+              "operation": "isNotEmpty"
+            }
+          ],
+          "number": [
+            {
+              "value1": "={{ $json.properties[$('Глобальные значения').all()[0].json.strings.plannedTime].rich_text.length }}",
+              "operation": "larger"
+            },
+            {
+              "value1": "={{ $json.properties[$('Глобальные значения').all()[0].json.strings.taskName].title.length }}",
+              "operation": "larger"
+            }
+          ]
+        }
+      },
+      "id": "cc1608d0-9388-4370-a3b0-9b5a0dfefe7f",
+      "name": "Необходимые поля заполнены?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "4"
+      },
+      "id": "82b59ddb-67f9-4bf2-bbc1-20a5b825f62a",
+      "name": "Сообщаем об ошибке",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -720
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const error = {\n  execution: $execution,\n  workflow: $workflow,\n};\nconst generateMessage = () => {\n  let message = \"\";\n  let emptyFields = 0;\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.frequency].select) {\n    message += `- ${$('Глобальные значения').all()[0].json.strings.frequency};\\n`;\n    emptyFields++;\n  }\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.taskName].title.length) {\n    message += `- ${$('Глобальные значения').all()[0].json.strings.taskName};\\n`;\n    emptyFields++;\n  }\n  if (! $json.properties[$('Глобальные значения').all()[0].json.strings.plannedTime].rich_text.length) {\n    message += `- ${$('Глобальные значения').all()[0].json.strings.plannedTime};\\n`;\n    emptyFields++;\n  }\n  if (emptyFields > 0) {\n    message = \"Не заполнены следующие поля в шаблоне:\\n\" + message;\n  } else {\n    message = \"Не заполнено следующее поле в шаблоне:\\n\" + message;\n  }\n  return message;\n};\nerror.execution.error = {};\nerror.execution.error.message = generateMessage();\nreturn { json: error };"
+      },
+      "id": "c5561c64-f68f-4cd9-a410-83fab7760354",
+      "name": "Подготавливаем сообщение об ошибке",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -720
+      ]
     }
   ],
   "connections": {
@@ -970,8 +1027,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     },
     "Что-нибудь нашлось?": {
@@ -1077,7 +1133,7 @@
       "main": [
         [
           {
-            "node": "Парсим частоту выполнения и вставляем результат в шаблон",
+            "node": "Необходимые поля заполнены?",
             "type": "main",
             "index": 0
           }
@@ -1088,7 +1144,7 @@
       "main": [
         [
           {
-            "node": "Парсим частоту выполнения и вставляем результат в шаблон",
+            "node": "Необходимые поля заполнены?",
             "type": "main",
             "index": 0
           }
@@ -1136,8 +1192,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     },
     "Формируем страничку, которую будем создавать": {
@@ -1218,8 +1273,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     },
     "Подгрузка потомков": {
@@ -1344,9 +1398,33 @@
         ]
       ]
     },
-    "Подставляем сегодняшнюю дату в шаблон": {
+    "Необходимые поля заполнены?": {
       "main": [
-        []
+        [
+          {
+            "node": "Парсим частоту выполнения и вставляем результат в шаблон",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Подготавливаем сообщение об ошибке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подготавливаем сообщение об ошибке": {
+      "main": [
+        [
+          {
+            "node": "Сообщаем об ошибке",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -1359,7 +1437,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "c915ae5e-caa8-42be-814d-8c115e655a5b",
+  "versionId": "22b1b116-aedc-46ba-8fb7-fc81a55a9f1d",
   "triggerCount": 1,
   "tags": []
 }
