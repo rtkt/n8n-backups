@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-17T08:56:58.000Z",
+  "updatedAt": "2023-03-17T09:59:46.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -928,7 +928,7 @@
       "typeVersion": 1,
       "position": [
         1120,
-        -720
+        -740
       ]
     },
     {
@@ -940,7 +940,7 @@
         "sendBody": true,
         "contentType": "raw",
         "rawContentType": "application/json",
-        "body": "={\n  \"topic\": \"errors\",\n  \"title\": \"Ошибка в задаче {{ $workflow.name }}\",\n  \"priority\": 5,\n  \"message\": \"{{ $json.message }}\",\n}",
+        "body": "={\n  \"topic\": \"errors\",\n  \"title\": \"Ошибка в одном из шаблонов задачи {{ $workflow.name }}\",\n  \"priority\": 4,\n  \"message\": \"{{ $json.message }}\",\n  \"click\": \"https://n8n.shitnsticks.top/executions/{{ $execution.id }}\"\n}",
         "options": {}
       },
       "id": "72f4d485-8fe2-4191-bc62-d817bb454a67",
@@ -1451,7 +1451,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "2a2d0537-1b1e-4b77-ac7c-a5701de25af0",
+  "versionId": "eb340601-5341-4dfe-9ca1-67f8afce08ad",
   "triggerCount": 1,
   "tags": []
 }
