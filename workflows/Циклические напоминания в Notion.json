@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-17T09:59:46.000Z",
+  "updatedAt": "2023-03-19T05:11:18.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -140,7 +140,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -80,
+        -60,
         -540
       ],
       "credentials": {
@@ -166,7 +166,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -280,
+        -240,
         -440
       ]
     },
@@ -501,7 +501,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -80,
+        -40,
         -340
       ],
       "credentials": {
@@ -767,7 +767,7 @@
       "typeVersion": 1,
       "position": [
         920,
-        100
+        80
       ]
     },
     {
@@ -948,8 +948,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1340,
-        -720
+        1320,
+        -740
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -1443,15 +1443,12 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4",
-    "saveDataSuccessExecution": "all",
-    "saveManualExecutions": true
+    "errorWorkflow": "4"
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "eb340601-5341-4dfe-9ca1-67f8afce08ad",
+  "versionId": "a0dadac4-09b1-4b4d-ab63-b72de13dbf18",
   "triggerCount": 1,
   "tags": []
 }
