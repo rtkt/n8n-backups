@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-20T05:00:40.000Z",
+  "updatedAt": "2023-03-20T06:59:46.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -429,13 +429,51 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": "DEFAULT",
+    "saveExecutionProgress": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4"
+    "errorWorkflow": "4",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "243864",
+          "user": "Быкова Олеся Юрьевна",
+          "creator": "Быкова Олеся Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-20 13:33:38",
+          "name": "После отключения эл.энергии не работают программы",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/243864"
+        },
+        {
+          "id": "243845",
+          "user": "Нагимов Олег Вавилович",
+          "creator": "Нагимов Олег Вавилович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-20 12:07:55",
+          "name": "требуется установка Автокад или аналога ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/243845"
+        },
+        {
+          "id": "243844",
+          "user": "Понамарев Александр Владимирович",
+          "creator": "Понамарев Александр Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-20 12:06:42",
+          "name": "требуется установка Visio",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/243844"
+        },
         {
           "id": "243834",
           "user": "Романенко Светлана Николаевна",
@@ -443,8 +481,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-20 11:22:36",
           "name": "Работа с PDF файлами",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/243834"
         },
@@ -524,7 +562,7 @@
     }
   },
   "pinData": {},
-  "versionId": "95fcccf1-62b9-42c1-99cf-7264114b390f",
+  "versionId": "4e8fd9d2-0fcc-4d5c-9244-61db68e570f9",
   "triggerCount": 1,
   "tags": []
 }
