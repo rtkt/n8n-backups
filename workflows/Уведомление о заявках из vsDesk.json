@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-22T01:00:02.000Z",
+  "updatedAt": "2023-03-22T03:00:03.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,13 +439,61 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "244294",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-22 09:45:02",
+          "name": "[Main PRTG] Основной РТК Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/244294"
+        },
+        {
+          "id": "244292",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-22 09:35:02",
+          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/244292"
+        },
+        {
+          "id": "244287",
+          "user": "Бондаренко Михаил Григорьевич",
+          "creator": "Бондаренко Михаил Григорьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-22 09:16:08",
+          "name": "Удаленный доступ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/244287"
+        },
+        {
+          "id": "244279",
+          "user": "Григорьев Александр Валерьевич",
+          "creator": "Григорьев Александр Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-03-22 08:24:40",
+          "name": "Заправка картриджей",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/244279"
+        },
+        {
           "id": "244209",
           "user": "Козловский Владимир Николаевич",
           "creator": "Козловский Владимир Николаевич",
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-21 18:54:19",
           "name": "представить видеозаписи",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/244209"
