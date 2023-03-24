@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-03-23T10:59:07.000Z",
+  "updatedAt": "2023-03-24T01:00:12.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,18 +439,6 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "244607",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-23 17:00:03",
-          "name": "[Main PRTG] 1c-cluster1 Память (Память WMI) Ошибка  (1 % (Процент доступной памят=?utf-8?B",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/244607"
-        },
-        {
           "id": "244604",
           "user": "Перфильева Илона Олеговна",
           "creator": "Перфильева Илона Олеговна",
@@ -497,18 +485,6 @@
           "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/244594"
-        },
-        {
-          "id": "244593",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-03-23 16:15:02",
-          "name": "[Main PRTG] Основной РТК Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/244593"
         },
         {
           "id": "244574",
