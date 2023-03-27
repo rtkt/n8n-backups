@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-01-18T12:31:33.000Z",
+  "updatedAt": "2023-03-27T01:47:47.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDesk",
   "active": false,
@@ -95,8 +95,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        760,
-        100
+        800,
+        -80
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -322,8 +322,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1020,
-        100
+        1380,
+        -60
       ]
     },
     {
@@ -348,8 +348,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1260,
-        100
+        1620,
+        -60
       ]
     },
     {
@@ -364,8 +364,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1500,
-        -120
+        1860,
+        -280
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -384,9 +384,43 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1720,
-        -120
+        2080,
+        -280
       ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "url": "=https://help.knp24.ru/api/requests",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "timestamp",
+              "value": "=>{{DateTime.now().minus({ months: 1 }).toFormat('yyyy-MM-dd') }}"
+            },
+            {
+              "name": "gfullname",
+              "value": "Группа системного администрирования"
+            }
+          ]
+        }
+      },
+      "id": "644534ae-2550-4013-9ce4-f9001bb9ad50",
+      "name": "Получение списка заявок из vsDesk1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        160
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
     }
   ],
   "connections": {
@@ -482,13 +516,7 @@
     },
     "Получение списка заявок из vsDesk": {
       "main": [
-        [
-          {
-            "node": "Грубая очистка данных",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Грубая очистка данных": {
@@ -742,7 +770,7 @@
     }
   },
   "pinData": {},
-  "versionId": "178ff289-a2ca-49e0-985a-a2fde1b632cb",
+  "versionId": "a78cc34a-61b7-490c-a5fe-e204cdec15e7",
   "triggerCount": 1,
   "tags": []
 }
