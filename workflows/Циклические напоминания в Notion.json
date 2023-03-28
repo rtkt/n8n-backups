@@ -1,9 +1,9 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-28T09:50:41.000Z",
+  "updatedAt": "2023-03-28T11:49:15.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
-  "active": true,
+  "active": false,
   "nodes": [
     {
       "parameters": {
@@ -1448,7 +1448,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "dfce4c25-8b0d-4d18-83b1-aae33707d76a",
+  "versionId": "e4e48e54-cc93-4d8d-a47d-7fe7313ed81a",
   "triggerCount": 1,
   "tags": []
 }
