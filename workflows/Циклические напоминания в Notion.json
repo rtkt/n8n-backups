@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T07:48:14.142Z",
-  "updatedAt": "2023-03-28T09:00:27.000Z",
+  "updatedAt": "2023-03-28T09:50:41.000Z",
   "id": "3",
   "name": "Циклические напоминания в Notion",
   "active": true,
@@ -568,7 +568,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const props = $input.item.json.properties;\nconst strings = $(\"Глобальные значения\").all()[0].json.strings;\nprops[strings.template] = {\n  type: \"relation\",\n  relation: [\n    { id: $input.item.json.id }\n  ]\n};\nprops[strings.deadline] = {\n  type: \"date\",\n  date: {\n    start: $input.item.json.nextExec\n  }\n};\nprops[strings.status] = {\n  type: \"select\",\n  select: {\n    name: strings.statuses.notDone\n  }\n};\n$input.item.json.parent.page_id = $('Глобальные значения').all()[0].json.dbs.tasklist;\n\ndelete $input.item.json.id;\ndelete $input.item.json.frequency;\ndelete $input.item.json.nextExec;\ndelete props[strings.postponable];\ndelete props[strings.lastExec];\ndelete props[strings.frequency];\ndelete props[strings.plannedTime];\n\nreturn $input.item;"
+        "jsCode": "const props = $input.item.json.properties;\nconst strings = $(\"Глобальные значения\").all()[0].json.strings;\nprops[strings.template] = {\n  type: \"relation\",\n  relation: [\n    { id: $input.item.json.id }\n  ]\n};\nprops[strings.deadline] = {\n  type: \"date\",\n  date: {\n    start: $input.item.json.nextExec\n  }\n};\nprops[strings.status] = {\n  type: \"select\",\n  select: {\n    name: strings.statuses.notDone\n  }\n};\n$input.item.json.parent.database_id = $('Глобальные значения').all()[0].json.dbs.tasklist;\n\ndelete $input.item.json.id;\ndelete $input.item.json.frequency;\ndelete $input.item.json.nextExec;\ndelete props[strings.postponable];\ndelete props[strings.lastExec];\ndelete props[strings.frequency];\ndelete props[strings.plannedTime];\n\nreturn $input.item;"
       },
       "id": "7bbd9f12-e597-48c1-ae0d-f262889d4872",
       "name": "Формируем страничку, которую будем создавать",
@@ -1448,7 +1448,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "15289b38-4ebc-4c2d-80d8-bcb7b69f800e",
+  "versionId": "dfce4c25-8b0d-4d18-83b1-aae33707d76a",
   "triggerCount": 1,
   "tags": []
 }
