@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-04T06:59:46.000Z",
+  "updatedAt": "2023-04-04T08:59:47.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,14 +439,50 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "246309",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-04 15:55:03",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246309"
+        },
+        {
+          "id": "246303",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-04 15:15:04",
+          "name": "[Main PRTG] D7-cam6-jdvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246303"
+        },
+        {
+          "id": "246302",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-04 15:15:02",
+          "name": "[Main PRTG] D4-cam4-rezervuar Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246302"
+        },
+        {
           "id": "246286",
           "user": "Свентицкая Галина Николаевна",
           "creator": "Свентицкая Галина Николаевна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-04 13:42:22",
           "name": "Проблема с интерфейсом ",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/246286"
         },
@@ -463,40 +499,16 @@
           "link": "https://help.knp24.ru/request/246266"
         },
         {
-          "id": "246246",
-          "user": "Ростовцева Валерия Александровна",
-          "creator": "Ростовцева Валерия Александровна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-04 10:21:58",
-          "name": "создание почтового ящика student@knp24.ru",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/246246"
-        },
-        {
           "id": "246245",
           "user": "Коханова Татьяна Валентиновна",
           "creator": "Коханова Татьяна Валентиновна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-04 10:20:39",
           "name": "новый сотрудник",
-          "status": "Требует уточнения",
+          "status": "Открыта",
           "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/246245"
-        },
-        {
-          "id": "246139",
-          "user": "Цишкевич Татьяна Викторовна",
-          "creator": "Цишкевич Татьяна Викторовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-03 16:43:16",
-          "name": "О подключении к системе онлайн- судебному заседанию по Делу А56-113652/2022",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246139"
         },
         {
           "id": "246121",
@@ -505,7 +517,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-03 14:49:55",
           "name": "срок выполнения заявки",
-          "status": "Принята в исполнение",
+          "status": "Требует уточнения",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246121"
