@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-04T08:59:47.000Z",
+  "updatedAt": "2023-04-04T10:59:48.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,16 +439,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "246309",
+          "id": "246342",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-04 15:55:03",
+          "timestamp": "2023-04-04 17:40:02",
           "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/246309"
+          "link": "https://help.knp24.ru/request/246342"
+        },
+        {
+          "id": "246333",
+          "user": "Красильников Алексей Валерьевич",
+          "creator": "Красильников Алексей Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-04 16:56:50",
+          "name": "Настройка принтера-сканера Samsung SCX-3400",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246333"
+        },
+        {
+          "id": "246311",
+          "user": "Агафонов Евгений Викторович",
+          "creator": "Агафонов Евгений Викторович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-04 16:06:08",
+          "name": "Выгрузить рабочую базу ЗУП в тестовую",
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246311"
         },
         {
           "id": "246303",
@@ -457,8 +481,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-04 15:15:04",
           "name": "[Main PRTG] D7-cam6-jdvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246303"
         },
@@ -469,8 +493,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-04 15:15:02",
           "name": "[Main PRTG] D4-cam4-rezervuar Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246302"
         },
@@ -485,18 +509,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/246286"
-        },
-        {
-          "id": "246266",
-          "user": "Герасименко Денис Иванович",
-          "creator": "Герасименко Денис Иванович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-04 11:49:04",
-          "name": "доступ к отчету power bi",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246266"
         },
         {
           "id": "246245",
