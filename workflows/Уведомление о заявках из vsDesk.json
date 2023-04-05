@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-05T07:00:02.000Z",
+  "updatedAt": "2023-04-05T09:00:03.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,28 +439,76 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "246506",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 15:55:02",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246506"
+        },
+        {
+          "id": "246504",
+          "user": "Антипов Игорь Николаевич",
+          "creator": "Бутылин Иван Яковлевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 15:45:05",
+          "name": "браузер не поддерживает web интерфейс регистратора ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246504"
+        },
+        {
+          "id": "246489",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 14:50:02",
+          "name": "[Main PRTG] Main NS Postfix Время жизни сертификата SSL (Сертификат SSL) Ошибка  =?utf-8?B?KDQgICjQl",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246489"
+        },
+        {
+          "id": "246485",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 14:45:02",
+          "name": "[Main PRTG] KNP-TS SSL Certificate Sensor (Сертификат SSL) Ошибка  (4  (Days to Expiration) ниже пре",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246485"
+        },
+        {
+          "id": "246484",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 14:40:03",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246484"
+        },
+        {
           "id": "246467",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-05 13:25:02",
           "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/246467"
-        },
-        {
-          "id": "246465",
-          "user": "Пимурзина Ксения Вячеславовна",
-          "creator": "Пимурзина Ксения Вячеславовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-05 13:03:01",
-          "name": "Установить сертификат эл.подписи",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246465"
         },
         {
           "id": "246461",
@@ -469,46 +517,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-05 12:50:02",
           "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (The sensor could not conne",
-          "status": "Просрочена реакция",
+          "status": "Открыта",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/246461"
-        },
-        {
-          "id": "246453",
-          "user": "Туров Вячеслав Александрович",
-          "creator": "Туров Вячеслав Александрович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-05 12:04:28",
-          "name": "доступ к \\\\public2\\Manage2\\ОТДЕЛ 1С ПРОЕКТОВ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246453"
-        },
-        {
-          "id": "246447",
-          "user": "Сорокина Наталия Владимировна",
-          "creator": "Сорокина Наталия Владимировна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-05 11:46:30",
-          "name": "Прошу установить  браузер  Yandex либо Chrome. на закрытой площадке  АСТ ГОЗ",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246447"
-        },
-        {
-          "id": "246445",
-          "user": "Зыкова Людмила Георгиевна",
-          "creator": "Зыкова Людмила Георгиевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-05 11:43:51",
-          "name": "Не работает на камере микрофон, ВКС в 14:00 сегодня",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/246445"
         },
         {
           "id": "246432",
