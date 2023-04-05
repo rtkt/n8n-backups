@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-04T10:59:48.000Z",
+  "updatedAt": "2023-04-05T03:00:00.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,16 +439,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "246342",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "246406",
+          "user": "Будков Александр Вениаминович",
+          "creator": "Будков Александр Вениаминович",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-04 17:40:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Открыта",
-          "executor": null,
+          "timestamp": "2023-04-05 08:46:06",
+          "name": "Заменить провод между трубкой и телефонным аппаратом ",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/246342"
+          "link": "https://help.knp24.ru/request/246406"
         },
         {
           "id": "246333",
@@ -463,49 +463,13 @@
           "link": "https://help.knp24.ru/request/246333"
         },
         {
-          "id": "246311",
-          "user": "Агафонов Евгений Викторович",
-          "creator": "Агафонов Евгений Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-04 16:06:08",
-          "name": "Выгрузить рабочую базу ЗУП в тестовую",
-          "status": "Принята в исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246311"
-        },
-        {
-          "id": "246303",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-04 15:15:04",
-          "name": "[Main PRTG] D7-cam6-jdvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246303"
-        },
-        {
-          "id": "246302",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-04 15:15:02",
-          "name": "[Main PRTG] D4-cam4-rezervuar Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246302"
-        },
-        {
           "id": "246286",
           "user": "Свентицкая Галина Николаевна",
           "creator": "Свентицкая Галина Николаевна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-04 13:42:22",
           "name": "Проблема с интерфейсом ",
-          "status": "Принята в исполнение",
+          "status": "Требует уточнения",
           "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/246286"
@@ -533,18 +497,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246121"
-        },
-        {
-          "id": "246111",
-          "user": "Зверко Татьяна Олеговна",
-          "creator": "Зверко Татьяна Олеговна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-03 14:19:19",
-          "name": "заправка картриджей в количестве 10 шт.",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246111"
         },
         {
           "id": "246105",
