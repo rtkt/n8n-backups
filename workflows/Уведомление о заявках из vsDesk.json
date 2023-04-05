@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-05T05:00:01.000Z",
+  "updatedAt": "2023-04-05T07:00:02.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,6 +439,54 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "246467",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 13:25:02",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246467"
+        },
+        {
+          "id": "246465",
+          "user": "Пимурзина Ксения Вячеславовна",
+          "creator": "Пимурзина Ксения Вячеславовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 13:03:01",
+          "name": "Установить сертификат эл.подписи",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246465"
+        },
+        {
+          "id": "246461",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 12:50:02",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (The sensor could not conne",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246461"
+        },
+        {
+          "id": "246453",
+          "user": "Туров Вячеслав Александрович",
+          "creator": "Туров Вячеслав Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-05 12:04:28",
+          "name": "доступ к \\\\public2\\Manage2\\ОТДЕЛ 1С ПРОЕКТОВ",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246453"
+        },
+        {
           "id": "246447",
           "user": "Сорокина Наталия Владимировна",
           "creator": "Сорокина Наталия Владимировна",
@@ -457,8 +505,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-05 11:43:51",
           "name": "Не работает на камере микрофон, ВКС в 14:00 сегодня",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/246445"
         },
@@ -497,6 +545,18 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246406"
+        },
+        {
+          "id": "246357",
+          "user": "АЗС № 133",
+          "creator": "АЗС № 133",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-04 19:27:19",
+          "name": "При печати зажевывает бумагу",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246357"
         },
         {
           "id": "246321",
