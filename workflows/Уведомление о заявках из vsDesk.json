@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-07T08:59:39.000Z",
+  "updatedAt": "2023-04-07T10:59:41.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,13 +439,25 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "246916",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-07 17:10:02",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246916"
+        },
+        {
           "id": "246884",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-07 15:10:04",
           "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/246884"
@@ -511,6 +523,18 @@
           "link": "https://help.knp24.ru/request/246812"
         },
         {
+          "id": "246613",
+          "user": "АЗС № 64",
+          "creator": "АЗС № 64",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-06 09:19:12",
+          "name": "Доброе утро. Перестал работать принтер. Выдает; сбой аппарата, вызовите сервисный персонал.",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246613"
+        },
+        {
           "id": "246489",
           "user": "PRTG alert",
           "creator": "PRTG alert",
@@ -529,7 +553,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-05 10:00:02",
           "name": "[Main PRTG] НБАчинск4АСН Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246422"
