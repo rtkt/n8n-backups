@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-07T04:59:37.000Z",
+  "updatedAt": "2023-04-07T06:59:37.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,6 +438,42 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "246863",
+          "user": "Товарнов Алексей Владимирович",
+          "creator": "Товарнов Алексей Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-07 13:47:59",
+          "name": "Картридж мажет",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/246863"
+        },
+        {
+          "id": "246852",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-07 12:25:04",
+          "name": "[Main PRTG] Внешний IP РТК Ping из облакa (Cloud Ping v2) Ошибка  (The sensor could not connect to t",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246852"
+        },
+        {
+          "id": "246851",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-07 12:25:03",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/246851"
+        },
         {
           "id": "246825",
           "user": "Туров Вячеслав Александрович",
