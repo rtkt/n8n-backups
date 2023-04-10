@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-07T10:59:41.000Z",
+  "updatedAt": "2023-04-10T02:59:16.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,52 +439,64 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "246916",
+          "id": "247237",
+          "user": "Коновалов Александр Павлович",
+          "creator": "Коновалов Александр Павлович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-10 09:44:20",
+          "name": "​Не подключается к сканеру Canon mf4410",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/247237"
+        },
+        {
+          "id": "247232",
+          "user": "Сиденко Ирина Анатольевна",
+          "creator": "Сиденко Ирина Анатольевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-10 09:35:58",
+          "name": "прошу сделать доступ к папке\\\\public2\\Manage2/Управление розничных и оптовых продаж",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/247232"
+        },
+        {
+          "id": "247228",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-07 17:10:02",
+          "timestamp": "2023-04-10 09:25:02",
           "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/246916"
+          "link": "https://help.knp24.ru/request/247228"
         },
         {
-          "id": "246884",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "247215",
+          "user": "Дуткина Олеся Владимировна",
+          "creator": "Дуткина Олеся Владимировна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-07 15:10:04",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246884"
-        },
-        {
-          "id": "246863",
-          "user": "Товарнов Алексей Владимирович",
-          "creator": "Товарнов Алексей Владимирович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-07 13:47:59",
-          "name": "Картридж мажет",
+          "timestamp": "2023-04-10 08:55:28",
+          "name": "не работает принтер",
           "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
+          "executor": "Григорьев Александр Валерьевич",
           "priority": 5,
-          "link": "https://help.knp24.ru/request/246863"
+          "link": "https://help.knp24.ru/request/247215"
         },
         {
-          "id": "246852",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "247214",
+          "user": "АЗС № 64",
+          "creator": "АЗС № 64",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-07 12:25:04",
-          "name": "[Main PRTG] Внешний IP РТК Ping из облакa (Cloud Ping v2) Ошибка  (The sensor could not connect to t",
-          "status": "Просрочена реакция",
+          "timestamp": "2023-04-10 08:46:18",
+          "name": "Доброе утро. Перестал работать принтер. Выдает; сбой аппарата, вызовите сервисный персонал.",
+          "status": "Принята в исполнение",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/246852"
+          "link": "https://help.knp24.ru/request/247214"
         },
         {
           "id": "246851",
@@ -493,46 +505,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-07 12:25:03",
           "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Мониторинг",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246851"
-        },
-        {
-          "id": "246825",
-          "user": "Туров Вячеслав Александрович",
-          "creator": "Туров Вячеслав Александрович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-07 10:35:59",
-          "name": "Microsoft Teams",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246825"
-        },
-        {
-          "id": "246812",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-07 09:40:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (The sensor could not conne",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246812"
-        },
-        {
-          "id": "246613",
-          "user": "АЗС № 64",
-          "creator": "АЗС № 64",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-06 09:19:12",
-          "name": "Доброе утро. Перестал работать принтер. Выдает; сбой аппарата, вызовите сервисный персонал.",
-          "status": "Просрочено исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246613"
         },
         {
           "id": "246489",
@@ -565,8 +541,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-05 08:46:06",
           "name": "Заменить провод между трубкой и телефонным аппаратом ",
-          "status": "Просрочено исполнение",
-          "executor": "Сударев Владислав Николаевич",
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246406"
         },
