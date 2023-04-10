@@ -1,9 +1,9 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-10T06:59:16.000Z",
+  "updatedAt": "2023-04-10T08:36:10.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
-  "active": true,
+  "active": false,
   "nodes": [
     {
       "parameters": {
@@ -439,6 +439,30 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "247295",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-10 14:10:02",
+          "name": "[Main PRTG] Cam5 - Резервуары Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/247295"
+        },
+        {
+          "id": "247294",
+          "user": "Владыкина Вероника Андреевна",
+          "creator": "Владыкина Вероника Андреевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-10 14:03:33",
+          "name": "Предоставление удаленного доступа.",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/247294"
+        },
+        {
           "id": "247289",
           "user": "PRTG alert",
           "creator": "PRTG alert",
@@ -574,7 +598,7 @@
     }
   },
   "pinData": {},
-  "versionId": "4e8fd9d2-0fcc-4d5c-9244-61db68e570f9",
+  "versionId": "c48ba506-a1d6-4d5c-8a10-ecf833ec7e71",
   "triggerCount": 1,
   "tags": []
 }
