@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-13T07:00:20.000Z",
+  "updatedAt": "2023-04-13T09:00:22.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,28 +439,64 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "247995",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-13 15:00:03",
+          "name": "[Main PRTG] Основной РТК Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/247995"
+        },
+        {
+          "id": "247994",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-13 14:55:03",
+          "name": "[Main PRTG] Резервный Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/247994"
+        },
+        {
+          "id": "247972",
+          "user": "Ростовцева Валерия Александровна",
+          "creator": "Ростовцева Валерия Александровна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-13 14:14:35",
+          "name": "подключить графический планшет",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/247972"
+        },
+        {
+          "id": "247971",
+          "user": "Ошов Владимир Сергеевич",
+          "creator": "Ошов Владимир Сергеевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-13 14:10:19",
+          "name": "Прошу настроить принтер 192.168.10.201 на печать и сканирование.",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/247971"
+        },
+        {
           "id": "247933",
           "user": "Егорихина Оксана Юрьевна",
           "creator": "Егорихина Оксана Юрьевна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-13 10:47:30",
           "name": "не запускается принтер, сканер",
-          "status": "Принята в исполнение",
+          "status": "Требует уточнения",
           "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/247933"
-        },
-        {
-          "id": "247921",
-          "user": "Старцев Олег Валерьевич",
-          "creator": "Старцев Олег Валерьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-13 10:06:10",
-          "name": "Об установке приложения Контур Диадок для работы в ЭДО",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247921"
         },
         {
           "id": "247910",
@@ -509,102 +545,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/247698"
-        },
-        {
-          "id": "247594",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 16:05:11",
-          "name": "[Main PRTG] OpenVpn Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247594"
-        },
-        {
-          "id": "247593",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 16:05:09",
-          "name": "[Main PRTG] Основной канал РТК Ping (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?UCDihJY",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247593"
-        },
-        {
-          "id": "247592",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 16:05:07",
-          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247592"
-        },
-        {
-          "id": "247591",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 16:05:06",
-          "name": "[Main PRTG] cam2-НБ-Курагино КПП1 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247591"
-        },
-        {
-          "id": "247590",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 16:05:04",
-          "name": "[Main PRTG] cam1-НБ-КурагиноКПП Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247590"
-        },
-        {
-          "id": "247575",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 15:45:04",
-          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247575"
-        },
-        {
-          "id": "247574",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 15:45:02",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247574"
-        },
-        {
-          "id": "247573",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-11 15:40:02",
-          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
-          "status": "Принята в исполнение",
-          "executor": "Михайлов Степан Сергеевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247573"
         },
         {
           "id": "246121",
