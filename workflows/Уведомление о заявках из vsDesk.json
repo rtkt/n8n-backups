@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-14T01:00:29.000Z",
+  "updatedAt": "2023-04-14T03:00:31.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,28 +439,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "247995",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "248063",
+          "user": "Бутылин Иван Яковлевич",
+          "creator": "Бутылин Иван Яковлевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-13 15:00:03",
-          "name": "[Main PRTG] Основной РТК Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "timestamp": "2023-04-14 08:30:41",
+          "name": "МФУ samsung SL-M3870FD не распознает ни один катридж",
           "status": "Принята в исполнение",
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/247995"
-        },
-        {
-          "id": "247994",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-13 14:55:03",
-          "name": "[Main PRTG] Резервный Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/247994"
+          "link": "https://help.knp24.ru/request/248063"
         },
         {
           "id": "247910",
@@ -565,7 +553,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-03-29 10:52:57",
           "name": "Доступ к видеонаблюдению на всех НБ Общества + АЗС",
-          "status": "Открыта",
+          "status": "Требует уточнения",
           "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/245270"
