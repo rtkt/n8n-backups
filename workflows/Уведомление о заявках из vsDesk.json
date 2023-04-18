@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-18T08:59:48.000Z",
+  "updatedAt": "2023-04-18T10:59:50.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,6 +439,42 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "248673",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-18 17:25:03",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248673"
+        },
+        {
+          "id": "248666",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-18 16:40:02",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248666"
+        },
+        {
+          "id": "248661",
+          "user": "Самчугова Анна Юрьевна",
+          "creator": "Самчугова Анна Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-18 16:13:43",
+          "name": "печатает грязно",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/248661"
+        },
+        {
           "id": "248654",
           "user": "Васягина Ирина Леонидовна",
           "creator": "Васягина Ирина Леонидовна",
@@ -449,18 +485,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/248654"
-        },
-        {
-          "id": "248653",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-18 15:40:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248653"
         },
         {
           "id": "248493",
