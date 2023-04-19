@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-19T04:59:59.000Z",
+  "updatedAt": "2023-04-19T07:00:01.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -438,6 +438,78 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "248777",
+          "user": "Бурба Елена Станиславовна",
+          "creator": "Бурба Елена Станиславовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-19 13:37:02",
+          "name": "Заправка катриджей",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248777"
+        },
+        {
+          "id": "248773",
+          "user": "Красильников Алексей Валерьевич",
+          "creator": "Красильников Алексей Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-19 13:27:58",
+          "name": "Сканер пропечатывает не полностью страницу",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248773"
+        },
+        {
+          "id": "248770",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-19 13:25:03",
+          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (The sensor could not conne",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248770"
+        },
+        {
+          "id": "248767",
+          "user": "Ульянова Юлия Александровна",
+          "creator": "Ульянова Юлия Александровна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-19 13:05:12",
+          "name": "Предоставление дополнительного монитора",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/248767"
+        },
+        {
+          "id": "248766",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-19 12:50:02",
+          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248766"
+        },
+        {
+          "id": "248759",
+          "user": "Ульянова Юлия Александровна",
+          "creator": "Ульянова Юлия Александровна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-19 12:08:08",
+          "name": "предоставление удалённого доступа",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248759"
+        },
         {
           "id": "248727",
           "user": "АЗС № 133",
