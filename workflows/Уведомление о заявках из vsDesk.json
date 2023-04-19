@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-19T09:00:03.000Z",
+  "updatedAt": "2023-04-19T10:59:04.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -439,76 +439,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "248807",
+          "id": "248818",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 15:55:02",
+          "timestamp": "2023-04-19 16:25:02",
           "name": "[Main PRTG] OpenVPN Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/248807"
-        },
-        {
-          "id": "248805",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 15:50:02",
-          "name": "[Main PRTG] Cam11 - Офис Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248805"
-        },
-        {
-          "id": "248800",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 15:45:03",
-          "name": "[Main PRTG] Основной WiFi Сибирские-сети Пинг (Пинг) Ошибка  (Request timed out (ошибка IC",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248800"
-        },
-        {
-          "id": "248799",
-          "user": "Мергинёва Светлана Юрьевна",
-          "creator": "Мергинёва Светлана Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 15:40:21",
-          "name": "Не работает принтер",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/248799"
-        },
-        {
-          "id": "248795",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 15:40:07",
-          "name": "[Main PRTG] Cisco Время бесперебойной работы (Время бесперебойной работы=?utf-8?B?INGB0LjRgdG",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248795"
-        },
-        {
-          "id": "248794",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 15:40:06",
-          "name": "[Main PRTG] Cisco (005)FastEthernet4 - Сибсети (Трафик по SNMP) Ошибка  (No response (check: firewal",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248794"
+          "link": "https://help.knp24.ru/request/248818"
         },
         {
           "id": "248790",
@@ -547,18 +487,6 @@
           "link": "https://help.knp24.ru/request/248773"
         },
         {
-          "id": "248770",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 13:25:03",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (The sensor could not conne",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248770"
-        },
-        {
           "id": "248767",
           "user": "Ульянова Юлия Александровна",
           "creator": "Ульянова Юлия Александровна",
@@ -569,18 +497,6 @@
           "executor": null,
           "priority": 5,
           "link": "https://help.knp24.ru/request/248767"
-        },
-        {
-          "id": "248766",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-19 12:50:02",
-          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248766"
         },
         {
           "id": "248759",
@@ -605,6 +521,18 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/248727"
+        },
+        {
+          "id": "248589",
+          "user": "Хабибулина Зульфия Равилевна",
+          "creator": "Хабибулина Зульфия Равилевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-18 08:52:29",
+          "name": "Не печатает принтер",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248589"
         },
         {
           "id": "248493",
