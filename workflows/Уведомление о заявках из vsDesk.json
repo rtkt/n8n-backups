@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-20T07:00:12.000Z",
+  "updatedAt": "2023-04-20T09:00:41.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -429,15 +429,24 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4",
-    "saveDataSuccessExecution": "all",
-    "saveManualExecutions": true
+    "errorWorkflow": "4"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "248963",
+          "user": "Шарыпов Олег Олегович",
+          "creator": "Шарыпов Олег Олегович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-20 14:57:37",
+          "name": "Новая АЗС Учетная запись",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/248963"
+        },
         {
           "id": "248946",
           "user": "АЗС № 53",
@@ -457,7 +466,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-20 10:20:59",
           "name": "не могу войти в ДО (Анастасия 8 950 400 25 55",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/248917"
@@ -538,7 +547,7 @@
     }
   },
   "pinData": {},
-  "versionId": "686d3515-d506-4e6d-993b-33761edb01a9",
+  "versionId": "642a341c-35ac-4ae0-ba09-35093eb74a84",
   "triggerCount": 1,
   "tags": []
 }
