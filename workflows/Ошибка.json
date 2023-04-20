@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-07T08:51:10.161Z",
-  "updatedAt": "2023-03-17T08:26:17.000Z",
+  "updatedAt": "2023-04-20T08:07:47.000Z",
   "id": "4",
   "name": "Ошибка",
   "active": false,
@@ -57,14 +57,11 @@
     }
   },
   "settings": {
-    "saveExecutionProgress": true,
-    "callerPolicy": "workflowsFromSameOwner",
-    "saveDataSuccessExecution": "all",
-    "saveManualExecutions": true
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "5adc1643-9aea-48f0-ab83-2886f119cc6f",
+  "versionId": "fa2d7ad5-dc0b-4871-b558-b40bf1e39fc7",
   "triggerCount": 0,
   "tags": []
 }
