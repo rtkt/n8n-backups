@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-24T09:00:07.000Z",
+  "updatedAt": "2023-04-24T10:58:08.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,16 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "249498",
-          "user": "Матюшенко Наталья Юрьевна",
-          "creator": "Матюшенко Наталья Юрьевна",
+          "id": "249510",
+          "user": "Идиатуллин Дамир Ринатович",
+          "creator": "Идиатуллин Дамир Ринатович",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-04-24 15:51:30",
-          "name": "Закончился тонер в МфУ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/249498"
+          "timestamp": "2023-04-24 16:57:16",
+          "name": "Не корректно работает корпоративная почта",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/249510"
         },
         {
           "id": "249485",
@@ -458,30 +458,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/249485"
-        },
-        {
-          "id": "249414",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-24 09:45:02",
-          "name": "[Main PRTG] Назарово НБ АСН3 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?utf-8?",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/249414"
-        },
-        {
-          "id": "249276",
-          "user": "АЗС № 56",
-          "creator": "АЗС № 56",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-22 20:11:10",
-          "name": "Не печатает принтер ",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/249276"
         },
         {
           "id": "246064",
