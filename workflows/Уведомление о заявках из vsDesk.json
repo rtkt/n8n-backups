@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-21T10:59:46.000Z",
+  "updatedAt": "2023-04-24T03:00:07.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,6 +435,54 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "249418",
+          "user": "Петрова Анна Сергеевна",
+          "creator": "Петрова Анна Сергеевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-24 09:49:58",
+          "name": "доступ сотруднику Западного филиала ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/249418"
+        },
+        {
+          "id": "249414",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-24 09:45:02",
+          "name": "[Main PRTG] Назарово НБ АСН3 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?utf-8?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/249414"
+        },
+        {
+          "id": "249409",
+          "user": "Яворовская Наталья Александровна",
+          "creator": "Яворовская Наталья Александровна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-24 09:30:23",
+          "name": "Не печатает принтер",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/249409"
+        },
+        {
+          "id": "249276",
+          "user": "АЗС № 56",
+          "creator": "АЗС № 56",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-22 20:11:10",
+          "name": "Не печатает принтер ",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/249276"
+        },
         {
           "id": "246064",
           "user": "Пермякова Наталья Александровна",
