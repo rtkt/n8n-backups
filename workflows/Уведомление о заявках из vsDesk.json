@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-24T04:59:06.000Z",
+  "updatedAt": "2023-04-24T06:59:07.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -442,7 +442,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-24 11:45:02",
           "name": "[Main PRTG] Внешний IP РТК Ping из облакa (Cloud Ping v2) Ошибка  (The sensor could not connect to t",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/249450"
@@ -454,8 +454,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-04-24 11:15:29",
           "name": "Не работает эл.почта",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/249443"
         },
