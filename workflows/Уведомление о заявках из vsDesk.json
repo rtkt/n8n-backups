@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-04-28T02:59:52.000Z",
+  "updatedAt": "2023-04-28T04:58:53.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,6 +436,102 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "250173",
+          "user": "Симаков Олег Юрьевич",
+          "creator": "Симаков Олег Юрьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 11:45:11",
+          "name": "прошу вернуть все папки с рабочего стола Пасторова О.В. на мой рабочий стол",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250173"
+        },
+        {
+          "id": "250171",
+          "user": "Симаков Олег Юрьевич",
+          "creator": "Симаков Олег Юрьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 11:35:40",
+          "name": "прошу заменить клавиатуру",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250171"
+        },
+        {
+          "id": "250170",
+          "user": "Симаков Олег Юрьевич",
+          "creator": "Симаков Олег Юрьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 11:34:42",
+          "name": "прошу заменить клавиатуру",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250170"
+        },
+        {
+          "id": "250160",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 10:50:03",
+          "name": "[Main PRTG] NetApp Node2 Managment [e0a] Работоспособность системы NetApp KNP-Cluster1-01 (Работосп=",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250160"
+        },
+        {
+          "id": "250159",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 10:45:02",
+          "name": "[Main PRTG] NetApp Node1 Managment [e0a] Работоспособность системы NetApp KNP-Cluster1-01 (Работосп=",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250159"
+        },
+        {
+          "id": "250152",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 10:25:06",
+          "name": "[Main PRTG] D5-cam5-asn Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250152"
+        },
+        {
+          "id": "250151",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 10:25:04",
+          "name": "[Main PRTG] D3-cam3-pojarnvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250151"
+        },
+        {
+          "id": "250150",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-04-28 10:25:03",
+          "name": "[Main PRTG] D1-cam1-nasos Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250150"
+        },
+        {
           "id": "250125",
           "user": "Сиротин Денис Вячеславович",
           "creator": "Сиротин Денис Вячеславович",
@@ -506,18 +602,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/249964"
-        },
-        {
-          "id": "249963",
-          "user": "Товарнов Алексей Владимирович",
-          "creator": "Товарнов Алексей Владимирович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-27 08:39:47",
-          "name": "Сбой в работе программы Power BI",
-          "status": "Требует уточнения",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/249963"
         },
         {
           "id": "249914",
