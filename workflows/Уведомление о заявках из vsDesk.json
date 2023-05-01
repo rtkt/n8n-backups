@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-01T06:58:56.000Z",
+  "updatedAt": "2023-05-01T08:59:56.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,6 +435,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "250572",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-01 15:55:02",
+          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250572"
+        },
         {
           "id": "250547",
           "user": "АЗС № 109",
