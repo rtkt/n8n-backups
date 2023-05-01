@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-01T08:59:56.000Z",
+  "updatedAt": "2023-05-01T10:59:57.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,6 +435,18 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "250573",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-01 16:05:02",
+          "name": "[Main PRTG] D7-IPCamera 07-КПП-Тихий 1а Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/250573"
+        },
         {
           "id": "250572",
           "user": "PRTG alert",
