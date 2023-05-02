@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-01T10:59:57.000Z",
+  "updatedAt": "2023-05-02T02:57:57.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,52 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "250573",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "250636",
+          "user": "Ивлева Ольга Валерьевна",
+          "creator": "Ивлева Ольга Валерьевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-01 16:05:02",
-          "name": "[Main PRTG] D7-IPCamera 07-КПП-Тихий 1а Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "timestamp": "2023-05-02 08:48:45",
+          "name": "Не отображается заявка под номером 250256 в программе. Нет прав на просмотр заявок и их закрытие",
           "status": "Открыта",
-          "executor": null,
+          "executor": "Болсуновский Максим Александрович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/250573"
-        },
-        {
-          "id": "250572",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-01 15:55:02",
-          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/250572"
-        },
-        {
-          "id": "250547",
-          "user": "АЗС № 109",
-          "creator": "АЗС № 109",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-01 11:22:02",
-          "name": "Закончился тонер в МФК",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/250547"
-        },
-        {
-          "id": "250530",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-01 10:05:02",
-          "name": "[Main PRTG] D7-IPCamera 07-КПП-Тихий 1а Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/250530"
+          "link": "https://help.knp24.ru/request/250636"
         },
         {
           "id": "249979",
@@ -494,18 +458,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/249979"
-        },
-        {
-          "id": "249973",
-          "user": "Плеханов Василь Васильевич",
-          "creator": "Плеханов Василь Васильевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-27 09:31:32",
-          "name": "Подключение студента к беспроводной сети",
-          "status": "Требует уточнения",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/249973"
         },
         {
           "id": "249853",
@@ -527,21 +479,9 @@
           "timestamp": "2023-04-26 13:03:08",
           "name": "Перенос рабочего места",
           "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/249839"
-        },
-        {
-          "id": "249794",
-          "user": "Прудникова Татьяна Андреевна",
-          "creator": "Прудникова Татьяна Андреевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-26 10:23:48",
-          "name": "Настроить принтер",
-          "status": "Принята в исполнение",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/249794"
         },
         {
           "id": "249792",
@@ -590,18 +530,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/246064"
-        },
-        {
-          "id": "245840",
-          "user": "Коробицына Анастасия Николаевна",
-          "creator": "Коробицына Анастасия Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-01 11:24:19",
-          "name": "отчет по заявкам сервисной службы за период (филиал Восточный)",
-          "status": "Требует уточнения",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/245840"
         }
       ]
     }
