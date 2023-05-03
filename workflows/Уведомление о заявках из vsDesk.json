@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-03T07:00:06.000Z",
+  "updatedAt": "2023-05-03T09:00:05.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,37 +436,13 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "250929",
-          "user": "Романенко Светлана Николаевна",
-          "creator": "Романенко Светлана Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-03 13:55:32",
-          "name": "MIN-KADR",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/250929"
-        },
-        {
-          "id": "250926",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-03 13:55:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (4,859 мс (Global Average)=",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/250926"
-        },
-        {
           "id": "250912",
           "user": "Никишина Алена Сергеевна",
           "creator": "Никишина Алена Сергеевна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-03 13:21:54",
           "name": "принтер",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/250912"
@@ -520,18 +496,6 @@
           "link": "https://help.knp24.ru/request/250853"
         },
         {
-          "id": "250750",
-          "user": "Бадьин Василий Алексеевич",
-          "creator": "Бадьин Василий Алексеевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-02 16:10:57",
-          "name": "Создание новой учетной записи",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/250750"
-        },
-        {
           "id": "249979",
           "user": "Стекляев Юрий Андреевич",
           "creator": "Стекляев Юрий Андреевич",
@@ -542,18 +506,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/249979"
-        },
-        {
-          "id": "248400",
-          "user": "Шульгин Максим Игоревич",
-          "creator": "Шульгин Максим Игоревич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-17 09:50:04",
-          "name": "Создание учетной записи для нового сотрудника.",
-          "status": "Требует уточнения",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/248400"
         },
         {
           "id": "246064",
