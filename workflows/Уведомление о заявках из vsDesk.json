@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-04T03:00:10.000Z",
+  "updatedAt": "2023-05-04T04:59:10.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,28 +436,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "251051",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "251087",
+          "user": "Буш Татьяна Юрьевна",
+          "creator": "Буш Татьяна Юрьевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-04 09:55:02",
-          "name": "[Main PRTG] NetApp Node2 Managment [e0a] Работоспособность системы NetApp KNP-Cluster1-01 (Работосп=",
-          "status": "Открыта",
-          "executor": null,
+          "timestamp": "2023-05-04 11:25:37",
+          "name": "Настройка ЛК Контур-Диадок",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/251051"
+          "link": "https://help.knp24.ru/request/251087"
         },
         {
-          "id": "251048",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "251083",
+          "user": "Иванова Надежда Александровна",
+          "creator": "Иванова Надежда Александровна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-04 09:50:03",
-          "name": "[Main PRTG] NetApp Node1 Managment [e0a] Работоспособность системы NetApp KNP-Cluster1-01 (Работосп=",
-          "status": "Открыта",
+          "timestamp": "2023-05-04 11:14:46",
+          "name": "настроить печать и сканирование",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/251083"
+        },
+        {
+          "id": "251069",
+          "user": "Иванова Надежда Александровна",
+          "creator": "Бутылин Иван Яковлевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-04 10:40:47",
+          "name": "полосы при печати",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/251048"
+          "link": "https://help.knp24.ru/request/251069"
+        },
+        {
+          "id": "251063",
+          "user": "Рукосуева Ирина Владимировна",
+          "creator": "Рукосуева Ирина Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-04 10:25:30",
+          "name": "замена ПК",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/251063"
         },
         {
           "id": "251040",
@@ -466,8 +490,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-04 08:38:29",
           "name": "Создать учетную запись для нового сотрудника",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/251040"
         },
