@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-03T10:57:06.000Z",
+  "updatedAt": "2023-05-04T03:00:10.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,16 +436,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "250912",
-          "user": "Никишина Алена Сергеевна",
-          "creator": "Никишина Алена Сергеевна",
+          "id": "251051",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-03 13:21:54",
-          "name": "принтер",
+          "timestamp": "2023-05-04 09:55:02",
+          "name": "[Main PRTG] NetApp Node2 Managment [e0a] Работоспособность системы NetApp KNP-Cluster1-01 (Работосп=",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/251051"
+        },
+        {
+          "id": "251048",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-04 09:50:03",
+          "name": "[Main PRTG] NetApp Node1 Managment [e0a] Работоспособность системы NetApp KNP-Cluster1-01 (Работосп=",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/251048"
+        },
+        {
+          "id": "251040",
+          "user": "Сазонов Евгений Александрович",
+          "creator": "Сазонов Евгений Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-04 08:38:29",
+          "name": "Создать учетную запись для нового сотрудника",
           "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/250912"
+          "link": "https://help.knp24.ru/request/251040"
         },
         {
           "id": "250882",
@@ -460,18 +484,6 @@
           "link": "https://help.knp24.ru/request/250882"
         },
         {
-          "id": "250878",
-          "user": "Жижова Зоя Ивановна",
-          "creator": "Жижова Зоя Ивановна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-03 10:56:08",
-          "name": "Грязно печатает принтер KYOCERA ECOSYS M2035dn",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/250878"
-        },
-        {
           "id": "250724",
           "user": "Идиатуллин Дамир Ринатович",
           "creator": "Идиатуллин Дамир Ринатович",
@@ -482,18 +494,6 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/250724"
-        },
-        {
-          "id": "246064",
-          "user": "Пермякова Наталья Александровна",
-          "creator": "Пермякова Наталья Александровна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-04-03 10:56:35",
-          "name": "недоступен предварительный просмотр печати",
-          "status": "Требует уточнения",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/246064"
         }
       ]
     }
