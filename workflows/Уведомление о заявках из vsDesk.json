@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-05T05:00:18.000Z",
+  "updatedAt": "2023-05-05T06:55:20.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,42 +435,6 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
-        {
-          "id": "251289",
-          "user": "Казанцева Светлана Ивановна",
-          "creator": "Казанцева Светлана Ивановна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-05 11:34:13",
-          "name": "Заявка",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/251289"
-        },
-        {
-          "id": "251284",
-          "user": "Тройнова Светлана Георгиевна",
-          "creator": "Тройнова Светлана Георгиевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-05 11:23:12",
-          "name": "зависает компьютер",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/251284"
-        },
-        {
-          "id": "251274",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-05 10:55:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (4,713 мс (Global Average)=",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251274"
-        },
         {
           "id": "251083",
           "user": "Иванова Надежда Александровна",
