@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-10T01:23:48.000Z",
+  "updatedAt": "2023-05-10T05:00:51.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,124 +436,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "251732",
-          "user": "Гарманова Ирина Вячеславовна",
-          "creator": "Гарманова Ирина Вячеславовна",
+          "id": "251800",
+          "user": "Никишина Алена Сергеевна",
+          "creator": "Никишина Алена Сергеевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 08:15:32",
-          "name": "невозможно зайти в сетевую  папку на рабочем столе Вагонооборот. Претензии  ",
+          "timestamp": "2023-05-10 11:34:02",
+          "name": "принтер",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/251800"
+        },
+        {
+          "id": "251797",
+          "user": "Нестерова Елена Ивановна",
+          "creator": "Нестерова Елена Ивановна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-10 11:27:41",
+          "name": "Нет доступа в интернет, эл.почту",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/251797"
+        },
+        {
+          "id": "251769",
+          "user": "Кильтре Ольга Викторовна",
+          "creator": "Григорьев Александр Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-10 09:52:27",
+          "name": "компьютер не загружается",
           "status": "Принята в исполнение",
           "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/251732"
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/251769"
         },
         {
-          "id": "251685",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "251749",
+          "user": "Пикарская Людмила Сергеевна",
+          "creator": "Пикарская Людмила Сергеевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-09 11:10:02",
-          "name": "[Main PRTG] Внешний IP РТК Ping из облакa (Cloud Ping v2) Ошибка  (The sensor could not connect to t",
-          "status": "Открыта",
-          "executor": null,
+          "timestamp": "2023-05-10 09:03:54",
+          "name": "Не могу зайти в Teams",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/251685"
-        },
-        {
-          "id": "251593",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 13:10:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (10,795 мс (Global Average=",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251593"
-        },
-        {
-          "id": "251592",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 12:50:02",
-          "name": "[Main PRTG] central vishka ASN-CAM5 Пинг (Пинг) Ошибка (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251592"
-        },
-        {
-          "id": "251589",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 12:05:02",
-          "name": "[Main PRTG] 192.168.17.237 Комп начальника участка Пинг (Пинг) Ошибка  (Request timed out (ошибка I=",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251589"
-        },
-        {
-          "id": "251587",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 11:50:06",
-          "name": "[Main PRTG] operator ASN-CAM16 Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251587"
-        },
-        {
-          "id": "251586",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 11:50:04",
-          "name": "[Main PRTG] 192.168.17.9 WiFi мост АСН Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251586"
-        },
-        {
-          "id": "251585",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 11:50:02",
-          "name": "[Main PRTG] 192.168.17.10 WiFi мост контора Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251585"
-        },
-        {
-          "id": "251583",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 11:25:02",
-          "name": "[Main PRTG] Назарово НБ АСН3 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?utf-8?",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251583"
-        },
-        {
-          "id": "251570",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-08 09:10:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251570"
+          "link": "https://help.knp24.ru/request/251749"
         },
         {
           "id": "251477",
@@ -566,30 +494,6 @@
           "executor": "Томилов Артем Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/251477"
-        },
-        {
-          "id": "251390",
-          "user": "Артышко Людмила Викторовна",
-          "creator": "Артышко Людмила Викторовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-06 09:28:30",
-          "name": "Не открывается системная папка ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251390"
-        },
-        {
-          "id": "251348",
-          "user": "Симаков Олег Юрьевич",
-          "creator": "Симаков Олег Юрьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-05 17:20:03",
-          "name": "прошу предоставить в ресурсе wialon данные  ТС по центральному филиалу ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251348"
         }
       ]
     }
