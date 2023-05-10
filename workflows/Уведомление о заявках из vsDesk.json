@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-10T07:00:52.000Z",
+  "updatedAt": "2023-05-10T08:59:52.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,76 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "251840",
+          "id": "251854",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 14:00:03",
-          "name": "[Main PRTG] OpenVPN Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251840"
-        },
-        {
-          "id": "251838",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 13:45:06",
-          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251838"
-        },
-        {
-          "id": "251837",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 13:45:05",
-          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251837"
-        },
-        {
-          "id": "251836",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 13:45:03",
-          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251836"
-        },
-        {
-          "id": "251828",
-          "user": "Барон Дмитрий Викторович",
-          "creator": "Барон Дмитрий Викторович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 13:18:33",
-          "name": "Установка МФУ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251828"
-        },
-        {
-          "id": "251800",
-          "user": "Никишина Алена Сергеевна",
-          "creator": "Никишина Алена Сергеевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 11:34:02",
-          "name": "принтер",
+          "timestamp": "2023-05-10 15:00:02",
+          "name": "[Main PRTG] НБ Ачинск-Вход в АБК Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 110",
           "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
-          "link": "https://help.knp24.ru/request/251800"
+          "link": "https://help.knp24.ru/request/251854"
         },
         {
           "id": "251769",
