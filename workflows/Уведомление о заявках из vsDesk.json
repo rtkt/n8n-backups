@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-12T01:00:05.000Z",
+  "updatedAt": "2023-05-12T03:00:06.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,16 +436,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "252117",
-          "user": "АЗС № 231",
-          "creator": "АЗС № 231",
+          "id": "252181",
+          "user": "Дубровская Светлана Викторовна",
+          "creator": "Дубровская Светлана Викторовна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-11 17:56:45",
-          "name": "БК",
+          "timestamp": "2023-05-12 09:19:48",
+          "name": "MIN-DOK",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/252117"
+          "link": "https://help.knp24.ru/request/252181"
+        },
+        {
+          "id": "252174",
+          "user": "Красильников Алексей Валерьевич",
+          "creator": "Красильников Алексей Валерьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-12 08:54:12",
+          "name": "Подключение сканера",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/252174"
         },
         {
           "id": "252107",
@@ -454,8 +466,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-11 16:54:31",
           "name": "Kyocera M2040dn заминает бумагу",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/252107"
         },
@@ -466,34 +478,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-11 16:30:20",
           "name": "Доступ к папке",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/252104"
-        },
-        {
-          "id": "252097",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-11 16:15:03",
-          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252097"
-        },
-        {
-          "id": "252090",
-          "user": "Туров Вячеслав Александрович",
-          "creator": "Туров Вячеслав Александрович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-11 15:37:09",
-          "name": "Копия ЗУП",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252090"
         },
         {
           "id": "252075",
@@ -502,22 +490,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-11 14:06:11",
           "name": "Проблема с МФУ Kyocera",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/252075"
-        },
-        {
-          "id": "252061",
-          "user": "АЗС № 244",
-          "creator": "АЗС № 244",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-11 13:13:38",
-          "name": "Не открывается почта, не открываются вложения в сообщениях. ",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252061"
         },
         {
           "id": "252044",
@@ -532,18 +508,6 @@
           "link": "https://help.knp24.ru/request/252044"
         },
         {
-          "id": "252028",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-11 10:55:02",
-          "name": "[Main PRTG] Внешний IP Телезон Ping из облакa GW (Cloud Ping v2) Ошибка  (Ошибка, вызванна",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252028"
-        },
-        {
           "id": "251896",
           "user": "Михайлов Степан Сергеевич",
           "creator": "Михайлов Степан Сергеевич",
@@ -554,18 +518,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/251896"
-        },
-        {
-          "id": "251866",
-          "user": "Шарыпов Олег Олегович",
-          "creator": "ВАТС РТК",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-10 15:40:03",
-          "name": "проблема со считыванием бонусных карт электронной почтой",
-          "status": "Принята в исполнение",
-          "executor": "Болсуновский Максим Александрович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251866"
         },
         {
           "id": "251854",
