@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-15T07:00:25.000Z",
+  "updatedAt": "2023-05-15T09:00:26.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,52 +436,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "252614",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "252635",
+          "user": "Васягина Ирина Леонидовна",
+          "creator": "Васягина Ирина Леонидовна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-15 13:30:04",
-          "name": "[Main PRTG] OpenVpn Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252614"
+          "timestamp": "2023-05-15 14:49:25",
+          "name": " При выводе в ПК Гранд Смета документа на печать не формирует сам документ",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/252635"
         },
         {
-          "id": "252613",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "252634",
+          "user": "Какаулина Евгения Григорьевна",
+          "creator": "Какаулина Евгения Григорьевна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-15 13:30:02",
-          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Открыта",
+          "timestamp": "2023-05-15 14:48:54",
+          "name": "не настроен скан на принтере",
+          "status": "Просрочена реакция",
           "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252613"
-        },
-        {
-          "id": "252612",
-          "user": "Кузьмиченко Евгения Андреевна",
-          "creator": "Кузьмиченко Евгения Андреевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-15 13:28:40",
-          "name": "подключение наушников",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252612"
-        },
-        {
-          "id": "252608",
-          "user": "Громова Валентина Юрьевна",
-          "creator": "Громова Валентина Юрьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-15 13:22:14",
-          "name": "работа в 1с Документооборот",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252608"
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/252634"
         },
         {
           "id": "252557",
@@ -502,22 +478,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-12 19:32:41",
           "name": "Сетевой Экран KES - azs203server",
-          "status": "Просрочена реакция",
+          "status": "Просрочено исполнение",
           "executor": "Томилов Артем Александрович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/252311"
-        },
-        {
-          "id": "252241",
-          "user": "Бурба Елена Станиславовна",
-          "creator": "Бурба Елена Станиславовна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-12 13:12:04",
-          "name": "Заправка катриджей",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252241"
         },
         {
           "id": "252061",
