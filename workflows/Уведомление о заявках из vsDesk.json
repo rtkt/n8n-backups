@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-15T10:59:28.000Z",
+  "updatedAt": "2023-05-16T02:59:37.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,13 +436,49 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "252736",
+          "user": "Цишкевич Татьяна Викторовна",
+          "creator": "Цишкевич Татьяна Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-16 07:53:53",
+          "name": "Установление программы для вызова копоративного такси на рабочий компьтер сотрудника общества ",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/252736"
+        },
+        {
+          "id": "252735",
+          "user": "Цишкевич Татьяна Викторовна",
+          "creator": "Цишкевич Татьяна Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-16 07:48:43",
+          "name": "В 15:50 (время Красноярска, а время Санкт-Петербурга в 11:50) состоится с/заседание в онлайн ",
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/252735"
+        },
+        {
+          "id": "252721",
+          "user": "АЗС № 112",
+          "creator": "АЗС № 112",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-16 01:24:38",
+          "name": "Принтер",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/252721"
+        },
+        {
           "id": "252667",
           "user": "Невзорова Дарья Александровна",
           "creator": "Невзорова Дарья Александровна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-15 16:51:19",
           "name": "рассылка маерчака",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/252667"
@@ -454,34 +490,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-15 16:24:49",
           "name": "принтер ECoSYS M3655idn снова грязно печатает",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/252661"
-        },
-        {
-          "id": "252614",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-15 13:30:04",
-          "name": "[Main PRTG] OpenVpn Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252614"
-        },
-        {
-          "id": "252613",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-15 13:30:02",
-          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/252613"
         },
         {
           "id": "252612",
@@ -520,6 +532,18 @@
           "link": "https://help.knp24.ru/request/252311"
         },
         {
+          "id": "252117",
+          "user": "АЗС № 231",
+          "creator": "АЗС № 231",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-11 17:56:45",
+          "name": "БК",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/252117"
+        },
+        {
           "id": "252061",
           "user": "АЗС № 244",
           "creator": "АЗС № 244",
@@ -554,6 +578,18 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/251896"
+        },
+        {
+          "id": "251795",
+          "user": "Дубровская Светлана Викторовна",
+          "creator": "Дубровская Светлана Викторовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-10 11:19:29",
+          "name": "MIN-DOK",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/251795"
         },
         {
           "id": "251477",
