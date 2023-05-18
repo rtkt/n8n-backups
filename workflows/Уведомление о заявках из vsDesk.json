@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-18T05:00:02.000Z",
+  "updatedAt": "2023-05-18T06:58:03.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,14 +436,26 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "253136",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-18 12:45:02",
+          "name": "[Main PRTG] Назарово НБ АСН3 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICM=?utf-8?",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/253136"
+        },
+        {
           "id": "253099",
           "user": "Ростовцева Валерия Александровна",
           "creator": "Ростовцева Валерия Александровна",
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-18 08:34:32",
           "name": "настроить приложение Яндекс Диск",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/253099"
         },
