@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-19T09:00:15.000Z",
+  "updatedAt": "2023-05-19T10:58:15.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,16 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "253316",
+          "id": "253327",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-19 15:55:05",
-          "name": "[Main PRTG] Exchange02 Свободное дисковое пространство (на нескольких ди=?utf-8?B?0YHQutCw0YUpICjQod",
+          "timestamp": "2023-05-19 17:00:01",
+          "name": "[Main PRTG] Exchange_delayDB Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
           "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/253316"
+          "link": "https://help.knp24.ru/request/253327"
         },
         {
           "id": "253303",
