@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-22T03:00:48.000Z",
+  "updatedAt": "2023-05-22T04:59:49.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,28 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "253590",
-          "user": "Цуканова Елена Анатольевна",
-          "creator": "Цуканова Елена Анатольевна",
+          "id": "253614",
+          "user": "Кузьмичева Ирина Александровна",
+          "creator": "Кузьмичева Ирина Александровна",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-22 09:38:06",
-          "name": "Прошу включить меня в общую рассылку",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
+          "timestamp": "2023-05-22 11:54:29",
+          "name": "покупка вебкамеры",
+          "status": "Открыта",
+          "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/253590"
-        },
-        {
-          "id": "253580",
-          "user": "Какаулина Евгения Григорьевна",
-          "creator": "Какаулина Евгения Григорьевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-22 08:57:20",
-          "name": "Добрый день. Проблема с почтой. ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/253580"
+          "link": "https://help.knp24.ru/request/253614"
         },
         {
           "id": "253495",
@@ -482,18 +470,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/253378"
-        },
-        {
-          "id": "253327",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-19 17:00:01",
-          "name": "[Main PRTG] Exchange_delayDB Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/253327"
         },
         {
           "id": "253303",
