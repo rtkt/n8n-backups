@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-24T03:00:15.000Z",
+  "updatedAt": "2023-05-24T05:00:16.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,28 +436,28 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "253924",
-          "user": "Зыкова Людмила Георгиевна",
-          "creator": "Зыкова Людмила Георгиевна",
+          "id": "253944",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-24 09:55:47",
-          "name": "На эл. почте не достаточно для работы памяти,",
+          "timestamp": "2023-05-24 11:05:02",
+          "name": "[Main PRTG] Main NS Postfix Черный список IP-адресов на DNS (Черный список IP-адр=?utf-8?B?0LXRgdC+0",
           "status": "Открыта",
           "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/253924"
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/253944"
         },
         {
-          "id": "253784",
-          "user": "Бадьин Василий Алексеевич",
-          "creator": "Бадьин Василий Алексеевич",
+          "id": "253943",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-23 10:57:12",
-          "name": "Создание новой учетной записи",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
+          "timestamp": "2023-05-24 11:00:02",
+          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
+          "status": "Открыта",
+          "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/253784"
+          "link": "https://help.knp24.ru/request/253943"
         },
         {
           "id": "253753",
