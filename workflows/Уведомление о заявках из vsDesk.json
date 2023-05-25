@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-25T08:59:54.000Z",
+  "updatedAt": "2023-05-25T10:58:55.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,40 +436,16 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "254250",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
+          "id": "254284",
+          "user": "Туров Вячеслав Александрович",
+          "creator": "Туров Вячеслав Александрович",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-25 14:30:03",
-          "name": "[Main PRTG] оф Минусинск Node Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
+          "timestamp": "2023-05-25 17:05:14",
+          "name": "нет доступа к заявкам которые переводят на группу 1с проектов ",
+          "status": "Открыта",
           "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/254250"
-        },
-        {
-          "id": "254245",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-25 14:25:02",
-          "name": "[Main PRTG] ADS: 192.168.9.3 Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/254245"
-        },
-        {
-          "id": "254243",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-25 14:20:02",
-          "name": "[Main PRTG] Inet-RTK Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/254243"
+          "link": "https://help.knp24.ru/request/254284"
         },
         {
           "id": "254239",
@@ -496,18 +472,6 @@
           "link": "https://help.knp24.ru/request/254220"
         },
         {
-          "id": "254193",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-25 11:05:02",
-          "name": "[Main PRTG] iDRAC PH1 Physical Disk 0:1:6 (Физический диск Dell PowerEdge по SNMP) Ошибка  (Предупр=",
-          "status": "Просрочена реакция",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/254193"
-        },
-        {
           "id": "254101",
           "user": "Майко Николай Григорьевич",
           "creator": "Майко Николай Григорьевич",
@@ -526,8 +490,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-24 22:13:30",
           "name": "не работает ИБП",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Дмитриев Виктор Борисович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/254069"
         },
