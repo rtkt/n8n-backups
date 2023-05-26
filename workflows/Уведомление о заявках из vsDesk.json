@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-26T04:56:57.000Z",
+  "updatedAt": "2023-05-26T06:58:59.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,16 +436,100 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "254416",
-          "user": "Ситдиков Расим Раисович",
-          "creator": "Ситдиков Расим Раисович",
+          "id": "254442",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-26 11:55:03",
-          "name": "Заявка на предоставления доступа Шефер Андрей Андреевич",
+          "timestamp": "2023-05-26 13:50:08",
+          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
           "status": "Открыта",
           "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/254442"
+        },
+        {
+          "id": "254441",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-26 13:50:06",
+          "name": "[Main PRTG] Cisco System Health Память (Работоспособность системы устройства SNMP=?utf-8?B?IENpc2NvK",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/254441"
+        },
+        {
+          "id": "254440",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-26 13:50:05",
+          "name": "[Main PRTG] Cisco System Health ЦП (Работоспособность системы устройства SNMP Cisco) Ошибк=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/254440"
+        },
+        {
+          "id": "254439",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-26 13:50:03",
+          "name": "[Main PRTG] Cisco System Health Блоки питания (Работоспособность системы устройст=?utf-8?B?0LLQsC",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/254439"
+        },
+        {
+          "id": "254435",
+          "user": "Туров Вячеслав Александрович",
+          "creator": "Туров Вячеслав Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-26 13:30:04",
+          "name": "нет доступа к заявкам",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/254435"
+        },
+        {
+          "id": "254433",
+          "user": "Сорокина Наталия Владимировна",
+          "creator": "Сорокина Наталия Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-26 13:22:48",
+          "name": "Прошу проверить привязана ли учетная запись  Терского А.К. к организации ООО Оптнефтепродукт  ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/254433"
+        },
+        {
+          "id": "254432",
+          "user": "АЗС № 246",
+          "creator": "АЗС № 246",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-26 13:16:31",
+          "name": "При работе принтера   слышны щелчки",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/254432"
+        },
+        {
+          "id": "254429",
+          "user": "Шеина Мария Ильинична",
+          "creator": "Шеина Мария Ильинична",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-26 13:09:01",
+          "name": "нет соединения с сервером",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
-          "link": "https://help.knp24.ru/request/254416"
+          "link": "https://help.knp24.ru/request/254429"
         },
         {
           "id": "254407",
@@ -454,8 +538,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-26 11:12:06",
           "name": "настроить удаленный доступ на рабочем столе 26.05.23!",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/254407"
         },
@@ -466,22 +550,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-26 11:04:50",
           "name": "Ошибки синхронизации",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
           "priority": 3,
           "link": "https://help.knp24.ru/request/254404"
-        },
-        {
-          "id": "254403",
-          "user": "Сизиков Леонид Юрьевич",
-          "creator": "Сизиков Леонид Юрьевич",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-26 11:00:58",
-          "name": "Не работает электронная почта",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/254403"
         },
         {
           "id": "254400",
@@ -502,8 +574,8 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-26 08:27:12",
           "name": "не работает почта",
-          "status": "Просрочена реакция",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Бернаучис Андрей Робертович",
           "priority": 5,
           "link": "https://help.knp24.ru/request/254359"
         },
