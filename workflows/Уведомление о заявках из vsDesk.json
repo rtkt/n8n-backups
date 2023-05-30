@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-30T07:00:47.000Z",
+  "updatedAt": "2023-05-30T08:48:19.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -430,11 +430,24 @@
   },
   "settings": {
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4"
+    "errorWorkflow": "4",
+    "saveDataSuccessExecution": "all"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "254990",
+          "user": "Фурман Николай Владимирович",
+          "creator": "Фурман Николай Владимирович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-30 15:28:22",
+          "name": "Начальник АТЦ филиал Центральный",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/254990"
+        },
         {
           "id": "254969",
           "user": "PRTG alert",
@@ -442,22 +455,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-30 13:00:02",
           "name": "[Main PRTG] central vishka ASN-CAM5 Пинг (Пинг) Ошибка (Request timed out (ошибка ICMP № 11010))",
-          "status": "Открыта",
+          "status": "Просрочена реакция",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/254969"
-        },
-        {
-          "id": "254945",
-          "user": "Гончарова Татьяна Анатольевна",
-          "creator": "Гончарова Татьяна Анатольевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-30 11:02:54",
-          "name": "Прошу почистить контейнер отработанного тонера ",
-          "status": "Принята в исполнение",
-          "executor": "Бернаучис Андрей Робертович",
-          "priority": 5,
-          "link": "https://help.knp24.ru/request/254945"
         },
         {
           "id": "254920",
@@ -526,7 +527,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-25 08:33:42",
           "name": "После замены картриджа не корректная печать",
-          "status": "Принята в исполнение",
+          "status": "Просрочено исполнение",
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/254101"
@@ -631,7 +632,7 @@
     }
   },
   "pinData": {},
-  "versionId": "642a341c-35ac-4ae0-ba09-35093eb74a84",
+  "versionId": "c1dd55c0-0b76-43d2-bc1a-283f96f90e01",
   "triggerCount": 1,
   "tags": []
 }
