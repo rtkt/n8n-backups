@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-31T04:59:53.000Z",
+  "updatedAt": "2023-05-31T06:59:54.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,16 +436,100 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
-          "id": "254999",
-          "user": "Коробицына Анастасия Николаевна",
-          "creator": "Коробицына Анастасия Николаевна",
+          "id": "255148",
+          "user": "Бутылин Иван Яковлевич",
+          "creator": "Бутылин Иван Яковлевич",
           "group": "Группа системного администрирования",
-          "timestamp": "2023-05-30 16:08:53",
-          "name": "обновить программу видеонаблюдение РТК",
-          "status": "Принята в исполнение",
-          "executor": "Сударев Владислав Николаевич",
+          "timestamp": "2023-05-31 13:57:21",
+          "name": "необходимо заправить картриджи",
+          "status": "Открыта",
+          "executor": null,
           "priority": 3,
-          "link": "https://help.knp24.ru/request/254999"
+          "link": "https://help.knp24.ru/request/255148"
+        },
+        {
+          "id": "255146",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:14",
+          "name": "[Main PRTG] D5-cam5-asn Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255146"
+        },
+        {
+          "id": "255145",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:12",
+          "name": "[Main PRTG] D4-cam4-rezervuar Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255145"
+        },
+        {
+          "id": "255144",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:10",
+          "name": "[Main PRTG] D6-IPCamera 06 Пинг (Пинг) Ошибка (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255144"
+        },
+        {
+          "id": "255143",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:08",
+          "name": "[Main PRTG] D7-cam6-jdvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255143"
+        },
+        {
+          "id": "255142",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:06",
+          "name": "[Main PRTG] D1-cam1-nasos Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255142"
+        },
+        {
+          "id": "255141",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:04",
+          "name": "[Main PRTG] D3-cam3-pojarnvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255141"
+        },
+        {
+          "id": "255132",
+          "user": "Савельева Наталья Юрьевна",
+          "creator": "Савельева Наталья Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:31:48",
+          "name": "НЕТ ДОСТУПА В КОНТУР ДИАДОК.",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/255132"
         },
         {
           "id": "254990",
@@ -454,7 +538,7 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-05-30 15:28:22",
           "name": "Начальник АТЦ филиал Центральный",
-          "status": "Просрочено исполнение",
+          "status": "Требует уточнения",
           "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/254990"
