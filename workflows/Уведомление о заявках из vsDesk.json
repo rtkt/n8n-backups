@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-05-31T10:29:56.000Z",
+  "updatedAt": "2023-06-01T01:00:03.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,6 +436,30 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "255296",
+          "user": "АЗС № 247",
+          "creator": "АЗС № 247",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-01 07:14:21",
+          "name": "Принтер жуёт бумагу.",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255296"
+        },
+        {
+          "id": "255234",
+          "user": "Туров Вячеслав Александрович",
+          "creator": "Туров Вячеслав Александрович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 23:57:48",
+          "name": "нет доступа к заявке",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255234"
+        },
+        {
           "id": "255170",
           "user": "Черепов Вячеслав Александрович",
           "creator": "Черепов Вячеслав Александрович",
@@ -458,6 +482,114 @@
           "executor": "Сударев Владислав Николаевич",
           "priority": 5,
           "link": "https://help.knp24.ru/request/255163"
+        },
+        {
+          "id": "255158",
+          "user": "АЗС № 131",
+          "creator": "АЗС № 131",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 14:47:06",
+          "name": "Добрый день! При печатании на принтере ,он печатает ,при печати  печатает две черные жирные полосы.",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255158"
+        },
+        {
+          "id": "255152",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 14:15:02",
+          "name": "[Main PRTG] Main NS Postfix Черный список IP-адресов на DNS (Черный список IP-адр=?utf-8?B?0LXRgdC+0",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255152"
+        },
+        {
+          "id": "255148",
+          "user": "Бутылин Иван Яковлевич",
+          "creator": "Бутылин Иван Яковлевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:57:21",
+          "name": "необходимо заправить картриджи",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255148"
+        },
+        {
+          "id": "255146",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:14",
+          "name": "[Main PRTG] D5-cam5-asn Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255146"
+        },
+        {
+          "id": "255145",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:12",
+          "name": "[Main PRTG] D4-cam4-rezervuar Пинг (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255145"
+        },
+        {
+          "id": "255144",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:10",
+          "name": "[Main PRTG] D6-IPCamera 06 Пинг (Пинг) Ошибка (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255144"
+        },
+        {
+          "id": "255143",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:08",
+          "name": "[Main PRTG] D7-cam6-jdvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003)",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255143"
+        },
+        {
+          "id": "255142",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:06",
+          "name": "[Main PRTG] D1-cam1-nasos Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11003))",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255142"
+        },
+        {
+          "id": "255141",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-05-31 13:55:04",
+          "name": "[Main PRTG] D3-cam3-pojarnvorota Пинг (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP № 11",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/255141"
         },
         {
           "id": "254990",
