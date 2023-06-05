@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-06-05T09:00:01.000Z",
+  "updatedAt": "2023-06-05T10:29:02.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,40 +436,40 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "256237",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-05 17:10:02",
+          "name": "[Main PRTG] Основной РТК Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/256237"
+        },
+        {
+          "id": "256226",
+          "user": "crys@knp24.ru",
+          "creator": "crys@knp24.ru",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-05 16:35:02",
+          "name": "[CDI] PC_NAME (1) DISK_NAME / SERIAL_NUMBER / C: [777]",
+          "status": "Выполнена",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/256226"
+        },
+        {
           "id": "256195",
           "user": "PRTG alert",
           "creator": "PRTG alert",
           "group": "Группа системного администрирования",
           "timestamp": "2023-06-05 15:05:02",
           "name": "[Main PRTG] central vishka ASN-CAM5 Пинг (Пинг) Ошибка (Destination host unreachable (ошибка ICMP № ",
-          "status": "Открыта",
-          "executor": null,
+          "status": "Принята в исполнение",
+          "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/256195"
-        },
-        {
-          "id": "256193",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-05 15:00:04",
-          "name": "[Main PRTG] SMB-126(storage) Свободное пространство диска по SSH (Свободное прост=?utf-8?B?0YDQsNC90",
-          "status": "Открыта",
-          "executor": null,
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/256193"
-        },
-        {
-          "id": "256188",
-          "user": "Климас Татьяна Игоревна",
-          "creator": "Климас Татьяна Игоревна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-05 14:49:07",
-          "name": "ТЕЛЕФОН",
-          "status": "Выполнена",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/256188"
         },
         {
           "id": "256164",
