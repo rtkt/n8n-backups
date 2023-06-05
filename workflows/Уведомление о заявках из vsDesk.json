@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-06-05T06:59:59.000Z",
+  "updatedAt": "2023-06-05T09:00:01.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -436,76 +436,52 @@
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
         {
+          "id": "256195",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-05 15:05:02",
+          "name": "[Main PRTG] central vishka ASN-CAM5 Пинг (Пинг) Ошибка (Destination host unreachable (ошибка ICMP № ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/256195"
+        },
+        {
+          "id": "256193",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-05 15:00:04",
+          "name": "[Main PRTG] SMB-126(storage) Свободное пространство диска по SSH (Свободное прост=?utf-8?B?0YDQsNC90",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/256193"
+        },
+        {
+          "id": "256188",
+          "user": "Климас Татьяна Игоревна",
+          "creator": "Климас Татьяна Игоревна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-05 14:49:07",
+          "name": "ТЕЛЕФОН",
+          "status": "Выполнена",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/256188"
+        },
+        {
           "id": "256164",
           "user": "Туров Вячеслав Александрович",
           "creator": "Туров Вячеслав Александрович",
           "group": "Группа системного администрирования",
           "timestamp": "2023-06-05 12:54:43",
           "name": "не могу закрыть заявку https://help.knp24.ru/request/update/256092",
-          "status": "Открыта",
+          "status": "Выполнена",
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/256164"
-        },
-        {
-          "id": "256145",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-05 11:20:04",
-          "name": "[Main PRTG] Cisco Пинг (Пинг) Ошибка (Request timed out (ошибка ICMP № 11010))",
-          "status": "Выполнена",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/256145"
-        },
-        {
-          "id": "256144",
-          "user": "PRTG alert",
-          "creator": "PRTG alert",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-05 11:20:03",
-          "name": "[Main PRTG] Резервный канал Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?",
-          "status": "Выполнена",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/256144"
-        },
-        {
-          "id": "256128",
-          "user": "Герасименко Денис Иванович",
-          "creator": "Герасименко Денис Иванович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-05 10:15:27",
-          "name": "доступ к почте сотрудника. ",
-          "status": "Выполнена",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/256128"
-        },
-        {
-          "id": "256110",
-          "user": "Редкозубова Галина Николаевна",
-          "creator": "Редкозубова Галина Николаевна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-05 09:16:31",
-          "name": "не грузятся письма в почту",
-          "status": "Выполнена",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/256110"
-        },
-        {
-          "id": "255736",
-          "user": "Невзорова Дарья Александровна",
-          "creator": "Невзорова Дарья Александровна",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-02 13:43:25",
-          "name": "Принтер",
-          "status": "Просрочено исполнение",
-          "executor": "Сударев Владислав Николаевич",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/255736"
         },
         {
           "id": "255709",
@@ -514,22 +490,10 @@
           "group": "Группа системного администрирования",
           "timestamp": "2023-06-02 11:19:48",
           "name": "настройка видеонаблюдения ННБ",
-          "status": "Просрочено исполнение",
+          "status": "Принята в исполнение",
           "executor": "Лиханов Олег Олегович",
           "priority": 3,
           "link": "https://help.knp24.ru/request/255709"
-        },
-        {
-          "id": "255707",
-          "user": "Сазонов Евгений Александрович",
-          "creator": "Сазонов Евгений Александрович",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-06-02 11:13:40",
-          "name": "настройка доступа к видеонаблюдению сотрудников  ЗФ ",
-          "status": "Просрочено исполнение",
-          "executor": "Лиханов Олег Олегович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/255707"
         },
         {
           "id": "255686",
