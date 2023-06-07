@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-13T03:22:39.759Z",
-  "updatedAt": "2023-06-06T10:29:16.000Z",
+  "updatedAt": "2023-06-07T00:59:22.000Z",
   "id": "1",
   "name": "Уведомление о заявках из vsDesk",
   "active": true,
@@ -435,6 +435,42 @@
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
       "lastExecution": [
+        {
+          "id": "256942",
+          "user": "ВАТС РТК",
+          "creator": "ВАТС РТК",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-06 20:05:02",
+          "name": "Новое голосовое сообщение на группу",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/256942"
+        },
+        {
+          "id": "256919",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-06 17:40:02",
+          "name": "[Main PRTG] Основной РТК Ping (Пинг) Ошибка  (Request timed out (ошибка ICMP № 11010))",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/256919"
+        },
+        {
+          "id": "256914",
+          "user": "Чулпанова Дания Аликовна",
+          "creator": "Чулпанова Дания Аликовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-06-06 17:17:56",
+          "name": "не работает обмен данными с фсс с утра 06.06.23!",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/256914"
+        },
         {
           "id": "256903",
           "user": "Ивлева Ольга Валерьевна",
@@ -1202,18 +1238,6 @@
           "executor": null,
           "priority": 3,
           "link": "https://help.knp24.ru/request/251896"
-        },
-        {
-          "id": "251477",
-          "user": "АЗС № 216",
-          "creator": "АЗС № 216",
-          "group": "Группа системного администрирования",
-          "timestamp": "2023-05-06 23:50:26",
-          "name": "заявка антивирус",
-          "status": "Требует уточнения",
-          "executor": "Томилов Артем Александрович",
-          "priority": 3,
-          "link": "https://help.knp24.ru/request/251477"
         }
       ]
     }
