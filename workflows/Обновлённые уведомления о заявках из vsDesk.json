@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-06-07T10:03:16.000Z",
+  "updatedAt": "2023-06-08T03:01:55.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDesk",
   "active": false,
@@ -16,17 +16,6 @@
       "position": [
         280,
         240
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "38736aaf-43ca-4db5-99d6-e29814b20a1f",
-      "name": "Начало (он же ручной запуск)",
-      "type": "n8n-nodes-base.start",
-      "typeVersion": 1,
-      "position": [
-        280,
-        60
       ]
     },
     {
@@ -61,17 +50,6 @@
       ]
     },
     {
-      "parameters": {},
-      "id": "ce60623d-35e1-421c-b226-d353629903b7",
-      "name": "Ничего не делать",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        760,
-        360
-      ]
-    },
-    {
       "parameters": {
         "authentication": "genericCredentialType",
         "genericAuthType": "httpBasicAuth",
@@ -95,8 +73,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        780,
-        160
+        740,
+        240
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -424,20 +402,6 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json = {\n  wrapper: JSON.parse(JSON.stringify($input.item.json))\n};\n\nreturn $input.item;"
-      },
-      "id": "8f4106c1-0685-49ed-a22b-f32823376b37",
-      "name": "Оборачиваем полученные данные",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1000,
-        160
-      ]
-    },
-    {
-      "parameters": {
         "fieldToSplitOut": "wrapper",
         "options": {}
       },
@@ -446,8 +410,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2.1,
       "position": [
-        1180,
-        160
+        1140,
+        240
       ],
       "alwaysOutputData": true
     },
@@ -472,35 +436,31 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1400,
-        160
+        1360,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json = {\n  wrapper: JSON.parse(JSON.stringify($input.item.json))\n};\n\nreturn $input.item;"
+      },
+      "id": "8f4106c1-0685-49ed-a22b-f32823376b37",
+      "name": "!КОСТЫЛЬ! Оборачиваем полученные данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        940,
+        240
       ]
     }
   ],
   "connections": {
-    "Начало (он же ручной запуск)": {
-      "main": [
-        [
-          {
-            "node": "Получение списка заявок из vsDesk",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Сейчас рабочее время?": {
       "main": [
         [
           {
             "node": "Получение списка заявок из vsDesk",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Ничего не делать",
             "type": "main",
             "index": 0
           }
@@ -616,18 +576,7 @@
       "main": [
         [
           {
-            "node": "Оборачиваем полученные данные",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Оборачиваем полученные данные": {
-      "main": [
-        [
-          {
-            "node": "Разбиваем их на части",
+            "node": "!КОСТЫЛЬ! Оборачиваем полученные данные",
             "type": "main",
             "index": 0
           }
@@ -639,6 +588,17 @@
         [
           {
             "node": "Заявка закрыта?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "!КОСТЫЛЬ! Оборачиваем полученные данные": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем их на части",
             "type": "main",
             "index": 0
           }
@@ -861,7 +821,7 @@
     }
   },
   "pinData": {},
-  "versionId": "a92c8dec-79fe-4aa0-8966-2253baf81956",
+  "versionId": "75b0f268-ec0b-45ab-a904-cef59a46256c",
   "triggerCount": 1,
   "tags": []
 }
