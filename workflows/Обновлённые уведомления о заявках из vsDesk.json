@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-06-08T03:01:55.000Z",
+  "updatedAt": "2023-06-08T10:02:07.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDesk",
   "active": false,
@@ -453,6 +453,19 @@
         940,
         240
       ]
+    },
+    {
+      "parameters": {
+        "operation": "push"
+      },
+      "id": "69a512a2-ad43-4710-a37b-350219a0e19e",
+      "name": "Redis",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        240
+      ]
     }
   ],
   "connections": {
@@ -599,6 +612,17 @@
         [
           {
             "node": "Разбиваем их на части",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка закрыта?": {
+      "main": [
+        [
+          {
+            "node": "Redis",
             "type": "main",
             "index": 0
           }
@@ -821,7 +845,7 @@
     }
   },
   "pinData": {},
-  "versionId": "75b0f268-ec0b-45ab-a904-cef59a46256c",
+  "versionId": "b46a20ff-764d-4ba6-a100-7e98e0d9d071",
   "triggerCount": 1,
   "tags": []
 }
