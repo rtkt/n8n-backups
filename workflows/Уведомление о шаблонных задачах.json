@@ -1,0 +1,341 @@
+{
+  "id": "7",
+  "createdAt": "2023-06-09T08:57:08.415Z",
+  "updatedAt": "2023-08-03T13:45:47.000Z",
+  "name": "Уведомление о шаблонных задачах",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "cf149754-de19-4c6c-be23-a1eb821c30ca",
+          "mode": "list",
+          "cachedResultName": "Список задач",
+          "cachedResultUrl": "https://www.notion.so/cf149754de194c6cbe23a1eb821c30ca"
+        },
+        "returnAll": true,
+        "simple": false,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "Шаблонная задача|checkbox",
+              "condition": "equals",
+              "checkboxValue": true
+            },
+            {
+              "key": "Статус|select",
+              "condition": "equals",
+              "selectValue": "Не сделано"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "42fee660-ee7a-4aa9-a5c6-43a3f01ce4d1",
+      "name": "Получение списка задач",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        700,
+        480
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "34b150b2-1219-4e91-a345-d79ac8091ddc",
+      "name": "Запуск каждую минуту",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        480,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst output = [];\nconst staticData = $getWorkflowStaticData('global').lastExecution;\nconsole.log(`Static data is ${staticData}`);\n\nif (staticData) {\n  for (const item of $input.all()) {\n    if (! staticData.includes(item.json.id)) {\n      output.push(item);\n    };\n  };\n} else {\n  console.log(`No static data`);\n  return $input.all();\n}\n\nreturn output;"
+      },
+      "id": "7f3e3381-5d77-424b-bc6b-61bfe15da6ee",
+      "name": "Убираем уже знакомые задачи",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        920,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let staticData = $getWorkflowStaticData('global').lastExecution;\nif ( ! staticData ) {\n  staticData = [];\n};\nfor (page of $input.all()) {\n  staticData.push(page.json.id);\n};\nif (staticData.length > 40) {\n  staticData = staticData.slice(staticData.length - 40 - 1);\n};\nreturn { json: {} };"
+      },
+      "id": "fa41757c-82e6-4bc8-a504-c41f541b0aae",
+      "name": "Обновляем список знакомых страниц",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "198424221",
+        "text": "=<a href=\"{{ $json[\"url\"] }}\">{{ $json[\"properties\"][\"Имя\"][\"title\"][0][\"plain_text\"] }}</a>",
+        "replyMarkup": "=none",
+        "forceReply": {},
+        "replyKeyboardOptions": {},
+        "replyKeyboardRemove": {},
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "6733a56f-dc1b-47b9-aeb8-68f6c117c70c",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        480
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Telegram assistant"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Запуск каждую минуту": {
+      "main": [
+        [
+          {
+            "node": "Получение списка задач",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение списка задач": {
+      "main": [
+        [
+          {
+            "node": "Убираем уже знакомые задачи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Убираем уже знакомые задачи": {
+      "main": [
+        [
+          {
+            "node": "Обновляем список знакомых страниц",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "node:Запуск каждую минуту": {
+      "recurrencyRules": []
+    },
+    "global": {
+      "lastExecution": [
+        "1bd56d16-e8e4-4ad0-9bb2-0681ee0d6ff5",
+        "48cbfd07-fe3a-4213-b2a1-909b27af80fa",
+        "32b68b91-71c9-47f7-871c-ebaa4359a9a8",
+        "1e81aee7-799d-4f32-bc80-f9ae347041f6",
+        "31665a6b-7652-4d87-beb1-fbe66cfe2ec3",
+        "ff22089d-0f44-47ef-8486-499bf9c945ee",
+        "54d0a11e-50f7-469f-ac12-32ca2653d1e2",
+        "5ff900f3-06ee-45fa-8e89-d7053abee509",
+        "3ecf05b7-f1fc-4bf1-9da6-f483df03a6f3",
+        "f3de50bd-5a1e-4597-84db-b61e8f4e1cae",
+        "4b5c1076-c99c-4003-8b6f-29ac036cdc9b",
+        "fa3306d1-cf2b-4e5e-9914-1e6e095c301b",
+        "45d282f5-3d2d-4beb-b270-818eb3586465",
+        "462fe463-2c8f-4e8a-9e5d-21a9839108a6",
+        "68220d4e-84e6-41a7-a792-8d9e350665ac",
+        "d3e51653-42b5-494d-a1ab-c2f264d8edc9",
+        "631d9797-f12f-4260-9560-79e7f749d14f",
+        "5c951799-8048-4937-87bf-fa80eea541cb",
+        "296c913e-260b-4fad-83cc-838b8292badc",
+        "8c428a77-4ecd-4954-b172-f372c68687d1",
+        "6b5ec8f8-64c3-425c-9766-42c2853550fb",
+        "37e8338f-32a1-49cd-9a66-5bc74a1717e6",
+        "2bf1dfba-b1d0-4959-a121-6c72a54f530c",
+        "ff558ace-d312-452e-8d50-135d862033aa",
+        "9bdee38b-31c5-4cd7-827f-0c915a31fde1",
+        "7c4c9e31-f08f-41a8-a215-e0a3d07ec1c5",
+        "e400f1eb-8193-4541-89e5-bf50251f3d6d",
+        "11faef0d-004d-45b8-b1b0-e49975cd5a0e",
+        "5a069f53-385c-40cf-8af3-79c98348c0ce",
+        "03e74cc1-d844-4051-9e4d-69c1d7d2c12f",
+        "0db1ea25-4740-48bd-a2ec-67c527391b52",
+        "a9c446c1-86ee-409a-bcbd-db44d93bce7b",
+        "da76acb8-71ec-433d-b00a-a4050d028e66",
+        "495a7b7b-0853-4cc0-a862-b18860fc08ea",
+        "9561ab7a-7bc6-47a8-9f6c-16b132ef641a",
+        "dbaf6265-e93c-41de-9a39-f5f1f0dcd0f5",
+        "a7cf2bf0-0d88-4274-8b81-60aadcba3c22",
+        "4edd3668-6d81-4978-8ea4-d07bb61c6a6c",
+        "2266f19f-5761-4f10-b5b0-e3ef2a0db9a7",
+        "5051b81d-ea6d-4b3a-8732-7da8b6515e50",
+        "106372c1-c199-4317-8b20-71293210f933",
+        "a7f91000-4e8d-45dd-ae6e-65f7fe3bebdd",
+        "9a022308-37cc-414c-b048-e74e487dad24",
+        "2602ce68-add8-464b-823e-6962bef9ebe8",
+        "e84cc06b-b693-48c1-8c4f-3626abfe28dc",
+        "4286fbbf-e6b1-4044-ad48-cbfb2987c1a4",
+        "b0711862-036e-4bd3-877d-e6642a3cad39",
+        "84bfb500-2722-412f-9445-4a0ddb12f86c",
+        "b850b9d7-a681-4fc8-8303-3113cc92b535",
+        "137bb9e1-b908-4ce1-838e-597d5b00614e",
+        "5ca7387d-add0-4b4a-8122-574b3d722f1f",
+        "2c42c298-a9a6-4f7f-b140-60e68556b43c",
+        "b74284fd-a40e-4e5a-8f39-8e99f9de18af",
+        "d6df4463-bd88-4c4d-a680-a2478112adc9",
+        "7012335a-b8dc-4869-9389-45f8c465757a",
+        "5e414419-77dd-403f-ac74-6d5e417dfe72",
+        "616625f4-a9ad-4be9-a9e7-7ff0dd1f77a2",
+        "dbc85c02-9265-4a81-beb1-0ea7f53bddab",
+        "4f60f858-571b-49b4-8db4-af6330a3c49d",
+        "d8eaa08c-789e-40ea-9413-6e6b45da0fb3",
+        "d32b5a03-96e5-4196-91bf-5f48cd1efaed",
+        "0ff7600c-0556-4153-8cca-736d43494dbd",
+        "cec261aa-9e47-4dbb-a7dc-b5863961dc6b",
+        "7d201dfe-23ec-4cc0-87c2-d54af47417b9",
+        "48120467-d862-4bb2-a023-b59ae9cdbcc6",
+        "41bdfbec-efb2-43e4-92a6-3448ddc1b765",
+        "6b71f967-ea37-4d9d-9c11-e64356cee79e",
+        "688325d4-73db-46b3-98a5-77a5f1a1a9e6",
+        "d96c89ce-3bc2-4964-b8e8-55dfef969655",
+        "f5256198-5c2f-4483-aa51-b29c5f08810c",
+        "247b6a1e-90d8-4a44-a386-01acb775c144",
+        "c6a72f62-fa76-442b-87d5-5278609d5664",
+        "aa84a31c-1b1f-461c-80ea-ee664421be55",
+        "5c0ca975-1f2b-4095-a0f7-f1ad58793423",
+        "1186ac84-73e1-4e5d-b7f4-4c081030b763",
+        "be94b017-0eb0-43be-91e6-48ab857574f3",
+        "670fdd6b-a3e0-4a2d-8559-5572fffa7a85",
+        "4b24dffd-1d21-45f4-9ef8-a6838c652f95",
+        "5bd5e2b6-46ff-4bdd-a044-edd5c86061d3",
+        "3f9e743c-623d-4915-bdf6-3514622a51e3",
+        "3c39c129-67d8-4ac9-8a9f-ee5008586683",
+        "ef1ed36d-d375-46fc-98ac-5f5a6c8f8da7",
+        "45c0adac-8e8e-4f6e-8ea9-24458e8a3a8a",
+        "77fe33b7-9142-4ace-88b4-c08afe319d0f",
+        "0b1cdee9-29e1-4690-8fde-939c38f2b083",
+        "0fe87ff5-dad7-4f13-8ddc-ff8ab83d9328",
+        "e73eb1c4-5a7a-4815-be8e-5e5f2d69404b",
+        "fc605230-81e5-4736-b1af-152e60459d35",
+        "77c34fd5-d157-434f-b9dc-247e7eb41e34",
+        "fad0aedd-ac14-4d46-ae6f-f86143773f91",
+        "9175d21c-1714-46ed-a448-cb080f0c9ebd",
+        "d9e29f1a-e09f-49b7-8c31-7e3def4ff47e",
+        "a79e498b-151c-4b2a-9169-50da224d92fa",
+        "eadc211c-5eef-4e8c-9a74-8f702a265c5c",
+        "05373950-7cb6-45a6-8416-750675478dbf",
+        "c87dfc91-ea66-41dd-b487-93b9e6dfbf3b",
+        "405eb7af-7c57-4e7f-86a0-965416ce82db",
+        "9c6c7670-bbc8-4164-aa23-78884c42ad32",
+        "1f2fbe9b-0137-4af7-9834-5888aa68b89f",
+        "b9d0071b-4501-4c41-9455-e8aaa6fe8680",
+        "5fa78802-6300-4d27-956d-5357b7c9c0b0",
+        "8a1dd63e-cb58-4248-8040-59e9ec5e0040",
+        "a37a87c3-f9c3-4b94-ab87-6ed61175948d",
+        "df1dab73-2655-4c72-b712-8e30675480be",
+        "0e340ba0-5716-4236-86a9-e2384825c612",
+        "c60bc032-b9a5-4825-b0f6-62b90e6fbbba",
+        "f76f2a12-3e27-4da0-b299-6514c05811c1",
+        "ec18b47c-7ed1-4b2a-a81b-c686e7cfc57c",
+        "0db1b664-3df8-47bc-b71a-155522f68d6a",
+        "f5afcd63-2c5e-48cd-aac3-9b6617c932d4",
+        "cb1e2a86-cab8-40e1-a8f3-2786a0772c16",
+        "2700c7e3-7112-4981-9ef7-793e009f9c39",
+        "b8d3b129-9879-4cd1-a3b0-25c622ab6668",
+        "52c39dc6-6c77-4131-94f1-70e164e44d0f",
+        "6e40b8f9-2730-474e-9800-c18174891c11",
+        "b4460bcf-6dd8-4126-80d5-da41f604b18a",
+        "ff8427a4-a64a-4320-a446-30afa789a098",
+        "074924a1-d719-4b7f-8e76-a76a10ac4b24",
+        "0b758e88-c6bd-4e00-a745-4f36d836553d",
+        "8f40b924-b95f-449b-ab08-91d542a5e852",
+        "d141590e-c182-4762-a41d-bfccdd88c856",
+        "faf5a6e3-e452-4c87-904f-0b57a9a9edab",
+        "f0d17b4e-1313-4713-9f79-3838bdd25594",
+        "568e3d8d-48c4-4755-9e2a-6ec008927d03",
+        "7b3ae9ad-913b-4771-9e7e-7f07a55740c0",
+        "b023b3f8-f4e3-4c18-9b9e-74a1f0427365",
+        "8a8ee424-c67c-41f5-bc4b-0f553fc4829a",
+        "74bb32e0-96f0-4aa9-a2e6-69faea83f0d2",
+        "e8015558-505f-4365-8eb3-983250642a2f",
+        "59161297-d129-4559-baf2-3bdc3a652b68",
+        "af3c74bd-6f58-4806-b86d-ea318c14dc84",
+        "f51bf5e8-0d50-4a7b-9e2e-9999aa0e213a",
+        "52786c8e-8542-475a-8ad4-74a69a7c2630",
+        "2e47236c-f47f-4847-8c10-84ac43d4a614",
+        "72d8539a-a9dc-47fc-b8a1-66ab4eb3d819",
+        "7c3296f4-c51e-427f-b8d1-a79d78720d6a",
+        "71df38ea-9f39-4220-ba5b-cb315e53dde6",
+        "67d791aa-fc06-4617-91e3-42e4236cd31c",
+        "b2ac8a5f-8349-40c5-aac8-f366ee547e75",
+        "3e296c72-1dec-4230-b975-446ff60c5126",
+        "0c109352-bd3a-4263-b39e-8053bf8bea98",
+        "d498a18b-ef68-444a-ad57-a4943165fe52",
+        "e6080bb8-5e1c-40f4-97de-767c693ba7e8",
+        "6cdac40a-72c5-4df1-b050-d44dce7f891a",
+        "e6e5979b-0312-4874-a354-206a95d1a608",
+        "e82f14ca-0022-4076-869a-a10c74ab5b08",
+        "f93d61df-8f68-4819-ad8b-fa04345894c2",
+        "f7fab085-d6b9-454a-811d-c72f70d46d92",
+        "c06a6eed-8037-4e06-83ad-a9251beedd03",
+        "4d7ef1ca-e219-4889-9b0f-2291d71b190c",
+        "c633f2d9-444e-49f7-9cb1-5d38038e23ef",
+        "0eac5a72-e842-4d0f-8767-39ed666bea99",
+        "74d9913c-e522-4473-beaa-c77bc8ab289e",
+        "6ba79f5d-5f8c-4288-9cf1-2ea862f788dd",
+        "706d2d7f-6321-4c9f-9da6-77d0a71534d1",
+        "ffdeb630-612a-49da-b0eb-64f13457e0c2",
+        "231e79dc-9602-4890-9262-74c842ced2f3"
+      ]
+    }
+  },
+  "pinData": {},
+  "versionId": "81f29b10-2101-45ac-860a-afb17636387a",
+  "triggerCount": 1,
+  "tags": []
+}
