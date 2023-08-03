@@ -1,7 +1,7 @@
 {
   "id": "2",
   "createdAt": "2022-09-16T03:22:30.639Z",
-  "updatedAt": "2023-06-08T14:40:11.000Z",
+  "updatedAt": "2023-08-03T13:58:10.000Z",
   "name": "Back Up Your n8n Workflows To Github",
   "active": false,
   "nodes": [
@@ -153,25 +153,6 @@
     },
     {
       "parameters": {
-        "triggerTimes": {
-          "item": [
-            {
-              "mode": "everyX"
-            }
-          ]
-        }
-      },
-      "name": "Every 2 hours",
-      "type": "n8n-nodes-base.cron",
-      "position": [
-        240,
-        580
-      ],
-      "typeVersion": 1,
-      "id": "103a13b5-0f6e-40be-b9f1-43f35bd5570d"
-    },
-    {
-      "parameters": {
         "filePath": "={{$json[\"filename\"]}}"
       },
       "name": "Read Binary File",
@@ -309,6 +290,26 @@
         }
       },
       "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyMonth",
+              "hour": 5
+            }
+          ]
+        }
+      },
+      "name": "Every month",
+      "type": "n8n-nodes-base.cron",
+      "position": [
+        240,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "103a13b5-0f6e-40be-b9f1-43f35bd5570d"
     }
   ],
   "connections": {
@@ -405,17 +406,6 @@
         [
           {
             "node": "github_status",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Every 2 hours": {
-      "main": [
-        [
-          {
-            "node": "Globals",
             "type": "main",
             "index": 0
           }
@@ -528,6 +518,17 @@
           }
         ]
       ]
+    },
+    "Every month": {
+      "main": [
+        [
+          {
+            "node": "Globals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -536,7 +537,7 @@
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "0bcd5c51-177f-4587-a5c5-d1ddbe43781a",
+  "versionId": "9b0d0c20-9872-4d0e-8c86-1bb76732aca8",
   "triggerCount": 1,
   "tags": []
 }
