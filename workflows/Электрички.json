@@ -1,0 +1,1370 @@
+{
+  "id": "PxiwlMIyq7OzGlmc",
+  "createdAt": "2023-08-02T11:55:16.226Z",
+  "updatedAt": "2023-08-03T13:39:09.000Z",
+  "name": "Электрички",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ DateTime.now().plus({days: 1}).weekday }}",
+              "value2": 6
+            }
+          ]
+        }
+      },
+      "id": "d9aefb7a-81c0-41dd-85b6-ed39d3fdf6d3",
+      "name": "Завтра рабочий день?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lowerLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.morning.lowerLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.morning.lowerLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.morning.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.morning.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst filteredData = $input.all().filter(trainEntry => {\n  const departureDiff = lowerLimit.diff(DateTime.fromISO(trainEntry.json.depart)).toMillis();\n  const arrivalDiff = upperLimit.diff(DateTime.fromISO(trainEntry.json.arrival)).toMillis();\n  console.log(`Input is: ${trainEntry.json.toString()}, departure diff is ${departureDiff}, arrival diff is ${arrivalDiff}`);\n  return (departureDiff < 0 && arrivalDiff > 0);\n}).map(trainEntry => {\n  return trainEntry.json;\n});\n\nreturn { json: { morning: filteredData }};"
+      },
+      "id": "90524e6f-a0ae-4485-b084-a76ce1dcb677",
+      "name": "Фильтруем данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2620,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "offsetDays",
+              "value": 1
+            },
+            {
+              "name": "morning.lowerLimit.hour",
+              "value": 7
+            },
+            {
+              "name": "morning.lowerLimit.minute",
+              "value": 20
+            },
+            {
+              "name": "morning.upperLimit.hour",
+              "value": 7
+            },
+            {
+              "name": "morning.upperLimit.minute",
+              "value": 55
+            },
+            {
+              "name": "morning.pauseMinutes.min",
+              "value": 1
+            },
+            {
+              "name": "morning.pauseMinutes.max",
+              "value": 10
+            },
+            {
+              "name": "evening.lowerLimit.hour",
+              "value": 17
+            },
+            {
+              "name": "evening.lowerLimit.minute",
+              "value": 5
+            },
+            {
+              "name": "evening.upperLimit.hour",
+              "value": 18
+            },
+            {
+              "name": "evening.upperLimit.minute",
+              "value": 20
+            },
+            {
+              "name": "evening.pauseMinutes.min",
+              "value": 2
+            },
+            {
+              "name": "evening.pauseMinutes.max",
+              "value": 15
+            }
+          ],
+          "string": [
+            {
+              "name": "stations.home",
+              "value": "Енисей"
+            },
+            {
+              "name": "stations.office",
+              "value": "Путепровод"
+            },
+            {
+              "name": "stations.transit",
+              "value": "Красноярск"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "092ae945-0854-476b-b27e-1253740a1b69",
+      "name": "Глобальные значения",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1780,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lowerLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.morning.lowerLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.morning.lowerLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.morning.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.morning.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst filteredData = $input.all().filter(trainEntry => {\n  const departureDiff = lowerLimit.diff(DateTime.fromISO(trainEntry.json.depart)).toMillis();\n  const arrivalDiff = upperLimit.diff(DateTime.fromISO(trainEntry.json.arrival)).toMillis();\n  console.log(`Input is: ${trainEntry.json.toString()}, departure diff is ${departureDiff}, arrival diff is ${arrivalDiff}`);\n  return (departureDiff < 0 && arrivalDiff > 0);\n}).map(trainEntry => {\n  return trainEntry.json;\n});\n\nreturn { json: { krasPuteprovod: filteredData }};"
+      },
+      "id": "1bbe8c8f-157d-4dc1-bce0-e265fd92128e",
+      "name": "Фильтруем данные1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lowerLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.morning.lowerLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.morning.lowerLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.morning.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.morning.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst filteredData = $input.all().filter(trainEntry => {\n  const departureDiff = lowerLimit.diff(DateTime.fromISO(trainEntry.json.depart)).toMillis();\n  const arrivalDiff = upperLimit.diff(DateTime.fromISO(trainEntry.json.arrival)).toMillis();\n  console.log(`Input is: ${trainEntry.json.toString()}, departure diff is ${departureDiff}, arrival diff is ${arrivalDiff}`);\n  return (departureDiff < 0 && arrivalDiff > 0);\n}).map(trainEntry => {\n  return trainEntry.json;\n});\n\nreturn { json: { eniseyKras: filteredData }};"
+      },
+      "id": "ef707d81-9492-4f07-8ac0-5516637a1fd1",
+      "name": "Фильтруем данные2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        1120
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bd02470e-e7d2-4a6e-b8a7-2a34a9178ea4",
+      "name": "Объединяем данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2120,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const combinations = [];\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.morning.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.morning.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offset\n});\nconst minimumPause = Duration.fromObject({\n      minutes: $('Глобальные значения').all()[0].json.morning.pauseMinutes.min\n    }).toMillis();\nconst maximumPause = Duration.fromObject({\n      minutes: $('Глобальные значения').all()[0].json.morning.pauseMinutes.max\n    }).toMillis();\n\nconst findMatch = firstTrain => {\n  for(let i = 0; i < $input.all()[0].json.krasPuteprovod.length; i++) {\n    const secondTrain = {\n      depart: DateTime.fromISO($input.all()[0].json.krasPuteprovod[i].depart),\n      arrival: DateTime.fromISO($input.all()[0].json.krasPuteprovod[i].arrival),\n      run: $input.all()[0].json.krasPuteprovod[i].run\n    };\n    const pause = secondTrain.depart.toMillis() - firstTrain.arrival.toMillis();\n    const excess = secondTrain.arrival.toMillis() - upperLimit.toMillis();\n    console.log(`First train arrival is: ${firstTrain.arrival.toISO()}, second train departure is: ${secondTrain.depart.toISO()}, pause is ${pause}, excess is ${excess}, minimal pause is ${minimumPause}, maximum pause is ${maximumPause}`);\n    if(\n      excess >= 0 &&\n      pause >= minimumPause &&\n      pause <= maximumPause &&\n      firstTrain.run !== secondTrain.run\n    ) {\n      console.log(`Found. First train arrival is: ${firstTrain.arrival.toISO()}, second train departure is: ${secondTrain.depart.toISO()}, pause is ${pause}, excess is ${excess}, minimal pause is ${minimumPause}, maximum pause is ${maximumPause}`)\n      return secondTrain; \n    };\n  };\n  return {};\n};\n\n$input.all()[1].json.eniseyKras.forEach(strEntry => {\n  const trainEntry = {\n    depart: DateTime.fromISO(strEntry.depart),\n    arrival: DateTime.fromISO(strEntry.arrival),\n    run: strEntry.run\n  };\n  const match = findMatch(trainEntry);\n  if(typeof match.depart !== 'undefined') {\n    console.log(`Found match. First arrival is: ${trainEntry.arrival.toISO()}, second departure is at ${match.depart.toISO()}`);\n    combinations.push({firstTrain: trainEntry, secondTrain: match})\n  };\n});\n\nreturn { json: { morningCombos: combinations}};"
+      },
+      "id": "999ea543-9a16-4a14-9398-a1894e9a3774",
+      "name": "Ищем подходящие комбинации",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lowerLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.evening.lowerLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.evening.lowerLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.evening.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.evening.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst filteredData = $input.all().filter(trainEntry => {\n  const departureDiff = lowerLimit.diff(DateTime.fromISO(trainEntry.json.depart)).toMillis();\n  const arrivalDiff = upperLimit.diff(DateTime.fromISO(trainEntry.json.arrival)).toMillis();\n  console.log(`Input is: ${trainEntry.json.toString()}, departure diff is ${departureDiff}, arrival diff is ${arrivalDiff}`);\n  return (departureDiff < 0 && arrivalDiff > 0);\n}).map(trainEntry => {\n  return trainEntry.json;\n});\n\nreturn { json: { evening: filteredData }};"
+      },
+      "id": "9d5da7ae-780c-4e3f-a753-d07dd6698299",
+      "name": "Фильтруем данные3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2620,
+        480
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "caf6a31f-58bc-482d-954b-197af40b0b2d",
+      "name": "Объединяем утренние данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2800,
+        880
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4681269c-4894-4bba-b115-a33de1c0bbd0",
+      "name": "Объединяем все данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3220,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lowerLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.evening.lowerLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.evening.lowerLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.evening.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.evening.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst filteredData = $input.all().filter(trainEntry => {\n  const departureDiff = lowerLimit.diff(DateTime.fromISO(trainEntry.json.depart)).toMillis();\n  const arrivalDiff = upperLimit.diff(DateTime.fromISO(trainEntry.json.arrival)).toMillis();\n  console.log(`Input is: ${trainEntry.json.toString()}, departure diff is ${departureDiff}, arrival diff is ${arrivalDiff}`);\n  return (departureDiff < 0 && arrivalDiff > 0);\n}).map(trainEntry => {\n  return trainEntry.json;\n});\n\nreturn { json: { krasEnisey: filteredData }};"
+      },
+      "id": "cdadaeac-074f-4ad1-9ec9-07a6a316a7ae",
+      "name": "Фильтруем данные4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lowerLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.evening.lowerLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.evening.lowerLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.evening.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.evening.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offsetDays\n});\nconst filteredData = $input.all().filter(trainEntry => {\n  const departureDiff = lowerLimit.diff(DateTime.fromISO(trainEntry.json.depart)).toMillis();\n  const arrivalDiff = upperLimit.diff(DateTime.fromISO(trainEntry.json.arrival)).toMillis();\n  console.log(`Input is: ${trainEntry.json.toString()}, departure diff is ${departureDiff}, arrival diff is ${arrivalDiff}`);\n  return (departureDiff < 0 && arrivalDiff > 0);\n}).map(trainEntry => {\n  return trainEntry.json;\n});\n\nreturn { json: { puteprovodKras: filteredData }};"
+      },
+      "id": "4cb5323a-d1af-45a1-a204-10f9b96122fb",
+      "name": "Фильтруем данные5",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://kraspg.ru/r",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.office }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.transit }}"
+            },
+            {
+              "name": "date",
+              "value": "={{ DateTime.now().plus({days: $('Глобальные значения').all()[0].json.offsetDays}).toFormat('d.L.y') }}"
+            },
+            {
+              "name": "search",
+              "value": "Найти"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3fb3e234-d362-4323-bb29-39b5c2f37096",
+      "name": "Спрашиваем расписание от путепровода до вокзала",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1300,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://kraspg.ru/r",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.transit }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.home }}"
+            },
+            {
+              "name": "date",
+              "value": "={{ DateTime.now().plus({days: $('Глобальные значения').all()[0].json.offsetDays}).toFormat('d.L.y') }}"
+            },
+            {
+              "name": "search",
+              "value": "Найти"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1da7792f-5482-450b-8a03-baba675cc113",
+      "name": "Спрашиваем расписание от вокзала до дома",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1300,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://kraspg.ru/r",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "={{ $json.stations.office }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $json.stations.home }}"
+            },
+            {
+              "name": "date",
+              "value": "={{ DateTime.now().plus({days: $json[\"offsetDays\"]}).toFormat('d.L.y') }}"
+            },
+            {
+              "name": "search",
+              "value": "Найти"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "10005a25-f827-4300-8c42-8d81c58cb36a",
+      "name": "Спрашиваем обратное расписание без пересадок",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2000,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://kraspg.ru/r",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "={{ $json.stations.home }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $json.stations.office }}"
+            },
+            {
+              "name": "date",
+              "value": "={{ DateTime.now().plus({days: $json[\"offsetDays\"]}).toFormat('d.L.y') }}"
+            },
+            {
+              "name": "search",
+              "value": "Найти"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2ad4178f-ac22-4884-8302-103ecc17734b",
+      "name": "Спрашиваем прямое расписание без пересадок",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2000,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://kraspg.ru/r",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.transit }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.office }}"
+            },
+            {
+              "name": "date",
+              "value": "={{ DateTime.now().plus({days: $('Глобальные значения').all()[0].json.offsetDays}).toFormat('d.L.y') }}"
+            },
+            {
+              "name": "search",
+              "value": "Найти"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b26608-a26a-4017-9067-ac66cea59002",
+      "name": "Спрашиваем расписание от вокзала до путепровода",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1300,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://kraspg.ru/r",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "from",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.home }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $('Глобальные значения').all()[0].json.stations.transit }}"
+            },
+            {
+              "name": "date",
+              "value": "={{ DateTime.now().plus({days: $('Глобальные значения').all()[0].json.offsetDays}).toFormat('d.L.y') }}"
+            },
+            {
+              "name": "search",
+              "value": "Найти"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9041c715-2ab4-426d-85be-816ed3e93134",
+      "name": "Спрашиваем расписание до вокзала",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1300,
+        1120
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "05388664-a132-45f4-a9e4-2c9777fcea76",
+      "name": "Объединяем данные1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2080,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const combinations = [];\nconst upperLimit = DateTime.now().set({\n  hours: $('Глобальные значения').all()[0].json.evening.upperLimit.hour,\n  minutes: $('Глобальные значения').all()[0].json.evening.upperLimit.minute,\n  seconds: 0,\n  milliseconds: 0\n}).plus({\n  days: $('Глобальные значения').all()[0].json.offset\n});\nconst minimumPause = Duration.fromObject({\n      minutes: $('Глобальные значения').all()[0].json.evening.pauseMinutes.min\n    }).toMillis();\nconst maximumPause = Duration.fromObject({\n      minutes: $('Глобальные значения').all()[0].json.evening.pauseMinutes.max\n    }).toMillis();\n\nconst findMatch = firstTrain => {\n  for(let i = 0; i < $input.all()[1].json.krasEnisey.length; i++) {\n    const secondTrain = {\n      depart: DateTime.fromISO($input.all()[1].json.krasEnisey[i].depart),\n      arrival: DateTime.fromISO($input.all()[1].json.krasEnisey[i].arrival),\n      run: $input.all()[1].json.krasEnisey[i].run\n    };\n    const pause = secondTrain.depart.toMillis() - firstTrain.arrival.toMillis();\n    const excess = secondTrain.arrival.toMillis() - upperLimit.toMillis();\n    console.log(`First train arrival is: ${firstTrain.arrival.toISO()}, second train departure is: ${secondTrain.depart.toISO()}, pause is ${pause}, excess is ${excess}, minimal pause is ${minimumPause}, maximum pause is ${maximumPause}`);\n    if(\n      excess >= 0 &&\n      pause >= minimumPause &&\n      pause <= maximumPause &&\n      firstTrain.run !== secondTrain.run\n    ) {\n      console.log(`Found. First train arrival is: ${firstTrain.arrival.toISO()}, second train departure is: ${secondTrain.depart.toISO()}, pause is ${pause}, excess is ${excess}, minimal pause is ${minimumPause}, maximum pause is ${maximumPause}`)\n      return secondTrain; \n    };\n  };\n  return {};\n};\n\n$input.all()[0].json.puteprovodKras.forEach(strEntry => {\n  const trainEntry = {\n    depart: DateTime.fromISO(strEntry.depart),\n    arrival: DateTime.fromISO(strEntry.arrival),\n    run: strEntry.run\n  };\n  const match = findMatch(trainEntry);\n  if(typeof match.depart !== 'undefined') {\n    console.log(`Found match. First arrival is: ${trainEntry.arrival.toISO()}, second departure is at ${match.depart.toISO()}`);\n    combinations.push({firstTrain: trainEntry, secondTrain: match})\n  };\n});\n\nreturn { json: { eveningCombos: combinations}};"
+      },
+      "id": "505ed5be-21c6-4e44-87c6-669451fb6dea",
+      "name": "Ищем подходящие комбинации1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        60
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2e762521-ed61-4042-bd58-32302e1391a4",
+      "name": "Объединяем вечерние данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2760,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 18,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "id": "1c88bac9-3ac4-4d3b-bfe8-7a2e93adb5e4",
+      "name": "Выполнять каждый день",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1360,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let text = \"\";\nconst extractTime = isodate => {\n  return isodate.substring(11, 16);\n};\n\nif($input.all()[2].json.morning.length) {\n  const entry = $input.all()[2].json.morning[0]\n  text += `Завтра утром есть прямой рейс ${entry.run}. Отправление в ${extractTime(entry.depart)}, прибытие в ${extractTime(entry.arrival)}.`\n} else {\n  text += 'Завтра утром прямых рейсов нет.'\n};\nif($input.all()[3].json.morningCombos.length) {\n  if($input.all()[2].json.morning.length) {\n    text += ' Плюс, нашёлся вариант с пересадкой: ';\n  } else {\n    text += ' Но есть вариант с пересадкой: ';\n  };\n  const entry = $input.all()[3].json.morningCombos[0];\n  text += `рейсы ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}) и ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)}).`;\n};\n\nif($input.all()[1].json.evening.length) {\n  const entry = $input.all()[1].json.evening[0];\n  text += `\\nОбратно можно будет доехать на электричке ${entry.run}. Отправление в ${extractTime(entry.depart)}, прибытие в ${extractTime(entry.arrival)}.`;\n} else {\n  text += '\\nОбратных прямых рейсов нет.';\n};\nif($input.all()[0].json.eveningCombos.length) {\n  if($input.all()[1].json.evening.length) {\n    text += ' Плюс, нашёлся вариант с пересадкой: ';\n  } else {\n    text += ' Но есть вариант с пересадкой: ';\n  };\n  const entry = $input.all()[0].json.eveningCombos[0];\n  text += `рейсы ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}) и ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)}.)`;\n};\n\nreturn {json: {message: text}};"
+      },
+      "id": "cf897d0a-943e-4835-acd1-7a43f7b1cd63",
+      "name": "Делаем выводы",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3440,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $input.all()[0].json.morningCombos.length }}",
+              "operation": "larger",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "77f7e381-3427-4fa1-aae4-6a1b173d8640",
+      "name": "Нашлось больше одной комбинации?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "=Слишком много комбинаций!"
+      },
+      "id": "dafca021-17f8-48f2-b3fa-e0633739b263",
+      "name": "Падаем и вопим",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        3440,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $input.all()[0].json.morning.length }}",
+              "operation": "larger",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "fc4db460-bac8-4c02-8dcb-61f5db7eda8b",
+      "name": "Нашлось больше одного варианта?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $input.all()[0].json.evening.length }}",
+              "operation": "larger",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "8b9f2140-f433-4c40-a903-17c7b5c1f079",
+      "name": "Нашлось больше одного варианта?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $input.all()[0].json.eveningCombos.length }}",
+              "operation": "larger",
+              "value2": 1
+            }
+          ]
+        }
+      },
+      "id": "a77e3310-445d-4ff4-aa39-3de2f0a840e7",
+      "name": "Нашлось больше одной комбинации?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "time",
+              "cssSelector": "#train-schedule td .time",
+              "returnArray": true
+            },
+            {
+              "key": "run",
+              "cssSelector": "#train-schedule td .reis",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0dce0363-b063-479c-bde6-195815487296",
+      "name": "Парсим HTML",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "time",
+              "cssSelector": "#train-schedule td .time",
+              "returnArray": true
+            },
+            {
+              "key": "run",
+              "cssSelector": "#train-schedule td .reis",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b4e05d8b-1082-4c91-b3c7-791926efa9e7",
+      "name": "Парсим HTML1",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "time",
+              "cssSelector": "#train-schedule td .time",
+              "returnArray": true
+            },
+            {
+              "key": "run",
+              "cssSelector": "#train-schedule td .reis",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8ef4bf45-eb61-4420-9479-5ae0dd984f6d",
+      "name": "Парсим HTML2",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "time",
+              "cssSelector": "#train-schedule td .time",
+              "returnArray": true
+            },
+            {
+              "key": "run",
+              "cssSelector": "#train-schedule td .reis",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1a5da45c-ee16-4392-b06f-641fe95dc5aa",
+      "name": "Парсим HTML3",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "time",
+              "cssSelector": "#train-schedule td .time",
+              "returnArray": true
+            },
+            {
+              "key": "run",
+              "cssSelector": "#train-schedule td .reis",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d26d4390-6ef6-4329-8257-31804fff2130",
+      "name": "Парсим HTML4",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "time",
+              "cssSelector": "#train-schedule td .time",
+              "returnArray": true
+            },
+            {
+              "key": "run",
+              "cssSelector": "#train-schedule td .reis",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "226ca8fa-d1c4-417d-a4a2-ab6ec663dff2",
+      "name": "Парсим HTML5",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const schedule = [];\nconst parseTime = string => {\n  return DateTime.now().set({\n    hours: string.substring(0, 2),\n    minutes: string.substring(3),\n    seconds: 0,\n    milliseconds: 0})\n    .plus({\n      days: $('Глобальные значения').all()[0].json.offsetDays\n    });\n};\nfor (let i = 0; i < $input.all()[0].json.time.length - 1; i += 2) {\n  const trainEntry = { \n    depart: parseTime($input.all()[0].json.time[i]),\n    arrival: parseTime($input.all()[0].json.time[i+1]),\n    run: $input.all()[0].json.run[i / 2]\n  };\n  schedule.push({json: trainEntry, pairedItem: 0});\n}\nreturn schedule;"
+      },
+      "id": "2834f685-fae6-4876-85f5-f63362ec75f4",
+      "name": "Собираем расписание воедино",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const schedule = [];\nconst parseTime = string => {\n  return DateTime.now().set({\n    hours: string.substring(0, 2),\n    minutes: string.substring(3),\n    seconds: 0,\n    milliseconds: 0})\n    .plus({\n      days: $('Глобальные значения').all()[0].json.offsetDays\n    });\n};\nfor (let i = 0; i < $input.all()[0].json.time.length - 1; i += 2) {\n  const trainEntry = { \n    depart: parseTime($input.all()[0].json.time[i]),\n    arrival: parseTime($input.all()[0].json.time[i+1]),\n    run: $input.all()[0].json.run[i / 2]\n  };\n  schedule.push({json: trainEntry, pairedItem: 0});\n}\nreturn schedule;"
+      },
+      "id": "aa1e96ad-3835-4347-aea1-3fec7a85860b",
+      "name": "Собираем расписание воедино1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const schedule = [];\nconst parseTime = string => {\n  return DateTime.now().set({\n    hours: string.substring(0, 2),\n    minutes: string.substring(3),\n    seconds: 0,\n    milliseconds: 0})\n    .plus({\n      days: $('Глобальные значения').all()[0].json.offsetDays\n    });\n};\nfor (let i = 0; i < $input.all()[0].json.time.length - 1; i += 2) {\n  const trainEntry = { \n    depart: parseTime($input.all()[0].json.time[i]),\n    arrival: parseTime($input.all()[0].json.time[i+1]),\n    run: $input.all()[0].json.run[i / 2]\n  };\n  schedule.push({json: trainEntry, pairedItem: 0});\n}\nreturn schedule;"
+      },
+      "id": "de123f39-a1a9-423c-ba5a-1922660f892f",
+      "name": "Собираем расписание воедино2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const schedule = [];\nconst parseTime = string => {\n  return DateTime.now().set({\n    hours: string.substring(0, 2),\n    minutes: string.substring(3),\n    seconds: 0,\n    milliseconds: 0})\n    .plus({\n      days: $('Глобальные значения').all()[0].json.offsetDays\n    });\n};\nfor (let i = 0; i < $input.all()[0].json.time.length - 1; i += 2) {\n  const trainEntry = { \n    depart: parseTime($input.all()[0].json.time[i]),\n    arrival: parseTime($input.all()[0].json.time[i+1]),\n    run: $input.all()[0].json.run[i / 2]\n  };\n  schedule.push({json: trainEntry, pairedItem: 0});\n}\nreturn schedule;"
+      },
+      "id": "36aa4fa0-4ba3-4b3a-b789-de2d239dae9a",
+      "name": "Собираем расписание воедино3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const schedule = [];\nconst parseTime = string => {\n  return DateTime.now().set({\n    hours: string.substring(0, 2),\n    minutes: string.substring(3),\n    seconds: 0,\n    milliseconds: 0})\n    .plus({\n      days: $('Глобальные значения').all()[0].json.offsetDays\n    });\n};\nfor (let i = 0; i < $input.all()[0].json.time.length - 1; i += 2) {\n  const trainEntry = { \n    depart: parseTime($input.all()[0].json.time[i]),\n    arrival: parseTime($input.all()[0].json.time[i+1]),\n    run: $input.all()[0].json.run[i / 2]\n  };\n  schedule.push({json: trainEntry, pairedItem: 0});\n}\nreturn schedule;"
+      },
+      "id": "1ad622dc-d2ce-450e-a5ae-019c3336d8d1",
+      "name": "Собираем расписание воедино4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const schedule = [];\nconst parseTime = string => {\n  return DateTime.now().set({\n    hours: string.substring(0, 2),\n    minutes: string.substring(3),\n    seconds: 0,\n    milliseconds: 0})\n    .plus({\n      days: $('Глобальные значения').all()[0].json.offsetDays\n    });\n};\nfor (let i = 0; i < $input.all()[0].json.time.length - 1; i += 2) {\n  const trainEntry = { \n    depart: parseTime($input.all()[0].json.time[i]),\n    arrival: parseTime($input.all()[0].json.time[i+1]),\n    run: $input.all()[0].json.run[i / 2]\n  };\n  schedule.push({json: trainEntry, pairedItem: 0});\n}\nreturn schedule;"
+      },
+      "id": "bcfa731f-9933-4403-9df2-d0b0d1d0fa5c",
+      "name": "Собираем расписание воедино5",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "198424221",
+        "text": "=<b>Расписание электричек на завтра</b>\n\n{{ $json[\"message\"] }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "6936323b-eb0f-4730-be3d-fbfd33923f67",
+      "name": "Сообщаем о них",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3660,
+        500
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Telegram assistant"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Завтра рабочий день?": {
+      "main": [
+        [
+          {
+            "node": "Глобальные значения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Глобальные значения": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем обратное расписание без пересадок",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем прямое расписание без пересадок",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем расписание от вокзала до путепровода",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем расписание до вокзала",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем расписание от вокзала до дома",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем расписание от путепровода до вокзала",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Фильтруем данные1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Фильтруем данные2": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем данные": {
+      "main": [
+        [
+          {
+            "node": "Ищем подходящие комбинации",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ищем подходящие комбинации": {
+      "main": [
+        [
+          {
+            "node": "Объединяем утренние данные",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Нашлось больше одной комбинации?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Фильтруем данные": {
+      "main": [
+        [
+          {
+            "node": "Объединяем утренние данные",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Нашлось больше одного варианта?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем утренние данные": {
+      "main": [
+        [
+          {
+            "node": "Объединяем все данные",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Спрашиваем расписание от путепровода до вокзала": {
+      "main": [
+        [
+          {
+            "node": "Парсим HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем расписание от вокзала до дома": {
+      "main": [
+        [
+          {
+            "node": "Парсим HTML1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем обратное расписание без пересадок": {
+      "main": [
+        [
+          {
+            "node": "Парсим HTML4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем прямое расписание без пересадок": {
+      "main": [
+        [
+          {
+            "node": "Парсим HTML5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем расписание от вокзала до путепровода": {
+      "main": [
+        [
+          {
+            "node": "Парсим HTML2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем расписание до вокзала": {
+      "main": [
+        [
+          {
+            "node": "Парсим HTML3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Фильтруем данные5": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Фильтруем данные4": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем данные1": {
+      "main": [
+        [
+          {
+            "node": "Ищем подходящие комбинации1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Фильтруем данные3": {
+      "main": [
+        [
+          {
+            "node": "Объединяем вечерние данные",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Нашлось больше одного варианта?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ищем подходящие комбинации1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем вечерние данные",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Нашлось больше одной комбинации?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем вечерние данные": {
+      "main": [
+        [
+          {
+            "node": "Объединяем все данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Выполнять каждый день": {
+      "main": [
+        [
+          {
+            "node": "Завтра рабочий день?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем все данные": {
+      "main": [
+        [
+          {
+            "node": "Делаем выводы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нашлось больше одной комбинации?": {
+      "main": [
+        [
+          {
+            "node": "Падаем и вопим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нашлось больше одного варианта?": {
+      "main": [
+        [
+          {
+            "node": "Падаем и вопим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нашлось больше одного варианта?1": {
+      "main": [
+        [
+          {
+            "node": "Падаем и вопим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нашлось больше одной комбинации?1": {
+      "main": [
+        [
+          {
+            "node": "Падаем и вопим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим HTML": {
+      "main": [
+        [
+          {
+            "node": "Собираем расписание воедино",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим HTML1": {
+      "main": [
+        [
+          {
+            "node": "Собираем расписание воедино1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим HTML2": {
+      "main": [
+        [
+          {
+            "node": "Собираем расписание воедино2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим HTML3": {
+      "main": [
+        [
+          {
+            "node": "Собираем расписание воедино3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим HTML4": {
+      "main": [
+        [
+          {
+            "node": "Собираем расписание воедино4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим HTML5": {
+      "main": [
+        [
+          {
+            "node": "Собираем расписание воедино5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Собираем расписание воедино": {
+      "main": [
+        [
+          {
+            "node": "Фильтруем данные5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Собираем расписание воедино1": {
+      "main": [
+        [
+          {
+            "node": "Фильтруем данные4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Собираем расписание воедино2": {
+      "main": [
+        [
+          {
+            "node": "Фильтруем данные1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Собираем расписание воедино3": {
+      "main": [
+        [
+          {
+            "node": "Фильтруем данные2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Собираем расписание воедино4": {
+      "main": [
+        [
+          {
+            "node": "Фильтруем данные3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Собираем расписание воедино5": {
+      "main": [
+        [
+          {
+            "node": "Фильтруем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Делаем выводы": {
+      "main": [
+        [
+          {
+            "node": "Сообщаем о них",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
+  },
+  "staticData": {
+    "node:Выполнять каждый день": {
+      "recurrencyRules": []
+    }
+  },
+  "pinData": {},
+  "versionId": "b12459fb-7c58-41b6-b9c7-578e873d25c9",
+  "triggerCount": 1,
+  "tags": []
+}
