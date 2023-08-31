@@ -1,7 +1,7 @@
 {
-  "id": "PxiwlMIyq7OzGlmc",
   "createdAt": "2023-08-02T11:55:16.226Z",
-  "updatedAt": "2023-08-03T13:39:09.000Z",
+  "updatedAt": "2023-08-20T16:15:47.000Z",
+  "id": "PxiwlMIyq7OzGlmc",
   "name": "Электрички",
   "active": true,
   "nodes": [
@@ -203,8 +203,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        3220,
-        500
+        2960,
+        520
       ]
     },
     {
@@ -474,7 +474,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        2760,
+        2780,
         220
       ]
     },
@@ -500,112 +500,15 @@
     },
     {
       "parameters": {
-        "jsCode": "let text = \"\";\nconst extractTime = isodate => {\n  return isodate.substring(11, 16);\n};\n\nif($input.all()[2].json.morning.length) {\n  const entry = $input.all()[2].json.morning[0]\n  text += `Завтра утром есть прямой рейс ${entry.run}. Отправление в ${extractTime(entry.depart)}, прибытие в ${extractTime(entry.arrival)}.`\n} else {\n  text += 'Завтра утром прямых рейсов нет.'\n};\nif($input.all()[3].json.morningCombos.length) {\n  if($input.all()[2].json.morning.length) {\n    text += ' Плюс, нашёлся вариант с пересадкой: ';\n  } else {\n    text += ' Но есть вариант с пересадкой: ';\n  };\n  const entry = $input.all()[3].json.morningCombos[0];\n  text += `рейсы ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}) и ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)}).`;\n};\n\nif($input.all()[1].json.evening.length) {\n  const entry = $input.all()[1].json.evening[0];\n  text += `\\nОбратно можно будет доехать на электричке ${entry.run}. Отправление в ${extractTime(entry.depart)}, прибытие в ${extractTime(entry.arrival)}.`;\n} else {\n  text += '\\nОбратных прямых рейсов нет.';\n};\nif($input.all()[0].json.eveningCombos.length) {\n  if($input.all()[1].json.evening.length) {\n    text += ' Плюс, нашёлся вариант с пересадкой: ';\n  } else {\n    text += ' Но есть вариант с пересадкой: ';\n  };\n  const entry = $input.all()[0].json.eveningCombos[0];\n  text += `рейсы ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}) и ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)}.)`;\n};\n\nreturn {json: {message: text}};"
+        "jsCode": "let text = \"\";\nconst extractTime = isodate => {\n  return isodate.substring(11, 16);\n};\nconst morning = {\n  whole: $input.all()[2].json.morning,\n  composite: $input.all()[3].json.morningCombos\n};\nconst evening = {\n  whole: $input.all()[1].json.evening,\n  composite: $input.all()[0].json.eveningCombos\n};\n\nif (! morning.whole.length) {\n  text += 'Завтра утром прямых рейсов нет. ';\n}\nif (morning.whole.length === 1) {\n  const entry = morning.whole[0]\n  text += `Завтра утром есть прямой рейс ${entry.run}. Отправление в ${extractTime(entry.depart)}, прибытие в ${extractTime(entry.arrival)}. `\n};\nif (morning.whole.length > 1) {\n  text += `Завтра утром есть несколько прямых рейсов:\\n`;\n  morning.whole.forEach((entry, index) => {\n    text += `${index + 1}) ${entry.run} (${extractTime(entry.depart)} — ${extractTime(entry.arrival)});\\n`;\n  });\n};\nif (! morning.composite.length) {\n  if (morning.whole.length) {\n    text += 'Вариантов доехать с пересадкой нет.\\n';\n  } else {\n    text += 'Вариантов доехать с пересадкой тоже нет.\\n';\n  };\n};\nif (morning.composite.length === 1) {\n  if(morning.whole.length) {\n    text += 'Плюс, нашёлся вариант с пересадкой: ';\n  } else {\n    text += 'Но есть вариант с пересадкой: ';\n  };\n  const entry = morning.composite[0];\n  text += `рейсы ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}) и ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)}).`;\n};\nif (morning.composite.length > 1) {\n  if (morning.whole.length) {\n    text += `В добавок, нашлись целых ${morning.composite.length} варианта с пересадкой:\\n`;\n  } else {\n    text += `Но нашлись ${morning.composite.length} варианта с пересадкой:\\n`;\n  };\n  morning.composite.forEach((entry, index) => {\n    text += `${index + 1}) ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}), затем ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)});\\n`;\n  });\n};\n\nif (! evening.whole.length) {\n  text += 'Обратных прямых рейсов нет. ';\n};\nif(evening.whole.length === 1) {\n  const entry = evening.whole[0];\n  text += `Обратно можно будет доехать на электричке ${entry.run}. Отправление в ${extractTime(entry.depart)}, прибытие в ${extractTime(entry.arrival)}. `;\n};\nif (evening.whole.length > 1) {\n  text += `Обратно есть несколько прямых рейсов:\\n`;\n  evening.whole.forEach((entry, index) => {\n    text += `${index + 1}) ${entry.run} (${extractTime(entry.depart)} — ${extractTime(entry.arrival)});\\n`;\n  });\n};\nif (! evening.composite.length) {\n  if (evening.whole.length) {\n    text += 'Вариантов доехать с пересадкой нет.\\n';\n  } else {\n    text += 'Вариантов доехать с пересадкой тоже нет.\\n';\n  };\n};\nif(evening.composite.length === 1) {\n  if(evening.whole.length) {\n    text += 'Плюс, нашёлся вариант с пересадкой: ';\n  } else {\n    text += 'Но есть вариант с пересадкой: ';\n  };\n  const entry = evening.composite[0];\n  text += `рейсы ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}) и ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)}.)`;\n};\nif (evening.composite.length > 1) {\n  if (evening.whole.length) {\n    text += `В добавок, нашлись целых ${evening.composite.length} варианта с пересадкой:\\n`;\n  } else {\n    text += `Но нашлись ${evening.composite.length} варианта с пересадкой:\\n`;\n  };\n  evening.composite.forEach((entry, index) => {\n    text += `${index + 1}) ${entry.firstTrain.run} (${extractTime(entry.firstTrain.depart)} — ${extractTime(entry.firstTrain.arrival)}), затем ${entry.secondTrain.run} (${extractTime(entry.secondTrain.depart)} — ${extractTime(entry.secondTrain.arrival)});\\n`;\n  });\n};\n\nreturn {json: {message: text}};"
       },
       "id": "cf897d0a-943e-4835-acd1-7a43f7b1cd63",
       "name": "Делаем выводы",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        3440,
-        500
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "number": [
-            {
-              "value1": "={{ $input.all()[0].json.morningCombos.length }}",
-              "operation": "larger",
-              "value2": 1
-            }
-          ]
-        }
-      },
-      "id": "77f7e381-3427-4fa1-aae4-6a1b173d8640",
-      "name": "Нашлось больше одной комбинации?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        2640,
-        1100
-      ]
-    },
-    {
-      "parameters": {
-        "errorMessage": "=Слишком много комбинаций!"
-      },
-      "id": "dafca021-17f8-48f2-b3fa-e0633739b263",
-      "name": "Падаем и вопим",
-      "type": "n8n-nodes-base.stopAndError",
-      "typeVersion": 1,
-      "position": [
-        3440,
-        1080
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "number": [
-            {
-              "value1": "={{ $input.all()[0].json.morning.length }}",
-              "operation": "larger",
-              "value2": 1
-            }
-          ]
-        }
-      },
-      "id": "fc4db460-bac8-4c02-8dcb-61f5db7eda8b",
-      "name": "Нашлось больше одного варианта?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        2800,
-        680
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "number": [
-            {
-              "value1": "={{ $input.all()[0].json.evening.length }}",
-              "operation": "larger",
-              "value2": 1
-            }
-          ]
-        }
-      },
-      "id": "8b9f2140-f433-4c40-a903-17c7b5c1f079",
-      "name": "Нашлось больше одного варианта?1",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        2800,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "number": [
-            {
-              "value1": "={{ $input.all()[0].json.eveningCombos.length }}",
-              "operation": "larger",
-              "value2": 1
-            }
-          ]
-        }
-      },
-      "id": "a77e3310-445d-4ff4-aa39-3de2f0a840e7",
-      "name": "Нашлось больше одной комбинации?1",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        2560,
-        -20
+        3160,
+        520
       ]
     },
     {
@@ -867,8 +770,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        3660,
-        500
+        3360,
+        520
       ],
       "credentials": {
         "telegramApi": {
@@ -966,11 +869,6 @@
             "node": "Объединяем утренние данные",
             "type": "main",
             "index": 1
-          },
-          {
-            "node": "Нашлось больше одной комбинации?",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -980,11 +878,6 @@
         [
           {
             "node": "Объединяем утренние данные",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Нашлось больше одного варианта?",
             "type": "main",
             "index": 0
           }
@@ -1108,11 +1001,6 @@
             "node": "Объединяем вечерние данные",
             "type": "main",
             "index": 1
-          },
-          {
-            "node": "Нашлось больше одного варианта?1",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -1122,11 +1010,6 @@
         [
           {
             "node": "Объединяем вечерние данные",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Нашлось больше одной комбинации?1",
             "type": "main",
             "index": 0
           }
@@ -1160,50 +1043,6 @@
         [
           {
             "node": "Делаем выводы",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Нашлось больше одной комбинации?": {
-      "main": [
-        [
-          {
-            "node": "Падаем и вопим",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Нашлось больше одного варианта?": {
-      "main": [
-        [
-          {
-            "node": "Падаем и вопим",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Нашлось больше одного варианта?1": {
-      "main": [
-        [
-          {
-            "node": "Падаем и вопим",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Нашлось больше одной комбинации?1": {
-      "main": [
-        [
-          {
-            "node": "Падаем и вопим",
             "type": "main",
             "index": 0
           }
@@ -1364,7 +1203,7 @@
     }
   },
   "pinData": {},
-  "versionId": "b12459fb-7c58-41b6-b9c7-578e873d25c9",
+  "versionId": "f2f84701-9001-4226-ae51-8ccd0d6576ce",
   "triggerCount": 1,
   "tags": []
 }
