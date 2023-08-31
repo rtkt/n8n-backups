@@ -1,9 +1,9 @@
 {
-  "id": "5",
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-07-24T07:15:48.000Z",
+  "updatedAt": "2023-08-31T10:00:59.000Z",
+  "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDesk",
-  "active": false,
+  "active": true,
   "nodes": [
     {
       "parameters": {
@@ -32,8 +32,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        400,
-        240
+        380,
+        -180
       ]
     },
     {
@@ -46,7 +46,7 @@
           "parameter": [
             {
               "name": "timestamp",
-              "value": "=>{{DateTime.now().minus({ months: 1 }).toFormat('yyyy-MM-dd') }}"
+              "value": "=>{{ $json.date }}"
             },
             {
               "name": "gfullname",
@@ -60,325 +60,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        760,
-        240
-      ],
-      "credentials": {
-        "httpBasicAuth": {
-          "id": "1",
-          "name": "КНП"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "functionCode": "// Code here will run only once, no matter how many input items there are.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.function\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\nconst current = [];\nfor(let i = 0; i < items[0].json.length; i++) {\n  if(items[0].json[i].Status === \"Завершена\" || items[0].json[i].Status === \"Отменена\") {\n    continue;\n  }\n  current.push({\n    id: items[0].json[i].id,\n    user: items[0].json[i].fullname,\n    creator: items[0].json[i].creator,\n    group: items[0].json[i].gfullname,\n    timestamp: items[0].json[i].timestamp,\n    name: items[0].json[i].Name.replaceAll('\"', ''),\n    status: items[0].json[i].Status,\n    executor: items[0].json[i].mfullname,\n    priority: items[0].json[i].Priority === \"Высокий\" ? 5 : 3,\n    link: `https://help.knp24.ru/request/${items[0].json[i].id}`\n  })\n}\n\nlet updates = [];\nconst staticData = getWorkflowStaticData('node');\n\nif(!staticData.lastExecution || ! (staticData.lastExecution instanceof Array)) {\n  updates = JSON.parse(JSON.stringify(current));\n  updates.forEach(request => {\n    request.type = \"new\";\n  });\n }\nelse {\n  current.forEach(request => {\n    const index = staticData.lastExecution.findIndex(element => request.id === element.id);\n    if (request.status === \"Открыта повторно\") {\n      if (index !== -1 && request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reopened\";\n      return;\n    }\n    if (index === -1) {\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"new\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочена реакция\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"reactionTimeout\";\n      return;\n    }\n    if (index !== -1 && request.status === \"Просрочено исполнение\") {\n      if (request.status === staticData.lastExecution[index].status) {\n        return;\n      }\n      updates.push(JSON.parse(JSON.stringify(request)))\n      updates[updates.length - 1].type = \"executionTimeout\";\n      return;\n    }\n  });\n}\nstaticData.lastExecution = JSON.parse(JSON.stringify(current));\nreturn updates;"
-      },
-      "id": "37db4e3a-cb2e-4d32-8efd-f70fef246b77",
-      "name": "diff и сохранение текущего списка заявок",
-      "type": "n8n-nodes-base.function",
-      "typeVersion": 1,
-      "position": [
-        3360,
-        -60
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "requestMethod": "POST",
-        "url": "https://ntfy.shitnsticks.top/",
-        "jsonParameters": true,
-        "options": {
-          "bodyContentType": "raw"
-        },
-        "bodyParametersJson": "={\n  \"topic\": \"vsdesk-v2\",\n  \"title\": \"Новая заявка\",\n  \"priority\": {{$json[\"Priority\"] === \"Высокий\" ? 5 : 3}},\n  \"message\": \"Название: {{$json[\"Name\"]}}\\nID: {{$json[\"id\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n \"click\": \"https://help.knp24.ru/request/{{$json[\"id\"]}}\" \n}"
-      },
-      "id": "733fdb05-28a0-4b44-aed3-751d9dcf0f25",
-      "name": "Уведомить о новой заявке",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        620,
-        1160
-      ],
-      "credentials": {
-        "httpBasicAuth": {
-          "id": "2",
-          "name": "Ntfy admin"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "dataType": "string",
-        "value1": "={{$node[\"diff и сохранение текущего списка заявок\"].json[\"type\"]}}",
-        "rules": {
-          "rules": [
-            {
-              "value2": "new"
-            },
-            {
-              "value2": "reactionTimeout",
-              "output": 1
-            },
-            {
-              "value2": "executionTimeout",
-              "output": 2
-            },
-            {
-              "value2": "reopened",
-              "output": 3
-            }
-          ]
-        }
-      },
-      "id": "170b3b0a-e8a0-4278-a00a-a5c6979f828e",
-      "name": "Распределение заявок по типам",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 1,
-      "position": [
-        3540,
-        -20
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{$json[\"Name\"]}}",
-              "operation": "startsWith",
-              "value2": "[Main PRTG]"
-            },
-            {
-              "value1": "={{$json[\"Name\"]}}",
-              "operation": "startsWith",
-              "value2": "[PRTG Ticket]"
-            }
-          ]
-        },
-        "combineOperation": "any"
-      },
-      "id": "14764a62-98c0-4533-ae49-a98e43570fb1",
-      "name": "Заявка из PRTG?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        400,
-        960
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "requestMethod": "POST",
-        "url": "https://ntfy.shitnsticks.top/",
-        "jsonParameters": true,
-        "options": {
-          "bodyContentType": "raw"
-        },
-        "bodyParametersJson": "={\n  \"topic\": \"vsdesk-v2\",\n  \"title\": \"Новая заявка из PRTG\",\n  \"priority\": 2,\n  \"message\": \"Название: {{$json[\"Name\"]}}\\nID: {{$json[\"id\"]}}\",\n  \"click\": \"https://help.knp24.ru/request/{{$json[\"id\"]}}\" \n}"
-      },
-      "id": "10d9198c-bc65-4ef7-b053-187d242d384b",
-      "name": "Уведомить о новой заявке из PRTG",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        620,
-        960
-      ],
-      "credentials": {
-        "httpBasicAuth": {
-          "id": "2",
-          "name": "Ntfy admin"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "requestMethod": "POST",
-        "url": "https://ntfy.shitnsticks.top/",
-        "jsonParameters": true,
-        "options": {
-          "bodyContentType": "raw"
-        },
-        "bodyParametersJson": "={\n\"topic\": \"vsdesk2\",\n\"title\": \"Просрочилась реакция по заявке {{$json[\"id\"]}}\",\n\"priority\": 4,\n\"message\": \"Название: {{$json[\"name\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n\"click\": \"{{$json[\"link\"]}}\"\n}"
-      },
-      "id": "47cc4d6e-d434-4c33-b30a-0f7396975c2d",
-      "name": "Уведомить о просроченной реакции по заявке",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        4000,
-        80
-      ],
-      "credentials": {
-        "httpBasicAuth": {
-          "id": "2",
-          "name": "Ntfy admin"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "requestMethod": "POST",
-        "url": "https://ntfy.shitnsticks.top/",
-        "jsonParameters": true,
-        "options": {
-          "bodyContentType": "raw"
-        },
-        "bodyParametersJson": "={\n\"topic\": \"vsdesk2\",\n\"title\": \"Просрочилась заявка {{$json[\"id\"]}}\",\n\"priority\": 5,\n\"message\": \"Название: {{$json[\"name\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n\"click\": \"{{$json[\"link\"]}}\"\n}"
-      },
-      "id": "6960a393-7bf6-4f85-b6d6-c754b4cb002d",
-      "name": "Уведомить о просроченной заявке",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        3980,
-        300
-      ],
-      "credentials": {
-        "httpBasicAuth": {
-          "id": "2",
-          "name": "Ntfy admin"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "requestMethod": "POST",
-        "url": "https://ntfy.shitnsticks.top/",
-        "jsonParameters": true,
-        "options": {
-          "bodyContentType": "raw"
-        },
-        "bodyParametersJson": "={\n\"topic\": \"vsdesk2\",\n\"title\": \"Заявку {{$json[\"id\"]}} вернули в работу\",\n\"priority\": 5,\n\"message\": \"Название: {{$json[\"name\"]}}\\nСоздатель: {{$json[\"creator\"]}}\",\n\"click\": \"{{$json[\"link\"]}}\"\n}"
-      },
-      "id": "808c4ef8-0a95-4dbf-86cb-cc503c24e34a",
-      "name": "Уведомить об открытой заново заявке",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        4000,
-        500
-      ],
-      "credentials": {
-        "httpBasicAuth": {
-          "id": "2",
-          "name": "Ntfy admin"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "return items[0].json.map(request => {\n  return {\n    id: request.id,\n    user: request.fullname,\n    creator: request.creator,\n    group: request.gfullname,\n    name: request.Name.replaceAll('\"', ''),\n    status: request.Status,\n    priority: request.Priority === \"Высокий\" ? 5 : 3,\n    subs: []\n  }\n})"
-      },
-      "id": "87d89e9d-2f71-4c04-983c-4724d65b21d3",
-      "name": "Грубая очистка данных",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1380,
-        -260
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json[\"status\"] }}",
-              "operation": "notEqual",
-              "value2": "Завершена"
-            },
-            {
-              "value1": "={{ $json[\"status\"] }}",
-              "operation": "notEqual",
-              "value2": "Отменена"
-            }
-          ]
-        }
-      },
-      "id": "5439a370-e529-4aea-a7c8-2db240442d87",
-      "name": "Заявка актуальна?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        1600,
-        -260
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://help.knp24.ru/api/requests/{{ $json[\"id\"] }}",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "options": {}
-      },
-      "id": "2f8578e9-1b76-481a-883a-51f64f26bf67",
-      "name": "Запроси данные о конкретной заявке",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1860,
-        -280
-      ],
-      "credentials": {
-        "httpBasicAuth": {
-          "id": "1",
-          "name": "КНП"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "// console.log(item.json.data)\n// return JSON.parse(\n// console.log(data)\n// const subs = data.subs.map(sub => sub.id)\n// console.log(subs)\n// return { subs: data.subs }\n// return JSON.parse(items[0])\n\nconsole.log(item.json.data)\nreturn item.json"
-      },
-      "id": "335b0fa8-ebb4-45a4-b3ce-49e8dd2140df",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        2080,
-        -280
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "url": "=https://help.knp24.ru/api/requests",
-        "options": {},
-        "queryParametersUi": {
-          "parameter": [
-            {
-              "name": "timestamp",
-              "value": "=>{{DateTime.now().minus({ months: 1 }).toFormat('yyyy-MM-dd') }}"
-            },
-            {
-              "name": "gfullname",
-              "value": "Группа системного администрирования"
-            }
-          ]
-        }
-      },
-      "id": "644534ae-2550-4013-9ce4-f9001bb9ad50",
-      "name": "Получение списка заявок из vsDesk1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        900,
-        -240
+        980,
+        -360
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -397,8 +80,8 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 2.1,
       "position": [
-        1140,
-        240
+        1380,
+        -360
       ],
       "alwaysOutputData": true
     },
@@ -413,6 +96,10 @@
             {
               "value1": "={{ $json.Status }}",
               "value2": "Выполнена"
+            },
+            {
+              "value1": "={{ $json.Status }}",
+              "value2": "Отменена"
             }
           ]
         },
@@ -423,8 +110,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1340,
-        240
+        1400,
+        80
       ]
     },
     {
@@ -437,34 +124,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        940,
-        240
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const ids = [];\nfor (request of $input.all()) {\n  ids.push(request.json.id);\n};\nconst static = $getWorkflowStaticData('global');\nfor (let i = 0; i < static.current.length; i++) {\n  if (static.current[i] === null) {\n    i++;\n    continue;\n  };\n  if (static.current[i] && ids.includes(static.current[i].id)) {\n    static.closed.push(static.current[i].id);\n    delete static.current[i];\n    i--;\n  };\n};\nconsole.log(ids);\n\nreturn {json: { closed: static.closed }};\n"
-      },
-      "id": "6ac08ae8-3ede-4490-9499-96337c2836f4",
-      "name": "Помечаем закрытые заявки",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1520,
-        120
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "let static = $getWorkflowStaticData('global');\nif (typeof static.current === 'undefined' ||\n   typeof static.closed === 'undefined' ||\n   typeof static.transferred === 'undefined') {\n  static.current = [];\n  static.closed = [];\n  static.transferred = [];\n};\n\nreturn { json: $getWorkflowStaticData('global')};"
-      },
-      "id": "55d98995-db72-4056-aad3-c6b4c652f9bd",
-      "name": "Первоначальная подготовка БД",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        580,
-        240
+        1180,
+        -360
       ]
     },
     {
@@ -479,8 +140,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        240,
-        500
+        580,
+        520
       ],
       "credentials": {
         "httpBasicAuth": {
@@ -499,154 +160,1307 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        400,
-        500
+        600,
+        300
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "delete $input.item.json.pid;\ndelete $input.item.json.slabel;\ndelete $input.item.json.ZayavCategory_id;\ndelete $input.item.json.Date;\ndelete $input.item.json.StartTime;\ndelete $input.item.json.phone;\ndelete $input.item.json.fStartTime;\ndelete $input.item.json.fEndTime;\ndelete $input.item.json.EndTime;\ndelete $input.item.json.sort_id;\ndelete $input.item.json.wasautoclosed;\ndelete $input.item.json.wasescalated;\ndelete $input.item.json.waspaused;\ndelete $input.item.json.channel;\ndelete $input.item.json.channel_icon;\ndelete $input.item.json.canceled;\ndelete $input.item.json.reopened;\ndelete $input.item.json.child;\ndelete $input.item.json.creator_id;\ndelete $input.item.json.service_category_id;\ndelete $input.item.json.depart_id;\ndelete $input.item.json.company_id;\ndelete $input.item.json.msbot_params;\ndelete $input.item.json.delayed;\ndelete $input.item.json.msbot_id;\ndelete $input.item.json.paused;\ndelete $input.item.json.paused_total_time;\ndelete $input.item.json.previous_paused_status_id;\ndelete $input.item.json.paused_total_time;\ndelete $input.item.json.jira;\ndelete $input.item.json.gr_id;\ndelete $input.item.json.viber_id;\ndelete $input.item.json.tchat_id;\ndelete $input.item.json.delayedHours;\ndelete $input.item.json.timestampClose;\ndelete $input.item.json.delayed_end;\ndelete $input.item.json.delayed_start;\ndelete $input.item.json.key;\ndelete $input.item.json.fields_history;\ndelete $input.item.json.groups_id;\ndelete $input.item.json.re_leaving;\ndelete $input.item.json.contractors_id;\ndelete $input.item.json.leaving;\ndelete $input.item.json.lead_time;\ndelete $input.item.json.rating;\ndelete $input.item.json.correct_timestamp;\ndelete $input.item.json.update_by;\ndelete $input.item.json.matching;\ndelete $input.item.json.watchers;\ndelete $input.item.json.depart;\ndelete $input.item.json.mfullname;\ndelete $input.item.json.image;\ndelete $input.item.json.service_id;\ndelete $input.item.json.closed;\ndelete $input.item.json.cunits;\ndelete $input.item.json.Type;\ndelete $input.item.json.room;\ndelete $input.item.json.company;\ndelete $input.item.json.Comment;\n\n$input.item.json.subs.forEach(comment => {\n  delete comment.show;\n  delete comment.recipients;\n  delete comment.channel;\n  delete comment.id;\n  delete comment.readership;\n})\n\nreturn $input.item;"
+        "jsCode": "delete $input.item.json.pid;\ndelete $input.item.json.slabel;\ndelete $input.item.json.ZayavCategory_id;\ndelete $input.item.json.Date;\ndelete $input.item.json.StartTime;\ndelete $input.item.json.fStartTime;\ndelete $input.item.json.fEndTime;\ndelete $input.item.json.EndTime;\ndelete $input.item.json.sort_id;\ndelete $input.item.json.wasautoclosed;\ndelete $input.item.json.wasescalated;\ndelete $input.item.json.waspaused;\ndelete $input.item.json.channel;\ndelete $input.item.json.channel_icon;\ndelete $input.item.json.canceled;\ndelete $input.item.json.reopened;\ndelete $input.item.json.child;\ndelete $input.item.json.creator_id;\ndelete $input.item.json.service_category_id;\ndelete $input.item.json.depart_id;\ndelete $input.item.json.company_id;\ndelete $input.item.json.msbot_params;\ndelete $input.item.json.delayed;\ndelete $input.item.json.msbot_id;\ndelete $input.item.json.paused;\ndelete $input.item.json.paused_total_time;\ndelete $input.item.json.previous_paused_status_id;\ndelete $input.item.json.paused_total_time;\ndelete $input.item.json.jira;\ndelete $input.item.json.gr_id;\ndelete $input.item.json.viber_id;\ndelete $input.item.json.tchat_id;\ndelete $input.item.json.delayedHours;\ndelete $input.item.json.timestampClose;\ndelete $input.item.json.delayed_end;\ndelete $input.item.json.delayed_start;\ndelete $input.item.json.key;\ndelete $input.item.json.fields_history;\ndelete $input.item.json.groups_id;\ndelete $input.item.json.re_leaving;\ndelete $input.item.json.contractors_id;\ndelete $input.item.json.leaving;\ndelete $input.item.json.lead_time;\ndelete $input.item.json.rating;\ndelete $input.item.json.correct_timestamp;\ndelete $input.item.json.update_by;\ndelete $input.item.json.matching;\ndelete $input.item.json.watchers;\ndelete $input.item.json.depart;\ndelete $input.item.json.mfullname;\ndelete $input.item.json.image;\ndelete $input.item.json.service_id;\ndelete $input.item.json.closed;\ndelete $input.item.json.cunits;\ndelete $input.item.json.Type;\ndelete $input.item.json.Address;\ndelete $input.item.json.company;\ndelete $input.item.json.Comment;\ndelete $input.item.json.lastactivity;\ndelete $input.item.json.timestampfStart;\ndelete $input.item.json.timestampfEnd;\n\n$input.item.json.subs.forEach(comment => {\n  delete comment.show;\n  delete comment.rid;\n  delete comment.recipients;\n  delete comment.channel;\n  delete comment.readership;\n  delete comment.timestamp;\n});\n\nreturn $input.item;"
       },
       "id": "5a00e7f9-d382-4b0d-9cb5-03b08de7f8ec",
       "name": "Зачищаем JSON",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        580,
-        500
+        820,
+        300
       ]
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "const static = $getWorkflowStaticData('global');\n\n// return { json: static };\n// console.log(static);\n\nconst findEntry = (store, id) => {\n  for (let i = 0; i < store.length; i++) {\n    if (store && store[i].id === id) return store[i];\n  }\n};\nconst requestEntry = findEntry(static.current, $input.item.json.id);\nif (requestEntry && $input.item.json.lastactivity === requestEntry.lastactivity) {\n  $input.item.json.needs_update = false;\n} else {\n  $input.item.json.needs_update = true;\n}\n\nreturn $input.item;"
-      },
-      "id": "3dbf1400-7f0f-4f83-af0f-62d22f67520a",
-      "name": "Что-нибудь изменилось?",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1520,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ $json.needs_update }}",
-              "value2": true
-            }
-          ]
-        }
-      },
-      "id": "9bd699dd-1389-4ed8-b3a2-fb0cce8b64d6",
-      "name": "Так изменилось что-нибудь или нет?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        1720,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const static = $getWorkflowStaticData('global');\nif (static.closed.length <= 400) return { json: {closed: static.closed }};\nwhile (static.closed.length > 400) {\n  static.closed.shift();\n};\nreturn { json: {closed: static.closed }};"
-      },
-      "id": "2956077b-bcac-4270-a52d-38bd2e8e52f1",
-      "name": "Урезаем историю закрытых заявок",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1720,
-        120
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const static = $getWorkflowStaticData('global');\nconsole.log(static.current);\n$input.all().forEach(request => {\n  const found = static.current.findIndex(entry => {\n    return request.json.id === entry.id;\n  });\n  console.log(`Found the index? ${found}`);\n  if (found >= 0) {\n    request.json.missing = false;\n  } else {\n    request.json.missing = true;\n  }\n});\n\nreturn $input.all();"
-      },
-      "id": "3b1ea9e5-056e-4944-b7d5-cb4f9eb57cfe",
-      "name": "Выискиваем отсутствующие в БД заявки",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        240,
-        720
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "boolean": [
-            {
-              "value1": "={{ $json.missing }}"
-            }
-          ]
-        }
-      },
-      "id": "c0ee2e67-8b57-4360-9c62-7f6bee9d8882",
-      "name": "Заявка нашлась?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        400,
-        720
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "const db = $getWorkflowStaticData('global').current;\nconst currentIDs = $input.all().map(request => {\n  return request.json.id;\n});\nconst recordedIDs = db.map(request => {\n  return request.id;\n});\nconst targets = recordedIDs.filter(id => {\n  return currentIDs.includes(id);\n});\nreturn { json: { targets: targets }};"
-      },
-      "id": "9d3fba8f-72f5-4e86-b224-50eff9a9a91b",
-      "name": "Выискиваем отсутствующие в полученных результатах заявки",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        740,
-        500
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "const current = $getWorkflowStaticData('global').current;\ncurrent.push($input.item.json);\nreturn $input.item;"
-      },
-      "id": "f3ab43a4-b4ee-44f3-a6e5-add4a2d731df",
-      "name": "Вносим заявку в список текущих",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        240,
-        960
-      ]
-    },
-    {
-      "parameters": {
-        "unit": "minutes"
+        "interval": 150
       },
       "id": "4e423956-0ddd-4aa3-83b7-e700762f502f",
       "name": "Интервал",
       "type": "n8n-nodes-base.interval",
       "typeVersion": 1,
       "position": [
-        240,
-        240
+        380,
+        -360
       ]
     },
     {
       "parameters": {
-        "jsCode": "return {json: $getWorkflowStaticData('global')};"
+        "operation": "delete",
+        "key": "=request:{{ $json.id }}"
       },
-      "id": "b77d9787-3119-4daf-b419-f6e35147c906",
-      "name": "Code1",
+      "id": "05e0f89d-4725-4b85-9ee2-a8932b07aeb1",
+      "name": "Удаляем значение из текущих",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        -80
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "id"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3bf33e40-4e1b-47d1-8cea-887f9fd05012",
+      "name": "Вычленение ID",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1760,
+        -280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "closed",
+        "key": "closed",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "8bbcb578-e4a7-420a-b7e1-793921e823c6",
+      "name": "Берём старый список закрытых заявок",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        -280
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "61362a14-e9f6-4f45-8109-8178983885a1",
+      "name": "Объединяем данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1980,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const db = $input.all()[0].json.closed;\nconst current = $input.all()[1].json.id;\n\nif (! db) {\n  return {json: {closed: JSON.stringify(current)}};\n}\nconst dbData = JSON.parse(db);\ncurrent.forEach(id => {\n  if(! dbData.includes(id)) {\n    dbData.push(id);\n  };\n});\n\nif(dbData.length > $('Конфигурация').all()[0].json.backlogs.closed) {\n  return {json: {closed: JSON.stringify(dbData.slice(dbData.length - $('Конфигурация').all()[0].json.backlogs.closed))}};\n}\nreturn {json: {closed: JSON.stringify(dbData)}};"
+      },
+      "id": "c7487db7-e5cf-4d03-85f3-cc50bb3d8c47",
+      "name": "Подготавливаем список закрытых заявок",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1520,
-        -20
+        2160,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "closed",
+        "value": "={{ $json.closed }}",
+        "keyType": "string",
+        "expire": true,
+        "ttl": "={{ $('Конфигурация').all()[0].json.redis.expiry * 60 * 60 * 24 }}"
+      },
+      "id": "5b6bf5e8-c426-4586-80ff-2226b1957667",
+      "name": "Записываем обновлённый список",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        -40
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "=request",
+        "key": "=request:{{ $json.id }}",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "17c6e76f-34e4-45b9-ab0b-3f0e1d8bc6ff",
+      "name": "Подгружаем данные",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        160
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const requests = [];\n\n$input.all().forEach(element => {\n  if (! element.json.request) {\n    return;\n  };\n  requests.push(JSON.parse(element.json.request));\n});\n\nreturn requests;"
+      },
+      "id": "b31d0b35-2912-4b46-95f5-04ccb620ddf9",
+      "name": "Парсим их",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        160
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "id": "c537f3e4-d8dc-433e-ae33-3c4d02aa60e0",
+      "name": "Объединяем данные1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1600,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "db"
+      },
+      "id": "ffad8d94-20e1-4c3d-bc05-02d3abe8d5a6",
+      "name": "Заворачиваем всё в один элемент",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1960,
+        160
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "current"
+      },
+      "id": "b018d5a3-1ae9-43fc-a961-3b64953a2d67",
+      "name": "Заворачиваем всё в один элемент1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=request:{{ $json.id }}",
+        "value": "={{ JSON.stringify($json) }}",
+        "keyType": "string"
+      },
+      "id": "52386016-77d1-4241-9c2d-80153994bbd3",
+      "name": "Записываем обновлённые данные",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        560
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const diffs = [];\nconst updates = [];\nif ($input.all().length <= 1) {\n  return [];\n};\nif (! $input.all()[0].json.db.length) {\n  const labelledData = $input.all()[1].json.current.map(request => {\n    request.json.new = true;\n    return request;\n  });\n  return {\n    json: {\n      diffs: labelledData,\n      updates: $input.all()[1].json.current\n    }\n  };\n};\nconst index = {};\n$input.all()[0].json.db.forEach((request, i) => {\n  index[request.id] = i;\n});\nconst diff = (current, db) => {\n  const output = {};\n  // console.log(`Processing ${JSON.stringify(current)} and ${JSON.stringify(db)}`);\n  for(let field in current) {\n    if (\n      current[field] &&\n      current[field] !== null &&\n      typeof current[field] === 'object'\n    ) {\n      if (! db[field]) {\n        output[field] = JSON.parse(JSON.stringify(current[field]));\n        output[field].new = true;\n      } else if (JSON.stringify(db[field]) !== JSON.stringify(current[field])) {\n        output[field] = diff(current[field], db[field]);\n      };\n    } else if (current[field] !== db[field]) {\n      output[field] = current[field];\n    };\n  };\n  // console.log(JSON.stringify(output));\n  if (! Object.values(output).length) {\n    return;\n  };\n  output.id = current.id;\n  return output;\n};\n$input.all()[1].json.current.forEach(request => {\n  const dbEntry = $input.all()[0].json.db[index[request.id]];\n  if (! dbEntry) {\n    if (! (\n      request.service_name === \"Группа УИТ - Отдел системного администрирования\" ||\n      request.gfullname === \"Отдел системного администрирования\"\n    )) {\n      return;\n    }\n    diffs.push(JSON.parse(JSON.stringify(request)));\n    diffs[diffs.length - 1].new = true;\n    updates.push(request);\n    return;\n  } else if (\n    request.gfullname !== \"Группа системного администрирования\" &&\n    request.gfullname !== null\n  ) {\n    if (dbEntry?.transferred) {\n      return;\n    } else {\n      request.transferred = true;\n      const update = diff(request, dbEntry);\n      update.transferred = true;\n      update.gfullname = request.gfullname;\n      diffs.push(update);\n      updates.push(request);\n    };\n  } else if (\n    dbEntry?.transferred &&\n    request.gfullname === \"Группа системного администрирования\"\n  ) {\n    const update = diff(request, dbEntry);\n    update.transferred_back = true;\n    diffs.push(update);\n    updates.push(request);\n  } else {\n    const update = diff(request, dbEntry);\n    if (update) {\n      update.id = request.id;\n      updates.push(request);\n      diffs.push(update);\n    };\n  };\n});\nreturn {\n  json: {\n    diffs: diffs,\n    updates: updates\n  }\n};"
+      },
+      "id": "fa818991-6bf3-4cf4-841b-2aeeb1bfa2be",
+      "name": "diff",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const strip = input => {\n  const chars = input.split(\"\");\n  let text = true;\n  const filteredChars = chars.filter(char => {\n    if (char === \"<\") {\n      text = false;\n    } else if (char === \">\") {\n      text = true;\n      return false;\n    };\n    return text;\n  });\n  return filteredChars.join(\"\");\n};\n\nconst newlines = [\n  \"<br />\",\n  \"</p>\",\n  \"</h1>\",\n  \"</h2>\",\n  \"</h3>\",\n  \"</h4>\",\n  \"</h5>\",\n  \"</h6>\"\n];\nconst symbols = [\n  { in: \"&nbsp;\", out: \" \" }\n];\nconst process = string => {\n  newlines.forEach(symbol => {\n    string = string.replaceAll(symbol, \"\\n\");\n  });\n  symbols.forEach(replacement => {\n    string = string.replaceAll(replacement.in, replacement.out);\n  });\n  return strip(string);\n};\n// console.log(`Working with ${$input.item.json.id}`);\n$input.item.json.Content = process($input.item.json.Content);\n// console.log('Finished processing content');\nif ($input.item.json.subs.length) {\n  $input.item.json.subs.forEach(sub => {\n    // console.log(`Processing comment ${sub.comment}`);\n    sub.comment = process(sub.comment);\n  });\n};\nreturn $input.item;;"
+      },
+      "id": "63a8a3d1-fbb5-4298-a158-5f7d76d19afb",
+      "name": "Зачищаем HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.transferred_back }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "f90a2629-4581-4d12-825d-21285095a424",
+      "name": "Заявка переведена обратно?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2860,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=request:{{ $json.id }}:messageID",
+        "value": "={{ $json.messageID }}",
+        "keyType": "string",
+        "expire": true,
+        "ttl": "={{ $('Конфигурация').all()[0].json.redis.expiry * 60 * 60 * 24 }}"
+      },
+      "id": "c67062d3-895b-4ccf-a82f-d9ba7daee714",
+      "name": "Вносим ID последнего сообщения",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4000,
+        460
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.new }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "430e2858-c924-4366-84a0-6d2a1f2e5347",
+      "name": "Заявка новая?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2580,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = \"Новая заявка\";\nif ($input.item.json.Priority === \"Низкий\") {\n  message += \" с низким приоритетом\";\n} else if ($input.item.json.Priority === \"Высокий\") {\n  message += \" с высоким приоритетом\";\n};\nmessage += ` <a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">№${$input.item.json.id}</a> от ${$input.item.json.timestamp.slice(0, -3)}\\n\\n`;\nif (\n  $input.item.json.Priority !== \"Средний\" &&\n  $input.item.json.Priority !== \"Низкий\" &&\n  $input.item.json.Priority !== \"Высокий\"\n) {\n  message += `Приоритет: ${$input.item.json.Priority}\\n`;\n};\nif ($input.item.json.Name) {\n  message += `${$input.item.json.Name}\\n`;\n} else {\n  message += \"Без названия\\n\";\n};\nmessage += `От: ${$input.item.json.fullname}\\n`;\nif ($input.item.json.fullname !== $input.item.json.creator) {\n  message += `Создатель: ${$input.item.json.creator}\\n`;\n};\nif ($input.item.json.phone) {\n  message += `Телефон: ${$input.item.json.phone}\\n`;\n};\nif ($input.item.json.room) {\n  message += `Адрес: ${$input.item.json.room}\\n`;\n};\nif ($input.item.json.Content) {\n  message += $input.item.json.Content;\n} else {\n  message += \"Без содержания\";\n};\nif ($input.item.json.files.length) {\n  message += \"\\nВложения:\";\n  $input.item.json.files.forEach((file, index) => {\n    message += `\\n\\t${index + 1}) <a href=\"${file.file_name}\">${file.name}</a>`\n  });\n};\n$input.item.json.message = message;\nreturn $input.item;"
+      },
+      "id": "71c68435-4726-4b38-aea1-a99fa19753c2",
+      "name": "Формируем сообщение",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3340,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-810566788",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "64fb61d2-7100-4d10-bc0e-f159866b656b",
+      "name": "Уведомляем",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3540,
+        460
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "f2b0e7c4-4652-4a8c-8ba8-e6ececbc6d4f",
+      "name": "Объединяем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2960,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const closed = JSON.parse($input.all()[$input.all().length - 1].json.closed);\nfor (let i = 0; i < $input.all().length - 1; i++) {\n  if (closed.includes($input.all()[i].json.id)) {\n    $input.all()[i].json.reopened = true;\n  }\n}\nconst output = $input.all().slice(0, -1).filter(request => {\n  return (\n    typeof request === \"object\" &&\n    Object.values(request.json).length\n  );\n});\nreturn output;"
+      },
+      "id": "1e6a7bd1-7514-4c2c-9a50-cf992581d7eb",
+      "name": "Помечаем повторно открытые заявки",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3140,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.reopened }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "c6604f68-f7ec-4dcc-afce-c169ea48319b",
+      "name": "Заявка повторно открыта?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3320,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.creator }}",
+              "value2": "PRTG alert"
+            }
+          ]
+        }
+      },
+      "id": "e89882b9-1fdf-4a0f-85af-35ad750695cc",
+      "name": "Заявка из PRTG?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3100,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $json.messageID }}"
+        }
+      },
+      "id": "21acf5bb-c9b4-44f8-874e-548e54b3516f",
+      "name": "Сообщаем",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3180,
+        -320
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "messageID",
+        "key": "=request:{{ $json.id }}:messageID",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "9663924f-56b8-45d1-a393-7acd764d155e",
+      "name": "Подгружаем ID последнего сообщения",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        360
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Вычленяем диффы').item;\noutput.json.messageID = $input.item.json.messageID;\nreturn output;"
+      },
+      "id": "e02b6340-f53d-44f2-bd9f-cfd090457a4d",
+      "name": "Вписываем ID последнего сообщения",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "url": "=https://help.knp24.ru/api/requests",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "timestamp",
+              "value": "=>{{ $json.date }}"
+            },
+            {
+              "name": "service_name",
+              "value": "Группа УИТ - Отдел системного администрирования"
+            }
+          ]
+        }
+      },
+      "id": "a909d1bd-ae96-4f30-9f50-0b4658c51f1d",
+      "name": "Получение списка заявок из vsDesk1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        780,
+        -160
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json = {\n  wrapper: JSON.parse(JSON.stringify($input.item.json))\n};\n\nreturn $input.item;"
+      },
+      "id": "d94ae3da-d961-4fde-9a7c-c672508c7f12",
+      "name": "!КОСТЫЛЬ! Оборачиваем полученные данные1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        980,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "wrapper",
+        "options": {}
+      },
+      "id": "ef02aaa3-9c1c-46ba-b4ff-664c957f8665",
+      "name": "Разбиваем их на части1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 2.1,
+      "position": [
+        1180,
+        -160
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {},
+      "id": "387a22e2-0fa3-4d8f-9382-fde77df34e7e",
+      "name": "Объединяем3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1400,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicates",
+        "compare": "selectedFields",
+        "fieldsToCompare": "id",
+        "options": {}
+      },
+      "id": "1b517baa-2d72-40b8-90b4-45de5d03c935",
+      "name": "Удаляем дубликаты",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1220,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.transferred }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "09769943-112e-451e-bb9d-61781637a670",
+      "name": "Заявка ушла от нас?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Заявка из PRTG?').item;\noutput.json.messageID = $input.item.json.result.message_id;\nreturn output;"
+      },
+      "id": "1a2d68f5-5a93-40c2-8975-78c75e8e2f5a",
+      "name": "Вписываем ID последнего сообщения1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3720,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "closed",
+        "key": "closed",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "57e17a8c-2a62-459c-aa50-816cf842abd7",
+      "name": "Берём список закрытых заявок",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        40
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Заявка повторно открыта?').item;\noutput.json.messageID = $input.item.json.result.message_id;\nreturn output;"
+      },
+      "id": "e825a8e6-5cb5-4548-b372-8fa1773d79f5",
+      "name": "Вписываем ID последнего сообщения2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ea3fed6f-3f58-418a-be74-366fab3a039d",
+      "name": "Объединяем1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2920,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "if ($input.all().length <= 1) {\n  return [];\n};\nconst closed = JSON.parse($input.all()[0].json.closed);\nconst ids = [];\nfor (let i = 1; i < $input.all().length; i++) {\n  ids.push($input.all()[i].id);\n};\n// console.log(JSON.stringify(ids));\nconst output = closed.filter(id => {\n  // console.log(`ID: ${id}, index: ${ids.indexOf(id)}`);\n  return ids.indexOf(id) === -1;\n});\nreturn {json: {closed: JSON.stringify(output)}};"
+      },
+      "id": "36bc2995-5dae-4f7b-a7b3-ea243def062c",
+      "name": "Формируем новый список закрытых заявок",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3140,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-810566788",
+        "text": "=<a href=\"https://help.knp24.ru/request/{{ $json.id }}\">Заявку №{{ $json.id }} вернули в работу</a>",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $json.messageID }}"
+        }
+      },
+      "id": "33459c91-a43b-48a5-8e5e-afccfe7fce25",
+      "name": "Уведомляем1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        40
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "lastBigSync",
+        "key": "lastBigSync",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "bc58cfb8-79db-45ea-9be3-abf70627e069",
+      "name": "Подгружаем время последнего большого запроса",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        380,
+        40
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const updates = {\n  big: {\n    json: {\n      date: DateTime.now().minus({ days: $('Конфигурация').all()[0].json.updates.large.period }).toFormat('yyyy-MM-dd'),\n      bigUpdate: true\n    }\n  },\n  small: {\n    json: {\n      date: DateTime.now().minus({ days: $('Конфигурация').all()[0].json.updates.small.period }).toFormat('yyyy-MM-dd'),\n      bigUpdate: false\n    }\n  }\n};\nif (! $input.all()[0].json.lastBigSync) {\n  return updates.big;\n};\nconst diff = DateTime.fromMillis(Number.parseInt($input.all()[0].json.lastBigSync)).diffNow().toMillis();\nif (diff < $('Конфигурация').all()[0].json.updates.large.frequency * -60 * 1000) {\n  return updates.big;\n};\nreturn updates.small;"
+      },
+      "id": "6825e266-7596-4a51-a33d-cf3a03a6d79e",
+      "name": "Обрабатываем данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.bigUpdate }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "952bebd6-e597-4d58-95a5-304dcf54effc",
+      "name": "Это большое обновление?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        580,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "lastBigSync",
+        "value": "={{ DateTime.now().toMillis() }}",
+        "keyType": "string",
+        "expire": true,
+        "ttl": "={{ $('Конфигурация').all()[0].json.redis.expiry * 60 * 60 * 24 }}"
+      },
+      "id": "faa4b947-1e0c-4779-8941-f7e0070052ef",
+      "name": "Обновляем время большого обновления",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        500
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "closed",
+        "value": "={{ $json.closed }}",
+        "keyType": "string",
+        "expire": true,
+        "ttl": "={{ $('Конфигурация').all()[0].json.redis.expiry * 60 * 60 * 24 }}"
+      },
+      "id": "d1453898-28f6-4ec0-96c7-c4163e39d60f",
+      "name": "Записываем обновлённый список1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3340,
+        260
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis for vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "updates.small.period",
+              "value": 7
+            },
+            {
+              "name": "updates.large.frequency",
+              "value": 20
+            },
+            {
+              "name": "updates.large.period",
+              "value": 60
+            },
+            {
+              "name": "backlogs.closed",
+              "value": 1000
+            },
+            {
+              "name": "backlogs.transferred",
+              "value": 300
+            },
+            {
+              "name": "redis.expiry",
+              "value": 120
+            }
+          ],
+          "string": [
+            {
+              "name": "chatid",
+              "value": "-810566788"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5553eba5-5e83-4b3c-ba64-1db1dbcbf1e0",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        580,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = `Новая заявка из PRTG <a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">№${$input.item.json.id}</a>\\n\\n`;\nconst contents = $input.item.json.Content.split('\\n');\n\n$input.item.json.message = message;\nreturn $input.item;"
+      },
+      "id": "323444c0-7bf6-4361-95e3-b84cef341c4e",
+      "name": "Формируем сообщение1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3340,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.Status }}",
+              "value2": "Просрочена реакция"
+            }
+          ],
+          "boolean": [
+            {
+              "value1": "={{ false }}"
+            }
+          ]
+        }
+      },
+      "id": "c83b35ef-1c01-42e3-9300-ffc6764e8b14",
+      "name": "Просрок реакции?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=У заявки <a href=\"https://help.knp24.ru/request/{{ $json.id }}\">№{{ $json.id }}</a> просрок реакции!",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $json.messageID }}"
+        }
+      },
+      "id": "48ea0295-de1c-4a92-a3ff-b56db4bc4565",
+      "name": "Уведомляем2",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        620
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Заявка переведена?').item;\noutput.json.messageID = $input.item.json.result.message_id;\nreturn output;"
+      },
+      "id": "ff5f2d20-5903-473e-ae4e-47f8f50bccea",
+      "name": "Вписываем ID последнего сообщения3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3340,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=У заявки <a href=\"https://help.knp24.ru/request/{{ $json.id }}\">№{{ $json.id }}</a> просрочено исполнение!",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $json.messageID }}"
+        }
+      },
+      "id": "771e2f0c-f1b5-47a9-b8ad-d52bf1fd0828",
+      "name": "Уведомляем3",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        780
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.Status }}",
+              "value2": "Просрочено исполнение"
+            }
+          ]
+        }
+      },
+      "id": "858ea4be-b0c5-4c25-a01a-d9b2c0999ca8",
+      "name": "Просрок исполнения?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Заявку <a href=\"https://help.knp24.ru/request/{{ $json.id }}\">№{{ $json.id }}</a> перевели обратно",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $json.messageID }}"
+        }
+      },
+      "id": "8ecbf1b9-c25c-42ce-a528-3d7996ac9da1",
+      "name": "Уведомляем4",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3080,
+        -160
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Заявка переведена обратно?').item;\noutput.json.messageID = $input.item.json.result.message_id;\nreturn output;"
+      },
+      "id": "4a7740ed-77b9-4f47-84fe-6d3021638c4d",
+      "name": "Вписываем ID последнего сообщения4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const name = newname => {\n  return `Новая тема: ${newname}`;\n};\nconst content = newcontent => {\n  return `Новое содержание: ${newcontent}`;\n};\nconst files = newfiles => {\n  let output = \"Добавленные вложения:\\n\";\n  let index = 1;\n  for (const file in newfiles) {\n    output += `\\n\\t${index}) <a href=\"${newfiles[file].file_name}\">${newfiles[file].name}</a>`;\n  };\n  return output;\n};\n\nlet message = \"\";\nmessage += `В заявке <a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">№${$input.item.json.id}</a> `;\nif (\n  $input.item.json.Name &&\n  $input.item.json.Content &&\n  typeof $input.item.json.files === 'object' &&\n  $input.item.json.files !== null &&\n  Object.values($input.item.json.files).length\n) {\n  message += `изменены тема, содержание, а также добавлен(ы) вложения\\n\\n${name($input.item.json.Name)}\\n${content($input.item.json.Content)}\\n${files($input.item.json.files)}`;\n} else if (\n  $input.item.json.Name &&\n  $input.item.json.Content\n) {\n  message += `изменены тема и содержание\\n\\n${name($input.item.json.Name)}\\n${content($input.item.json.Content)}`;\n} else if (\n  $input.item.json.Content &&\n  typeof $input.item.json.files === 'object' &&\n  $input.item.json.files !== null &&\n  Object.values($input.item.json.files).length\n) {\n  message += `изменено содержание, а также добавлен(ы) вложения\\n\\n${content($input.item.json.Content)}\\n${files($input.item.json.files)}`;\n} else if ($input.item.json.Content) {\n  message += `изменено содержание\\n\\n${content($input.item.json.Content)}`;\n} else if ($input.item.json.Name) {\n  message += `изменено название\\n\\n${name($input.item.json.Name)}`;\n}\n$input.item.json.message = message;\nreturn $input.item;"
+      },
+      "id": "58e95d67-8cff-4c06-b50f-ba3fec3119f0",
+      "name": "Формируем сообщение2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2880,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ Object.values($json.files).length }}",
+              "operation": "larger"
+            }
+          ],
+          "string": [
+            {
+              "value1": "={{ $json.Content }}",
+              "operation": "isNotEmpty"
+            },
+            {
+              "value1": "={{ $json.Name }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "f0fe2335-49a2-47cb-989c-a53b28c63898",
+      "name": "Изменено тело заявки?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $json.messageID }}"
+        }
+      },
+      "id": "5acd0d2b-1a37-4e28-892f-bf34887112d9",
+      "name": "Уведомляем5",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3100,
+        1000
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Заявка ушла от нас?').item;\noutput.json.messageID = $input.item.json.result.message_id;\nreturn output;"
+      },
+      "id": "2677abbe-9bb3-43d3-aa8b-fc031e1f8d48",
+      "name": "Вписываем ID последнего сообщения6",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.json.message = `<a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">Заявка №${ $input.item.json.id}</a> переведена на `;\nif ($input.item.json.gfullname) {\n  $input.item.json.message += $input.item.json.gfullname;\n} else {\n  $input.item.json.message += $input.item.json.service_name;\n};\nreturn $input.item;"
+      },
+      "id": "275413c9-70ff-487d-8e1a-aa916715ca56",
+      "name": "Формируем сообщение3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2940,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const newComments = [];\nconst editedComments = [];\nconst files = newfiles => {\n  let output = \"\\n\\tВложения:\";\n  let i = 1;\n  for (const file in newfiles) {\n    output += `\\n\\t\\t${i}) <a href=\"${newfiles[file].file_name}\">${newfiles[file].name}</a>`;\n    i++;\n  };\n  return output;\n};\nconst process = (comment, index) => {\n  if (!comment) {\n    return;\n  };\n  let output = \"\";\n  // console.log(`Processing comment ${JSON.stringify(comment)}`);\n  output += `\\n\\t${index + 1}) ${comment.comment}`;\n  if (comment.author) {\n    output += `\\n\\t<i>От: ${comment.author}</i>`;\n  };\n  if (\n    comment.files &&\n    comment.files !== null &&\n    Object.values(comment.files).length\n  ) {\n    output += files(comment.files);\n  };\n  return output;\n};\nlet message = \"\";\n// console.log(JSON.stringify(Object.keys($input.item.json.subs)));\nObject.keys($input.item.json.subs).forEach(sub => {\n  if ($input.item.json.subs[sub]?.new) {\n    newComments.push($input.item.json.subs[sub]);\n  } else {\n    editedComments.push($input.item.json.subs[sub]);\n  };\n});\n// console.log(`New comments are ${JSON.stringify(newComments)}`);\n// console.log(`Edited comments are ${JSON.stringify(editedComments)}`);\nif (newComments.length >= 1) {\n  message += `В заявке <a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">№${$input.item.json.id}</a> добавлены новые комментарии:`;\n  newComments.forEach((comment, index) => {\n    message += process(comment, index);\n  });\n};\n// if (editedComments.length >= 1) {\n//   if (newComments.length >= 1) {\n//     message += \"Также, есть отредактированные комментарии:\";\n//   } else {\n//     message += `В заявке <a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">№${$input.item.json.id}</a> отредактированы комментарии:`;\n//   };\n//   editedComments.forEach((comment, index) => {\n//     message += process(comment, index);\n//   });\n// };\n$input.item.json.message = message;\nreturn $input.item;"
+      },
+      "id": "00d62df1-2b2a-43ce-8e7d-290b97129bba",
+      "name": "Формируем сообщение4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2880,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const streamline = (data, idname) => {\n  const output = {};\n  data.forEach(element => {\n    output[element[idname]] = JSON.parse(JSON.stringify(element));\n    delete output[element[idname]][idname];\n  });\n  // console.log(JSON.stringify(output));\n  return output;\n};\n$input.item.json.subs.forEach(sub => {\n  sub.files = streamline(sub.files, 'id');\n});\n$input.item.json.subs = streamline($input.item.json.subs, 'id');\n$input.item.json.files = streamline($input.item.json.files, 'id');\nreturn $input.item;"
+      },
+      "id": "bd591b41-9ca2-4648-ae07-0287a4518e53",
+      "name": "Перебираем комменты и вложения",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "diffs",
+        "options": {}
+      },
+      "id": "23391436-a7dd-4aef-a40c-65ae796fff9f",
+      "name": "Вычленяем диффы",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1980,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "updates",
+        "options": {}
+      },
+      "id": "90ee02de-ff6c-4d76-b1a2-2203b015b9dc",
+      "name": "Вычленяем обновлённые записи",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1980,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.gfullname }}",
+              "value2": "Группа системного администрирования"
+            },
+            {
+              "value1": "={{ $json.gfullname }}",
+              "operation": "isEmpty"
+            }
+          ]
+        },
+        "combineConditions": "OR"
+      },
+      "id": "025f889f-7db0-4351-8e5b-fc1b7d79abc7",
+      "name": "Фильтрация",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        460
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ca803515-2b78-44d3-8ae1-bb71853c4bbb",
+      "name": "Объединяем5",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        820,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "seconds"
+      },
+      "id": "86cfafd9-2c57-4fdd-8dcf-a2770022d01a",
+      "name": "Ждём",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -360
+      ],
+      "webhookId": "bd186136-c051-49b3-b111-3aecaaaf17af"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "6165b920-ca44-4a66-80d8-08d94397e2be",
+      "name": "По одной заявке",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "86bcf3f8-1640-471e-904f-5f4ca441fdf6",
+      "name": "Ждём1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        400,
+        520
+      ],
+      "webhookId": "d34c34c0-628f-4b1d-9792-7ee4b4b893c4"
+    },
+    {
+      "parameters": {
+        "jsCode": "if ($input.first().json?.bigUpdate) {\n  return {json: {bigUpdate: true}};\n};\nreturn [];"
+      },
+      "id": "97e079b0-3929-4efc-a140-a01010b2f501",
+      "name": "Это большое обновление?1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ Object.values($input.item.json.subs).length }}",
+              "operation": "larger"
+            }
+          ]
+        }
+      },
+      "id": "27a4c5e8-85f8-44b4-baef-5b4b8e219a9d",
+      "name": "Что-то связанное с комментарием?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.transferred }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "add61cf7-e8d2-4f47-ae9e-36988c36496f",
+      "name": "Заявка переведена?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        620
       ]
     }
   ],
@@ -655,95 +1469,7 @@
       "main": [
         [
           {
-            "node": "Первоначальная подготовка БД",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "diff и сохранение текущего списка заявок": {
-      "main": [
-        [
-          {
-            "node": "Распределение заявок по типам",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Распределение заявок по типам": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Уведомить о просроченной реакции по заявке",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Уведомить о просроченной заявке",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Уведомить об открытой заново заявке",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Заявка из PRTG?": {
-      "main": [
-        [
-          {
-            "node": "Уведомить о новой заявке из PRTG",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Уведомить о новой заявке",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Грубая очистка данных": {
-      "main": [
-        [
-          {
-            "node": "Заявка актуальна?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Заявка актуальна?": {
-      "main": [
-        [
-          {
-            "node": "Запроси данные о конкретной заявке",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Запроси данные о конкретной заявке": {
-      "main": [
-        [
-          {
-            "node": "Code",
+            "node": "Подгружаем время последнего большого запроса",
             "type": "main",
             "index": 0
           }
@@ -765,12 +1491,7 @@
       "main": [
         [
           {
-            "node": "Заявка закрыта?",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Code1",
+            "node": "Объединяем3",
             "type": "main",
             "index": 0
           }
@@ -792,25 +1513,24 @@
       "main": [
         [
           {
-            "node": "Помечаем закрытые заявки",
+            "node": "Вычленение ID",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Удаляем значение из текущих",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Что-нибудь изменилось?",
+            "node": "Подгружаем данные",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Первоначальная подготовка БД": {
-      "main": [
-        [
+          },
           {
-            "node": "Получение списка заявок из vsDesk",
+            "node": "По одной заявке",
             "type": "main",
             "index": 0
           }
@@ -821,7 +1541,7 @@
       "main": [
         [
           {
-            "node": "Парсим полученный JSON",
+            "node": "По одной заявке",
             "type": "main",
             "index": 0
           }
@@ -839,83 +1559,11 @@
         ]
       ]
     },
-    "Что-нибудь изменилось?": {
-      "main": [
-        [
-          {
-            "node": "Так изменилось что-нибудь или нет?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Так изменилось что-нибудь или нет?": {
-      "main": [
-        [
-          {
-            "node": "Подгружаем отдельные заявки",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Помечаем закрытые заявки": {
-      "main": [
-        [
-          {
-            "node": "Урезаем историю закрытых заявок",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Зачищаем JSON": {
       "main": [
         [
           {
-            "node": "Выискиваем отсутствующие в полученных результатах заявки",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Выискиваем отсутствующие в БД заявки",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Выискиваем отсутствующие в БД заявки": {
-      "main": [
-        [
-          {
-            "node": "Заявка нашлась?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Заявка нашлась?": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Вносим заявку в список текущих",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Вносим заявку в список текущих": {
-      "main": [
-        [
-          {
-            "node": "Заявка из PRTG?",
+            "node": "Зачищаем HTML",
             "type": "main",
             "index": 0
           }
@@ -926,7 +1574,794 @@
       "main": [
         [
           {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вычленение ID": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Берём старый список закрытых заявок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Берём старый список закрытых заявок": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем данные": {
+      "main": [
+        [
+          {
+            "node": "Подготавливаем список закрытых заявок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подготавливаем список закрытых заявок": {
+      "main": [
+        [
+          {
+            "node": "Записываем обновлённый список",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем данные": {
+      "main": [
+        [
+          {
+            "node": "Парсим их",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим их": {
+      "main": [
+        [
+          {
+            "node": "Заворачиваем всё в один элемент",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем данные1": {
+      "main": [
+        [
+          {
+            "node": "diff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заворачиваем всё в один элемент": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заворачиваем всё в один элемент1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные1",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Объединяем5",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "diff": {
+      "main": [
+        [
+          {
+            "node": "Вычленяем диффы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Вычленяем обновлённые записи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Зачищаем HTML": {
+      "main": [
+        [
+          {
+            "node": "Перебираем комменты и вложения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка переведена обратно?": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка новая?": {
+      "main": [
+        [
+          {
+            "node": "Берём список закрытых заявок",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Заявка переведена?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем": {
+      "main": [
+        [
+          {
+            "node": "Помечаем повторно открытые заявки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Помечаем повторно открытые заявки": {
+      "main": [
+        [
+          {
+            "node": "Заявка повторно открыта?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка повторно открыта?": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Фильтрация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка из PRTG?": {
+      "main": [
+        [
+          {
+            "node": "Формируем сообщение1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Формируем сообщение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сообщаем": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем ID последнего сообщения": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем ID последнего сообщения": {
+      "main": [
+        [
+          {
+            "node": "Заявка новая?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Заявка переведена обратно?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Заявка ушла от нас?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение списка заявок из vsDesk1": {
+      "main": [
+        [
+          {
+            "node": "!КОСТЫЛЬ! Оборачиваем полученные данные1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "!КОСТЫЛЬ! Оборачиваем полученные данные1": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем их на части1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбиваем их на части1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем3": {
+      "main": [
+        [
+          {
+            "node": "Удаляем дубликаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем дубликаты": {
+      "main": [
+        [
+          {
+            "node": "Заявка закрыта?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка ушла от нас?": {
+      "main": [
+        [
+          {
+            "node": "Формируем сообщение3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем ID последнего сообщения1": {
+      "main": [
+        [
+          {
+            "node": "Вносим ID последнего сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Берём список закрытых заявок": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем ID последнего сообщения2": {
+      "main": [
+        [
+          {
+            "node": "Вносим ID последнего сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем1": {
+      "main": [
+        [
+          {
+            "node": "Формируем новый список закрытых заявок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем1": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем время последнего большого запроса": {
+      "main": [
+        [
+          {
+            "node": "Обрабатываем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обрабатываем данные": {
+      "main": [
+        [
+          {
+            "node": "Это большое обновление?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Получение списка заявок из vsDesk1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ждём",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это большое обновление?": {
+      "main": [
+        [
+          {
+            "node": "Объединяем5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем новый список закрытых заявок": {
+      "main": [
+        [
+          {
+            "node": "Записываем обновлённый список1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
             "node": "Сейчас рабочее время?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение1": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Просрок реакции?": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем2": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем ID последнего сообщения3": {
+      "main": [
+        [
+          {
+            "node": "Вносим ID последнего сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Просрок исполнения?": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем4": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем ID последнего сообщения4": {
+      "main": [
+        [
+          {
+            "node": "Вносим ID последнего сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Изменено тело заявки?": {
+      "main": [
+        [
+          {
+            "node": "Формируем сообщение2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение2": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем5": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем ID последнего сообщения6": {
+      "main": [
+        [
+          {
+            "node": "Вносим ID последнего сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение3": {
+      "main": [
+        [
+          {
+            "node": "Сообщаем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем3": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение4": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Перебираем комменты и вложения": {
+      "main": [
+        [
+          {
+            "node": "Заворачиваем всё в один элемент1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вычленяем диффы": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем ID последнего сообщения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вычленяем обновлённые записи": {
+      "main": [
+        [
+          {
+            "node": "Записываем обновлённые данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Фильтрация": {
+      "main": [
+        [
+          {
+            "node": "Заявка из PRTG?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем5": {
+      "main": [
+        [
+          {
+            "node": "Это большое обновление?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём": {
+      "main": [
+        [
+          {
+            "node": "Получение списка заявок из vsDesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "По одной заявке": {
+      "main": [
+        [
+          {
+            "node": "Ждём1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Парсим полученный JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём1": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем отдельные заявки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это большое обновление?1": {
+      "main": [
+        [
+          {
+            "node": "Обновляем время большого обновления",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Что-то связанное с комментарием?": {
+      "main": [
+        [
+          {
+            "node": "Формируем сообщение4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка переведена?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Что-то связанное с комментарием?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Изменено тело заявки?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Просрок исполнения?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Просрок реакции?",
             "type": "main",
             "index": 0
           }
@@ -937,9 +2372,7 @@
   "settings": {
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "4",
-    "saveDataSuccessExecution": "all",
-    "saveExecutionProgress": true,
-    "saveManualExecutions": true
+    "executionOrder": "v1"
   },
   "staticData": {
     "node:diff и сохранение текущего списка заявок": {
@@ -1664,7 +3097,7 @@
     }
   },
   "pinData": {},
-  "versionId": "58fc975f-91a0-43aa-a87d-516d549442ef",
+  "versionId": "4b9309ee-e672-4828-8474-d75e96e8c2dc",
   "triggerCount": 1,
   "tags": []
 }
