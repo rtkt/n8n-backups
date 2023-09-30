@@ -1,0 +1,66 @@
+{
+  "createdAt": "2023-09-07T08:47:32.729Z",
+  "updatedAt": "2023-09-07T09:22:47.000Z",
+  "id": "86jQEQoIzxdPTWAz",
+  "name": "Ошибка при сообщении об ошибке",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "6d34c246-d066-4c8b-baf4-48f9aa0a066f",
+      "name": "Ошибка",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "N8N Chan <n8nchan@waifu.club>",
+        "toEmail": "rtkt@protonmail.com",
+        "subject": "=Ошибка в задаче {{ $json.workflow.name }}",
+        "text": "={{ $json.execution.url }}\n\n{{ $json.execution.error.message }}\n\nStack trace:\n{{ $json.execution.error.stack }}",
+        "options": {}
+      },
+      "id": "3a71729b-57e9-486a-82ef-a646fc4810d4",
+      "name": "Отправляем письмо",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        440
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "CZAUJFDLhO7X3tf1",
+          "name": "Сервисная почта"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Ошибка": {
+      "main": [
+        [
+          {
+            "node": "Отправляем письмо",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "pinData": {},
+  "versionId": "a8b28de8-4912-4f1e-aeb9-dc7ea93511f8",
+  "triggerCount": 0,
+  "tags": []
+}
