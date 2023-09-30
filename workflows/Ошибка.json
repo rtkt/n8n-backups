@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-07T08:51:10.161Z",
-  "updatedAt": "2023-04-20T08:07:47.000Z",
+  "updatedAt": "2023-09-07T08:52:55.000Z",
   "id": "4",
   "name": "Ошибка",
   "active": false,
@@ -12,33 +12,30 @@
       "type": "n8n-nodes-base.errorTrigger",
       "typeVersion": 1,
       "position": [
-        320,
+        360,
         520
       ]
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://ntfy.shitnsticks.top",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpBasicAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"topic\": \"errors\",\n  \"title\": \"Ошибка в задаче {{ $json.workflow.name }}\",\n  \"priority\": 5,\n  \"message\": \"{{ $json.execution.error.message }}\",\n  \"click\": \"{{ $json.execution.url }}\"\n}",
-        "options": {}
+        "chatId": "198424221",
+        "text": "=Ошибка в задаче <a href=\"{{ $json.execution.url }}\">{{ $json.workflow.name }}</a>\n{{ $json.execution.error.message }}\nStacktrace:\n{{ $json.execution.error.stack }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
       },
-      "id": "3c836cce-fecf-4686-86aa-a79725d25617",
-      "name": "Уведомить об ошибке в Ntfy",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
+      "id": "e16eb7c5-cd9f-44a0-a8e5-e37ed4b0ba99",
+      "name": "Сообщаем в ТГ",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
       "position": [
-        560,
+        600,
         520
       ],
       "credentials": {
-        "httpBasicAuth": {
-          "id": "2",
-          "name": "Ntfy admin"
+        "telegramApi": {
+          "id": "6",
+          "name": "Telegram assistant"
         }
       }
     }
@@ -48,7 +45,7 @@
       "main": [
         [
           {
-            "node": "Уведомить об ошибке в Ntfy",
+            "node": "Сообщаем в ТГ",
             "type": "main",
             "index": 0
           }
@@ -57,11 +54,14 @@
     }
   },
   "settings": {
-    "callerPolicy": "workflowsFromSameOwner"
+    "callerPolicy": "workflowsFromSameOwner",
+    "saveManualExecutions": true,
+    "executionOrder": "v1",
+    "errorWorkflow": "86jQEQoIzxdPTWAz"
   },
   "staticData": null,
   "pinData": {},
-  "versionId": "fa2d7ad5-dc0b-4871-b558-b40bf1e39fc7",
+  "versionId": "bebb1082-ca69-4792-a0e4-88ba579deb91",
   "triggerCount": 0,
   "tags": []
 }
