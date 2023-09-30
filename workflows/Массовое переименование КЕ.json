@@ -1,0 +1,219 @@
+{
+  "createdAt": "2023-09-21T08:39:29.975Z",
+  "updatedAt": "2023-09-29T07:44:44.000Z",
+  "id": "KmhrfIkDBH0Sg8AS",
+  "name": "Массовое переименование КЕ",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "9774f7c8-6022-435b-8c36-eed830488374",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://help.knp24.ru/api/cunits",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "location",
+              "value": "Маерчака 31а"
+            },
+            {
+              "name": "status",
+              "value": "Используется"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "b16c9c4a-275b-43a4-aa61-87cc6c0821df",
+      "name": "Берём список КЕ",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1040,
+        380
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "d5db8934-25fc-4d93-8f02-486c2c10b0eb",
+      "name": "По одному",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        380
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c6650170-afd5-42d4-a06d-737209233ec6",
+      "name": "Надо переименовывать КЕ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "44a91a4d-a7a8-420d-84f4-8a966c5666a3",
+      "name": "Ждём",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        380
+      ],
+      "webhookId": "34998bd6-21e4-4b9d-a835-05794739bdb4"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://help.knp24.ru/api/cunits/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "={{ $json.id }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.fullname }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ca2e1814-9b82-4717-ba51-eca3b03db855",
+      "name": "Переименовываем",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1960,
+        380
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Берём список КЕ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Берём список КЕ": {
+      "main": [
+        [
+          {
+            "node": "По одному",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "По одному": {
+      "main": [
+        [
+          {
+            "node": "Надо переименовывать КЕ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Надо переименовывать КЕ?": {
+      "main": [
+        [
+          {
+            "node": "Ждём",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "По одному",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём": {
+      "main": [
+        [
+          {
+            "node": "Переименовываем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Переименовываем": {
+      "main": [
+        [
+          {
+            "node": "По одному",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "versionId": "100b1c96-77d9-4b07-afc2-040453bec931",
+  "triggerCount": 0,
+  "tags": []
+}
