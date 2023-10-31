@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-09-29T03:43:45.000Z",
+  "updatedAt": "2023-10-27T03:47:57.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDesk",
   "active": true,
@@ -70,6 +70,7 @@
         20,
         -1080
       ],
+      "retryOnFail": true,
       "credentials": {
         "httpBasicAuth": {
           "id": "1",
@@ -150,6 +151,7 @@
         -540,
         -380
       ],
+      "retryOnFail": true,
       "credentials": {
         "httpBasicAuth": {
           "id": "1",
@@ -304,7 +306,8 @@
       "parameters": {
         "operation": "concatenateItems",
         "aggregate": "aggregateAllItemData",
-        "destinationFieldName": "current"
+        "destinationFieldName": "current",
+        "options": {}
       },
       "id": "b018d5a3-1ae9-43fc-a961-3b64953a2d67",
       "name": "Заворачиваем всё в один элемент1",
@@ -368,7 +371,7 @@
       "typeVersion": 1,
       "position": [
         4340,
-        240
+        220
       ],
       "credentials": {
         "redis": {
@@ -380,21 +383,44 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let message = \"Новая заявка\";\nif ($input.item.json.Priority === \"Низкий\") {\n  message += \" с низким приоритетом\";\n} else if ($input.item.json.Priority === \"Высокий\") {\n  message += \" с высоким приоритетом\";\n};\nmessage += ` <a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">№${$input.item.json.id}</a> от ${$input.item.json.timestamp.slice(0, -3)}\\n\\n`;\nif (\n  $input.item.json.Priority !== \"Средний\" &&\n  $input.item.json.Priority !== \"Низкий\" &&\n  $input.item.json.Priority !== \"Высокий\"\n) {\n  message += `Приоритет: ${$input.item.json.Priority}\\n`;\n};\nif ($input.item.json.Name) {\n  message += `${$input.item.json.Name}\\n`;\n} else {\n  message += \"Без названия\\n\";\n};\nmessage += `От: ${$input.item.json.fullname}\\n`;\nif ($input.item.json.fullname !== $input.item.json.creator) {\n  message += `Создатель: ${$input.item.json.creator}\\n`;\n};\nif ($input.item.json.phone) {\n  message += `Телефон: ${$input.item.json.phone}\\n`;\n};\nif ($input.item.json.room) {\n  message += `Адрес: ${$input.item.json.room}\\n`;\n};\nif ($input.item.json.Content) {\n  message += $input.item.json.Content;\n} else {\n  message += \"Без содержания\";\n};\nif (Object.keys($input.item.json.files).length) {\n  message += \"\\nВложения:\";\n  Object.keys($input.item.json.files).forEach((file, index) => {\n    message += `\\n\\t${index + 1}) <a href=\"${$input.item.json.files[file].file_name}\">${$input.item.json.files[file].name}</a>`;\n  });\n};\nif ($input.item.json.mfullname) {\n  message += `\\n\\nЗаявка уже принята в работу пользователем ${$input.item.json.mfullname}`;\n} else {\n  message += `\\n\\n<a href=\"https://help.knp24.ru/request/injob/${$input.item.json.id}\">Принять в работу</a>`;\n};\n$input.item.json.message = message;\nreturn $input.item;"
+        "jsCode": "let message = \"Новая заявка\";\nif ($input.item.json.Priority === \"Низкий\") {\n  message += \" с низким приоритетом\";\n} else if ($input.item.json.Priority === \"Высокий\") {\n  message += \" с высоким приоритетом\";\n};\nmessage += ` №${$input.item.json.id} от ${$input.item.json.timestamp.slice(0, -3)}\\n\\n`;\nif (\n  $input.item.json.Priority !== \"Средний\" &&\n  $input.item.json.Priority !== \"Низкий\" &&\n  $input.item.json.Priority !== \"Высокий\"\n) {\n  message += `Приоритет: ${$input.item.json.Priority}\\n`;\n};\nif ($input.item.json.Name) {\n  message += `${$input.item.json.Name}\\n`;\n} else {\n  message += \"Без названия\\n\";\n};\nmessage += `От: ${$input.item.json.fullname}\\n`;\nif ($input.item.json.fullname !== $input.item.json.creator) {\n  message += `Создатель: ${$input.item.json.creator}\\n`;\n};\nif ($input.item.json.phone) {\n  message += `Телефон: ${$input.item.json.phone}\\n`;\n};\nif ($input.item.json.room) {\n  message += `Адрес: ${$input.item.json.room}\\n`;\n};\nif ($input.item.json.Content) {\n  message += $input.item.json.Content;\n} else {\n  message += \"Без содержания\";\n};\nif (Object.keys($input.item.json.files).length) {\n  message += \"\\nВложения:\";\n  Object.keys($input.item.json.files).forEach((file, index) => {\n    message += `\\n\\t${index + 1}) <a href=\"${$input.item.json.files[file].file_name}\">${$input.item.json.files[file].name}</a>`;\n  });\n};\nif ($input.item.json.mfullname) {\n  message += `\\n\\nЗаявка уже принята в работу пользователем ${$input.item.json.mfullname}`;\n};\n$input.item.json.message = message;\nreturn $input.item;"
       },
       "id": "71c68435-4726-4b38-aea1-a99fa19753c2",
       "name": "Формируем сообщение",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        3020,
-        240
+        2980,
+        320
       ]
     },
     {
       "parameters": {
-        "chatId": "-810566788",
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
         "text": "={{ $json.message }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  },
+                  {
+                    "text": "Принять в работу",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/injob/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "additionalFields": {
           "disable_notification": "={{ $execution.mode === \"test\" ? true : false }}",
           "parse_mode": "HTML"
@@ -405,9 +431,10 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        3520,
-        140
+        3740,
+        340
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "SQU6aeZWZoQLyaV9",
@@ -421,24 +448,48 @@
           "string": [
             {
               "value1": "={{ $json.creator }}",
-              "value2": "PRTG alert"
+              "operation": "contains",
+              "value2": "prtg_alert@knp24.ru"
+            },
+            {
+              "value1": "={{ $json.creator }}",
+              "operation": "contains",
+              "value2": "prtg.knp24.ru"
             }
           ]
-        }
+        },
+        "combineOperation": "any"
       },
       "id": "e89882b9-1fdf-4a0f-85af-35ad750695cc",
       "name": "Заявка из PRTG?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        2780,
-        140
+        2740,
+        220
       ]
     },
     {
       "parameters": {
         "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
         "text": "={{ $json.message }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "additionalFields": {
           "disable_notification": "={{ $execution.mode === \"test\" ? true : false }}",
           "parse_mode": "HTML",
@@ -453,6 +504,7 @@
         3960,
         -380
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "SQU6aeZWZoQLyaV9",
@@ -487,6 +539,7 @@
         240,
         -1280
       ],
+      "retryOnFail": true,
       "credentials": {
         "httpBasicAuth": {
           "id": "1",
@@ -560,8 +613,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        3740,
-        140
+        3980,
+        220
       ]
     },
     {
@@ -592,7 +645,24 @@
     {
       "parameters": {
         "chatId": "-810566788",
-        "text": "=Заявку <a href=\"https://help.knp24.ru/request/{{ $json.id }}\">№{{ $json.id }}</a> вернули в работу",
+        "text": "=Заявку №{{ $json.id }} вернули в работу",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "additionalFields": {
           "disable_notification": "={{ $execution.mode === \"test\" ? true : false }}",
           "parse_mode": "HTML",
@@ -607,6 +677,7 @@
         3960,
         -640
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "SQU6aeZWZoQLyaV9",
@@ -742,6 +813,14 @@
             {
               "name": "redis.expiry",
               "value": 120
+            },
+            {
+              "name": "delay.vsdesk",
+              "value": 1.5
+            },
+            {
+              "name": "delay.telegram",
+              "value": 0.7
             }
           ],
           "string": [
@@ -765,15 +844,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let message = `Новая заявка из PRTG <a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">№${$input.item.json.id}</a>\\n\\n`;\nconst parse = message => {\n  const lines = message.split(\"\\n\");\n  const output = {};\n  const process = line => {\n    return {\n      name: line.slice(0, line.indexOf(\" [\")),\n      url: line.slice(line.indexOf(\"[\") + 1, line.indexOf(\"]\"))\n    };\n  };\n  output.device = process(lines[7]);\n  output.device.ip = lines[7].slice(lines[7].indexOf(\"(1\") + 1, -1);\n  output.group = process(lines[5]);\n  output.probe = process(lines[3]);\n  output.sensor = process(lines[1]);\n  return output;\n};\nconst data = parse($input.item.json.Content);\nmessage += `Зонд: <a href=\"${data.probe.url}\">${data.probe.name}</a>\\nГруппа: <a href=\"${data.group.url}\">${data.group.name}</a>\\nУстройство: <a href=\"${data.device.url}\">${data.device.name} (${data.device.ip})</a>\\n<a href=\"${data.sensor.url}\">${data.sensor.name}</a>`;\nif ($input.item.json.mfullname) {\n  message += `\\n\\nЗаявка уже принята в работу пользователем ${$input.item.json.mfullname}`;\n} else {\n  message += `\\n\\n<a href=\"https://help.knp24.ru/request/injob/${$input.item.json.id}\">Принять в работу</a>`;\n};\n\n$input.item.json.message = message;\nreturn $input.item;"
+        "jsCode": "let message = `Новая заявка из PRTG №${$input.item.json.id}\\n\\n`;\nconst parse = message => {\n  const lines = message.split(\"\\n\");\n  const output = {};\n  const process = line => {\n    return {\n      name: line.slice(0, line.indexOf(\" [\")),\n      url: line.slice(line.indexOf(\"[\") + 1, line.indexOf(\"]\"))\n    };\n  };\n  output.device = process(lines[7]);\n  output.device.ip = lines[7].slice(lines[7].indexOf(\"(1\") + 1, -1);\n  output.group = process(lines[5]);\n  output.probe = process(lines[3]);\n  output.sensor = process(lines[1]);\n  return output;\n};\nconst data = parse($input.item.json.Content);\nmessage += `Зонд: <a href=\"${data.probe.url}\">${data.probe.name}</a>\\nГруппа: <a href=\"${data.group.url}\">${data.group.name}</a>\\nУстройство: <a href=\"${data.device.url}\">${data.device.name} (${data.device.ip})</a>\\n<a href=\"${data.sensor.url}\">${data.sensor.name}</a>`;\nif ($input.item.json.mfullname) {\n  message += `\\n\\nЗаявка уже принята в работу пользователем ${$input.item.json.mfullname}`;\n};\n\n$input.item.json.message = message;\nreturn $input.item;"
       },
       "id": "323444c0-7bf6-4361-95e3-b84cef341c4e",
       "name": "Формируем сообщение1",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        3020,
-        60
+        2980,
+        140
       ]
     },
     {
@@ -786,14 +865,31 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        4120,
-        700
+        4140,
+        880
       ]
     },
     {
       "parameters": {
         "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
-        "text": "=Заявку <a href=\"https://help.knp24.ru/request/{{ $json.id }}\">№{{ $json.id }}</a> перевели обратно",
+        "text": "=Заявку №{{ $json.id }} перевели обратно",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "additionalFields": {
           "disable_notification": "={{ $execution.mode === \"test\" ? true : false }}",
           "parse_mode": "HTML",
@@ -808,6 +904,7 @@
         3740,
         -200
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "SQU6aeZWZoQLyaV9",
@@ -825,8 +922,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3440,
-        700
+        3460,
+        880
       ]
     },
     {
@@ -859,14 +956,31 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        3220,
-        700
+        3240,
+        880
       ]
     },
     {
       "parameters": {
         "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
         "text": "={{ $json.message }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "additionalFields": {
           "disable_notification": "={{ $execution.mode === \"test\" ? true : false }}",
           "parse_mode": "HTML",
@@ -878,9 +992,10 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        3860,
-        700
+        3880,
+        880
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "SQU6aeZWZoQLyaV9",
@@ -905,7 +1020,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$input.item.json.message = `<a href=\"https://help.knp24.ru/request/${$input.item.json.id}\">Заявка №${ $input.item.json.id}</a> переведена на `;\nif ($input.item.json.gfullname) {\n  $input.item.json.message += $input.item.json.gfullname;\n} else {\n  $input.item.json.message += $input.item.json.service_name;\n};\nreturn $input.item;"
+        "jsCode": "$input.item.json.message = `Заявка №${$input.item.json.id} переведена на `;\nif ($input.item.json.gfullname) {\n  $input.item.json.message += $input.item.json.gfullname;\n} else {\n  $input.item.json.message += $input.item.json.service_name;\n};\nreturn $input.item;"
       },
       "id": "275413c9-70ff-487d-8e1a-aa916715ca56",
       "name": "Формируем сообщение3",
@@ -926,8 +1041,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3440,
-        880
+        3460,
+        1060
       ]
     },
     {
@@ -957,7 +1072,7 @@
     },
     {
       "parameters": {
-        "amount": 3,
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.vsdesk * 3 }}",
         "unit": "seconds"
       },
       "id": "86cfafd9-2c57-4fdd-8dcf-a2770022d01a",
@@ -988,6 +1103,7 @@
     },
     {
       "parameters": {
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.vsdesk }}",
         "unit": "seconds"
       },
       "id": "86bcf3f8-1640-471e-904f-5f4ca441fdf6",
@@ -1030,8 +1146,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        3220,
-        880
+        3240,
+        1060
       ]
     },
     {
@@ -1051,14 +1167,31 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        3220,
-        1080
+        3240,
+        1260
       ]
     },
     {
       "parameters": {
         "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
-        "text": "=В заявке <a href=\"https://help.knp24.ru/requests/{{ $json.id }}\">№ {{ $json.id }}</a> изменился приоритет\n\nСтарый: {{ $json.old.Priority }}\nНовый: {{ $json.new.Priority }}",
+        "text": "=В заявке № {{ $json.id }} изменился приоритет\n\nСтарый: {{ $json.old.Priority }}\nНовый: {{ $json.new.Priority }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "additionalFields": {
           "disable_notification": "={{ $execution.mode === \"test\" ? true : false }}",
           "parse_mode": "HTML",
@@ -1070,9 +1203,10 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        3660,
-        1080
+        3680,
+        1260
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "SQU6aeZWZoQLyaV9",
@@ -1096,7 +1230,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const updates = [];\nconst data = JSON.parse(JSON.stringify($input.all()));\nconst closed = data[0].json.closed;\nconst add = (request, type) => {\n  updates.push({\n    json: JSON.parse(JSON.stringify(request))\n  });\n  updates[updates.length - 1].json.type = type;\n};\nconst unmark = request => {\n  const output = JSON.parse(JSON.stringify(request));\n  delete output.transferred;\n  return output;\n};\nif (! Object.keys(data[1].json).length) {\n  const requests = JSON.parse(JSON.stringify(data[data.length - 1].json.current));\n  requests.forEach(request => add(request, \"new\"));\n};\nconst db = data[1].json;\nconst current = data[data.length - 1].json.current;\nconst find = (requests, id) => {\n  return requests.filter(request => {\n    return request.id === id;\n  });\n};\nconst isOurs = request => {\n  if (request.gfullname === \"Группа МТО\") {\n    return false;\n  } else if (request.gfullname === \"Группа системного администрирования\") {\n    return true;\n  } else if (\n    request.service_name === \"Группа УИТ - Отдел системного администрирования\" &&\n    request.gfullname === null\n  ) {\n    return true;\n  } else {\n    return false;\n  };\n};\ncurrent.forEach(request => {\n  const dbEntry = db[request.id];\n  if (\n    request?.id &&\n    ! dbEntry &&\n    $runIndex === 0\n  ) {\n    if (! isOurs(request)) {\n      return;\n    };\n    // console.log(`Found new request. DB entry is ${JSON.stringify(dbEntry)}, current data are ${JSON.stringify(request)}, ID is ${request.id}`);\n    closed.includes(request.id) ? add(request, \"reopened\") : add(request, \"new\");\n    return;\n  };\n  if (! isOurs(dbEntry) && isOurs(request) && $runIndex === 0) {\n    add(request, \"transferred_back\");\n  } else if (! isOurs(request) && dbEntry.transferred !== \"true\") {\n    add(request, \"transferred\");\n  } else if (\n    isOurs(request) &&\n    JSON.stringify(unmark(request)) !== JSON.stringify(request)\n  ) {\n    add(request, \"updated\");\n  };\n});\nObject.keys(db).forEach(key => {\n  if (\n    key.length !== 6 ||\n    ! Number.isInteger(Number.parseInt(key, 6)) ||\n    closed.includes(key) ||\n    $runIndex\n  ) {\n    return;\n  };\n  const match = find(current, key);\n  console.log(`Key is ${key}, match is ${JSON.stringify(match)}`);\n  if (\n    match instanceof Array &&\n    match.length === 0\n  ) {\n    add(db[key], \"missed\");\n  }\n});\nreturn updates;"
+        "jsCode": "const updates = [];\nconst data = JSON.parse(JSON.stringify($input.all()));\nconst closed = data[0].json.closed;\nconst add = (request, type) => {\n  updates.push({\n    json: JSON.parse(JSON.stringify(request))\n  });\n  updates[updates.length - 1].json.type = type;\n};\nconst unmark = request => {\n  const output = JSON.parse(JSON.stringify(request));\n  delete output.transferred;\n  return output;\n};\nif (! Object.keys(data[1].json).length) {\n  const requests = JSON.parse(JSON.stringify(data[data.length - 1].json.current));\n  requests.forEach(request => add(request, \"new\"));\n};\nconst db = data[1].json;\nconst current = data[data.length - 1].json.current;\nconst find = (requests, id) => {\n  return requests.filter(request => {\n    return request.id === id;\n  });\n};\nconst isOurs = request => {\n  if (request.gfullname === \"Группа МТО\") {\n    return false;\n  } else if (request.gfullname === \"Группа системного администрирования\") {\n    return true;\n  } else if (\n    request.service_name === \"Группа УИТ - Отдел системного администрирования\" &&\n    request.gfullname === null\n  ) {\n    return true;\n  } else {\n    return false;\n  };\n};\ncurrent.forEach(request => {\n  const dbEntry = db[request.id];\n  if (\n    request?.id &&\n    ! dbEntry &&\n    $runIndex === 0\n  ) {\n    if (! isOurs(request)) {\n      return;\n    };\n    // console.log(`Found new request. DB entry is ${JSON.stringify(dbEntry)}, current data are ${JSON.stringify(request)}, ID is ${request.id}`);\n    closed.includes(request.id) ? add(request, \"reopened\") : add(request, \"new\");\n    return;\n  };\n  if (! isOurs(dbEntry) && isOurs(request) && $runIndex === 0) {\n    add(request, \"transferred_back\");\n  } else if (! isOurs(request) && dbEntry.transferred !== \"true\") {\n    add(request, \"transferred\");\n  } else if (\n    isOurs(request) &&\n    JSON.stringify(unmark(request)) !== JSON.stringify(request)\n  ) {\n    add(request, \"updated\");\n  };\n});\nObject.keys(db).forEach(key => {\n  if (\n    key.length !== 6 ||\n    ! Number.isInteger(Number.parseInt(key, 6)) ||\n    closed.includes(key) ||\n    $runIndex\n  ) {\n    return;\n  };\n  const match = find(current, key);\n  // console.log(`Key is ${key}, match is ${JSON.stringify(match)}`);\n  if (\n    match instanceof Array &&\n    match.length === 0\n  ) {\n    add(db[key], \"missed\");\n  }\n});\nreturn updates;"
       },
       "id": "fa818991-6bf3-4cf4-841b-2aeeb1bfa2be",
       "name": "Типирование данных",
@@ -1161,7 +1295,8 @@
           "rules": [
             {
               "operation": "contains",
-              "value2": "transferred"
+              "value2": "transferred",
+              "output": 3
             },
             {
               "value2": "reopened",
@@ -1175,7 +1310,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        2800,
+        2620,
         -120
       ]
     },
@@ -1193,15 +1328,15 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "$input.item.json.message = `В заявке <a href=\"https://help.knp24.ru/request/${$input.item.json.new.id}\">№${$input.item.json.new.id}</a> `;\nswitch($input.item.json.new.Status) {\n  case \"Просрочена реакция\":\n    $input.item.json.message += `просрочена реакция\\n\\n<a href=\"https://help.knp24.ru/request/injob/${$input.item.json.new.id}\">Принять в работу</a>`;\n    break;\n  case \"Просрочено исполнение\":\n    $input.item.json.message += `просрочено исполнение`;\n    break;\n  case \"Требует уточнения\":\n    $input.item.json.message = `Заявка <a href=\"https://help.knp24.ru/request/${$input.item.json.new.id}\">№${$input.item.json.new.id}</a> поставлена на паузу (статус \"требует уточнения\")`;\n    break;\n  default:\n    $input.item.json.message += `установлен статус ${$input.item.json.new.Status} вместо ${$input.item.json.old.Status}`;\n};\nreturn $input.item;"
+        "jsCode": "$input.item.json.message = `В заявке №${$input.item.json.new.id} `;\nswitch($input.item.json.new.Status) {\n  case \"Просрочено исполнение\":\n    $input.item.json.message += `просрочено исполнение`;\n    break;\n  case \"Требует уточнения\":\n    $input.item.json.message = `Заявка №${$input.item.json.new.id} поставлена на паузу (статус \"требует уточнения\")`;\n    break;\n  default:\n    $input.item.json.message += `установлен статус ${$input.item.json.new.Status} вместо ${$input.item.json.old.Status}`;\n};\nreturn $input.item;"
       },
       "id": "b44b7ed5-45b2-45e9-bc8c-12285d225e07",
       "name": "Формируем сообщение5",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3440,
-        520
+        3460,
+        700
       ]
     },
     {
@@ -1217,6 +1352,11 @@
               "value1": "={{ $json.new.Status }}",
               "operation": "notEqual",
               "value2": "Принята в исполнение"
+            },
+            {
+              "value1": "={{ $json.new.Status }}",
+              "operation": "notEqual",
+              "value2": "Просрочена реакция"
             }
           ]
         }
@@ -1226,8 +1366,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        3220,
-        520
+        3240,
+        700
       ]
     },
     {
@@ -1339,6 +1479,7 @@
     },
     {
       "parameters": {
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.vsdesk }}",
         "unit": "seconds"
       },
       "id": "8706ce93-f296-4f4d-a63a-7dee8c25e89a",
@@ -1366,6 +1507,7 @@
         1300,
         160
       ],
+      "retryOnFail": false,
       "credentials": {
         "httpBasicAuth": {
           "id": "1",
@@ -1396,7 +1538,7 @@
     },
     {
       "parameters": {
-        "amount": 0.7,
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.telegram }}",
         "unit": "seconds"
       },
       "id": "04b082a8-9c91-428b-9f56-6afdb2b88464",
@@ -1411,7 +1553,7 @@
     },
     {
       "parameters": {
-        "amount": 0.7,
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.telegram }}",
         "unit": "seconds"
       },
       "id": "4270e23e-d3e9-436a-8dd4-f06c1d869230",
@@ -1426,7 +1568,7 @@
     },
     {
       "parameters": {
-        "amount": 0.7,
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.telegram }}",
         "unit": "seconds"
       },
       "id": "9305edb3-50e0-4bc0-b829-1c5a903666e0",
@@ -1441,7 +1583,7 @@
     },
     {
       "parameters": {
-        "amount": 0.7,
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.telegram }}",
         "unit": "seconds"
       },
       "id": "d9bc5137-8a66-47a4-a09d-7c5cb83ed33a",
@@ -1449,14 +1591,14 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        3440,
-        1080
+        3460,
+        1260
       ],
       "webhookId": "69289798-5ada-46a5-a334-e450a74c9a26"
     },
     {
       "parameters": {
-        "amount": 0.7,
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.telegram }}",
         "unit": "seconds"
       },
       "id": "ed0071db-e219-47cf-bd15-439272e6bc0f",
@@ -1464,14 +1606,14 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        3680,
-        700
+        3700,
+        880
       ],
       "webhookId": "811f63aa-5d1e-4ecd-aad4-60177f91341d"
     },
     {
       "parameters": {
-        "amount": 0.7,
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.telegram }}",
         "unit": "seconds"
       },
       "id": "4208d430-9387-4bec-8ab5-2382ef8521a6",
@@ -1479,8 +1621,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        3300,
-        140
+        3260,
+        220
       ],
       "webhookId": "776d3911-9313-49bf-82ef-eccae5d67614"
     },
@@ -1600,7 +1742,8 @@
       "parameters": {
         "operation": "concatenateItems",
         "aggregate": "aggregateAllItemData",
-        "destinationFieldName": "current"
+        "destinationFieldName": "current",
+        "options": {}
       },
       "id": "df1a5c87-bcef-4554-8b64-19e22ec4bfc6",
       "name": "Заворачиваем всё в один элемент2",
@@ -1842,6 +1985,153 @@
         2240,
         -760
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mfullname }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "1fb2a656-e506-4faa-8647-a900f4cd8629",
+      "name": "Заявка уже принята?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3480,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "disable_notification": "={{ $execution.mode === \"test\" ? true : false }}",
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "8d516005-f57a-418d-a462-e5227847cfff",
+      "name": "Уведомляем2",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3740,
+        140
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.new.Status }}",
+              "operation": "notEqual",
+              "value2": "={{ $json.old.Status }}"
+            },
+            {
+              "value1": "={{ $json.new.Status }}",
+              "value2": "Просрочена реакция"
+            }
+          ]
+        }
+      },
+      "id": "e6b2c671-22c7-4ed6-9af0-c433e87bb292",
+      "name": "Просрок реакции?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=У заявки №{{ $json.id }} просрочена реакция!",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть в браузере",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/{{ $json.id }}"
+                    }
+                  },
+                  {
+                    "text": "Принять в работу",
+                    "additionalFields": {
+                      "url": "=https://help.knp24.ru/request/injob/{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "id": "b0cb31ce-4e71-4be2-a428-21873d835b24",
+      "name": "Уведомляем3",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3680,
+        520
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Конфигурация').all()[0].json.delay.telegram }}",
+        "unit": "seconds"
+      },
+      "id": "80287081-370d-487c-b0f8-4da0f13c0e44",
+      "name": "Ждём9",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        3460,
+        520
+      ],
+      "webhookId": "45a63e54-c01f-46d7-939f-f872505e0d9d"
     }
   ],
   "connections": {
@@ -2571,6 +2861,11 @@
             "node": "Изменился приоритет?",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Просрок реакции?",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -2588,13 +2883,7 @@
     },
     "Ещё одно распределение": {
       "main": [
-        [
-          {
-            "node": "Распределение переводов",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         [
           {
             "node": "Ждём4",
@@ -2603,6 +2892,14 @@
           },
           {
             "node": "Вычленение ID1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Распределение переводов",
             "type": "main",
             "index": 0
           }
@@ -2736,7 +3033,7 @@
       "main": [
         [
           {
-            "node": "Уведомляем",
+            "node": "Заявка уже принята?",
             "type": "main",
             "index": 0
           }
@@ -3041,6 +3338,68 @@
           },
           {
             "node": "Объединяем данные3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка уже принята?": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Уведомляем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем2": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Просрок реакции?": {
+      "main": [
+        [
+          {
+            "node": "Ждём9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём9": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Уведомляем3": {
+      "main": [
+        [
+          {
+            "node": "Вписываем ID последнего сообщения3",
             "type": "main",
             "index": 0
           }
@@ -3776,8 +4135,9 @@
       "transferred": []
     }
   },
+  "meta": null,
   "pinData": {},
-  "versionId": "06466e88-918d-4c3e-9ceb-2fa12135742f",
+  "versionId": "84d0164e-b283-4f49-85ba-81417b5129a9",
   "triggerCount": 1,
   "tags": []
 }
