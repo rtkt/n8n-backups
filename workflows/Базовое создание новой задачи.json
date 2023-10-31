@@ -1,0 +1,2434 @@
+{
+  "createdAt": "2023-10-22T13:58:27.736Z",
+  "updatedAt": "2023-10-30T03:30:18.000Z",
+  "id": "kuYaPKC7DpdsO4rg",
+  "name": "Базовое создание новой задачи",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "httpMethod": "POST",
+        "path": "1f14792d-0dc8-4d50-86f5-f70f439492c6",
+        "options": {}
+      },
+      "id": "ec4d9db7-1a65-49f3-ab3e-360de4f59ef1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        540
+      ],
+      "webhookId": "1f14792d-0dc8-4d50-86f5-f70f439492c6",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "9836353c-944a-44cb-9900-7516ea58f5c4",
+      "name": "Объединяем, но фильтруем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1620,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Введи имя задачи",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $json.body.message_id }}"
+        }
+      },
+      "id": "39ebba83-99e1-4f1f-abb5-aded77a35e71",
+      "name": "Спрашиваем название задачи",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1560,
+        760
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task name",
+        "keyType": "string"
+      },
+      "id": "52a8477a-9bb4-457c-8664-05f44ab9a5c4",
+      "name": "Ставим режим работы",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        760
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.mode }}",
+              "value2": "standby"
+            }
+          ]
+        }
+      },
+      "id": "18fcc9ab-7cb3-40cf-a9e2-ef03ad63dfa1",
+      "name": "Мы только начинаем?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.mode }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "endsWith",
+              "value2": "name"
+            },
+            {
+              "operation": "endsWith",
+              "value2": "categories",
+              "output": 1
+            },
+            {
+              "operation": "endsWith",
+              "value2": "new categories confirmation",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "a2cac63d-6779-4823-8ee5-4f0302df8e48",
+      "name": "На каком этапе создания задачи мы?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "newtask:title",
+        "value": "={{ $json.body.message.text }}",
+        "keyType": "string"
+      },
+      "id": "27eba99c-cdb5-4f54-918f-4dc4ceafff07",
+      "name": "Вписываем имя",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        220
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "categories",
+        "key": "properties:task:categories",
+        "keyType": "list",
+        "options": {}
+      },
+      "id": "93365e7a-c859-4a21-b28d-f9219f8ec2ca",
+      "name": "Спрашиваем категории",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        220
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "583fe44c-b8ce-4cce-9976-797d6622eb2e",
+      "name": "Спрашиваем категории1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3460,
+        220
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task categories",
+        "keyType": "string"
+      },
+      "id": "f0fbad4a-e1d1-4fa8-b47e-60ca63c31d1b",
+      "name": "Вписываем режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        220
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "categories",
+        "key": "properties:task:categories",
+        "keyType": "list",
+        "options": {}
+      },
+      "id": "7873efe4-ceee-4f13-82bc-e4309f1ac204",
+      "name": "Ещё раз смотрим список категорий",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        400
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "45e66ac2-5705-4db6-9b5c-512e64e5c8d8",
+      "name": "Объединяем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2820,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const _ = require(\"lodash\");\nconst input = $input.last().json.body.message.text.split(\", \");\nconst categories = [];\nconst newCategories = [];\ninput.forEach(category => {\n  const match = _.findIndex($input.first().json.categories, tag => tag.toLowerCase().includes(category));\n  if (match >= 0) {\n    categories.push($input.first().json.categories[match]);\n  } else {\n    newCategories.push(category);\n  };\n});\nreturn {\n  json: {\n    categories: categories,\n    newCategories: newCategories\n  }\n};"
+      },
+      "id": "7135a94d-26c7-4f98-85e8-5a78a8a1831b",
+      "name": "Выискиваем новые категории",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.newCategories.length }}",
+              "operation": "larger"
+            }
+          ]
+        }
+      },
+      "id": "f11534dc-e8ba-4bfe-a84f-29aefaf6195e",
+      "name": "Есть новые категории?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Я обнаружил новые категории {{ $json.newCategories.join(\", \") }} Так и должно быть или это очепятка?",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.correct }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.wrong }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true,
+          "one_time_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "16805b9f-15a1-4500-a05f-104f245ce275",
+      "name": "Спрашиваем про новые категории",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4280,
+        460
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "newtask:area:unknown",
+        "value": "={{ JSON.stringify($json.newCategories) }}",
+        "keyType": "string"
+      },
+      "id": "a3409c21-4599-472c-933b-34fdf4074974",
+      "name": "Записываем новые категории",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3740,
+        360
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task new categories confirmation",
+        "keyType": "string"
+      },
+      "id": "018ba7d8-27d0-4c97-924e-5ff6ab39529c",
+      "name": "Ставим режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4060,
+        460
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "newtask:area",
+        "value": "={{ JSON.stringify($json.categories) }}",
+        "keyType": "string"
+      },
+      "id": "84f20279-d18f-4a0b-a1c8-84e386448b66",
+      "name": "Записываем категории",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3740,
+        560
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.message.text }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.correct }}"
+            },
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.wrong }}",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "93bd1564-173f-49f4-b812-2488a2f56f9a",
+      "name": "Что решаем по новым категориям?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "categories",
+        "key": "newtask:area:unknown",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "eec43bed-6570-4c8b-bf9b-e9335b8c43f5",
+      "name": "Запрашиваем список неопознанных категорий",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2940,
+        720
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return JSON.parse($input.first().json.categories).map(category => {\n  return {\n    json: {\n      category: category\n    }\n  };\n});"
+      },
+      "id": "b4445165-8277-4688-886a-d3f9325ef41e",
+      "name": "Парсим и разбиваем их",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3160,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "properties:task:categories",
+        "messageData": "={{ $json.category }}"
+      },
+      "id": "511ee89a-353c-4b8a-8310-610752437b7e",
+      "name": "Записываем категории1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3380,
+        720
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "newtask:area:unknown"
+      },
+      "id": "f75497ab-0116-48d4-934a-4a425374b0dd",
+      "name": "Удаляем список новых категорий",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        840
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Что-то пошло не так. Напиши или выбери, пожалуйста, ответ ещё раз",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.correct }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.wrong }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true,
+          "one_time_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "90efd980-21fb-4f12-9ad0-965bb62305f6",
+      "name": "Моя твоя не понимать",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2960,
+        1180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Окей, попробуй тогда ещё раз",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "441eb5e5-395b-4e29-9618-f752d21cbb53",
+      "name": "Запрашиваем список категорий ещё раз",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2980,
+        980
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "cdcb9d1f-f869-4fef-90ab-6988d9bb2a62",
+      "name": "Спрашиваем проект",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5300,
+        1160
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task project",
+        "keyType": "string"
+      },
+      "id": "c6e94651-9117-406a-8e75-0699c6fd49a1",
+      "name": "Ставим режим1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        5300,
+        980
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.mode }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "waiting new task approval",
+              "output": 1
+            },
+            {
+              "value2": "waiting new task draft creation"
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "dee8a7f3-12f4-458d-ad28-22fff2908b6c",
+      "name": "Так на каком мы этапе?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name",
+              "renameField": true,
+              "outputFieldName": "currentProjects"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5131bf12-254d-40e1-8918-b1cb17922d09",
+      "name": "Объединяем и оставляем только названия проектов",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        4600,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "name",
+              "renameField": true,
+              "outputFieldName": "endlessProjects"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6760605d-1e6f-446c-92ca-343fa79eae34",
+      "name": "Объединяем и оставляем только названия проектов1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        4600,
+        1040
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6a50b9bc-a0d5-4d1b-b1d6-87d6cf061520",
+      "name": "Объединяем2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        4860,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "03a990b2-fcba-4821-9c04-67d78ae7c2e5",
+          "mode": "list",
+          "cachedResultName": "Проекты",
+          "cachedResultUrl": "https://www.notion.so/03a990b2fcba48219c0467d78ae7c2e5"
+        },
+        "returnAll": true,
+        "filterType": "json",
+        "filterJson": "={\n  \"and\": [\n    {\n      \"property\": \"{{ $('Конфигурация').first().json.projects.properties.status }}\",\n      \"select\": {\n        \"equals\": \"{{ $('Конфигурация').first().json.projects.statuses.inProgress }}\"\n      }\n    },\n    {\n      \"property\": \"{{ $('Конфигурация').first().json.projects.properties.endless }}\",\n      \"checkbox\": {\n        \"equals\": true\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "e474f882-62ff-4652-9630-a568e590f46d",
+      "name": "Запрашиваем список вечных проектов",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        4360,
+        1040
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "03a990b2-fcba-4821-9c04-67d78ae7c2e5",
+          "mode": "list",
+          "cachedResultName": "Проекты",
+          "cachedResultUrl": "https://www.notion.so/03a990b2fcba48219c0467d78ae7c2e5"
+        },
+        "returnAll": true,
+        "filterType": "json",
+        "filterJson": "={\n  \"and\": [\n    {\n      \"property\": \"{{ $('Конфигурация').first().json.projects.properties.status }}\",\n      \"select\": {\n        \"equals\": \"{{ $('Конфигурация').first().json.projects.statuses.inProgress }}\"\n      }\n    },\n    {\n      \"property\": \"{{ $('Конфигурация').first().json.projects.properties.endless }}\",\n      \"checkbox\": {\n        \"equals\": false\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "6b4879a2-91f9-42ea-8cec-0c0770ee682f",
+      "name": "Запрашиваем список текущих проектов",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        4360,
+        1280
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let message = \"В какой проект записываем задачу?\\nСписок текущих проектов:\";\n$input.last().json.currentProjects.forEach(project => {\n  message += `\\n\\t- ${project}`;\n});\nmessage += \"\\nСписок вечных проектов:\";\n$input.first().json.endlessProjects.forEach(project => {\n  message += `\\n\\t- ${project}`;\n});\nreturn {\n  json: {\n    message: message\n  }\n};"
+      },
+      "id": "07b3a417-f566-457a-9438-51bf62650b44",
+      "name": "Формируем сообщение",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5080,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = \"Записал\\n\\nВыбери категории задач и перечисли их через запятую. Текущий список категорий:\";\nmessage += $input.item.json.categories.reduce((list, category) => {\n  list += `\\n\\t- ${category}`;\n  return list;\n}, \"\");\nreturn {\n  json: {\n    message: message\n  }\n};"
+      },
+      "id": "d5cf038a-f6d4-4c10-9506-fc8eb04ed212",
+      "name": "Формируем сообщение2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3000,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "creating task",
+        "keyType": "string"
+      },
+      "id": "0a864901-8c1b-4385-b63e-c45ced10e3e9",
+      "name": "Ставим режим создания",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4020,
+        2540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "keys",
+        "keyPattern": "newtask:*"
+      },
+      "id": "4d429222-4f2f-420d-ae62-60a414f5a04e",
+      "name": "Подгружаем все параметры новой задачи",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4360,
+        840
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const properties = $('Конфигурация').first().json.tasks.properties;\nconst page = {};\nconst add = (property, page) => {\n  if (property === \"area\" || property === \"project\") {\n    page[property] = JSON.parse($input.item.json[`newtask:${property}`]);\n  } else {\n    page[property] = $input.item.json[`newtask:${property}`];\n  };\n};\nObject.keys(properties).forEach(property => {\n  if ($input.item.json[`newtask:${property}`]) {\n    add(property, page);\n  };\n});\nreturn {\n  json: {\n    page: page\n  }\n};"
+      },
+      "id": "9e2548bd-8dc1-4ea1-8583-77e2ed97ff31",
+      "name": "Формируем страницу",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4580,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Страница создана",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть",
+                    "additionalFields": {
+                      "url": "={{ $json.url }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "dfc96c4c-1127-4764-844e-6d9f112d9356",
+      "name": "Отчитываемся1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4980,
+        2360
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "standby",
+        "keyType": "string"
+      },
+      "id": "24282c22-3c72-4813-928d-8a85bfc925d5",
+      "name": "Ставим режим ожидания",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4980,
+        2540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "keys",
+        "keyPattern": "newtask:*",
+        "getValues": false
+      },
+      "id": "2fc05a8f-eaf8-4a89-b733-6838d13f2e0b",
+      "name": "Ищем все временные записи",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        5220,
+        2540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "keys",
+        "options": {
+          "destinationFieldName": "key"
+        }
+      },
+      "id": "08124109-1121-438c-8fba-5a33e6ea96dd",
+      "name": "Разбиваем",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        5440,
+        2540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $json.key }}"
+      },
+      "id": "5d8e0ad3-4bb0-41a6-a12d-e86abd227f4f",
+      "name": "Удаляем их",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        5660,
+        2540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "newtask:area"
+      },
+      "id": "030ba315-20c6-4eae-bda2-9a3794b79219",
+      "name": "Удаляем список известных категорий",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3160,
+        960
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "creating task draft",
+        "keyType": "string"
+      },
+      "id": "4aa5920c-bf4a-4138-b133-259f1bdac93b",
+      "name": "Ставим режим4",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4140,
+        840
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "drafts:newtask",
+        "value": "={{ JSON.stringify($json.page) }}",
+        "keyType": "string"
+      },
+      "id": "3e51e79f-78b6-4569-8b56-47420f4e0bba",
+      "name": "Записываем черновик страницы",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4860,
+        620
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const defaults = [];\nconst config = $('Конфигурация').first().json;\nObject.keys(config.tasks.defaults).forEach(option => {\n  defaults.push({\n    json: {\n      name: option,\n      value: config.tasks.enumerations[option][config.tasks.defaults[option]]\n    }\n  });\n});\nreturn defaults;"
+      },
+      "id": "464fc810-be9b-467a-8709-559f9bbba42c",
+      "name": "Формируем объекты с умолчаниями",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1780,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=newtask:{{ $json.name }}",
+        "value": "={{ $json.value }}",
+        "keyType": "string"
+      },
+      "id": "a47076a2-5df9-4dd8-9d50-b2a165f27216",
+      "name": "Записываем умолчания",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        760
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task approval",
+        "keyType": "string"
+      },
+      "id": "99e801e6-6851-4b6c-951c-9f21d1636676",
+      "name": "Ставим режим5",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        5060,
+        620
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.acceptAndSave }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.changePriority }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.changeDifficulty }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.setProject }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.setReminder }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.setDeadline }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true,
+          "one_time_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "dca26cd3-e271-4862-a056-21e97d4a1603",
+      "name": "Показываем черновик",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5060,
+        840
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const enumerate = list => {\n  return list.reduce((text, current, index, source) => {\n    if (index < source.length - 2) {\n      text += `${current.toLowerCase()}, `;\n    } else if (index === source.length - 2) {\n      text += `${current.toLowerCase()} и `;\n    } else {\n      text += `${current.toLowerCase()}`;\n    };\n    return text;\n  }, \"\");\n};\nlet message = `<b>${$input.item.json.page.title}</b>`;\nmessage += `\\n\\nОбласт${$input.item.json.page.area.length > 1 ? \"и\" : \"ь\"}: ${enumerate($input.item.json.page.area)}`;\nmessage += `\\n${$('Конфигурация').first().json.tasks.properties.priority}: ${$input.item.json.page.priority.toLowerCase()}`;\nmessage += `\\n${$('Конфигурация').first().json.tasks.properties.difficulty}: ${$input.item.json.page.difficulty.toLowerCase()}`;\nreturn {\n  json: {\n    message: message\n  }\n};"
+      },
+      "id": "3127a1a6-6f8d-406a-990b-8cc6ffea183c",
+      "name": "Пишем сообщение",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4860,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.message.text }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.acceptAndSave }}",
+              "output": 3
+            },
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.setProject }}"
+            },
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.setReminder }}",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 2
+      },
+      "id": "7e2214b6-35c8-4e18-a6b4-2f1356d2af29",
+      "name": "Какой ответ нам пришёл?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        3460,
+        1440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "page",
+        "key": "drafts:newtask",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "aa71eaa1-7d54-4656-a1c6-d8374a0944f7",
+      "name": "Подгружаем черновик страницы",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4280,
+        2540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.message.text }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.setDeadline }}"
+            },
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.changePriority }}",
+              "output": 1
+            },
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.changeDifficulty }}",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "45445268-5e3e-4a18-bd28-d85aea63ef02",
+      "name": "Так какой ответ пришёл?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        3940,
+        1880
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://api.notion.com/v1/pages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "notionApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Notion-Version",
+              "value": "={{ $('Конфигурация').first().json.notionversion }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "39d79e7b-ec71-4f3b-bc5f-d7479a24529e",
+      "name": "Отправляем его",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4720,
+        2540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const draft = JSON.parse($input.item.json.page);\nconsole.log(draft);\nconst config = $('Конфигурация').first().json;\nconst properties = config.tasks.properties;\nconsole.log(properties);\nconst types = config.tasks.propertiesTypes;\nconsole.log(types);\nconst lib = {\n  multi_select: (property, draft) => {\n    return {\n      multi_select: draft[property].map(option => {\n        return {\n          name: option\n        }\n      })\n    }\n  },\n  select: (property, draft) => {\n    return {\n      select: {\n        name: draft[property]\n      }\n    }\n  },\n  title: (property, draft) => {\n    return {\n      title: [\n        {\n          text: {\n            content: draft[property]\n          }\n        }\n      ]\n    }\n  }\n};\nconst page = {\n  parent: {\n    \"type\": \"database_id\",\n    \"database_id\": config.tasksdb\n  },\n  properties: {}\n};\nObject.keys(properties).forEach(property => {\n  console.log(draft[property]);\n  if (! draft[property]) {\n    return;\n  };\n  console.log(`Trying to create page.properties[${properties[property]}] using call to lib[${types[property]}]`);\n  page.properties[properties[property]] = lib[types[property]](property, draft);\n});\nreturn {\n  json: page\n};"
+      },
+      "id": "622c8296-42ee-4723-b5e0-61379d2ae07c",
+      "name": "Формируем запрос на создание страницы",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4500,
+        2540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "drafts:newtask"
+      },
+      "id": "344623df-f435-47ae-8508-45f3e8ea78a9",
+      "name": "Удаляем черновик страницы",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        5880,
+        2540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task reminder",
+        "keyType": "string"
+      },
+      "id": "cf807121-b648-4aea-ad54-c8159ce5e073",
+      "name": "Ставим режим2",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        1500
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Введи, пожалуйста, дату и время",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "721d9618-60fe-4f73-9147-2516e532ee65",
+      "name": "Просим ввести строку",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4460,
+        1500
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task deadline",
+        "keyType": "string"
+      },
+      "id": "7871ba43-abf0-4257-8fe3-6f0697811727",
+      "name": "Ставим режим3",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        1680
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task priority",
+        "keyType": "string"
+      },
+      "id": "818817e1-faa5-4eee-b642-4119f98230c8",
+      "name": "Ставим режим6",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        1780
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Какой приоритет ставим?",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations.priority.low }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations.priority.medium }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations.priority.high }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true,
+          "one_time_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "1afddba2-c1a6-4249-8a18-0c34f6185140",
+      "name": "Спрашиваем",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4640,
+        1780
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task difficulty",
+        "keyType": "string"
+      },
+      "id": "aac7bbd3-5aa8-4b35-b6f7-548d236a3ff0",
+      "name": "Ставим режим7",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        1980
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Какую сложность ставим?",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations.difficulty.low }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations.difficulty.medium }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations.difficulty.high }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true,
+          "one_time_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "e5946dcd-4753-47ca-a02c-d7d5b90aa5dc",
+      "name": "Спрашиваем1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4640,
+        1980
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "00da8fa7-1be8-4a31-ab8b-bb4f636058d2",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        320
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n}"
+      },
+      "id": "03d4665d-dc56-46e1-b575-13e298d63a86",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Что-то пошло не так. Напиши или выбери, пожалуйста, ответ ещё раз",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.acceptAndSave }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.changePriority }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.changeDifficulty }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.setProject }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.setReminder }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.setDeadline }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true,
+          "one_time_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "4edc32f7-179f-4a49-b0cd-d555aa797829",
+      "name": "Моя твоя не понимать1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4140,
+        2080
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Подгружаем конфигурацию",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем": {
+      "main": [
+        [
+          {
+            "node": "Мы только начинаем?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Мы только начинаем?": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим работы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем название задачи",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "На каком этапе создания задачи мы?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "На каком этапе создания задачи мы?": {
+      "main": [
+        [
+          {
+            "node": "Вписываем имя",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ещё раз смотрим список категорий",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Что решаем по новым категориям?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Так на каком мы этапе?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем имя": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем категории",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем категории": {
+      "main": [
+        [
+          {
+            "node": "Формируем сообщение2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ещё раз смотрим список категорий": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем": {
+      "main": [
+        [
+          {
+            "node": "Выискиваем новые категории",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Выискиваем новые категории": {
+      "main": [
+        [
+          {
+            "node": "Есть новые категории?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Есть новые категории?": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Записываем новые категории",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Записываем категории",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Записываем категории",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ставим режим4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Что решаем по новым категориям?": {
+      "main": [
+        [
+          {
+            "node": "Запрашиваем список неопознанных категорий",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Удаляем список новых категорий",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Запрашиваем список категорий ещё раз",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Моя твоя не понимать",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем список неопознанных категорий": {
+      "main": [
+        [
+          {
+            "node": "Парсим и разбиваем их",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим и разбиваем их": {
+      "main": [
+        [
+          {
+            "node": "Записываем категории1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем категории1": {
+      "main": [
+        [
+          {
+            "node": "Удаляем список новых категорий",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ставим режим4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем и оставляем только названия проектов": {
+      "main": [
+        [
+          {
+            "node": "Объединяем2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем и оставляем только названия проектов1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем2": {
+      "main": [
+        [
+          {
+            "node": "Формируем сообщение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем список вечных проектов": {
+      "main": [
+        [
+          {
+            "node": "Объединяем и оставляем только названия проектов1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем список текущих проектов": {
+      "main": [
+        [
+          {
+            "node": "Объединяем и оставляем только названия проектов",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем проект",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение2": {
+      "main": [
+        [
+          {
+            "node": "Вписываем режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем все параметры новой задачи": {
+      "main": [
+        [
+          {
+            "node": "Формируем страницу",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем страницу": {
+      "main": [
+        [
+          {
+            "node": "Записываем черновик страницы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Пишем сообщение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ищем все временные записи": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбиваем": {
+      "main": [
+        [
+          {
+            "node": "Удаляем их",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем режим": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем категории1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим ожидания": {
+      "main": [
+        [
+          {
+            "node": "Ищем все временные записи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем про новые категории",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем список категорий ещё раз": {
+      "main": [
+        [
+          {
+            "node": "Удаляем список известных категорий",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим4": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем все параметры новой задачи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем название задачи": {
+      "main": [
+        [
+          {
+            "node": "Формируем объекты с умолчаниями",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем объекты с умолчаниями": {
+      "main": [
+        [
+          {
+            "node": "Записываем умолчания",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем черновик страницы": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пишем сообщение": {
+      "main": [
+        [
+          {
+            "node": "Показываем черновик",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Так на каком мы этапе?": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Какой ответ нам пришёл?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Какой ответ нам пришёл?": {
+      "main": [
+        [
+          {
+            "node": "Запрашиваем список вечных проектов",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Запрашиваем список текущих проектов",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ставим режим2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Так какой ответ пришёл?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ставим режим создания",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим создания": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем черновик страницы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем черновик страницы": {
+      "main": [
+        [
+          {
+            "node": "Формируем запрос на создание страницы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отправляем его": {
+      "main": [
+        [
+          {
+            "node": "Отчитываемся1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ставим режим ожидания",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем запрос на создание страницы": {
+      "main": [
+        [
+          {
+            "node": "Отправляем его",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем их": {
+      "main": [
+        [
+          {
+            "node": "Удаляем черновик страницы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим2": {
+      "main": [
+        [
+          {
+            "node": "Просим ввести строку",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Так какой ответ пришёл?": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ставим режим6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ставим режим7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Моя твоя не понимать1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим3": {
+      "main": [
+        [
+          {
+            "node": "Просим ввести строку",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим6": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим7": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "dc2e1210-dfff-49ad-b15e-8f0a963e6bf1",
+  "triggerCount": 1,
+  "tags": []
+}
