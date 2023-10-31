@@ -1,0 +1,480 @@
+{
+  "createdAt": "2023-10-19T20:26:10.637Z",
+  "updatedAt": "2023-10-23T14:41:42.000Z",
+  "id": "EjWJgGRHhhmHo8Mg",
+  "name": "Закрытие шаблонной задачи в Notion",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "path": "44c7619c-a97e-4136-aed7-aac9113e892f",
+        "options": {}
+      },
+      "id": "e034b974-b7c4-4693-9369-208c135cb924",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        900,
+        540
+      ],
+      "webhookId": "44c7619c-a97e-4136-aed7-aac9113e892f",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "keys",
+        "keyPattern": "={{ $json.query.id }}*",
+        "getValues": false
+      },
+      "id": "31baa411-1ee5-4204-bd26-50be90c0d1db",
+      "name": "Ищем все записи",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "keys",
+        "options": {
+          "destinationFieldName": "key"
+        }
+      },
+      "id": "52e872bd-f9b7-4c7e-a7aa-70225cd02cef",
+      "name": "Разбиваем",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1340,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.key }}",
+              "operation": "endsWith",
+              "value2": ":repeats"
+            }
+          ]
+        }
+      },
+      "id": "ed5a6ac3-7382-4a6c-bacf-d0cd8496c768",
+      "name": "Это список повторных уведомлений?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $json.key }}"
+      },
+      "id": "6f54f609-ba49-47fc-b5e6-5f344a21bb75",
+      "name": "Удаляем запись из БД",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        980
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "repeats",
+        "key": "={{ $json.key }}",
+        "keyType": "list",
+        "options": {}
+      },
+      "id": "5564bbf5-ace9-447b-8e8e-64da11b099cf",
+      "name": "Подгружаем список повторов",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        720
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "repeats",
+        "options": {
+          "destinationFieldName": "message"
+        }
+      },
+      "id": "bc52be51-1bf9-42e9-9521-9ac400f05f5f",
+      "name": "Разбиваем1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        2200,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "deleteMessage",
+        "chatId": "198424221",
+        "messageId": "={{ $json.message }}"
+      },
+      "id": "c25e03ba-ec35-4925-80ac-6acffbcd1fd0",
+      "name": "Удаляем сообщение",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2400,
+        720
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "c12e79c1-6b98-4b9f-9bd1-a0ba66e3f331",
+      "name": "Объединяем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2660,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.key.length }}",
+              "operation": "equal",
+              "value2": 36
+            }
+          ]
+        }
+      },
+      "id": "4d9193e8-6f7e-460e-bab3-c15e6c01be57",
+      "name": "Это просто ID задачи?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Статус|select",
+              "selectValue": "Сделано 🙌"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "18628f77-03e5-4702-b05c-a777e813d664",
+      "name": "Ставим статус \"завершена\"",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        2340,
+        320
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "9f57e7df-261f-4119-b0c7-39d891e63621",
+      "name": "Объединяем1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2600,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "get",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.key }}",
+          "mode": "id"
+        },
+        "simple": false
+      },
+      "id": "b7740606-c161-438b-9f35-3afee9d33eed",
+      "name": "Подгружаем задачу",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        1780,
+        320
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.archived }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "8f7dafa0-7758-4b5c-bd75-d4b5bafd622b",
+      "name": "Задача удалена?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        320
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Ищем все записи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ищем все записи": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбиваем": {
+      "main": [
+        [
+          {
+            "node": "Это просто ID задачи?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это список повторных уведомлений?": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем список повторов",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Удаляем запись из БД",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем список повторов": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбиваем1": {
+      "main": [
+        [
+          {
+            "node": "Удаляем сообщение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем сообщение": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем": {
+      "main": [
+        [
+          {
+            "node": "Удаляем запись из БД",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это просто ID задачи?": {
+      "main": [
+        [
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Подгружаем задачу",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Это список повторных уведомлений?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим статус \"завершена\"": {
+      "main": [
+        [
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем1": {
+      "main": [
+        [
+          {
+            "node": "Удаляем запись из БД",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем задачу": {
+      "main": [
+        [
+          {
+            "node": "Задача удалена?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Задача удалена?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Ставим статус \"завершена\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "6cee3a3f-3236-4118-af02-53f8cccd9695",
+  "triggerCount": 1,
+  "tags": []
+}
