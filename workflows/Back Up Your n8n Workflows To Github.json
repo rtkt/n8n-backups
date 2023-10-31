@@ -1,6 +1,6 @@
 {
   "createdAt": "2022-09-16T03:22:30.639Z",
-  "updatedAt": "2023-08-04T13:42:25.000Z",
+  "updatedAt": "2023-10-02T06:14:24.000Z",
   "id": "2",
   "name": "Back Up Your n8n Workflows To Github",
   "active": true,
@@ -110,7 +110,7 @@
       "credentials": {
         "githubApi": {
           "id": "3",
-          "name": "Github key for repos"
+          "name": "Github"
         }
       }
     },
@@ -134,7 +134,7 @@
       "credentials": {
         "githubApi": {
           "id": "3",
-          "name": "Github key for repos"
+          "name": "Github"
         }
       }
     },
@@ -286,7 +286,7 @@
       "credentials": {
         "githubApi": {
           "id": "3",
-          "name": "Github key for repos"
+          "name": "Github"
         }
       },
       "continueOnFail": true
@@ -536,8 +536,9 @@
     "errorWorkflow": "4"
   },
   "staticData": null,
+  "meta": null,
   "pinData": {},
-  "versionId": "f55ce6fe-f8e8-4a82-835e-9873a3dafcdf",
+  "versionId": "f0941d39-77fd-4cc8-88b9-d2f5188be58e",
   "triggerCount": 1,
   "tags": []
 }
