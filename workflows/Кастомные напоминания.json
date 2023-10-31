@@ -1,0 +1,402 @@
+{
+  "createdAt": "2023-10-25T13:42:06.112Z",
+  "updatedAt": "2023-10-25T14:25:44.000Z",
+  "id": "Bza5ayToMmsFTr66",
+  "name": "Кастомные напоминания",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "10159864-f4d5-410d-a76d-2122e6574743",
+      "name": "Интервал",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1640,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "78497689-d96c-45f9-b703-4feb82b48d88",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        540
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n};"
+      },
+      "id": "6bbb5368-2863-41a2-bf95-16114c1322d7",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "cf149754-de19-4c6c-be23-a1eb821c30ca",
+          "mode": "list",
+          "cachedResultName": "Список задач",
+          "cachedResultUrl": "https://www.notion.so/cf149754de194c6cbe23a1eb821c30ca"
+        },
+        "returnAll": true,
+        "simple": false,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "Напоминание|date",
+              "condition": "before",
+              "date": "={{ DateTime.now().toISO() }}"
+            },
+            {
+              "key": "Напоминание|date",
+              "condition": "after",
+              "date": "={{ DateTime.now().minus({ minutes: 5 }) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d51f1686-574d-4156-bf22-c3a49fdd7253",
+      "name": "Запрашиваем страницы",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        2300,
+        540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Напоминаю о {{ $json.properties[$('Конфигурация').first().json.tasks.properties.title].title[0].text.content }}\n{{ $('Конфигурация').first().json.tasks.properties.priority }}: {{ $json.properties[$('Конфигурация').first().json.tasks.properties.priority].select.name }}\n{{ $('Конфигурация').first().json.tasks.properties.difficulty }}: {{ $json.properties[$('Конфигурация').first().json.tasks.properties.difficulty].select.name }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Открыть",
+                    "additionalFields": {
+                      "url": "={{ $json[\"url\"] }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "eabedab8-9fc2-4cbc-96a7-b061f68e81d9",
+      "name": "Оповещаем",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3200,
+        540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "ids",
+        "key": "reminder:pastids",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "6d134b0c-c7cb-4dfe-8ab9-9e5218755fd8",
+      "name": "Подгружаем список задач, о которых уже напомнили",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        320
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if ($input.item.json.ids) {\n  $input.item.json.ids = JSON.parse($input.item.json.ids);\n};\nreturn $input.item;"
+      },
+      "id": "1ad8d9ec-b01a-478e-b1b1-b47e29c9257b",
+      "name": "Парсим его",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        320
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "40d3ec6a-edf4-44d8-9e76-b5bd96024b08",
+      "name": "Объединяем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2760,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "if (! $input.first().json.ids) {\n  return $input.all().slice(1);\n};\nreturn $input.all().slice(1).filter(page => ! $input.first().json.ids.includes(page.json.id));"
+      },
+      "id": "1a2b0b3c-85b8-419e-9fe2-d96412e0e048",
+      "name": "Отфильтровываем результаты",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2980,
+        540
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bd60e4bf-982a-4100-8d3e-f478c198402e",
+      "name": "Объединяем1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3200,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const log = [];\nif ($input.first().json.ids?.length) {\n  let i = 0 + ($input.first().json.ids + $input.all().length - 1 - $('Конфигурация').first().json.reminder.log);\n  for(i; i < $input.first().json.ids.length; i++) {\n    log.push($input.first().json.ids[i]);\n  };\n};\n$input.all().slice(1).forEach(page => {\n  log.push(page.json.id);\n});\nreturn {\n  json: {\n    log: log\n  }\n};"
+      },
+      "id": "1ce7ca2a-5a9b-4bc5-a682-0c3964258c27",
+      "name": "Составляем новый список знакомых ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "reminder:pastids",
+        "value": "={{ JSON.stringify($json.log) }}",
+        "keyType": "string"
+      },
+      "id": "9b2428e1-fced-4333-97ad-ea6b873d765b",
+      "name": "Пишем лог",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        320
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Интервал": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем конфигурацию",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем список задач, о которых уже напомнили",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Запрашиваем страницы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем список задач, о которых уже напомнили": {
+      "main": [
+        [
+          {
+            "node": "Парсим его",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим его": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем страницы": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем": {
+      "main": [
+        [
+          {
+            "node": "Отфильтровываем результаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отфильтровываем результаты": {
+      "main": [
+        [
+          {
+            "node": "Оповещаем",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем1": {
+      "main": [
+        [
+          {
+            "node": "Составляем новый список знакомых ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Составляем новый список знакомых ID": {
+      "main": [
+        [
+          {
+            "node": "Пишем лог",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Интервал": {
+      "recurrencyRules": []
+    }
+  },
+  "meta": null,
+  "pinData": {},
+  "versionId": "9a40ebb7-d67b-439b-8ec6-02f59bcc3347",
+  "triggerCount": 1,
+  "tags": []
+}
