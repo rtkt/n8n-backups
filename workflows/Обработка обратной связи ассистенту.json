@@ -1,0 +1,2042 @@
+{
+  "createdAt": "2023-10-11T13:08:48.632Z",
+  "updatedAt": "2023-10-30T04:07:26.000Z",
+  "id": "GwNmDYpvrms4dPwl",
+  "name": "Обработка обратной связи ассистенту",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.data.type }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "endTask"
+            },
+            {
+              "value2": "editTaskCategories",
+              "output": 1
+            }
+          ]
+        }
+      },
+      "id": "2559b5ff-14da-4242-8a9b-c1626c4cc508",
+      "name": "Распределение",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.json.data = JSON.parse($input.item.json.callback_query.data);\nreturn $input.item;"
+      },
+      "id": "23178692-07cd-4d42-b1fe-1c45b2ad6121",
+      "name": "Парсим данные коллбаки",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://n8n.shitnsticks.top/webhook/44c7619c-a97e-4136-aed7-aac9113e892f",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "={{ $json.data.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c7f8c49f-5994-40a3-955c-b821d8067417",
+      "name": "Вызов webhook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3160,
+        -40
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "bf3416c2-4b8b-46b1-ba62-af7d0aec7447",
+      "name": "Объединяем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3460,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "callback",
+        "queryId": "={{ $json.callback_query.id }}",
+        "additionalFields": {}
+      },
+      "id": "5f1f64c5-898f-4450-b4a5-a595aba18deb",
+      "name": "Отчитываемся о завершении",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3720,
+        -200
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "198424221",
+        "text": "Задача завершена",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $json.callback_query.message?.reply_to_message?.message_id }}"
+        }
+      },
+      "id": "c47f6dd0-d03b-4c0c-b87d-466ad9b92868",
+      "name": "Пишем сообщение",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3720,
+        20
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "callback_query",
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "0aefaf57-4199-4165-b464-a9a6fc0d8343",
+      "name": "Слушаем",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        620
+      ],
+      "webhookId": "b2e88776-ddd2-494e-8155-5dbedd4c1299",
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.callback_query.id }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "9e43ffa6-1691-4f56-88ac-766a6507f8fd",
+      "name": "Это коллбака?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        980,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.message.message_id }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "980cbea3-516c-4999-ade3-1072dd94862d",
+      "name": "Это сообщение?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        400,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "c45a704d-abaf-49ce-ba36-e6cb0706649a",
+      "name": "Объединяем, но фильтруем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        740,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.message.from.id }}",
+              "operation": "equal",
+              "value2": "={{ $('Конфигурация').all()[0].json.chatid }}"
+            },
+            {
+              "value1": "={{ $json.message.chat.id }}",
+              "operation": "equal",
+              "value2": "={{ $('Конфигурация').all()[0].json.chatid }}"
+            }
+          ]
+        }
+      },
+      "id": "e820421b-12bd-4aaf-ab0f-2ec38f209fa9",
+      "name": "От меня пришло сообщение?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        680,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message.entities[0].type }}",
+              "value2": "bot_command"
+            }
+          ]
+        }
+      },
+      "id": "c97b8c20-1334-4e0c-9e3f-86f984fc869f",
+      "name": "Это команда?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        920,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.json.commands = [];\n$input.item.json.message.entities.forEach(entity => {\n  if (entity.type !== \"bot_command\") {\n    return;\n  };\n  let command = $input.item.json.message.text.slice(entity.offset, entity.offset + entity.length);\n  if (command.endsWith(`@${$('Конфигурация').all()[0].json.username}`)) {\n    command = command.slice(0, - `@${$('Конфигурация').all()[0].json.username}`.length);\n  };\n  $input.item.json.commands.push(command);\n});\nreturn $input.item;"
+      },
+      "id": "7e190977-b8a6-489d-9fb4-836cc8f32646",
+      "name": "Вычленяем команды",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const commandItems = [];\nconst addCommand = (command, message_id) => {\n  return {\n    json: {\n      command: command,\n      message_id: message_id\n    }\n  }\n};\n$input.all().forEach(message => {\n  message.json.commands.forEach(command => commandItems.push(addCommand(command, message.json.message.message_id)));\n});\nreturn commandItems;"
+      },
+      "id": "5c4c72fb-4d16-4272-aaf1-81184a542243",
+      "name": "Обрабатываем данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicates"
+      },
+      "id": "b7771c80-71a2-48d0-81ba-662f01c178e2",
+      "name": "Убираем дубликаты",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1560,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "mode",
+        "key": "mode",
+        "options": {}
+      },
+      "id": "c0943904-5baf-4c49-a376-f8832f87f708",
+      "name": "Спрашиваем текущий режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        340
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mode }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "7c6a7ef5-634a-45f6-929a-b02a9f71293a",
+      "name": "Режим вообще указан?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "standby"
+      },
+      "id": "19f0efd1-aafb-4e24-882d-55829af7611c",
+      "name": "Проставляем текущий режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        120
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "59e8cb8d-08d7-4ef4-aac8-f2cea892c87e",
+      "name": "Объединяем данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2660,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "if ($input.first().json?.mode?.startsWith(\"waiting\")) {\n  return [];\n}\nreturn $input.all().slice(1);"
+      },
+      "id": "48d4ffc7-836c-4cb6-8f5e-cef5ba3063c8",
+      "name": "Стопаем, если уже в диалоге",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2860,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.command }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "/newtask"
+            },
+            {
+              "value2": "/getschedule",
+              "output": 1
+            },
+            {
+              "value2": "/cancel",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "76c02ff2-ad91-45f4-894b-64a5711b6de9",
+      "name": "Распределение1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Неизвестная команда {{ $json.command.slice(1) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "reply_to_message_id": "={{ $json.message_id }}"
+        }
+      },
+      "id": "79cd3aa0-017f-400b-8843-b8c00ce53408",
+      "name": "Отвечаем, что команда неизвестна",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2520,
+        1720
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "keys",
+        "keyPattern": "newtask*",
+        "getValues": false
+      },
+      "id": "fc0cec1c-80a0-496f-b930-4f906ebf1670",
+      "name": "Запрашиваем список полей",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        820
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "keys",
+        "options": {
+          "destinationFieldName": "key"
+        }
+      },
+      "id": "582edd88-6ab0-4061-87fe-b1813bb0688c",
+      "name": "Разбиваем",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        3500,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $json.key }}"
+      },
+      "id": "d0bf870d-744a-4655-be2f-6639c5b25f98",
+      "name": "Удаляем значения",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3720,
+        820
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mode }}",
+              "value2": "standby"
+            }
+          ]
+        }
+      },
+      "id": "37c1b09a-18c4-4ca8-8b79-3cea25ab4cab",
+      "name": "Сейчас режим ожидания?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3360,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Нечего отменять",
+        "replyMarkup": "replyKeyboardRemove",
+        "replyKeyboardRemove": {
+          "remove_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "7de503a5-630a-49dd-9f55-b5a99403e621",
+      "name": "Сообщаем, что отменять нечего",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3640,
+        1000
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "standby",
+        "keyType": "string"
+      },
+      "id": "cde325f6-434e-405a-9c26-d90ca23f9a5b",
+      "name": "Ставим режим ожидания",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3640,
+        1200
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Отменил",
+        "replyMarkup": "replyKeyboardRemove",
+        "replyKeyboardRemove": {
+          "remove_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "24b09fb5-1b3f-48a8-9068-812459038caf",
+      "name": "Сообщаем об успехе",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3920,
+        1200
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://n8n.shitnsticks.top/webhook/dbf174c4-906d-4acf-a143-2ec61bbaeba2",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "id": "16538720-23be-474e-b05a-49cd770007cc",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2680,
+        600
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "f184684e-8b99-4955-a415-265f502d53df",
+      "name": "Объединяем данные1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2880,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "if ($input.first().json?.mode?.startsWith(\"waiting\")) {\n  return [];\n}\nreturn $input.all().slice(1).map(message => {\n  message.json.mode = $input.first().json?.mode;\n  return message;\n});"
+      },
+      "id": "8b313a72-26f2-4952-acf4-558ae76ca5fa",
+      "name": "Стопаем, если уже в диалоге1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "cb67127a-4e98-495c-a20f-1d5e710abea9",
+      "name": "Объединяем, но фильтруем1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3080,
+        1000
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "086f60c8-5b81-426a-9756-a1fb401c52cf",
+      "name": "Объединяем1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2520,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().slice(1).map(item => {\n  const copy = JSON.parse(JSON.stringify(item));\n  copy.json.mode = $input.first().json?.mode;\n  return copy;\n});"
+      },
+      "id": "a765abd1-9c06-42c8-b641-cda0177be619",
+      "name": "Вписываем текущий режим",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2780,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.mode }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "standby",
+              "output": 3
+            },
+            {
+              "operation": "startsWith",
+              "value2": "waiting new task"
+            },
+            {
+              "value2": "waiting categories",
+              "output": 1
+            },
+            {
+              "value2": "waiting configuration",
+              "output": 2
+            }
+          ]
+        }
+      },
+      "id": "eb32fe68-182f-40e6-b08d-704931c144d2",
+      "name": "Распределение2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Распознавания текста здесь нет. Только уведомления и команды",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $json.message.message_id }}"
+        }
+      },
+      "id": "307464de-8f15-42cb-a75d-3e815f80881f",
+      "name": "Моя твоя не понимать",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3240,
+        2240
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.command }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "/edittaskcategories"
+            },
+            {
+              "value2": "/reconfigure",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "6523f96c-4c7b-44d0-843c-508e5bb400dd",
+      "name": "Ещё распределение",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "mode:previous"
+      },
+      "id": "a5c018f6-caa6-438d-a7c5-56b7ef64a885",
+      "name": "Удаляем запись о предыдущем режиме",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        640
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "categories",
+        "key": "properties:task:categories",
+        "keyType": "list",
+        "options": {}
+      },
+      "id": "65ab692b-cc9a-4939-8079-03a2db587d6c",
+      "name": "Подгружаем текущий список категорий",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        1280
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let message = \"Введи, пожалуйста, актуальный список категорий задач\";\nif ($input.first().json.categories.length) {\n  message += `\\nТекущий список категорий: ${$input.first().json.categories.join(\", \")}`;\n} else {\n  message += \"\\nСейчас категории не заданы\";\n};\n\nreturn {\n  json: {\n    message: message\n  }\n};"
+      },
+      "id": "4d8e0fde-f72d-422f-a699-20530adf9d80",
+      "name": "Формируем сообщение",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "03e9830e-4a02-408b-b966-5ea37ce0c8e9",
+      "name": "Выдаём его",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3040,
+        1280
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "c2e6abae-1cf9-46d1-afb2-02858080a6dd",
+      "name": "Объединяем, но фильтруем2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3660,
+        1380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode:previous",
+        "value": "={{ $json.mode }}",
+        "keyType": "string"
+      },
+      "id": "4464d3d8-1c71-402b-81e1-421134005ca7",
+      "name": "Делаем текущий режим предыдущим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3860,
+        1380
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting categories",
+        "keyType": "string"
+      },
+      "id": "6e7b620a-b3f7-4e80-8c2b-117dc00fb1c1",
+      "name": "Вписываем текущий режим1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4060,
+        1380
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "properties:task:categories"
+      },
+      "id": "8b364d7a-cc89-43e6-9e49-62456bdbd3e8",
+      "name": "Удаляем старый список категорий",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        1960
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "d3a8ae41-05e0-4dc4-b5db-f9ba33c4a449",
+      "name": "Объединяем, но фильтруем3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        3700,
+        1880
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "mode",
+        "key": "mode:previous",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "c1c8944b-40f7-4bde-ab5d-7e57f3757aa1",
+      "name": "Берём предыдущий режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4020,
+        1820
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "={{ $json.mode }}",
+        "keyType": "string"
+      },
+      "id": "7e0ef9be-a08a-4283-af0d-d35f24ab16ab",
+      "name": "Записываем в текущие",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4220,
+        1820
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "mode:previous"
+      },
+      "id": "420b6192-c6b6-4a05-b896-7c2a9db9ceab",
+      "name": "Удаляем предыдущий режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        1820
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Записал",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true
+        }
+      },
+      "id": "8718414c-cc7a-426f-b960-7625efc6430e",
+      "name": "Отчитываемся",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4600,
+        1820
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.first().json.message.text.split(\", \").map(category => {\n  return {\n    json: {\n      category: category\n    }\n  };\n});"
+      },
+      "id": "1f9536e9-a643-448c-8782-5723d1e7fa09",
+      "name": "Разбиваем1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4020,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "properties:task:categories",
+        "messageData": "={{ $json.category }}"
+      },
+      "id": "2a13f55b-0227-4ca3-b525-c4873014be31",
+      "name": "По одному добавляем категории",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        1600
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "ff922b42-0244-4d5c-9008-f44097f2861a",
+      "name": "Группировка",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3020,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.shitnsticks.top/webhook/1f14792d-0dc8-4d50-86f5-f70f439492c6",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "4c7f29b3-b8e9-4a61-8d9d-fe938a474396",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3340,
+        460
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.shitnsticks.top/webhook/1f14792d-0dc8-4d50-86f5-f70f439492c6",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "fa0976bd-5ce5-4b0d-aa67-b2ce0a30da35",
+      "name": "Базовые функции",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3540,
+        1560
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.shitnsticks.top/webhook-test/f7e3b4d0-8662-40d4-b0b9-5e0d95e819e3",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "f33657e7-72b3-4007-9350-f11c98f3f8f4",
+      "name": "Расширенные функции",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3540,
+        1740
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mode }}",
+              "operation": "endsWith",
+              "value2": "name"
+            },
+            {
+              "value1": "={{ $json.mode }}",
+              "operation": "endsWith",
+              "value2": "categories"
+            },
+            {
+              "value1": "={{ $json.mode }}",
+              "operation": "endsWith",
+              "value2": "approval"
+            },
+            {
+              "value1": "={{ $json.mode }}",
+              "operation": "endsWith",
+              "value2": "draft creation"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "82d55343-dc9b-43bc-be94-ff6ed878b142",
+      "name": "Базовые функции нужны?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        1660
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Введи конфигурацию\n\nТекущая: <pre>{{ $('Подгружаем конфигурацию').first().json.configuration }}</pre>",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $('Слушаем').last().json.message.message_id }}"
+        }
+      },
+      "id": "1f3d5b22-987f-4050-8ffd-12ad3b2237a8",
+      "name": "Спрашиваем список категорий",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2880,
+        1480
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting configuration",
+        "keyType": "string"
+      },
+      "id": "bbeee1f2-fe99-497b-bd31-61489940b852",
+      "name": "Ставим режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        1480
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "configuration",
+        "value": "={{ $json.message.text }}",
+        "keyType": "string"
+      },
+      "id": "ea5d1b29-8c73-4a3c-8bf1-2126cbd8a99d",
+      "name": "Записываем конфигурацию не проверяя её",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        2160
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "standby",
+        "keyType": "string"
+      },
+      "id": "a3437902-1090-4762-8fe0-3732a9b65f71",
+      "name": "Возвращаем режим ожидания",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3720,
+        2160
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Записал не проверяя\nЕсли что-то отъебнёт, то это <b>твои</b> проблемы",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $('Слушаем').last().json.message.message_id }}"
+        }
+      },
+      "id": "38c722a8-f216-454a-af06-38b87b9c3f4c",
+      "name": "Отчитываемся и предупреждаем",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3940,
+        2160
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "6374fadd-9bbf-4448-9d48-9534c26aaa38",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        480,
+        400
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n};"
+      },
+      "id": "690aeb45-7bb6-4e98-87c9-f90c5738f5c8",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Парсим данные коллбаки": {
+      "main": [
+        [
+          {
+            "node": "Распределение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Распределение": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Подгружаем текущий список категорий",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вызов webhook": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем": {
+      "main": [
+        [
+          {
+            "node": "Отчитываемся о завершении",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Пишем сообщение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Слушаем": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Подгружаем конфигурацию",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это коллбака?": {
+      "main": [
+        [
+          {
+            "node": "Парсим данные коллбаки",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Это сообщение?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем": {
+      "main": [
+        [
+          {
+            "node": "Это коллбака?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это сообщение?": {
+      "main": [
+        [
+          {
+            "node": "От меня пришло сообщение?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "От меня пришло сообщение?": {
+      "main": [
+        [
+          {
+            "node": "Это команда?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это команда?": {
+      "main": [
+        [
+          {
+            "node": "Вычленяем команды",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Вычленяем команды": {
+      "main": [
+        [
+          {
+            "node": "Обрабатываем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обрабатываем данные": {
+      "main": [
+        [
+          {
+            "node": "Убираем дубликаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем текущий режим": {
+      "main": [
+        [
+          {
+            "node": "Режим вообще указан?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем данные1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Режим вообще указан?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Проставляем текущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем данные": {
+      "main": [
+        [
+          {
+            "node": "Стопаем, если уже в диалоге",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Стопаем, если уже в диалоге": {
+      "main": [
+        [
+          {
+            "node": "Вызов webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Убираем дубликаты": {
+      "main": [
+        [
+          {
+            "node": "Распределение1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Распределение1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные1",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Группировка",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ещё распределение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем список полей": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбиваем": {
+      "main": [
+        [
+          {
+            "node": "Удаляем значения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сейчас режим ожидания?": {
+      "main": [
+        [
+          {
+            "node": "Сообщаем, что отменять нечего",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ставим режим ожидания",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим ожидания": {
+      "main": [
+        [
+          {
+            "node": "Сообщаем об успехе",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем данные1": {
+      "main": [
+        [
+          {
+            "node": "Стопаем, если уже в диалоге1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Стопаем, если уже в диалоге1": {
+      "main": [
+        [
+          {
+            "node": "Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем1": {
+      "main": [
+        [
+          {
+            "node": "Сейчас режим ожидания?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем1": {
+      "main": [
+        [
+          {
+            "node": "Вписываем текущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем текущий режим": {
+      "main": [
+        [
+          {
+            "node": "Распределение2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Распределение2": {
+      "main": [
+        [
+          {
+            "node": "Базовые функции нужны?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Удаляем старый список категорий",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Записываем конфигурацию не проверяя её",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Моя твоя не понимать",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ещё распределение": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем текущий список категорий",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ставим режим",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Отвечаем, что команда неизвестна",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем текущий список категорий": {
+      "main": [
+        [
+          {
+            "node": "Формируем сообщение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем сообщение": {
+      "main": [
+        [
+          {
+            "node": "Выдаём его",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Выдаём его": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем2": {
+      "main": [
+        [
+          {
+            "node": "Делаем текущий режим предыдущим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Делаем текущий режим предыдущим": {
+      "main": [
+        [
+          {
+            "node": "Вписываем текущий режим1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем старый список категорий": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем3": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Берём предыдущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Берём предыдущий режим": {
+      "main": [
+        [
+          {
+            "node": "Записываем в текущие",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем в текущие": {
+      "main": [
+        [
+          {
+            "node": "Удаляем предыдущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем предыдущий режим": {
+      "main": [
+        [
+          {
+            "node": "Отчитываемся",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбиваем1": {
+      "main": [
+        [
+          {
+            "node": "По одному добавляем категории",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Группировка": {
+      "main": [
+        [
+          {
+            "node": "Удаляем запись о предыдущем режиме",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Запрашиваем список полей",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Базовые функции нужны?": {
+      "main": [
+        [
+          {
+            "node": "Базовые функции",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Расширенные функции",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем список категорий",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем конфигурацию не проверяя её": {
+      "main": [
+        [
+          {
+            "node": "Возвращаем режим ожидания",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Возвращаем режим ожидания": {
+      "main": [
+        [
+          {
+            "node": "Отчитываемся и предупреждаем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем текущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "8122f2d0-cbaf-4851-8815-c706d3d69653",
+  "triggerCount": 1,
+  "tags": []
+}
