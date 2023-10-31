@@ -1,0 +1,545 @@
+{
+  "createdAt": "2023-10-26T02:20:12.487Z",
+  "updatedAt": "2023-10-26T02:44:58.000Z",
+  "id": "KvfCQaR42MUaiaC4",
+  "name": "Экспорт заявок",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f4d15c36-8fd7-48ca-ac97-6f558085acd8",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        880,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    data: JSON.parse($input.item.json.data)\n  }\n};"
+      },
+      "id": "fa3deb5d-f66c-4bc8-a87c-b8f9c08d8264",
+      "name": "Парсим данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "id": "4e98f216-fec7-4107-b058-a3b11885afce",
+      "name": "Разбиваем",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1540,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "ff5dcd8e-17c5-46d6-a823-77ef97c9e97e",
+      "name": "По одному",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        2220,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 0.3,
+        "unit": "seconds"
+      },
+      "id": "df2780e1-a8c3-45bf-825f-fe8ae6daaa68",
+      "name": "Ждём",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        -380
+      ],
+      "webhookId": "6290bbe8-848f-48d6-8300-ddaef5d75d42"
+    },
+    {
+      "parameters": {
+        "url": "=https://help.knp24.ru/api/assets/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "id": "7f8a469f-7761-4d42-aabd-8b91d5e9e5b3",
+      "name": "Запрашиваем актив",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2760,
+        -380
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "xlsx",
+        "options": {}
+      },
+      "id": "2a113009-ce6b-4195-98a8-22857bb9d28f",
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 2,
+      "position": [
+        2900,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.data)\n}"
+      },
+      "id": "732c854d-d9ca-4869-a1de-592623160c94",
+      "name": "Парсим",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "sendDocument",
+        "chatId": "198424221",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "id": "1c8d98bf-5cff-4570-8844-647dd76cf238",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        -300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "delete $input.item.json.uid;\ndelete $input.item.json.slabel;\ndelete $input.item.json.asset_attrib_id;\ndelete $input.item.json.cusers_id;\ndelete $input.item.json.name;\ndelete $input.item.json.image;\n$input.item.json.items.forEach(item => {\n  $input.item.json[item.label] = item.value;\n});\ndelete $input.item.json.items;\n\nreturn $input.item;"
+      },
+      "id": "263ce087-136b-4b5a-a8da-a34cd71b7e95",
+      "name": "Чистки",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2660,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://help.knp24.ru/api/requests",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "gfullname",
+              "value": "Группа системного администрирования"
+            },
+            {
+              "name": "timestamp",
+              "value": ">2023-09-01"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5ee4b056-9632-44a4-b65c-5b148a7ddd2b",
+      "name": "Запрашиваем список заявок",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1100,
+        380
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().filter(request => {\n  let flag = false;\n  if (request.json.Name.includes(\"Петухов\")) {\n    flag = true;\n  };\n  if (request.json.Content.includes(\"Петухов\")) {\n    flag = true;\n  };\n  \n  return flag;\n});"
+      },
+      "id": "674f4f71-ef75-4372-9c3c-275d9129feff",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "afbfc95c-06a7-4b33-9375-a4ae9fbbf8b1",
+      "name": "По одной заявке",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1760,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 0.5,
+        "unit": "seconds"
+      },
+      "id": "a6b174fc-f7ae-4d24-8815-cd0bb7703e16",
+      "name": "Ждём1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        580
+      ],
+      "webhookId": "5fa3c36b-e75b-4a34-84f2-5b32f63b57ab"
+    },
+    {
+      "parameters": {
+        "url": "=https://help.knp24.ru/api/requests/{{ $json[\"id\"] }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "id": "082f2645-33da-4fab-be76-3f82d15664d6",
+      "name": "Спрашиваем заявку",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2180,
+        580
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "if (typeof $input.item.json?.data === \"string\") {\n  return JSON.parse($input.item.json.data);\n};\nreturn {json: {}};"
+      },
+      "id": "d2f9c843-da28-4294-a785-2d23ab57187d",
+      "name": "Парсим JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = [];\ndelete $input.item.json.pid;\ndelete $input.item.json.slabel;\ndelete $input.item.json.ZayavCategory_id;\ndelete $input.item.json.Date;\ndelete $input.item.json.StartTime;\ndelete $input.item.json.fStartTime;\ndelete $input.item.json.fEndTime;\ndelete $input.item.json.EndTime;\ndelete $input.item.json.sort_id;\ndelete $input.item.json.wasautoclosed;\ndelete $input.item.json.wasescalated;\ndelete $input.item.json.waspaused;\ndelete $input.item.json.channel;\ndelete $input.item.json.channel_icon;\ndelete $input.item.json.canceled;\ndelete $input.item.json.reopened;\ndelete $input.item.json.child;\ndelete $input.item.json.creator_id;\ndelete $input.item.json.service_category_id;\ndelete $input.item.json.depart_id;\ndelete $input.item.json.company_id;\ndelete $input.item.json.msbot_params;\ndelete $input.item.json.delayed;\ndelete $input.item.json.msbot_id;\ndelete $input.item.json.paused;\ndelete $input.item.json.paused_total_time;\ndelete $input.item.json.previous_paused_status_id;\ndelete $input.item.json.paused_total_time;\ndelete $input.item.json.jira;\ndelete $input.item.json.gr_id;\ndelete $input.item.json.viber_id;\ndelete $input.item.json.tchat_id;\ndelete $input.item.json.delayedHours;\ndelete $input.item.json.timestampClose;\ndelete $input.item.json.delayed_end;\ndelete $input.item.json.delayed_start;\ndelete $input.item.json.key;\ndelete $input.item.json.fields_history;\ndelete $input.item.json.groups_id;\ndelete $input.item.json.re_leaving;\ndelete $input.item.json.contractors_id;\ndelete $input.item.json.leaving;\ndelete $input.item.json.lead_time;\ndelete $input.item.json.rating;\ndelete $input.item.json.correct_timestamp;\ndelete $input.item.json.update_by;\ndelete $input.item.json.matching;\ndelete $input.item.json.watchers;\ndelete $input.item.json.depart;\ndelete $input.item.json.image;\ndelete $input.item.json.service_id;\ndelete $input.item.json.closed;\ndelete $input.item.json.cunits;\ndelete $input.item.json.Type;\ndelete $input.item.json.Address;\ndelete $input.item.json.company;\ndelete $input.item.json.Comment;\ndelete $input.item.json.lastactivity;\ndelete $input.item.json.timestampfStart;\ndelete $input.item.json.timestampfEnd;\n\n$input.item.json.subs.forEach(comment => {\n  delete comment.show;\n  delete comment.rid;\n  delete comment.recipients;\n  delete comment.channel;\n  delete comment.readership;\n  delete comment.timestamp;\n});\n\nreturn $input.item;"
+      },
+      "id": "74ae0fe7-4ecb-4f6f-91ff-a20a827b9a9b",
+      "name": "Зачищаем JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const strip = input => {\n  const chars = input.split(\"\");\n  let text = true;\n  const filteredChars = chars.filter(char => {\n    if (char === \"<\") {\n      text = false;\n    } else if (char === \">\") {\n      text = true;\n      return false;\n    };\n    return text;\n  });\n  return filteredChars.join(\"\");\n};\n\nconst newlines = [\n  \"<br />\",\n  \"</p>\",\n  \"</h1>\",\n  \"</h2>\",\n  \"</h3>\",\n  \"</h4>\",\n  \"</h5>\",\n  \"</h6>\"\n];\nconst symbols = [\n  { in: \"&nbsp;\", out: \" \" },\n  { in: \"&mdash;\", out: \"—\"}\n];\nconst process = string => {\n  newlines.forEach(symbol => {\n    string = string.replaceAll(symbol, \"\\n\");\n  });\n  symbols.forEach(replacement => {\n    string = string.replaceAll(replacement.in, replacement.out);\n  });\n  return strip(string);\n};\n// console.log(`Working with ${$input.item.json.id}`);\n$input.item.json.Content = process($input.item.json.Content);\n// console.log('Finished processing content');\nif ($input.item.json.subs.length) {\n  $input.item.json.subs.forEach(sub => {\n    // console.log(`Processing comment ${sub.comment}`);\n    sub.comment = process(sub.comment);\n  });\n};\nreturn $input.item;;"
+      },
+      "id": "1e1efa77-12d1-4ed9-88e9-1a799f87c29d",
+      "name": "Зачищаем HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.json.Content = $input.item.json.Content.split(\"\\n\")\n  .map(line => line.trim())\n  .filter(line => line.length)\n  .join(\"\\n\");\nreturn $input.item;"
+      },
+      "id": "6c20aa22-4725-41c8-adb2-384132d0dbfb",
+      "name": "Удаляем пустые строки",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2620,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const streamline = (data, idname) => {\n  const output = {};\n  data.forEach(element => {\n    output[element[idname]] = JSON.parse(JSON.stringify(element));\n    delete output[element[idname]][idname];\n  });\n  // console.log(JSON.stringify(output));\n  return output;\n};\n$input.item.json.subs.forEach(sub => {\n  sub.files = streamline(sub.files, 'id');\n});\n$input.item.json.subs = streamline($input.item.json.subs, 'id');\n$input.item.json.files = streamline($input.item.json.files, 'id');\nreturn $input.item;"
+      },
+      "id": "3b7ee470-0069-4732-a1c9-0112e1c4c98b",
+      "name": "Перебираем комменты и вложения",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2840,
+        380
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Запрашиваем список заявок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим данные": {
+      "main": [
+        [
+          {
+            "node": "Разбиваем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "По одному": {
+      "main": [
+        [
+          {
+            "node": "Ждём",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Парсим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём": {
+      "main": [
+        [
+          {
+            "node": "Запрашиваем актив",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем актив": {
+      "main": [
+        [
+          {
+            "node": "По одному",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим": {
+      "main": [
+        [
+          {
+            "node": "Чистки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Чистки": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем список заявок": {
+      "main": [
+        [
+          {
+            "node": "Парсим данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Разбиваем": {
+      "main": [
+        [
+          {
+            "node": "По одной заявке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "По одной заявке": {
+      "main": [
+        [
+          {
+            "node": "Парсим JSON",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ждём1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём1": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем заявку",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем заявку": {
+      "main": [
+        [
+          {
+            "node": "По одной заявке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим JSON": {
+      "main": [
+        [
+          {
+            "node": "Зачищаем JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Зачищаем JSON": {
+      "main": [
+        [
+          {
+            "node": "Зачищаем HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Зачищаем HTML": {
+      "main": [
+        [
+          {
+            "node": "Удаляем пустые строки",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем пустые строки": {
+      "main": [
+        [
+          {
+            "node": "Перебираем комменты и вложения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "358529ca-615f-4672-adfe-ccc40b3f9da3",
+  "triggerCount": 0,
+  "tags": []
+}
