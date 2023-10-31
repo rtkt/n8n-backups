@@ -1,0 +1,291 @@
+{
+  "createdAt": "2023-10-16T10:27:09.680Z",
+  "updatedAt": "2023-10-17T06:29:01.000Z",
+  "id": "Bt6RjfpZYkof1c9J",
+  "name": "Простановка даты закрытия в Notion",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "df034f9c-09a1-4790-8ca8-74825c33c020",
+      "name": "Интервал",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "cf149754-de19-4c6c-be23-a1eb821c30ca",
+          "mode": "list",
+          "cachedResultName": "Список задач",
+          "cachedResultUrl": "https://www.notion.so/cf149754de194c6cbe23a1eb821c30ca"
+        },
+        "returnAll": true,
+        "simple": false,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "Статус|select",
+              "condition": "equals",
+              "selectValue": "Сделано 🙌"
+            },
+            {
+              "key": "Дата закрытия|date",
+              "condition": "is_empty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d4f313c7-7951-4ada-ab02-5085ba89fbde",
+      "name": "Запрашиваем страницы",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        440
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Дата закрытия|date",
+              "includeTime": false,
+              "date": "={{ $json.last_edited_time }}",
+              "timezone": "Asia/Krasnoyarsk"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "012d08e0-a903-4ea9-8e28-d8d6bf488984",
+      "name": "Проставляем дату закрытия",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        540
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "2392a8fb-d0d5-4a93-a07c-259869125a2c",
+      "name": "По одному",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "08a6a242-6d7c-4b77-91b6-4f8025fed9be",
+      "name": "Ждём",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        540
+      ],
+      "webhookId": "36481443-f078-4dc9-823e-2ddaf52f64a4"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "cf149754-de19-4c6c-be23-a1eb821c30ca",
+          "mode": "list",
+          "cachedResultName": "Список задач",
+          "cachedResultUrl": "https://www.notion.so/cf149754de194c6cbe23a1eb821c30ca"
+        },
+        "returnAll": true,
+        "simple": false,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "Статус|select",
+              "condition": "equals",
+              "selectValue": "Отменено"
+            },
+            {
+              "key": "Дата закрытия|date",
+              "condition": "is_empty"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b4eda587-7b0e-41d0-8f0a-7118bd4c8008",
+      "name": "Запрашиваем страницы1",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        640
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "edd1b4c3-7a06-492c-aef7-5a093d490db3",
+      "name": "Объединяем результаты",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1660,
+        540
+      ]
+    }
+  ],
+  "connections": {
+    "Интервал": {
+      "main": [
+        [
+          {
+            "node": "Запрашиваем страницы",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Запрашиваем страницы1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем страницы": {
+      "main": [
+        [
+          {
+            "node": "Объединяем результаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "По одному": {
+      "main": [
+        [
+          {
+            "node": "Ждём",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём": {
+      "main": [
+        [
+          {
+            "node": "Проставляем дату закрытия",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Проставляем дату закрытия": {
+      "main": [
+        [
+          {
+            "node": "По одному",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем результаты": {
+      "main": [
+        [
+          {
+            "node": "По одному",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Запрашиваем страницы1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем результаты",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Интервал": {
+      "recurrencyRules": []
+    }
+  },
+  "meta": null,
+  "pinData": {},
+  "versionId": "187d43cd-ec92-49e1-bc02-3328b64b2164",
+  "triggerCount": 1,
+  "tags": []
+}
