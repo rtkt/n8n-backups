@@ -1,0 +1,1629 @@
+{
+  "createdAt": "2023-10-24T05:06:48.757Z",
+  "updatedAt": "2023-10-30T03:31:33.000Z",
+  "id": "Z6l91zkPrrSFIxBZ",
+  "name": "Расширенное создание задачи",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "1a004857-f199-4bb8-9f42-43f5efa63a58",
+      "name": "Объединяем, но фильтруем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1540,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.mode }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "startsWith",
+              "value2": "waiting new task project"
+            },
+            {
+              "value2": "waiting new task priority",
+              "output": 1
+            },
+            {
+              "value2": "waiting new task difficulty",
+              "output": 1
+            },
+            {
+              "value2": "waiting new task reminder",
+              "output": 2
+            },
+            {
+              "value2": "waiting new task deadline",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "072431d5-eeb0-4202-aa2f-9bdef21f0ca8",
+      "name": "Что меняем?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.mode }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "waiting new task project"
+            },
+            {
+              "value2": "waiting new task project confirmation",
+              "output": 1
+            },
+            {
+              "value2": "waiting new task project clarification",
+              "output": 2
+            }
+          ]
+        }
+      },
+      "id": "17c4ed83-a060-405c-919b-7087494a8073",
+      "name": "Что там с проектом?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "03a990b2-fcba-4821-9c04-67d78ae7c2e5",
+          "mode": "list",
+          "cachedResultName": "Проекты",
+          "cachedResultUrl": "https://www.notion.so/03a990b2fcba48219c0467d78ae7c2e5"
+        },
+        "returnAll": true,
+        "simple": false,
+        "filterType": "json",
+        "filterJson": "={\n  \"property\": \"{{ $('Конфигурация').first().json.projects.properties.status }}\",\n  \"select\": {\n    \"equals\": \"{{ $('Конфигурация').first().json.projects.statuses.inProgress }}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "9d7e187c-39dd-42aa-ad33-761a4e72be0c",
+      "name": "Запрашиваем список проектов",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        2540,
+        -480
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const page = JSON.parse(JSON.stringify($input.item.json));\nconst fields = $('Конфигурация').all()[0].json.projects.properties;\nconst process = {\n  number: (field, fields, page) => {\n    return page.properties[fields[field]].number;\n  },\n  multi_select: (field, fields, page) => {\n    return page.properties[fields[field]].multi_select.map(element => element.name);\n  },\n  select: (field, fields, page) => {\n    return page.properties[fields[field]].select.name;\n  },\n  checkbox: (field, fields, page) => {\n    return page.properties[fields[field]].checkbox;\n  },\n  date: (field, fields, page) => {\n    return page.properties[fields[field]].date;\n  },\n  rich_text: (field, fields, page) => {\n    return page.properties[fields[field]].rich_text?.plain_text;\n  },\n  title: (field, fields, page) => {\n    return page.properties[fields[field]].title[0].plain_text;\n  },\n  relation: (field, fields, page) => {\n    return page.properties[fields[field]].relation.map(relation => relation.id);\n  }\n};\n\nObject.keys(fields).forEach(field => {\n  // console.log(`Property is ${fields[field]}, type is ${page.properties[fields[field]].type}`);\n  page[field] = process[page.properties[fields[field]].type](field, fields, page);\n});\n\ndelete page.properties;\ndelete page.cover;\ndelete page.icon;\ndelete page.created_by;\ndelete page.last_edited_by;\n\nreturn {\n  json: page\n};"
+      },
+      "id": "c73d97ed-c265-43ea-bbd2-08d8cce81279",
+      "name": "Упрощаем ответы",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2740,
+        -480
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "39ec42e2-a801-4efc-8ec9-a3edc9a10460",
+      "name": "Объединяем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2920,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.last().json.body.message.text;\nconst guesses = $input.all().slice(0, -1).filter(project => {\n  return project.json.title.toLowerCase().includes(input.toLowerCase());\n});\nreturn {\n  json: {\n    guesses: guesses.map(guess => guess.json)\n  }\n};"
+      },
+      "id": "cb743d7b-bac2-4b3f-81e9-e68c88d99a51",
+      "name": "Ищем совпадения",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3100,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "value1": "={{ $json.guesses.length }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal"
+            },
+            {
+              "operation": "equal",
+              "value2": 1,
+              "output": 1
+            },
+            {
+              "operation": "larger",
+              "value2": 1,
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "1e48e78c-1b52-40a9-8f53-ae247fee6b0c",
+      "name": "Сколько совпадений нашлось?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Совпадений не наййдено. Попробуй ещё раз",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "5cf678b2-2e17-413c-a1b8-4b3d7de63372",
+      "name": "Сообщаем о неудаче",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3520,
+        -680
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = `Нашёлся${$input.item.json.guesses[0].endless ? \" вечный\" : \"\"} проект ${$input.item.json.guesses[0].title}`;\nif ($input.item.json.guesses[0].area.length === 1) {\n  message += ` из области ${$input.item.json.guesses[0].area[0]}`;\n} else if ($input.item.json.guesses[0].area.length > 1) {\n  message += ` из областей `;\n  $input.item.json.guesses[0].area.reduce((list, currentArea, index, areas) => {\n    if (index < areas.length - 2) {\n      list += `${area}, `;\n    } else if (index === areas.length - 2) {\n      list += `${area} и `;\n    } else {\n      list += `${area}`;\n    };\n    return list;\n  }, \"\");\n} else {\n  message += \" с незаданной областью\";\n};\nmessage += \"\\nВсё правильно?\";\nreturn {\n  json: {\n    message: message\n  }\n};"
+      },
+      "id": "8bb39916-6805-4ea4-8aac-0fbab8912629",
+      "name": "Формулируем сообщение",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3860,
+        -700
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task project confirmation",
+        "keyType": "string"
+      },
+      "id": "9043e2ef-07ac-4490-8ad6-bf1bb19025a3",
+      "name": "Ставим режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3940,
+        -500
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.correct }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.strings.wrong }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "d985ecdd-00b1-4a26-8517-3ae57d4c3b70",
+      "name": "Просим подтвердить выбор",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4060,
+        -700
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "newtask:project",
+        "value": "={{ JSON.stringify($json.guesses[0]) }}",
+        "keyType": "string"
+      },
+      "id": "4ac6b67c-0608-4268-bcfc-1e6d816df985",
+      "name": "Записываем данные",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3700,
+        -500
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "newtask:project:guesses",
+        "value": "={{ JSON.stringify($json.guesses) }}",
+        "keyType": "string"
+      },
+      "id": "5405cee6-ca7e-454d-971b-2413ef4c0a8b",
+      "name": "Записываем всё, что нашли",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3700,
+        -160
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task project clarification",
+        "keyType": "string"
+      },
+      "id": "76a5a25c-5749-4358-bee6-dde90dbda402",
+      "name": "Ставим режим1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3940,
+        -160
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let message = `Нашлись целых ${$input.first().json.guesses.length} проект${$input.first().json.guesses.length >= 5 ? \"ов\" : \"а\"}`;\nconst describe = guess => {\n  let description = `${guess.title}\\nСоздан: ${DateTime.fromISO(guess.created_time).setLocale(\"ru\").toLocal().toFormat(\"d MMMM yyyy в HH:mm\")}\\n`;\n  if (guess.area.length === 1) {\n    description += `Область: ${guess.area[0]}`;\n  } else if (guess.area.length > 1) {\n    description += `Области: `;\n    description += guess.area.reduce((list, currentArea, index, areas) => {\n      if (index < areas.length - 2) {\n        list += `${currentArea}, `;\n      } else if (index === areas.length - 2) {\n        list += `${currentArea} и `;\n      } else {\n        list += `${currentArea}`;\n      }\n      return list;\n    }, \"\");\n  } else {\n    description += \"Область не задана\";\n  };\n  return description;\n};\nmessage += $input.first().json.guesses.reduce((list, currentGuess, index) => {\n  list += `\\n${index + 1}) ${describe(currentGuess)}`;\n  return list;\n}, \"\");\nmessage += \"\\n\\nВведи номер проекта, который нужен, либо 0 чтобы не указывать\";\nreturn {\n  json: {\n    message: message\n  }\n};"
+      },
+      "id": "0c1af815-a596-4d5b-b4ad-3250e7b2ad2d",
+      "name": "Формулируем сообщение1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3600,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "={{ $json.message }}",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "b40dbef5-6443-4ab6-b36f-75836c436969",
+      "name": "Спрашиваем, какой из проектов надо выбрать",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3800,
+        -340
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Что-то пошло не так. Попробуй ещё раз",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "9a5c33e3-850e-4b83-bb73-d09c6c2a73de",
+      "name": "Что-то пошло не так...",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3480,
+        -140
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.body.message.text }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.correct }}",
+              "output": 1
+            },
+            {
+              "value2": "={{ $('Конфигурация').first().json.strings.wrong }}"
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "5c3f96eb-0b02-4a2e-a922-aa7fa236464f",
+      "name": "Какой ответ пришёл?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        3840,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Окей, введи тогда ещё раз частично или полностью название проекта",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "018736c6-21a9-4983-801c-bff26646b024",
+      "name": "Пробуй ещё раз",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4160,
+        -100
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "newtask:project"
+      },
+      "id": "678b720f-9b55-435b-8790-32fc0dce0f85",
+      "name": "Удаляем запись о проекте",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        -100
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task project",
+        "keyType": "string"
+      },
+      "id": "d82dd81d-ea0c-4166-b591-9b9e18bde68c",
+      "name": "Меняем режим обратно",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4620,
+        -140
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Записал",
+        "replyMarkup": "replyKeyboardRemove",
+        "replyKeyboardRemove": {
+          "remove_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "0745ab04-e250-4cd0-a8b8-f44fc0944752",
+      "name": "Отчитываемся",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        5040,
+        -20
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Что-то пошло не так. Попробуй ещё раз",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "4d6b24a0-a2de-4077-bf01-be61a7d74d30",
+      "name": "Что-то пошло не так...1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4800,
+        100
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "guesses",
+        "key": "newtask:project:guesses",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "27e4c799-3db7-4d97-b374-f62e77446a2f",
+      "name": "Смотрим все проекты, что нашли ранее",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        80
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "a547aa74-674f-4d95-8d2e-339f0832f9a9",
+      "name": "Объединяем1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2940,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\n  json: {\n    guesses: JSON.parse($input.first().json.guesses),\n    choice: Number.parseInt($input.last().json.body.message.text) - 1,\n    message: $input.last().json.body.message.text\n  }\n};"
+      },
+      "id": "55917bc9-902e-4666-aa4d-01738d1bae6c",
+      "name": "Парсим и собираем всё воедино",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "value1": "={{ $json.choice }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": -1
+            },
+            {
+              "value2": "={{ $json.guesses.length }}",
+              "output": 1
+            },
+            {
+              "operation": "largerEqual",
+              "value2": "={{ $json.guesses.length }}",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "c7374027-d85e-4bf1-b0a7-55ec58c725c3",
+      "name": "И какой ответ?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        3300,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Понял, отстал",
+        "replyMarkup": "replyKeyboardRemove",
+        "replyKeyboardRemove": {
+          "remove_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "ba1cfa59-d3ba-4f70-8226-7c53a16730de",
+      "name": "Забываем про вопрос",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3540,
+        160
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "newtask:project:guesses"
+      },
+      "id": "758a356e-fa55-4af6-a9e2-eff769c1d829",
+      "name": "Удаляем запись с вариантами",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4440,
+        340
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Number.isInteger($json.choice) }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "a5dbcec1-0a4a-41a4-a948-18f763a2164f",
+      "name": "Выбор-то распарсили?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3680,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "newtask:project",
+        "value": "={{ JSON.stringify($json.guesses[$json.choice]) }}",
+        "keyType": "string"
+      },
+      "id": "af6d3f03-ebe8-4ed3-a020-26c9a49b40d2",
+      "name": "Записываем выбор",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4720,
+        460
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const numbers = {\n  \"один\": 1,\n  \"два\": 2,\n  \"три\": 3,\n  \"четыре\": 4,\n  \"пять\": 5,\n  \"шесть\": 6,\n  \"семь\": 7,\n  \"восемь\": 8,\n  \"девять\": 9,\n  \"ноль\": 0\n};\nObject.keys(numbers).forEach(number => {\n  if ($input.item.json.message.toLowerCase().includes(number)) {\n    $input.item.json.choice = numbers[number] - 1;\n  };\n});\nreturn $input.item;"
+      },
+      "id": "0ba2bf34-177b-447b-9196-4c64611249aa",
+      "name": "Пытаемся распарсить текст",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3900,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ Number.isInteger($json.choice) }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "bc35a47b-77c2-4afa-b4dd-25bd1de28627",
+      "name": "Получилось?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4080,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Не удалось распарсить ввод. Попробуй ещё раз",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "1b6d4d91-2dae-43a8-93e7-fb0481c21192",
+      "name": "Сообщаем о неудаче1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4340,
+        540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Такого пункта нет. Попробуй ещё раз",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "331b1e76-8210-44d3-8186-92e584078491",
+      "name": "Моя твоя не понимать",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3520,
+        440
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting new task draft creation",
+        "keyType": "string"
+      },
+      "id": "f95d5c95-449f-4d8a-be12-3d345b5a2c04",
+      "name": "Ставим режим2",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        5360,
+        200
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $('Webhook').all().map(message => {\n  const body = JSON.parse(JSON.stringify(message.json.body));\n  body.mode = \"waiting new task draft creation\"\n  return {\n    json: body\n  };\n});"
+      },
+      "id": "a4a216aa-bdf0-488e-85e1-2faf70a31dec",
+      "name": "Подготавливаем запрос",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5600,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.shitnsticks.top/webhook/1f14792d-0dc8-4d50-86f5-f70f439492c6",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "63bf60b1-5443-4aa4-9804-5f1f659e0732",
+      "name": "Вызываем воркфлоу с базовыми функциями",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5840,
+        200
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "cae1f3dc-9f21-4df2-be38-5286de94837c",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        140
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n}"
+      },
+      "id": "a9a63fc4-98fa-4c94-8b69-e26d899b192c",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Какое-то неправильное состояние",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true
+        }
+      },
+      "id": "fe48768d-4b1a-48fe-ba49-42ce02db5e66",
+      "name": "Отвечаем об ошибке",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2060,
+        1220
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "httpMethod": "POST",
+        "path": "f7e3b4d0-8662-40d4-b0b9-5e0d95e819e3",
+        "options": {}
+      },
+      "id": "ba5fd202-2158-4220-b57c-b84c3a30afb4",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        960,
+        380
+      ],
+      "webhookId": "f7e3b4d0-8662-40d4-b0b9-5e0d95e819e3",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const enumeration = $('Конфигурация').first().json.tasks.enumerations[$input.item.json.body.mode.split(\" \")[3]];\nconst _ = require('lodash');\nconst match = _.find(enumeration, option => {\n  console.log(option);\n  return option.toLowerCase().includes($input.item.json.body.message.text.toLowerCase());\n});\n\nreturn {\n  json: {\n    match: match,\n    key: `newtask:${$input.item.json.body.mode.split(\" \")[3]}`\n  }\n}"
+      },
+      "id": "37bffc11-d728-4805-a0f2-820e37b14a51",
+      "name": "Парсим данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json?.match }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "2ee1f131-24d8-4d16-b936-2b35b610286b",
+      "name": "Нашли совпадение?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Такого варианта нет. Попробуй ещё раз",
+        "replyMarkup": "replyKeyboard",
+        "replyKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations[$json.key.split(\":\")[1]].low }}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations[$json.key.split(\":\")[1]].medium}}",
+                    "additionalFields": {}
+                  },
+                  {
+                    "text": "={{ $('Конфигурация').first().json.tasks.enumerations[$json.key.split(\":\")[1]].high }}",
+                    "additionalFields": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "replyKeyboardOptions": {
+          "resize_keyboard": true,
+          "one_time_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+        }
+      },
+      "id": "6c13366e-87c6-429d-aede-b7beee58987c",
+      "name": "Попробуй ещё раз",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2980,
+        800
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "={{ $json.key }}",
+        "value": "={{ $json.match }}",
+        "keyType": "string"
+      },
+      "id": "c7a7631e-9320-4eef-b095-e4ccd6332ae4",
+      "name": "Записываем ответ",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4900,
+        680
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Объединяем, но фильтруем": {
+      "main": [
+        [
+          {
+            "node": "Что меняем?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Что меняем?": {
+      "main": [
+        [
+          {
+            "node": "Что там с проектом?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Парсим данные",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Отвечаем об ошибке",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Что там с проектом?": {
+      "main": [
+        [
+          {
+            "node": "Запрашиваем список проектов",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Какой ответ пришёл?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Смотрим все проекты, что нашли ранее",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Запрашиваем список проектов": {
+      "main": [
+        [
+          {
+            "node": "Упрощаем ответы",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Упрощаем ответы": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем": {
+      "main": [
+        [
+          {
+            "node": "Ищем совпадения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ищем совпадения": {
+      "main": [
+        [
+          {
+            "node": "Сколько совпадений нашлось?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сколько совпадений нашлось?": {
+      "main": [
+        [
+          {
+            "node": "Сообщаем о неудаче",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Записываем данные",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Формулируем сообщение",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Формулируем сообщение1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Записываем всё, что нашли",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Что-то пошло не так...",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем данные": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формулируем сообщение": {
+      "main": [
+        [
+          {
+            "node": "Просим подтвердить выбор",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем всё, что нашли": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формулируем сообщение1": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем, какой из проектов надо выбрать",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Какой ответ пришёл?": {
+      "main": [
+        [
+          {
+            "node": "Пробуй ещё раз",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Отчитываемся",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Что-то пошло не так...1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отчитываемся": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Смотрим все проекты, что нашли ранее": {
+      "main": [
+        [
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем1": {
+      "main": [
+        [
+          {
+            "node": "Парсим и собираем всё воедино",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим и собираем всё воедино": {
+      "main": [
+        [
+          {
+            "node": "И какой ответ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "И какой ответ?": {
+      "main": [
+        [
+          {
+            "node": "Забываем про вопрос",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Выбор-то распарсили?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Моя твоя не понимать",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Моя твоя не понимать",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Забываем про вопрос": {
+      "main": [
+        [
+          {
+            "node": "Удаляем запись с вариантами",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ставим режим2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пробуй ещё раз": {
+      "main": [
+        [
+          {
+            "node": "Удаляем запись о проекте",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем запись о проекте": {
+      "main": [
+        [
+          {
+            "node": "Меняем режим обратно",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Выбор-то распарсили?": {
+      "main": [
+        [
+          {
+            "node": "Записываем выбор",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Удаляем запись с вариантами",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ставим режим2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Пытаемся распарсить текст",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Пытаемся распарсить текст": {
+      "main": [
+        [
+          {
+            "node": "Получилось?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получилось?": {
+      "main": [
+        [
+          {
+            "node": "И какой ответ?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Сообщаем о неудаче1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим2": {
+      "main": [
+        [
+          {
+            "node": "Подготавливаем запрос",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подготавливаем запрос": {
+      "main": [
+        [
+          {
+            "node": "Вызываем воркфлоу с базовыми функциями",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем конфигурацию",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Парсим данные": {
+      "main": [
+        [
+          {
+            "node": "Нашли совпадение?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Нашли совпадение?": {
+      "main": [
+        [
+          {
+            "node": "Записываем ответ",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Попробуй ещё раз",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем ответ": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "c2a232d9-4c00-4af0-b2a2-236ac9f2680e",
+  "triggerCount": 1,
+  "tags": []
+}
