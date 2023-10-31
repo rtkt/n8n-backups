@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-07T08:51:10.161Z",
-  "updatedAt": "2023-09-07T08:52:55.000Z",
+  "updatedAt": "2023-10-23T01:20:35.000Z",
   "id": "4",
   "name": "Ошибка",
   "active": false,
@@ -35,7 +35,7 @@
       "credentials": {
         "telegramApi": {
           "id": "6",
-          "name": "Telegram assistant"
+          "name": "Ассистент"
         }
       }
     }
@@ -60,8 +60,9 @@
     "errorWorkflow": "86jQEQoIzxdPTWAz"
   },
   "staticData": null,
+  "meta": null,
   "pinData": {},
-  "versionId": "bebb1082-ca69-4792-a0e4-88ba579deb91",
+  "versionId": "922ec09a-c5c0-4b02-b386-ab6559ac0d73",
   "triggerCount": 0,
   "tags": []
 }
