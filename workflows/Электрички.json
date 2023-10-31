@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-08-02T11:55:16.226Z",
-  "updatedAt": "2023-09-08T01:47:42.000Z",
+  "updatedAt": "2023-10-20T08:38:41.000Z",
   "id": "PxiwlMIyq7OzGlmc",
   "name": "Электрички",
   "active": true,
@@ -21,8 +21,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1540,
-        480
+        1560,
+        580
       ]
     },
     {
@@ -495,7 +495,7 @@
       "typeVersion": 1.1,
       "position": [
         1360,
-        480
+        580
       ]
     },
     {
@@ -777,6 +777,29 @@
         "telegramApi": {
           "id": "6",
           "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "path": "dbf174c4-906d-4acf-a143-2ec61bbaeba2",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "571f89e6-2e22-409e-8578-5ae1b3393eb4",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        380
+      ],
+      "webhookId": "dbf174c4-906d-4acf-a143-2ec61bbaeba2",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
         }
       }
     }
@@ -1191,6 +1214,17 @@
           }
         ]
       ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Глобальные значения",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1202,8 +1236,9 @@
       "recurrencyRules": []
     }
   },
+  "meta": null,
   "pinData": {},
-  "versionId": "a663ca02-7523-4af4-b89d-acb67e87c950",
-  "triggerCount": 1,
+  "versionId": "adcc8630-8653-4991-b007-c6523ddb1169",
+  "triggerCount": 2,
   "tags": []
 }
