@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-10-11T13:08:48.632Z",
-  "updatedAt": "2023-10-30T04:07:26.000Z",
+  "updatedAt": "2023-11-08T08:48:38.000Z",
   "id": "GwNmDYpvrms4dPwl",
   "name": "Обработка обратной связи ассистенту",
   "active": true,
@@ -104,6 +104,7 @@
         3720,
         -200
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "6",
@@ -113,7 +114,7 @@
     },
     {
       "parameters": {
-        "chatId": "198424221",
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
         "text": "Задача завершена",
         "additionalFields": {
           "appendAttribution": false,
@@ -129,6 +130,7 @@
         3720,
         20
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "6",
@@ -346,7 +348,8 @@
       "parameters": {
         "operation": "set",
         "key": "mode",
-        "value": "standby"
+        "value": "standby",
+        "keyType": "string"
       },
       "id": "19f0efd1-aafb-4e24-882d-55829af7611c",
       "name": "Проставляем текущий режим",
@@ -423,6 +426,7 @@
         "text": "=Неизвестная команда {{ $json.command.slice(1) }}",
         "additionalFields": {
           "appendAttribution": false,
+          "disable_notification": true,
           "reply_to_message_id": "={{ $json.message_id }}"
         }
       },
@@ -527,7 +531,8 @@
           "remove_keyboard": true
         },
         "additionalFields": {
-          "appendAttribution": false
+          "appendAttribution": false,
+          "disable_notification": true
         }
       },
       "id": "7de503a5-630a-49dd-9f55-b5a99403e621",
@@ -538,6 +543,7 @@
         3640,
         1000
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "6",
@@ -576,7 +582,8 @@
           "remove_keyboard": true
         },
         "additionalFields": {
-          "appendAttribution": false
+          "appendAttribution": false,
+          "disable_notification": true
         }
       },
       "id": "24b09fb5-1b3f-48a8-9068-812459038caf",
@@ -587,6 +594,7 @@
         3920,
         1200
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "6",
@@ -731,6 +739,7 @@
         3240,
         2240
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "6",
@@ -1019,6 +1028,7 @@
         4600,
         1820
       ],
+      "retryOnFail": true,
       "credentials": {
         "telegramApi": {
           "id": "6",
@@ -1128,7 +1138,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://n8n.shitnsticks.top/webhook-test/f7e3b4d0-8662-40d4-b0b9-5e0d95e819e3",
+        "url": "https://n8n.shitnsticks.top/webhook/f7e3b4d0-8662-40d4-b0b9-5e0d95e819e3",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpBasicAuth",
         "sendBody": true,
@@ -1188,37 +1198,6 @@
         3260,
         1660
       ]
-    },
-    {
-      "parameters": {
-        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
-        "text": "=Введи конфигурацию\n\nТекущая: <pre>{{ $('Подгружаем конфигурацию').first().json.configuration }}</pre>",
-        "replyMarkup": "forceReply",
-        "forceReply": {
-          "force_reply": true
-        },
-        "additionalFields": {
-          "appendAttribution": false,
-          "disable_notification": true,
-          "parse_mode": "HTML",
-          "reply_to_message_id": "={{ $('Слушаем').last().json.message.message_id }}"
-        }
-      },
-      "id": "1f3d5b22-987f-4050-8ffd-12ad3b2237a8",
-      "name": "Спрашиваем список категорий",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.1,
-      "position": [
-        2880,
-        1480
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "telegramApi": {
-          "id": "6",
-          "name": "Ассистент"
-        }
-      }
     },
     {
       "parameters": {
@@ -1349,6 +1328,37 @@
         660,
         400
       ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Введи конфигурацию\n\nТекущая: <pre>{{ $('Подгружаем конфигурацию').first().json.configuration }}</pre>",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $('Слушаем').last().json.message.message_id }}"
+        }
+      },
+      "id": "1f3d5b22-987f-4050-8ffd-12ad3b2237a8",
+      "name": "Спрашиваем конфигурацию",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        2880,
+        1480
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
     }
   ],
   "connections": {
@@ -1971,7 +1981,7 @@
       "main": [
         [
           {
-            "node": "Спрашиваем список категорий",
+            "node": "Спрашиваем конфигурацию",
             "type": "main",
             "index": 0
           }
@@ -2036,7 +2046,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "8122f2d0-cbaf-4851-8815-c706d3d69653",
+  "versionId": "66f79804-44c3-474e-81c0-a1f53dd76ed5",
   "triggerCount": 1,
   "tags": []
 }
