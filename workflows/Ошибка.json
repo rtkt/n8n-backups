@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-07T08:51:10.161Z",
-  "updatedAt": "2023-10-23T01:20:35.000Z",
+  "updatedAt": "2023-11-14T04:02:47.000Z",
   "id": "4",
   "name": "Ошибка",
   "active": false,
@@ -29,15 +29,77 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        600,
-        520
+        640,
+        320
       ],
+      "retryOnFail": true,
+      "alwaysOutputData": true,
       "credentials": {
         "telegramApi": {
           "id": "6",
           "name": "Ассистент"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json?.ok }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "5584b9f3-e1e9-4e81-916c-58f96ed36ee2",
+      "name": "Всё ок?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        840,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "N8N Chan <n8nchan@waifu.club>",
+        "toEmail": "rtkt@protonmail.com",
+        "subject": "=Ошибка в задаче {{ $json.workflow.name }}",
+        "emailFormat": "text",
+        "text": "={{ $json.execution.url }}\n\n{{ $json.execution.error.message }}\n\nStack trace:\n{{ $json.execution.error.stack }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "0cf25862-9b3b-4f94-a8b6-e15c8dfe3292",
+      "name": "Отправляем письмо",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1260,
+        500
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "CZAUJFDLhO7X3tf1",
+          "name": "Сервисная почта"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "fe24a6ba-b0bd-45c8-a654-dca96a1f466c",
+      "name": "Объединяем, но фильтруем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1020,
+        500
+      ]
     }
   ],
   "connections": {
@@ -48,6 +110,45 @@
             "node": "Сообщаем в ТГ",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Сообщаем в ТГ": {
+      "main": [
+        [
+          {
+            "node": "Всё ок?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Всё ок?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем": {
+      "main": [
+        [
+          {
+            "node": "Отправляем письмо",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -56,13 +157,12 @@
   "settings": {
     "callerPolicy": "workflowsFromSameOwner",
     "saveManualExecutions": true,
-    "executionOrder": "v1",
-    "errorWorkflow": "86jQEQoIzxdPTWAz"
+    "executionOrder": "v1"
   },
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "922ec09a-c5c0-4b02-b386-ab6559ac0d73",
+  "versionId": "b3505602-75b9-486e-b327-6776be26a9e0",
   "triggerCount": 0,
   "tags": []
 }
