@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-10-25T13:42:06.112Z",
-  "updatedAt": "2023-10-25T14:25:44.000Z",
+  "updatedAt": "2023-11-07T10:05:53.000Z",
   "id": "Bza5ayToMmsFTr66",
   "name": "Кастомные напоминания",
   "active": true,
@@ -98,7 +98,7 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2,
       "position": [
-        2300,
+        2400,
         540
       ],
       "retryOnFail": true,
@@ -225,7 +225,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const log = [];\nif ($input.first().json.ids?.length) {\n  let i = 0 + ($input.first().json.ids + $input.all().length - 1 - $('Конфигурация').first().json.reminder.log);\n  for(i; i < $input.first().json.ids.length; i++) {\n    log.push($input.first().json.ids[i]);\n  };\n};\n$input.all().slice(1).forEach(page => {\n  log.push(page.json.id);\n});\nreturn {\n  json: {\n    log: log\n  }\n};"
+        "jsCode": "let log = [];\nif ($input.first().json.ids.length) {\n  log = JSON.parse(JSON.stringify($input.first().json.ids));\n};\n$input.all().slice(1).forEach(page => {\n  log.push(page.json.id);\n});\nif (log.length > $('Конфигурация').first().json.reminder.log) {\n  log = log.slice(log.length - $('Конфигурация').first().json.reminder.log);\n};\nreturn {\n  json: {\n    log: log\n  }\n};"
       },
       "id": "1ce7ca2a-5a9b-4bc5-a682-0c3964258c27",
       "name": "Составляем новый список знакомых ID",
@@ -387,7 +387,11 @@
     }
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "staticData": {
     "node:Интервал": {
@@ -396,7 +400,7 @@
   },
   "meta": null,
   "pinData": {},
-  "versionId": "9a40ebb7-d67b-439b-8ec6-02f59bcc3347",
+  "versionId": "94c8ee63-1714-4247-ae9f-8d83f737400b",
   "triggerCount": 1,
   "tags": []
 }
