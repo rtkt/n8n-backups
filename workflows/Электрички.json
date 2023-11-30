@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-08-02T11:55:16.226Z",
-  "updatedAt": "2023-10-20T08:38:41.000Z",
+  "updatedAt": "2023-11-29T09:37:17.000Z",
   "id": "PxiwlMIyq7OzGlmc",
   "name": "Электрички",
   "active": true,
@@ -21,8 +21,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1560,
-        580
+        1540,
+        380
       ]
     },
     {
@@ -69,7 +69,7 @@
             },
             {
               "name": "morning.pauseMinutes.max",
-              "value": 10
+              "value": 20
             },
             {
               "name": "evening.lowerLimit.hour",
@@ -93,7 +93,7 @@
             },
             {
               "name": "evening.pauseMinutes.max",
-              "value": 15
+              "value": 25
             }
           ],
           "string": [
@@ -494,8 +494,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.1,
       "position": [
-        1360,
-        580
+        1340,
+        380
       ]
     },
     {
@@ -793,7 +793,7 @@
       "typeVersion": 1,
       "position": [
         1560,
-        380
+        580
       ],
       "webhookId": "dbf174c4-906d-4acf-a143-2ec61bbaeba2",
       "credentials": {
@@ -1238,7 +1238,7 @@
   },
   "meta": null,
   "pinData": {},
-  "versionId": "adcc8630-8653-4991-b007-c6523ddb1169",
+  "versionId": "309ab84b-4a91-4443-8319-b3f9d90079b5",
   "triggerCount": 2,
   "tags": []
 }
