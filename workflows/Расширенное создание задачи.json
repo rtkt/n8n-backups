@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-10-24T05:06:48.757Z",
-  "updatedAt": "2023-10-30T03:31:33.000Z",
+  "updatedAt": "2023-11-12T14:13:19.000Z",
   "id": "Z6l91zkPrrSFIxBZ",
   "name": "Расширенное создание задачи",
   "active": true,
@@ -200,7 +200,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "5cf678b2-2e17-413c-a1b8-4b3d7de63372",
@@ -284,7 +284,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "d985ecdd-00b1-4a26-8517-3ae57d4c3b70",
@@ -393,7 +393,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "b40dbef5-6443-4ab6-b36f-75836c436969",
@@ -423,7 +423,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "9a5c33e3-850e-4b83-bb73-d09c6c2a73de",
@@ -479,7 +479,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "018736c6-21a9-4983-801c-bff26646b024",
@@ -551,7 +551,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "0745ab04-e250-4cd0-a8b8-f44fc0944752",
@@ -577,7 +577,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "4d6b24a0-a2de-4077-bf01-be61a7d74d30",
@@ -685,7 +685,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "ba1cfa59-d3ba-4f70-8226-7c53a16730de",
@@ -807,7 +807,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "1b6d4d91-2dae-43a8-93e7-fb0481c21192",
@@ -837,7 +837,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "331b1e76-8210-44d3-8186-92e584078491",
@@ -1070,7 +1070,7 @@
         "additionalFields": {
           "appendAttribution": false,
           "disable_notification": true,
-          "reply_to_message_id": "={{ $('Webhook').item.json[\"body\"][\"message\"][\"message_id\"] }}"
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
         }
       },
       "id": "6c13366e-87c6-429d-aede-b7beee58987c",
@@ -1101,7 +1101,93 @@
       "typeVersion": 1,
       "position": [
         4900,
-        680
+        660
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parser = require('any-date-parser');\n$input.item.json.time = parser.attempt($input.item.json.body.message.text, 'ru')\n$input.item.json.key = `newtask:${$input.item.json.body.mode.split(\" \")[3]}`;\nreturn $input.item;"
+      },
+      "id": "724b0bf0-aab7-47ef-8a50-0ecff28c3026",
+      "name": "Парсим данные1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2600,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.time.invalid }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "5939a97b-aff3-4ebe-8fb1-3088b580ee11",
+      "name": "Ошибка есть?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2820,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Не удалось распарсить строку. Попробуй ещё раз",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $('Webhook').last().json.body.message.message_id }}"
+        }
+      },
+      "id": "f13752b9-7266-4240-bdd6-1c63e68c47d1",
+      "name": "Пробуй ещё раз1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3040,
+        1100
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "6",
+          "name": "Ассистент"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "={{ $json.key }}",
+        "value": "={{ JSON.stringify($json.time) }}",
+        "keyType": "string"
+      },
+      "id": "d9f88e20-b868-45c9-a053-31c892cab043",
+      "name": "Записываем ответ1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        5020,
+        1300
       ],
       "credentials": {
         "redis": {
@@ -1139,7 +1225,13 @@
             "index": 0
           }
         ],
-        [],
+        [
+          {
+            "node": "Парсим данные1",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Отвечаем об ошибке",
@@ -1610,20 +1702,57 @@
           }
         ]
       ]
+    },
+    "Парсим данные1": {
+      "main": [
+        [
+          {
+            "node": "Ошибка есть?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ошибка есть?": {
+      "main": [
+        [
+          {
+            "node": "Пробуй ещё раз1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Записываем ответ1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем ответ1": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
     "executionOrder": "v1",
-    "saveDataSuccessExecution": "all",
-    "saveExecutionProgress": true,
-    "saveManualExecutions": true,
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "4"
   },
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "c2a232d9-4c00-4af0-b2a2-236ac9f2680e",
+  "versionId": "5ae3fec8-ab92-4db3-811b-ee99fb3f09ba",
   "triggerCount": 1,
   "tags": []
 }
