@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-10-22T13:58:27.736Z",
-  "updatedAt": "2023-10-30T03:30:18.000Z",
+  "updatedAt": "2023-11-07T12:00:25.000Z",
   "id": "kuYaPKC7DpdsO4rg",
   "name": "Базовое создание новой задачи",
   "active": true,
@@ -280,7 +280,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const _ = require(\"lodash\");\nconst input = $input.last().json.body.message.text.split(\", \");\nconst categories = [];\nconst newCategories = [];\ninput.forEach(category => {\n  const match = _.findIndex($input.first().json.categories, tag => tag.toLowerCase().includes(category));\n  if (match >= 0) {\n    categories.push($input.first().json.categories[match]);\n  } else {\n    newCategories.push(category);\n  };\n});\nreturn {\n  json: {\n    categories: categories,\n    newCategories: newCategories\n  }\n};"
+        "jsCode": "const _ = require(\"lodash\");\nconst input = $input.last().json.body.message.text.split(\", \");\nconst categories = [];\nconst newCategories = [];\ninput.forEach(category => {\n  const match = _.findIndex($input.first().json.categories, tag => tag.toLowerCase().includes(category.toLowerCase()));\n  if (match >= 0) {\n    categories.push($input.first().json.categories[match]);\n  } else {\n    newCategories.push(category);\n  };\n});\nreturn {\n  json: {\n    categories: categories,\n    newCategories: newCategories\n  }\n};"
       },
       "id": "7135a94d-26c7-4f98-85e8-5a78a8a1831b",
       "name": "Выискиваем новые категории",
@@ -846,7 +846,7 @@
       "typeVersion": 1,
       "position": [
         4020,
-        2540
+        2280
       ],
       "credentials": {
         "redis": {
@@ -922,7 +922,7 @@
       "typeVersion": 1.1,
       "position": [
         4980,
-        2360
+        2100
       ],
       "retryOnFail": true,
       "credentials": {
@@ -945,7 +945,7 @@
       "typeVersion": 1,
       "position": [
         4980,
-        2540
+        2280
       ],
       "credentials": {
         "redis": {
@@ -966,7 +966,7 @@
       "typeVersion": 1,
       "position": [
         5220,
-        2540
+        2280
       ],
       "credentials": {
         "redis": {
@@ -988,7 +988,7 @@
       "typeVersion": 3,
       "position": [
         5440,
-        2540
+        2280
       ]
     },
     {
@@ -1002,7 +1002,7 @@
       "typeVersion": 1,
       "position": [
         5660,
-        2540
+        2280
       ],
       "credentials": {
         "redis": {
@@ -1219,7 +1219,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const enumerate = list => {\n  return list.reduce((text, current, index, source) => {\n    if (index < source.length - 2) {\n      text += `${current.toLowerCase()}, `;\n    } else if (index === source.length - 2) {\n      text += `${current.toLowerCase()} и `;\n    } else {\n      text += `${current.toLowerCase()}`;\n    };\n    return text;\n  }, \"\");\n};\nlet message = `<b>${$input.item.json.page.title}</b>`;\nmessage += `\\n\\nОбласт${$input.item.json.page.area.length > 1 ? \"и\" : \"ь\"}: ${enumerate($input.item.json.page.area)}`;\nmessage += `\\n${$('Конфигурация').first().json.tasks.properties.priority}: ${$input.item.json.page.priority.toLowerCase()}`;\nmessage += `\\n${$('Конфигурация').first().json.tasks.properties.difficulty}: ${$input.item.json.page.difficulty.toLowerCase()}`;\nreturn {\n  json: {\n    message: message\n  }\n};"
+        "jsCode": "const enumerate = list => {\n  return list.reduce((text, current, index, source) => {\n    if (index < source.length - 2) {\n      text += `${current.toLowerCase()}, `;\n    } else if (index === source.length - 2) {\n      text += `${current.toLowerCase()} и `;\n    } else {\n      text += `${current.toLowerCase()}`;\n    };\n    return text;\n  }, \"\");\n};\nconst stringifyDate = json => {\n  const data = JSON.parse(json);\n  const date = DateTime.fromObject(data).setLocale('ru');\n  if (data?.hour) {\n    return `${date.toLocaleString(DateTime.DATE_HUGE)} ${date.toLocaleString(DateTime.TIME_24_SIMPLE)} (${date.toRelative()})`;\n  };\n  return `${date.toLocaleString(DateTime.DATE_HUGE)} (${date.toRelative()})`;\n}\nlet message = `<b>${$input.item.json.page.title}</b>`;\nmessage += `\\n\\nОбласт${$input.item.json.page.area.length > 1 ? \"и\" : \"ь\"}: ${enumerate($input.item.json.page.area)}`;\nmessage += `\\n${$('Конфигурация').first().json.tasks.properties.priority}: ${$input.item.json.page.priority.toLowerCase()}`;\nmessage += `\\n${$('Конфигурация').first().json.tasks.properties.difficulty}: ${$input.item.json.page.difficulty.toLowerCase()}`;\nif ($input.item.json.page?.deadline) {\n  message += `\\n${$('Конфигурация').first().json.tasks.properties.deadline}: ${stringifyDate($input.item.json.page.deadline)}`;\n};\nif ($input.item.json.page?.reminder) {\n  message += `\\n${$('Конфигурация').first().json.tasks.properties.reminder}: ${stringifyDate($input.item.json.page.reminder)}`;\n};\nreturn {\n  json: {\n    message: message\n  }\n};"
       },
       "id": "3127a1a6-6f8d-406a-990b-8cc6ffea183c",
       "name": "Пишем сообщение",
@@ -1274,7 +1274,7 @@
       "typeVersion": 1,
       "position": [
         4280,
-        2540
+        2280
       ],
       "credentials": {
         "redis": {
@@ -1339,7 +1339,7 @@
       "typeVersion": 4.1,
       "position": [
         4720,
-        2540
+        2280
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1352,7 +1352,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const draft = JSON.parse($input.item.json.page);\nconsole.log(draft);\nconst config = $('Конфигурация').first().json;\nconst properties = config.tasks.properties;\nconsole.log(properties);\nconst types = config.tasks.propertiesTypes;\nconsole.log(types);\nconst lib = {\n  multi_select: (property, draft) => {\n    return {\n      multi_select: draft[property].map(option => {\n        return {\n          name: option\n        }\n      })\n    }\n  },\n  select: (property, draft) => {\n    return {\n      select: {\n        name: draft[property]\n      }\n    }\n  },\n  title: (property, draft) => {\n    return {\n      title: [\n        {\n          text: {\n            content: draft[property]\n          }\n        }\n      ]\n    }\n  }\n};\nconst page = {\n  parent: {\n    \"type\": \"database_id\",\n    \"database_id\": config.tasksdb\n  },\n  properties: {}\n};\nObject.keys(properties).forEach(property => {\n  console.log(draft[property]);\n  if (! draft[property]) {\n    return;\n  };\n  console.log(`Trying to create page.properties[${properties[property]}] using call to lib[${types[property]}]`);\n  page.properties[properties[property]] = lib[types[property]](property, draft);\n});\nreturn {\n  json: page\n};"
+        "jsCode": "const draft = JSON.parse($input.item.json.page);\n// console.log(draft);\nconst config = $('Конфигурация').first().json;\nconst properties = config.tasks.properties;\nconst types = config.tasks.propertiesTypes;\nconst lib = {\n  date: (property, draft) => {\n    const data = JSON.parse(draft[property]);\n    const date = DateTime.fromObject(data);\n    return {\n      date: {\n        start: data?.hour ? date.toISO() : date.toISODate()\n      }\n    }\n  },\n  multi_select: (property, draft) => {\n    return {\n      multi_select: draft[property].map(option => {\n        return {\n          name: option\n        }\n      })\n    }\n  },\n  select: (property, draft) => {\n    return {\n      select: {\n        name: draft[property]\n      }\n    }\n  },\n  title: (property, draft) => {\n    return {\n      title: [\n        {\n          text: {\n            content: draft[property]\n          }\n        }\n      ]\n    }\n  }\n};\nconst page = {\n  parent: {\n    \"type\": \"database_id\",\n    \"database_id\": config.tasksdb\n  },\n  properties: {}\n};\nObject.keys(properties).forEach(property => {\n  console.log(draft[property]);\n  if (! draft[property]) {\n    return;\n  };\n  // console.log(`Trying to create page.properties[${properties[property]}] using call to lib[${types[property]}]`);\n  page.properties[properties[property]] = lib[types[property]](property, draft);\n});\nreturn {\n  json: page\n};"
       },
       "id": "622c8296-42ee-4723-b5e0-61379d2ae07c",
       "name": "Формируем запрос на создание страницы",
@@ -1360,7 +1360,7 @@
       "typeVersion": 2,
       "position": [
         4500,
-        2540
+        2280
       ]
     },
     {
@@ -1374,7 +1374,7 @@
       "typeVersion": 1,
       "position": [
         5880,
-        2540
+        2280
       ],
       "credentials": {
         "redis": {
@@ -2428,7 +2428,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "dc2e1210-dfff-49ad-b15e-8f0a963e6bf1",
+  "versionId": "19da2158-d035-46d4-9f87-489b6eb55697",
   "triggerCount": 1,
   "tags": []
 }
