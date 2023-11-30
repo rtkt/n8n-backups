@@ -1,0 +1,846 @@
+{
+  "createdAt": "2023-11-08T07:25:58.576Z",
+  "updatedAt": "2023-11-15T04:03:51.000Z",
+  "id": "50KPAx9KnvdBGQg5",
+  "name": "Обработка обратной связи заявочному боту",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "b60d0f8b-ad16-4b6c-b54c-51017a8939c1",
+      "name": "Объединяем, но фильтруем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1340,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.callback_query.id }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "882b8e03-79e3-4f20-aae8-b6656d49db3e",
+      "name": "Это коллбака?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.message.message_id }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "c014711c-f26b-43eb-a524-492fdd0120b9",
+      "name": "Это сообщение?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.message.chat.id }}",
+              "operation": "equal",
+              "value2": "={{ $('Конфигурация').all()[0].json.chatid }}"
+            }
+          ],
+          "string": [
+            {
+              "value1": "={{ $json.message.chat.username }}",
+              "value2": "={{ $('Конфигурация').all()[0].json.admin }}"
+            }
+          ]
+        }
+      },
+      "id": "866ef465-17e2-47d1-a900-9c5916ee22a0",
+      "name": "От меня пришло сообщение?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message.entities[0].type }}",
+              "value2": "bot_command"
+            }
+          ]
+        }
+      },
+      "id": "a52030b0-196c-4c0c-a1b9-f8018c5e072e",
+      "name": "Это команда?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.json.commands = [];\n$input.item.json.message.entities.forEach(entity => {\n  if (entity.type !== \"bot_command\") {\n    return;\n  };\n  let command = $input.item.json.message.text.slice(entity.offset, entity.offset + entity.length);\n  if (command.endsWith(`@${$('Конфигурация').all()[0].json.username}`)) {\n    command = command.slice(0, - `@${$('Конфигурация').all()[0].json.username}`.length);\n  };\n  $input.item.json.commands.push(command);\n});\nreturn $input.item;"
+      },
+      "id": "0eaf1a34-5499-4fe9-929e-ce9efad564be",
+      "name": "Вычленяем команды",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2980,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const commandItems = [];\nconst addCommand = (command, message_id) => {\n  return {\n    json: {\n      command: command,\n      message_id: message_id\n    }\n  }\n};\n$input.all().forEach(message => {\n  message.json.commands.forEach(command => commandItems.push(addCommand(command, message.json.message.message_id)));\n});\nreturn commandItems;"
+      },
+      "id": "9df46322-68be-4271-af7d-1d38389cbaa0",
+      "name": "Обрабатываем данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3200,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicates"
+      },
+      "id": "0fa1fae7-e315-4ab9-b8ff-383eb7e5cf94",
+      "name": "Убираем дубликаты",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        3420,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Введи конфигурацию\n\nТекущая: <pre>{{ $('Подгружаем конфигурацию').first().json.configuration }}</pre>",
+        "replyMarkup": "forceReply",
+        "forceReply": {
+          "force_reply": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $('Слушаем').last().json.message.message_id }}"
+        }
+      },
+      "id": "92805992-b5ca-4309-a234-96ef2e825741",
+      "name": "Просим ввести конфигурацию",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4300,
+        -100
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "waiting configuration",
+        "keyType": "string"
+      },
+      "id": "fd965abb-5ad7-4335-9069-0e769df6518c",
+      "name": "Ставим режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4100,
+        -100
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "=Неизвестная команда {{ $json.command.slice(1) }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $json.message_id }}"
+        }
+      },
+      "id": "bf9308ce-b9b8-41bc-ac53-0464a852a4ce",
+      "name": "Отвечаем, что команда неизвестна",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4100,
+        120
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "mode",
+        "key": "mode",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "6575c1c5-c000-4de9-9a2c-b8c150530d38",
+      "name": "Спрашиваем текущий режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        160
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mode }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "8543132b-31fb-4932-8e4e-4211d1641092",
+      "name": "Он вообще указан?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "standby"
+      },
+      "id": "cd5e664a-578b-48df-a094-2b6f20dd5034",
+      "name": "Проставляем текущий режим",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        -80
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "$input.item.json.mode = $('Спрашиваем текущий режим').first().json.mode;\nreturn $input.item;"
+      },
+      "id": "31a16ae9-dde0-4fc5-b083-b936937fc8bd",
+      "name": "Вписываем текущий режим",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3000,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Распознавания текста здесь нет. Только уведомления и команды",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "reply_to_message_id": "={{ $json.message.message_id }}"
+        }
+      },
+      "id": "047df542-96df-46be-b7ab-539d96649792",
+      "name": "Моя твоя не понимать",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3340,
+        540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "configuration",
+        "value": "={{ $json.message.text }}",
+        "keyType": "string"
+      },
+      "id": "0a072227-eb5f-4dd3-9d81-42345a70c633",
+      "name": "Записываем конфигурацию не проверяя",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3580,
+        860
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "standby"
+      },
+      "id": "5deeff0b-fea3-4cce-874f-bf92a26a29c6",
+      "name": "Возвращаем режим ожидания",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3800,
+        860
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Записал не проверяя\nЕсли что-то отвалится, то это <b>твои</b> проблемы",
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true,
+          "parse_mode": "HTML",
+          "reply_to_message_id": "={{ $('Слушаем').last().json.message.message_id }}"
+        }
+      },
+      "id": "99e647dc-46af-4565-9ac4-0f4c0b661d09",
+      "name": "Отчитываемся и предупреждаем",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        3980,
+        860
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "3606ced6-9d71-4f0d-934f-94cb30af455e",
+      "name": "Слушаем",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        880,
+        380
+      ],
+      "webhookId": "6169775a-964e-43dd-861b-4277e6bfd17b",
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "d81803c8-2f25-457b-a259-5a3fa37c07d1",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        160
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n};"
+      },
+      "id": "d961ccb9-d484-436b-b78f-5517020d950a",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.mode }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "standby",
+              "outputKey": "99"
+            },
+            {
+              "value2": "waiting configuration",
+              "outputKey": "1"
+            }
+          ]
+        },
+        "fallbackOutput": 0
+      },
+      "id": "fd62b738-1bfd-4a76-949c-77d16d464169",
+      "name": "Распределение1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        3220,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.command }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "/reconfigure",
+              "outputKey": "0"
+            },
+            {
+              "value2": "unknown",
+              "outputKey": "99"
+            },
+            {
+              "value2": "/cancel",
+              "outputKey": "1"
+            }
+          ]
+        },
+        "fallbackOutput": 1
+      },
+      "id": "f4273b24-3d97-4d9a-987e-6712092395eb",
+      "name": "Распределение",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        3640,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
+        "text": "Отменил",
+        "replyMarkup": "replyKeyboardRemove",
+        "replyKeyboardRemove": {
+          "remove_keyboard": true
+        },
+        "additionalFields": {
+          "appendAttribution": false,
+          "disable_notification": true
+        }
+      },
+      "id": "069e1548-2ec9-4452-ab8f-c005cc870428",
+      "name": "Отчитываемся",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        4340,
+        340
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "SQU6aeZWZoQLyaV9",
+          "name": "Заявки"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "mode",
+        "value": "standby",
+        "keyType": "string"
+      },
+      "id": "b00a076e-71a9-4bc4-9e41-1857f34bcf7f",
+      "name": "Возвращаем режим ожидания1",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        4100,
+        340
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Объединяем, но фильтруем": {
+      "main": [
+        [
+          {
+            "node": "Это коллбака?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это коллбака?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Это сообщение?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это сообщение?": {
+      "main": [
+        [
+          {
+            "node": "От меня пришло сообщение?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "От меня пришло сообщение?": {
+      "main": [
+        [
+          {
+            "node": "Это команда?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это команда?": {
+      "main": [
+        [
+          {
+            "node": "Вычленяем команды",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Вписываем текущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вычленяем команды": {
+      "main": [
+        [
+          {
+            "node": "Обрабатываем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обрабатываем данные": {
+      "main": [
+        [
+          {
+            "node": "Убираем дубликаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Убираем дубликаты": {
+      "main": [
+        [
+          {
+            "node": "Распределение",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ставим режим": {
+      "main": [
+        [
+          {
+            "node": "Просим ввести конфигурацию",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем текущий режим": {
+      "main": [
+        [
+          {
+            "node": "Он вообще указан?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Он вообще указан?": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Проставляем текущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вписываем текущий режим": {
+      "main": [
+        [
+          {
+            "node": "Распределение1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем конфигурацию не проверяя": {
+      "main": [
+        [
+          {
+            "node": "Возвращаем режим ожидания",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Возвращаем режим ожидания": {
+      "main": [
+        [
+          {
+            "node": "Отчитываемся и предупреждаем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Слушаем": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Подгружаем конфигурацию",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Спрашиваем текущий режим",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Распределение1": {
+      "main": [
+        [
+          {
+            "node": "Моя твоя не понимать",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Записываем конфигурацию не проверяя",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Распределение": {
+      "main": [
+        [
+          {
+            "node": "Ставим режим",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Отвечаем, что команда неизвестна",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Возвращаем режим ожидания1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Возвращаем режим ожидания1": {
+      "main": [
+        [
+          {
+            "node": "Отчитываемся",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "242af6cc-f758-4c57-b862-eec77f136868",
+  "triggerCount": 1,
+  "tags": []
+}
