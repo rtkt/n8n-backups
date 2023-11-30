@@ -1,0 +1,1868 @@
+{
+  "createdAt": "2023-11-08T07:17:03.177Z",
+  "updatedAt": "2023-11-15T08:35:47.000Z",
+  "id": "KvxTYe4MphreTNyN",
+  "name": "Подгружаем список заявок",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "dateTime": [
+            {
+              "value1": "={{DateTime.now()}}",
+              "value2": "={{ DateTime.now().set($('Конфигурация').first().json.schedule.beginning) }}"
+            },
+            {
+              "value1": "={{DateTime.now()}}",
+              "operation": "before",
+              "value2": "={{ DateTime.now().set($('Конфигурация').first().json.schedule.end) }}"
+            }
+          ],
+          "number": [
+            {
+              "value1": "={{DateTime.now().weekday}}",
+              "value2": 6
+            }
+          ],
+          "string": [
+            {
+              "value1": "={{ $execution.mode }}",
+              "operation": "notEqual",
+              "value2": "test"
+            }
+          ]
+        }
+      },
+      "id": "785e47d7-383e-43a9-abad-1f91a2cbd1de",
+      "name": "Сейчас рабочее время?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -1060
+      ]
+    },
+    {
+      "parameters": {
+        "interval": 3,
+        "unit": "minutes"
+      },
+      "id": "44e73d06-4290-4591-aa9d-04dc49af7c4a",
+      "name": "Интервал",
+      "type": "n8n-nodes-base.interval",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        -1060
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $execution.mode }}",
+              "value2": "test"
+            }
+          ]
+        }
+      },
+      "id": "0e32171e-6e3a-4e23-93d6-c6184723d6c4",
+      "name": "Отладка?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -1260
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "55fca7bb-33df-4b73-b4da-6685b8e77f05",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        -1060
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n};"
+      },
+      "id": "fbcfcf0e-2d20-4a61-9a95-a6a2042519a2",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -940,
+        -1060
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://help.knp24.ru/api/requests",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "timestamp",
+              "value": "=>{{ $now.minus({days: $('Конфигурация').last().json.period}).toISO() }}"
+            },
+            {
+              "name": "gfullname",
+              "value": "={{ $('Конфигурация').last().json.structure.our.gfullname }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "b2e63696-f2d2-4f35-9ea6-b634d489dc21",
+      "name": "Получение списка заявок из vsDesk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -500,
+        -1260
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Конфигурация').last().json.delay.vsdesk * 3 }}",
+        "unit": "seconds"
+      },
+      "id": "a2b0c544-0ab9-487a-9366-4d2cb974ac3b",
+      "name": "Ждём",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -1060
+      ],
+      "webhookId": "045f9a94-befe-45c3-b42a-e0ef43216233"
+    },
+    {
+      "parameters": {
+        "url": "https://help.knp24.ru/api/requests",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "timestamp",
+              "value": "=>{{ $now.minus({days: $('Конфигурация').last().json.period}).toISO() }}"
+            },
+            {
+              "name": "service_name",
+              "value": "={{ $('Конфигурация').last().json.structure.our.service_name }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "76739a18-c42b-4ff2-9047-4eb492412140",
+      "name": "Получение списка заявок из vsDesk1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -280,
+        -1060
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "553372f3-b2db-4f7f-bdd6-9b1300cbdd72",
+      "name": "Объединяем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        -20,
+        -1060
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "removeDuplicates",
+        "compare": "selectedFields",
+        "fieldsToCompare": "id",
+        "options": {}
+      },
+      "id": "610a0b76-8fa4-4a30-8f76-838f1c33a03f",
+      "name": "Удаляем дубликаты",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        180,
+        -1060
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ Number.parseInt($json[\"closed\"]) }}",
+              "operation": "equal",
+              "value2": 3
+            }
+          ]
+        }
+      },
+      "id": "5bfb8539-4d2a-4db6-a7e9-2241644691f3",
+      "name": "Заявка закрыта?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -1060
+      ]
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://n8n.shitnsticks.top/webhook{{ $execution.mode === \"test\" && $('Конфигурация').last().json?.debug ? \"-test\" : \"\" }}/3b708aac-0368-406e-a7e5-7142c9fff682",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "8c15aced-ca6e-44ad-a0a2-3ecf6d792484",
+      "name": "Вызываем вебхук",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        900,
+        -1280
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "requests",
+        "options": {}
+      },
+      "id": "4d804ce2-fc9b-4166-bc74-e12824ed08cc",
+      "name": "Оборачиваем",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        680,
+        -1280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "keys",
+        "keyPattern": "request:??????"
+      },
+      "id": "cb0a1019-8959-4729-a6a2-c551f0ac004e",
+      "name": "Подгружаем список заявок",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        680,
+        -1040
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const requests = {};\nObject.keys($input.first().json).forEach(json => {\n  const request = JSON.parse($input.first().json[json]);\n  requests[request.id] = request;\n});\nreturn requests;"
+      },
+      "id": "9085d96e-d152-494a-ab8b-3bf9b3b7ae91",
+      "name": "Парсим их",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        -1040
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = [];\nconst add = id => {\n  return {\n    json: {\n      id: id\n    }\n  };\n};\nObject.keys($input.first().json).forEach(key => {\n  // console.log(key);\n  if (\n    key.length === 6 &&\n    Number.isInteger(Number.parseInt(key)) &&\n    key === $input.first().json[key].id\n  ) {\n    ids.push(add(key));\n  };\n});\nreturn ids;"
+      },
+      "id": "9948990e-19cc-4b6c-8283-a8ef13c35efb",
+      "name": "Вычленяем ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        -1700
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "tranferred",
+        "key": "=request:{{ $json.id }}:transferred",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "7857c01f-7ed2-4bfb-a5cd-0815c2d50648",
+      "name": "Подгружаем метку о переводе",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        -1700
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Вычленяем ID').item;\noutput.json.transferred = $input.item.json.transferred;\nreturn output;"
+      },
+      "id": "4a5c6bd8-b75a-4702-9579-35a362a2f76c",
+      "name": "Связываем ID и метку",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        -1700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6406ae42-8ef7-4892-8178-fff4f881ee95",
+      "name": "Объединяем1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1180,
+        -1460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const requests = JSON.parse(JSON.stringify($input.last().json));\nconst marks = $input.all().slice(0, -1);\n// console.log(requests);\nmarks.forEach(mark => {\n  requests[mark.json.id].transferred = mark.json.transferred;\n});\nreturn {\n  json: requests\n};"
+      },
+      "id": "d0a3307f-2464-418a-a213-5b547140dee1",
+      "name": "Собираем всё воедино",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        -1460
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f4987868-150c-4c7d-8301-5c3e55c308b0",
+      "name": "Объединяем2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1280,
+        -1040
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ed471b55-0c58-4381-a3fe-a25b3c3bd3ef",
+      "name": "Объединяем3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1460,
+        -900
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const updates = [];\nconst data = JSON.parse(JSON.stringify($input.all()));\nconst closed = data[0].json.closed;\nconst add = (request, type) => {\n  updates.push({\n    json: JSON.parse(JSON.stringify(request))\n  });\n  updates[updates.length - 1].json.type = type;\n};\nconst unmark = request => {\n  const output = JSON.parse(JSON.stringify(request));\n  delete output.transferred;\n  return output;\n};\nif (! Object.keys(data[1].json).length) {\n  const requests = JSON.parse(JSON.stringify(data[data.length - 1].json.requests));\n  requests.forEach(request => add(request, \"new\"));\n};\nconst db = data[1].json;\nconst current = data[data.length - 1].json.requests;\nconst find = (requests, id) => {\n  return requests.filter(request => {\n    return request.id === id;\n  });\n};\nconst isOurs = request => {\n  if (request.gfullname === \"Группа МТО\") {\n    return false;\n  } else if (request.gfullname === \"Группа системного администрирования\") {\n    return true;\n  } else if (\n    request.service_name === \"УИТ - Отдел системного администрирования\" &&\n    request.gfullname === null\n  ) {\n    return true;\n  } else {\n    return false;\n  };\n};\ncurrent.forEach(request => {\n  const dbEntry = db[request.id];\n  if (\n    request?.id &&\n    ! dbEntry &&\n    $runIndex === 0\n  ) {\n    if (! isOurs(request)) {\n      return;\n    };\n    // console.log(`Found new request. DB entry is ${JSON.stringify(dbEntry)}, current data are ${JSON.stringify(request)}, ID is ${request.id}`);\n    closed.includes(request.id) ? add(request, \"reopened\") : add(request, \"new\");\n    return;\n  };\n  if (! isOurs(dbEntry) && isOurs(request) && $runIndex === 0) {\n    add(request, \"transferred_back\");\n  } else if (! isOurs(request) && dbEntry.transferred !== \"true\") {\n    add(request, \"transferred\");\n  } else if (\n    isOurs(request) &&\n    JSON.stringify(unmark(request)) !== JSON.stringify(request)\n  ) {\n    add(request, \"updated\");\n  };\n});\nObject.keys(db).forEach(key => {\n  if (\n    key.length !== 6 ||\n    ! Number.isInteger(Number.parseInt(key, 6)) ||\n    closed.includes(key) ||\n    $runIndex\n  ) {\n    return;\n  };\n  const match = find(current, key);\n  // console.log(`Key is ${key}, match is ${JSON.stringify(match)}`);\n  if (\n    match instanceof Array &&\n    match.length === 0\n  ) {\n    add(db[key], \"missed\");\n  }\n});\nreturn updates;"
+      },
+      "id": "fb0c8796-81c7-4143-ad31-924c94f9ac58",
+      "name": "Типирование данных",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        -900
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "18ae6983-e7b1-4e7b-9e37-0697babc2063",
+      "name": "Это пропущенная заявка?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        -1120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = JSON.parse(JSON.stringify($input.item));\ndelete output.json.type\nreturn output;"
+      },
+      "id": "9809ef63-f3b3-41e1-ae5e-d241df4df63f",
+      "name": "Удаляем тип",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2340,
+        -1120
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=request:{{ $json.id }}",
+        "value": "={{ JSON.stringify($json) }}",
+        "keyType": "string",
+        "expire": true,
+        "ttl": "={{ $('Конфигурация').last().json.redis.expiry * 60 * 60 * 24 }}"
+      },
+      "id": "c253c915-35a2-42b3-a1bf-16436a8694ec",
+      "name": "Записываем обновлённые данные",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        -1120
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "messageID",
+        "key": "=request:{{ $json.id }}:messageID",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "086108a6-cfb1-4eb8-aded-88c868530334",
+      "name": "Подгружаем messageID",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        -900
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const output = $('Типирование данных').item;\noutput.json.messageID = $input.item.json.messageID;\nreturn output;"
+      },
+      "id": "0a912e99-6994-4ea3-9941-0c92fab8d9f2",
+      "name": "Вписываем messageID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        -900
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ Number.parseInt($json[\"closed\"]) }}",
+              "operation": "equal",
+              "value2": 3
+            }
+          ]
+        }
+      },
+      "id": "2f4d7fb1-54fd-44a2-97e3-4fc96977286f",
+      "name": "Заявка закрыта?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        -1380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "requests",
+        "options": {}
+      },
+      "id": "aa92bf2e-5d08-4859-9026-d377e59efdef",
+      "name": "Оборачиваем2",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        2820,
+        -1560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://n8n.shitnsticks.top/webhook{{ $execution.mode === \"test\" && $('Конфигурация').last().json?.debug ? \"-test\" : \"\" }}/3b708aac-0368-406e-a7e5-7142c9fff682",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "07778df3-6656-40da-9da4-ac1b7ab072e1",
+      "name": "Вызываем вебхук1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3040,
+        -1560
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const db = JSON.parse(JSON.stringify($('Объединяем2').all()));\nconst wrap = requests => {\n  return requests.reduce((wrapper, request) => {\n    wrapper.push(request.json);\n    return wrapper;\n  }, []);\n};\ndb.push({\n  json: {\n    requests: wrap($input.all())\n  }\n});\nreturn db;"
+      },
+      "id": "12b4d771-ca1e-4edc-babb-8b7a1fc594ab",
+      "name": "Обрабатываем данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        -1340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "id",
+              "renameField": true,
+              "outputFieldName": "requests"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eda39a2b-a3fa-4ca8-abe1-b6d461921809",
+      "name": "Вычленяем ID и оборачиваем",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        680,
+        -840
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://n8n.shitnsticks.top/webhook{{ $execution.mode === \"test\" && $('Конфигурация').last().json?.debug ? \"\" : \"\" }}/2db39c03-dac9-4240-b257-c95fc4cf5883",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.requests }}",
+        "options": {}
+      },
+      "id": "636619d0-619c-48f9-8408-0aa79b1bd465",
+      "name": "Спрашиваем про заявки (webhook)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        900,
+        -840
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "id",
+              "renameField": true,
+              "outputFieldName": "requests"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c68aef7-d941-449a-b0b4-2dc056c6ce7c",
+      "name": "Вычленяем ID и оборачиваем1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        2200,
+        -1400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://n8n.shitnsticks.top/webhook{{ $execution.mode === \"test\" && $('Конфигурация').last().json?.debug ? \"\" : \"\" }}/2db39c03-dac9-4240-b257-c95fc4cf5883",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=",
+        "options": {}
+      },
+      "id": "1cab836f-a9cc-492b-a133-6871de254c52",
+      "name": "Спрашиваем про заявки (webhook)1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2400,
+        -1400
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Интервал": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем конфигурацию",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Отладка?": {
+      "main": [
+        [
+          {
+            "node": "Получение списка заявок из vsDesk",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ждём",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Сейчас рабочее время?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Отладка?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Сейчас рабочее время?": {
+      "main": [
+        [
+          {
+            "node": "Получение списка заявок из vsDesk",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ждём",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ждём": {
+      "main": [
+        [
+          {
+            "node": "Получение списка заявок из vsDesk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение списка заявок из vsDesk": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Получение списка заявок из vsDesk1": {
+      "main": [
+        [
+          {
+            "node": "Объединяем",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем": {
+      "main": [
+        [
+          {
+            "node": "Удаляем дубликаты",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем дубликаты": {
+      "main": [
+        [
+          {
+            "node": "Заявка закрыта?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка закрыта?": {
+      "main": [
+        [
+          {
+            "node": "Оборачиваем",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Подгружаем список заявок",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Вычленяем ID и оборачиваем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Оборачиваем": {
+      "main": [
+        [
+          {
+            "node": "Вызываем вебхук",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем список заявок": {
+      "main": [
+        [
+          {
+            "node": "Парсим их",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Парсим их": {
+      "main": [
+        [
+          {
+            "node": "Вычленяем ID",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Вычленяем ID": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем метку о переводе",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем метку о переводе": {
+      "main": [
+        [
+          {
+            "node": "Связываем ID и метку",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Связываем ID и метку": {
+      "main": [
+        [
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем1": {
+      "main": [
+        [
+          {
+            "node": "Собираем всё воедино",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вызываем вебхук": {
+      "main": [
+        [
+          {
+            "node": "Объединяем2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Собираем всё воедино": {
+      "main": [
+        [
+          {
+            "node": "Объединяем2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем2": {
+      "main": [
+        [
+          {
+            "node": "Объединяем3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем3": {
+      "main": [
+        [
+          {
+            "node": "Типирование данных",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Типирование данных": {
+      "main": [
+        [
+          {
+            "node": "Это пропущенная заявка?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Подгружаем messageID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это пропущенная заявка?": {
+      "main": [
+        [
+          {
+            "node": "Вычленяем ID и оборачиваем1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Удаляем тип",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Удаляем тип": {
+      "main": [
+        [
+          {
+            "node": "Записываем обновлённые данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем messageID": {
+      "main": [
+        [
+          {
+            "node": "Вписываем messageID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Заявка закрыта?1": {
+      "main": [
+        [
+          {
+            "node": "Оборачиваем2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Обрабатываем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Оборачиваем2": {
+      "main": [
+        [
+          {
+            "node": "Вызываем вебхук1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обрабатываем данные": {
+      "main": [
+        [
+          {
+            "node": "Типирование данных",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вычленяем ID и оборачиваем": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем про заявки (webhook)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем про заявки (webhook)": {
+      "main": [
+        [
+          {
+            "node": "Объединяем3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Вычленяем ID и оборачиваем1": {
+      "main": [
+        [
+          {
+            "node": "Спрашиваем про заявки (webhook)1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Спрашиваем про заявки (webhook)1": {
+      "main": [
+        [
+          {
+            "node": "Заявка закрыта?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "4",
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true
+  },
+  "staticData": {
+    "node:diff и сохранение текущего списка заявок": {
+      "lastExecution": [
+        {
+          "id": "234136",
+          "user": "Золин Александр Борисович",
+          "creator": "Золин Александр Борисович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 17:44:02",
+          "name": "Рабочее место ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/234136"
+        },
+        {
+          "id": "234134",
+          "user": "Золин Александр Борисович",
+          "creator": "Золин Александр Борисович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 17:43:02",
+          "name": "Рабочее место ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/234134"
+        },
+        {
+          "id": "234133",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 17:42:02",
+          "name": "[Main PRTG] 192.168.17.235 Комп мастера Пинг (Пинг) Ошибка  (Request timed out (ошибка ICM=?utf-8?B?",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/234133"
+        },
+        {
+          "id": "234132",
+          "user": "Золин Александр Борисович",
+          "creator": "Золин Александр Борисович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 17:41:32",
+          "name": "Рабочее место ",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/234132"
+        },
+        {
+          "id": "234127",
+          "user": "Родионова Оксана Борисовна",
+          "creator": "Родионова Оксана Борисовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 17:05:27",
+          "name": "Доступ к программе Диадок",
+          "status": "Открыта",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/234127"
+        },
+        {
+          "id": "234074",
+          "user": "Кириллова Оксана Альбертовна",
+          "creator": "Кириллова Оксана Альбертовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 14:01:01",
+          "name": "Добавить права админа на ПК",
+          "status": "Принята в исполнение",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/234074"
+        },
+        {
+          "id": "234072",
+          "user": "Максимов Евгений Вадимович",
+          "creator": "Максимов Евгений Вадимович",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 13:53:10",
+          "name": "Заявка на предоставление доступа к информационным ресурсам.",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/234072"
+        },
+        {
+          "id": "234045",
+          "user": "Косович Дина Юрьевна",
+          "creator": "Косович Дина Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 11:26:50",
+          "name": "Создание учетной записи",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/234045"
+        },
+        {
+          "id": "234043",
+          "user": "Косович Дина Юрьевна",
+          "creator": "Косович Дина Юрьевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 11:25:04",
+          "name": "Переадресация",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/234043"
+        },
+        {
+          "id": "234035",
+          "user": "Мутовина Ольга Леонидовна",
+          "creator": "Мутовина Ольга Леонидовна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-11 10:42:32",
+          "name": "Не работает клавиатура на АСН",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/234035"
+        },
+        {
+          "id": "233931",
+          "user": "Артемьева Алена Михайловна",
+          "creator": "Артемьева Алена Михайловна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-10 17:23:54",
+          "name": "Прошу обновить бесперебойник на моём компьютере  (не держит моргание света) ",
+          "status": "Просрочено исполнение",
+          "executor": null,
+          "priority": 5,
+          "link": "https://help.knp24.ru/request/233931"
+        },
+        {
+          "id": "233902",
+          "user": "Тимощенко Андрей Юрьевич",
+          "creator": "Тимощенко Андрей Юрьевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-10 15:01:12",
+          "name": "Предоставление доступа к видео по АЗС №121",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233902"
+        },
+        {
+          "id": "233643",
+          "user": "Скомаровская Ольга Анатольевна",
+          "creator": "Скомаровская Ольга Анатольевна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-09 12:01:56",
+          "name": "МФУ постоянно при печати заминает бумагу",
+          "status": "Просрочена реакция",
+          "executor": null,
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233643"
+        },
+        {
+          "id": "233012",
+          "user": "PRTG alert",
+          "creator": "PRTG alert",
+          "group": "Группа системного администрирования",
+          "timestamp": "2023-01-02 13:25:01",
+          "name": "[Main PRTG] Назарово НБ ЖД2 Ping (Пинг) Ошибка  (Destination host unreachable (ошибка ICMP=?utf-8?B?",
+          "status": "Просрочено исполнение",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/233012"
+        },
+        {
+          "id": "232605",
+          "user": "Стекляев Юрий Андреевич",
+          "creator": "Стекляев Юрий Андреевич",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 16:53:07",
+          "name": "Проблема с виндовс",
+          "status": "Открыта повторно",
+          "executor": "Дмитриев Виктор Борисович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232605"
+        },
+        {
+          "id": "232424",
+          "user": "Денисова Татьяна Ивановна",
+          "creator": "Денисова Татьяна Ивановна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-29 07:07:13",
+          "name": "Перенос рабочего места",
+          "status": "Требует уточнения",
+          "executor": "Лиханов Олег Олегович",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232424"
+        },
+        {
+          "id": "232219",
+          "user": "Орлова Мария Владимировна",
+          "creator": "Орлова Мария Владимировна",
+          "group": "Группа системного администрирования",
+          "timestamp": "2022-12-28 08:29:06",
+          "name": "Не получается зайти  на площадку АСТ ГОЗ ",
+          "status": "Принята в исполнение",
+          "executor": "Сударев Владислав Николаевич",
+          "priority": 3,
+          "link": "https://help.knp24.ru/request/232219"
+        }
+      ]
+    },
+    "global": {
+      "current": [
+        {
+          "id": "261497",
+          "Name": "Не работает терминал Сбербанк",
+          "Status": "Просрочена реакция",
+          "Priority": "Средний",
+          "Managers_id": null,
+          "CUsers_id": "azs14",
+          "Address": null,
+          "Content": "<p>Не работает терминал Сбербанк. Пишет: PED TAMPERED Pls Enter Pwd:</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-29 13:23:08",
+          "timestampStart": "2023-06-29 14:23:00",
+          "timestampfStart": null,
+          "timestampEnd": "2023-07-02 10:23:00",
+          "timestampfEnd": null,
+          "fullname": "АЗС № 14",
+          "gfullname": "Группа системного администрирования",
+          "creator": "АЗС № 14",
+          "lastactivity": "2023-06-29 14:25:02",
+          "subs": [],
+          "files": [],
+          "missing": true
+        },
+        null,
+        {
+          "id": "261494",
+          "Name": "не могу зайти с ПК",
+          "Status": "Просрочена реакция",
+          "Priority": "Средний",
+          "Managers_id": null,
+          "CUsers_id": "mIvanova",
+          "Address": null,
+          "Content": "<p>не могу зайти в vsDeck с ПК</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-29 13:11:50",
+          "timestampStart": "2023-06-29 14:11:00",
+          "timestampfStart": null,
+          "timestampEnd": "2023-07-02 10:11:00",
+          "timestampfEnd": null,
+          "fullname": "Абызова Марина Алексеевна",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Коробицына Анастасия Николаевна",
+          "lastactivity": "2023-06-29 14:15:02",
+          "subs": [],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "261484",
+          "Name": "[Main PRTG] Внешний IP РТК Ping из облакa (Cloud Ping v2) Ошибка  (Ошибка, вызван=?utf-8?B?0L3",
+          "Status": "Просрочена реакция",
+          "Priority": "Средний",
+          "Managers_id": null,
+          "CUsers_id": "azs78",
+          "Address": null,
+          "Content": " <br />\n<br />\n [PRTG Network Monitor]<br />\n <br />\n<br />\n \t\t <h1 style=\"margin:0 0 8px 0;font-size:18px;white-space:nowrap\"><img src=\"cid:409\" width=\"21\" height=\"21\"></h1> <br />\n \t\t <h1 style=\"margin:0 0 8px 0;font-size:18px;white-space:nowrap\"> Сенсор Ping из облакa (Cloud Ping v2) [https://prtg.knp24.ru/sensor.htm?id=38289] **** </h1> <br />\n<br />\n \t\t[Зонд] <br />\n \t\tMain Probe [https://prtg.knp24.ru/probenode.htm?id=1] <br />\n \t\t > <br />\n \t\t[Группа] <br />\n \t\tКанал [https://prtg.knp24.ru/group.htm?id=37068] > <br />\n \t\t[Устройство] <br />\n \t\tВнешний IP РТК [https://prtg.knp24.ru/device.htm?id=7182] (95.188.148.180)<br />\n \t\t <br />\n<br />\n \t\t Новый статус в 6/29/2023 12:06:04 PM (North Asia Standard Time): <br />\n <b>Ошибка</b>     <br />\nПоследнее сообщение: <br />\n <b>Ошибка, вызванная значением подстановки «Failed» в канале «Asia Pacific (Singapore) - PRTG Cloud Response» (Channel for Asia Pacific (Singapore) returned status 'Request timeout')</b> <br />\n<br />\n \t\t Последнее сканирование: <br />\n \t\t Последний Ок: <br />\n \t\t Последняя Ошибка: <br />\n \t\t Время бесперебойной работы: <br />\n \t\t Время простоя: <br />\n \t\t Покрытие: <br />\n \t\t Тип сенсора: <br />\n \t\t Интервал: <br />\n<br />\n \t\t <b>10 м 24 с</b><br />\n<br />\n \t\t <b>27 м 27 с</b> <br />\n \t\t <b>10 м 24 с</b> <br />\n \t\t <b>99.3550%</b> <br />\n \t\t <b>0.6450%</b> <br />\n \t\t <b title=\"0 с of<br> 142 дн.<br> since (Объект не найден)\">100%</b> <br />\n \t\t <b>Cloud Ping v2</b> <br />\n \t\t <b>15 м</b><br />\n<br />\n \t\t Сканировать сейчас [https://prtg.knp24.ru/scannow.htm?id=38289&action=0&targeturl=/sensor.htm?id=38289] <br />\n \t\t Подтвердить сигнал тревоги [https://prtg.knp24.ru/acknowledgealarm.htm?id=38289&ackmsg=Acknowledged+via+email&targeturl=/sensor.htm?id=38289] <br />\n \t\t Пауза [https://prtg.knp24.ru/pause.htm?id=38289&action=0&targeturl=/sensor.htm?id=38289] <br />\n \t\t Возобновить [https://prtg.knp24.ru/pause.htm?id=38289&action=1&targeturl=/sensor.htm?id=38289] <br />\n<br />\n \t\t Приостановить на 5 минут [https://prtg.knp24.ru/pauseobjectfor.htm?id=38289&duration=5&targeturl=/sensor.htm?id=38289] <br />\n \t\t Приостановить на 60 минут [https://prtg.knp24.ru/pauseobjectfor.htm?id=38289&duration=60&targeturl=/sensor.htm?id=38289] <br />\n \t\t Приостановить на 24 часа [https://prtg.knp24.ru/pauseobjectfor.htm?id=38289&duration=1440&targeturl=/sensor.htm?id=38289] <br />\n<br />\n \t\t <br />\n<br />\n \t\t [График]<br />\n<br />\n \t\t [График]<br />\n<br />\n \t\t [График] <br />\n<br />\n \t\t <br />\n<br />\n\t\tКАНАЛ<br />\n\t\tПОСЛЕДНЕЕ ЗНАЧЕНИЕ<br />\n<br />\n\t\tAsia Pacific (Singapore)<br />\n\t\t-1 мс<br />\n<br />\n\t\tAsia Pacific (Singapore) - PRTG Cloud Response<br />\n\t\tFailed<br />\n<br />\n\t\tAsia Pacific (Sydney)<br />\n\t\t289 мс<br />\n<br />\n\t\tAsia Pacific (Sydney) - PRTG Cloud Response<br />\n\t\tOK<br />\n<br />\n\t\tEurope (Ireland)<br />\n\t\t <br />\n<br />\n\t\tEurope (Ireland) - PRTG Cloud Response<br />\n\t\t <br />\n<br />\n\t\tGlobal Average<br />\n\t\t144 мс<br />\n<br />\n\t\tUS East (Northern Virginia)<br />\n\t\t <br />\n<br />\n\t\tUS East (Northern Virginia) - PRTG Cloud Response<br />\n\t\t <br />\n<br />\n\t\tUS West (Northern California)<br />\n\t\t <br />\n<br />\n\t\tUS West (Northern California) - PRTG Cloud Response<br />\n\t\t <br />\n<br />\n\t\tВремя простоя<br />\n<br />\n \t\t <br />\n<br />\n<h3>История</h3>6/29/2023 11:55:39 AM Ошибка, Ошибка, вызванная значением подстановки «Failed» в канале «Asia Pacific (Singapore) - PRTG Cloud Response» (Channel for Asia Pacific (Singapore) returned status 'Request timeout')<br />\n6/27/2023 2:22:06 PM Ок, 238 мс<br />\n6/27/2023 2:10:40 PM Ошибка, Ошибка, вызванная значением подстановки «Failed» в канале «Asia Pacific (Sydney) - PRTG Cloud Response» (Channel for Asia Pacific (Sydney) returned status 'Request timeout')<br />\n6/26/2023 9:53:08 PM Ок, 234 мс<br />\n6/26/2023 9:40:39 PM Ошибка, Ошибка, вызванная значением подстановки «Failed» в канале «Asia Pacific (Singapore) - PRTG Cloud Response» (Channel for Asia Pacific (Singapore) returned status 'Request timeout')<br />\n6/26/2023 9:07:36 PM Ок, 234 мс<br />\n6/26/2023 8:55:39 PM Ошибка, Ошибка, вызванная значением подстановки «Failed» в канале «Asia Pacific (Singapore) - PRTG Cloud Response» (Channel for Asia Pacific (Singapore) returned status 'Request timeout')<br />\n6/26/2023 5:02:30 PM Ок, 285 мс<br />\n6/26/2023 4:52:07 PM Ошибка, Ошибка, вызванная значением подстановки «Failed» в канале «Asia Pacific (Singapore) - PRTG Cloud Response» - 5,489 мс (Global Average) выше предела ошибки 5,000 мс в Global Average - 10,010 мс (Asia Pacific (Singapore)) выше предела ошибки 5,000 мс в Asia Pacific (Singapore) (Channel for Asia Pacific (Singapore) returned status 'Request timeout')<br />\n<br />\n \t\t <br />\n<br />\n \t\t <h3>Больше не хотите получать это сообщение?</h3><br />\nИзмените триггеры уведомлений этого сенсора [https://prtg.knp24.ru/sensor.htm?id=38289&tabid=9] или измените свои настройки шаблонов уведомлений [https://prtg.knp24.ru/editnotification.htm?id=300].<br />\n<br />\n \t\t   <br />\n<br />\n \t\t Отправлено 6/29/2023 12:06:04 PM Адресат adm1@knp24.ru sa@knp24.ru<br />\nАвтор Main PRTG [https://prtg.knp24.ru] (https://prtg.knp24.ru [https://prtg.knp24.ru]) <br />\n<br />\n \t\t   <br />\n<br />\n-------------------------<br />\n<br />\n \t\t PRTG Network Monitor 22.4.81.1532+ <br />\n<br />\n \t\t © 2022 Paessler AG [https://www.paessler.com] <br />\n<br />\n",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-29 12:10:02",
+          "timestampStart": "2023-06-29 13:10:00",
+          "timestampfStart": null,
+          "timestampEnd": "2023-07-02 09:10:00",
+          "timestampfEnd": null,
+          "fullname": "PRTG alert",
+          "gfullname": "Группа системного администрирования",
+          "creator": "PRTG alert",
+          "lastactivity": "2023-06-29 14:14:14",
+          "subs": [],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "261437",
+          "Name": "Ссылка СДО ",
+          "Status": "Принята в исполнение",
+          "Priority": "Средний",
+          "Managers_id": null,
+          "CUsers_id": "Azs67",
+          "Address": "г. Красноярск, ул. Маерчака 31а",
+          "Content": "<p>Не возможно открыть доступ к СДО по ссылке(указана в электронной почте)</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-29 08:48:38",
+          "timestampStart": "2023-06-29 09:48:00",
+          "timestampfStart": "2023-06-29 08:52:07",
+          "timestampEnd": "2023-07-01 14:56:00",
+          "timestampfEnd": null,
+          "fullname": "АЗС № 67",
+          "gfullname": "Группа системного администрирования",
+          "creator": "АЗС № 67",
+          "lastactivity": "2023-06-29 08:56:54",
+          "subs": [
+            {
+              "rid": "261437",
+              "timestamp": "29.06.2023 08:56:39",
+              "author": "Белошапкин Павел Александрович",
+              "comment": "<p><a href=\"https://nesaulenkoru.dmses.ru/clicks.php?m=53a7c763c9d03521439c818e5eb52b93&c=1&cid=0&u=143265&h=aHR0cHM6Ly91Y2NwYi5jZG9wcm9mLmNvbT9ucj0xJmxvZ2luPTg0MDAwMjY5MSZwYXNzd29yZD12ZHlrbg--&e=YXpzNjdAa25wMjQucnU-&r=0KDQvtC00LjQvdCwINCiLtCSLsKgIC0g0JLQsNGIINC00L7RgdGC0YPQvyDQuiDQtNC40YHRgtCw0L3RhtC40L7QvdC90L7QvNGDINC.0LHRg9GH0LXQvdC40Y4-&v=eyJzZW5kZXIiOiJyLXVjY3BiQGNkb3Byb2YuY29tIiwic3ViamVjdCI6ItCg0L7QtNC40L3QsCDQoi7Qki7CoCAtINCS0LDRiCDQtNC.0YHRgtGD0L8g0Log0LTQuNGB0YLQsNC90YbQuNC.0L3QvdC.0LzRgyDQvtCx0YPRh9C10L3QuNGOIn0-&s=58e0323065f8354338d2f108bd2b377a\">https://nesaulenkoru.dmses.ru/...</a></p><p>Доступ к данному ресурсу отсутствует с ПК azs67server</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        null,
+        {
+          "id": "261170",
+          "Name": "проблема с биометр системой учета рабочего времени",
+          "Status": "Просрочено исполнение",
+          "Priority": "Высокий",
+          "Managers_id": null,
+          "CUsers_id": "mBakhteeva",
+          "Address": "г. Красноярск, ул. Маерчака 31а",
+          "Content": "<p>в офисном здании по адресу пер. Тихий, 1а,  биометр. система учета рабочего времени на протяжении всего рабочего дня провторяет \"НЕ ЗАРЕГИСТРИРОВАН\" </p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-27 15:40:20",
+          "timestampStart": "2023-06-27 16:40:00",
+          "timestampfStart": null,
+          "timestampEnd": "2023-06-28 10:40:00",
+          "timestampfEnd": null,
+          "fullname": "Бахтеева Мария Вадимовна",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Бахтеева Мария Вадимовна",
+          "lastactivity": "2023-06-28 10:45:02",
+          "subs": [
+            {
+              "rid": "261170",
+              "timestamp": "28.06.2023 09:05:48",
+              "author": "Рукосуева Ирина Владимировна",
+              "comment": "<p>Коллеги, не забывайте принимать заявки !</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "260956",
+          "Name": "Срок действия лицензии антивируса истек",
+          "Status": "Просрочено исполнение",
+          "Priority": "Средний",
+          "Managers_id": "atomilov",
+          "CUsers_id": "azs135",
+          "Address": null,
+          "Content": " <br /><br />\n [Logo] [https://www.rt.ru/b2b] <br /><br />\nВиртуальная АТС<br /><br /><b>Входящий вызов в группе Поддержка АЗС</b><br /><br /><b>Уважаемый клиент!</b><br /><br />\nЗвонок от абонента 79585144630 успешно обработан.<br /><br />\n Прослушать запись вызова [https://p2.cloudpbx.rt.ru/domain/statistics/download/6718808895] <br /><br />\n-------------------------<br /><br /><img src=\"https://sapstorage.rt.ru/campaign/templates/vk.png\" width=\"27\" alt=\"\" style=\"width:27px;margin:0;padding:0;border:none;text-decoration:none;\" /> [https://vk.com/rostelecom.business] <br /><img src=\"https://sapstorage.rt.ru/campaign/templates/tg.png\" width=\"27\" alt=\"\" style=\"width:27px;margin:0;padding:0;border:none;text-decoration:none;\" /> [https://t.me/rostelecom_business] <br /><br />\n© 2023 ПАО «Ростелеком»<br />\nЭто автоматическое письмо, ответ не требуется.<br />\nОтправляем эту рассылку нашим клиентам и подписчикам.<br /><br />\n  <br /><br />",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-26 18:00:05",
+          "timestampStart": "2023-06-26 19:00:00",
+          "timestampfStart": "2023-06-28 10:29:11",
+          "timestampEnd": "2023-06-29 14:00:00",
+          "timestampfEnd": null,
+          "fullname": "АЗС № 135",
+          "gfullname": "Группа системного администрирования",
+          "creator": "ВАТС РТК",
+          "lastactivity": "2023-06-29 14:05:02",
+          "subs": [
+            {
+              "rid": "260956",
+              "timestamp": "26.06.2023 18:04:40",
+              "author": "Разманов Владимир Викторович",
+              "comment": "<p>Срок действия лицензии антивируса истек, заявка передана в отдел системного администирования</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        null,
+        {
+          "id": "260817",
+          "Name": "плохо работает К+",
+          "Status": "Принята в исполнение",
+          "Priority": "Средний",
+          "Managers_id": "vSudarev",
+          "CUsers_id": "aRykova",
+          "Address": null,
+          "Content": "<p>Здравствуйте! Помогите ускорить работу Консультанст плюс. Много надо информации, а он открывается очень долго, невозможно работать! Спасибо!</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-26 08:46:29",
+          "timestampStart": "2023-06-26 09:46:00",
+          "timestampfStart": "2023-06-26 10:09:52",
+          "timestampEnd": "2023-06-29 17:00:00",
+          "timestampfEnd": null,
+          "fullname": "Рыкова Алина Викторовна",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Рыкова Алина Викторовна",
+          "lastactivity": "2023-06-28 15:44:56",
+          "subs": [
+            {
+              "rid": "260817",
+              "timestamp": "26.06.2023 11:48:43",
+              "author": "Сударев Владислав Николаевич",
+              "comment": "<p>Рекомендовано работать в онлайн-версии Консультант+.</p><p>В ближайшее время будет выполнена установка К+ на сервер Минусинска.</p>",
+              "files": []
+            },
+            {
+              "rid": "260817",
+              "timestamp": "28.06.2023 15:44:56",
+              "author": "Сударев Владислав Николаевич",
+              "comment": "<p>К сожалению, перенос данных Консультант+ в Минусинск затягивается.</p><p>Ориентировочное время завершения работ &mdash; конец следующего рабочего дня.</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "260358",
+          "Name": "Рабочий телефон.",
+          "Status": "Принята в исполнение",
+          "Priority": "Высокий",
+          "Managers_id": "vSudarev",
+          "CUsers_id": "yukiseleva",
+          "Address": null,
+          "Content": "<p>При осуществлении звонка меня плохо слышат на другом конце провода. Громкость выставлена на максимум. На громкой связи проблема аналогична.</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-23 07:56:16",
+          "timestampStart": "2023-06-23 09:00:00",
+          "timestampfStart": "2023-06-23 08:18:39",
+          "timestampEnd": "2023-07-23 17:00:00",
+          "timestampfEnd": null,
+          "fullname": "Киселева Юлия Андреевна",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Киселева Юлия Андреевна",
+          "lastactivity": "2023-06-26 08:43:08",
+          "subs": [
+            {
+              "rid": "260358",
+              "timestamp": "23.06.2023 16:05:58",
+              "author": "Сударев Владислав Николаевич",
+              "comment": "<p>Требуется замена телефонной трубки.</p>",
+              "files": []
+            },
+            {
+              "rid": "260358",
+              "timestamp": "26.06.2023 08:43:08",
+              "author": "Замятин Константин Георгиевич",
+              "comment": "<p>Меняйте, чего ждете!</p><blockquote><p>Требуется замена телефонной трубки.</p></blockquote>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "260250",
+          "Name": "предоставить возможность видеонаблюдения территории нефтебаз Гордиенко В.Ю. на мобильный телефон и н",
+          "Status": "Принята в исполнение",
+          "Priority": "Средний",
+          "Managers_id": "likhanov",
+          "CUsers_id": "vGromova",
+          "Address": "г. Красноярск, ул. Маерчака 31а",
+          "Content": "<p>предоставить возможность видеонаблюдения территории нефтебаз Гордиенко В.Ю. на мобильный телефон и на персональный ПК</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-22 13:11:12",
+          "timestampStart": "2023-06-22 14:11:00",
+          "timestampfStart": "2023-06-22 17:02:24",
+          "timestampEnd": "2023-06-25 10:11:00",
+          "timestampfEnd": null,
+          "fullname": "Громова Валентина Юрьевна",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Громова Валентина Юрьевна",
+          "lastactivity": "2023-06-25 13:29:36",
+          "subs": [],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "259900",
+          "Name": "Срочно",
+          "Status": "Принята в исполнение",
+          "Priority": "Средний",
+          "Managers_id": "likhanov",
+          "CUsers_id": "nFurman",
+          "Address": "г. Красноярск, ул. Маерчака 31а",
+          "Content": "<p>Добрый день! В кабинете у механика по выпуску на территории АТЦ г. Красноярск начал плохо работать сканер. Прошу предоставить замену принтера + сканер на время ремонта неисправного принтера. В файле прикреплен образец скана документа.</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-20 15:37:24",
+          "timestampStart": "2023-06-20 16:37:00",
+          "timestampfStart": "2023-06-22 15:23:27",
+          "timestampEnd": "2023-06-30 17:10:00",
+          "timestampfEnd": null,
+          "fullname": "Фурман Николай Владимирович",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Фурман Николай Владимирович",
+          "lastactivity": "2023-06-25 13:33:25",
+          "subs": [
+            {
+              "rid": "259900",
+              "timestamp": "20.06.2023 16:09:38",
+              "author": "Сударев Владислав Николаевич",
+              "comment": "<p>Samsung&nbsp;SL-M3870FW, пер. Тихий 1А, гаражный бокс 1.</p><p>Сканирование выполняется с МФУ в сетевую папку, настройки стандартные.</p><p><img src=\"data:image/png;base64,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ndffPxW1jO7vFVdcYW8IpOsP7xMOPrq/AgAAAC1but/FVMPkTTfdZAJYob1Bjl/+9Kc/ycyZM+Xhhx+2wWzfvn12fu02q9P1+sepU6fKL3/53/L+++/bun/84x82gOrwqlWr7E13PvnkE7uc0rD3wgsv2OnnnnuuvdOrrkfHtej0d9991w6r1157Ta699tq4bfhl6dKl8t3vftc8/q989NFHwf69/vrr9vkkLrNjxw751a9+JZMnT7bXcHKHWQAAAABIXbq27mlo++EPf2iDX8+ePeX//b//Z7/W44EHHpD+/fvb+gULFtgw5gdLDWhav3PnTnn55Zdti+acOXPsMpdeeqmcf/75wfSKigobGmtrtRutSFlZmZ2mRVsY9VH5dXr3Vw2aup09e/bIf/7nf8ru3bttUM3NzZV77rlH7r//fvmv//ov6dSpk13mnnvutc9Dt6Mh8kc/+pFUVlbarrRjx46Ve++91y6jy+v8r7zyikyZMsUGWIIlAAAAAKTG9v3UVkgNWieccIINYBr09IY53bt3t+Hs7LPPttOLi4tl27ZtdliDmD5qycjIkHHjxtkurKeccootw4YNC6avWbMm7nsnf//739t67X6q4bNdu3a2e6w/vwZW35NPPinvvfeerf/Wt74lOTk5ctJJJ0m3bt1k8ODBtjXSX+7555+3gVT3c+vWrbbuO9/5jgwYMMB2e9Xno11zr7vuOjvt//7v/2wLre4bWrfhPxkss96cZB+P7rxPug8+Uc647JSgAAAAAEhNugY2DXka5Hr16mXDl4Y2Lf7Xelx11VV2us67evVq21qp437R0PalL33JhkotGk418Om6dHppaWmwjLY8asumDmvrpobJY4891t6kx1+f8ls1f/Ob39g6DaAaKPWusLpefdT90/D63HPP2esyR4wYYZfzlzn11FMlMzPTPgd/GS3f/va3g22tXbvWdoNF63X1/cPkgmvPs8P6eOWUi+UbNw6QGx74t6BoyAQAoPUbKre+OUlmvXm9jIwcB4CmS6+pqQla+lasWGGDWVZWlpx11lnyla98Rc444wzbzdSfR69J1GsXP/vss6Du9NNPt62NGiz9G+toSNQb/Oj07du3y6uvvmqHNVD6LY9f//rXbaDUYKk32PHXp11Y/Rvu6LWVWqetnzrf8ccfb796RG+wo/No2NSgqF9DoiFS98Nf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\"></p><figure><img src=\"//help.knp24.ru/uploads/64916ccf839a6.png\" data-image=\"62800\"></figure>",
+              "files": [
+                {
+                  "id": "62800",
+                  "name": "screen.png",
+                  "file_name": "https://help.knp24.ru/uploads/64916ccf839a6.png"
+                }
+              ]
+            }
+          ],
+          "files": [
+            {
+              "id": "62799",
+              "name": "Untitled_20230620_142207.pdf",
+              "file_name": "https://help.knp24.ru/uploads/64916544193e7.pdf"
+            }
+          ],
+          "missing": true
+        },
+        {
+          "id": "259855",
+          "Name": "Доступ к камерам видеонаблюдения (Площадка ТРК) на АЗС №3, 145, 5, 72",
+          "Status": "Требует уточнения",
+          "Priority": "Средний",
+          "Managers_id": "vSudarev",
+          "CUsers_id": "aSenchenko",
+          "Address": "г. Красноярск, ул. Маерчака 31а",
+          "Content": "<p>В связи с производственной необходимостью, а именно контроль за подрядной организацией (выполняет работы по устройству площадки ТРК из брусчатки на АЗС №3, 5, 145, на АЗС №72 ремонт резервуарного парка), прошу предоставить доступ к камерам видеонаблюдения начальнику отдела строительства и ремонтов Сенченко В.А., которые направлены на площадку ТРК и резервуарный парк</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-20 13:47:22",
+          "timestampStart": "2023-06-20 14:47:00",
+          "timestampfStart": "2023-06-20 15:41:50",
+          "timestampEnd": "2023-06-23 10:47:00",
+          "timestampfEnd": null,
+          "fullname": "Сенченко Владимир Андреевич",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Сенченко Владимир Андреевич",
+          "lastactivity": "2023-06-23 13:18:47",
+          "subs": [
+            {
+              "rid": "259855",
+              "timestamp": "22.06.2023 14:41:22",
+              "author": "Лиханов Олег Олегович",
+              "comment": "<p>Прошу приложить скан-копию согласованного службой безопасности приложение №2 приказа П-883 (предоставление доступа к видеонаблюдению на АЗС)</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "259708",
+          "Name": "KES лицензия АЗС",
+          "Status": "Просрочена реакция",
+          "Priority": "Низкий",
+          "Managers_id": "atomilov",
+          "CUsers_id": "azs216",
+          "Address": null,
+          "Content": "<p>Доброе утро.</p>\n<p>На подсмене на маленьком мониторе горит окно(СРОК АНТИВИРУСА ИСТЁК) уберите.</p>\n<p>Спасибо.</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-20 07:21:04",
+          "timestampStart": "2023-06-20 08:21:00",
+          "timestampfStart": null,
+          "timestampEnd": "2023-07-02 08:13:00",
+          "timestampfEnd": null,
+          "fullname": "АЗС № 216",
+          "gfullname": "Группа системного администрирования",
+          "creator": "АЗС № 216",
+          "lastactivity": "2023-06-27 08:37:11",
+          "subs": [
+            {
+              "rid": "259708",
+              "timestamp": "20.06.2023 07:25:11",
+              "author": "Разманов Владимир Викторович",
+              "comment": "<p>azs216oper1, заявка передана в отдел системного администрирования</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "259020",
+          "Name": "О неисправности оборудования - Турникет",
+          "Status": "Требует уточнения",
+          "Priority": "Средний",
+          "Managers_id": "mBolsunovskij",
+          "CUsers_id": "shevcov",
+          "Address": "г. Красноярск, ул. Маерчака 31а",
+          "Content": "<p>Не работает пропускная система турникета, расположенного на проходной бывшей Красноярской нефтебазы</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-15 14:56:01",
+          "timestampStart": "2023-06-15 15:56:00",
+          "timestampfStart": "2023-06-16 09:27:40",
+          "timestampEnd": "2023-06-18 11:56:00",
+          "timestampfEnd": null,
+          "fullname": "Шевцов Сергей Викторович",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Шевцов Сергей Викторович",
+          "lastactivity": "2023-06-19 13:24:44",
+          "subs": [],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "258575",
+          "Name": "Ремонт купюрасчетной машинки ",
+          "Status": "Требует уточнения",
+          "Priority": "Средний",
+          "Managers_id": "vSudarev",
+          "CUsers_id": "aterskiy",
+          "Address": null,
+          "Content": "<br /><div class=\"WordSection1\"><br /><p class=\"MsoNormal\">Прошу произвести анализ и ремонт Купюросчетной Машинки в кабинете по выдаче талонов на 1 этаже (Игумнова Людмила Фёдоровна). Причины<span lang=\"en-us\" xml:lang=\"en-us\">:<br /></span>Зажевывает купюры </p><p></p><br /><p class=\"MsoNormal\"></p><p> </p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:9pt;color:#000000;\">С уважением, </span><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"></span></p><p></p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:9pt;color:#000000;\">Терский Алексей Константинович</span><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"></span></p><p></p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:9pt;color:#000000;\">Главный бухгалтер</span><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"></span></p><p></p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:9pt;color:#000000;\">АО \"Красноярскнефтепродукт\"</span><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"></span></p><p></p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"> </span></p><p></p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:9pt;color:#000000;\">т. 8 (391) 290-60-85, доб. 1198</span><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"></span></p><p></p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:9pt;color:#000000;\">aterskiy@knp24.ru</span><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"></span></p><p></p><br /><p class=\"MsoNormal\" style=\"background:#FFFFFF;\"><span style=\"font-size:11.5pt;font-family:Arial, sans-serif;color:#000000;\"><a href=\"https://t.me/aterskiy\"><span style=\"font-size:9pt;font-family:Calibri, sans-serif;color:#000000;\">https://t.me/aterskiy</span></a></span></p><p></p><br /><p class=\"MsoNormal\"></p><p> </p><br /></div><br /><br /><br /><br />",
+          "service_name": "Отдел 1С проектов",
+          "timestamp": "2023-06-13 15:25:12",
+          "timestampStart": "2023-06-13 16:25:00",
+          "timestampfStart": "2023-06-13 16:01:51",
+          "timestampEnd": "2023-06-16 12:25:00",
+          "timestampfEnd": null,
+          "fullname": "Терский Алексей Константинович",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Терский Алексей Константинович",
+          "lastactivity": "2023-06-22 15:31:54",
+          "subs": [
+            {
+              "rid": "258575",
+              "timestamp": "13.06.2023 16:01:59",
+              "author": "Сударев Владислав Николаевич",
+              "comment": "<p>По данному вопросу рекомендуется обратиться в административное управление: к Белобровой О.В. или Шматкову Р.О.</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "255319",
+          "Name": "Заявка на картриджи",
+          "Status": "Требует уточнения",
+          "Priority": "Средний",
+          "Managers_id": "likhanov",
+          "CUsers_id": "eBurba",
+          "Address": null,
+          "Content": "<p>Добрый день, необходимо заказать картриджи на ф-ал Восточный. </p><p>1140 - 4шт    1150 - 4шт   1170 - 6шт.</p><p>Так как старый списали.</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-01 08:46:50",
+          "timestampStart": "2023-06-01 09:46:00",
+          "timestampfStart": "2023-06-01 14:53:07",
+          "timestampEnd": "2023-06-03 16:58:00",
+          "timestampfEnd": null,
+          "fullname": "Бурба Елена Станиславовна",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Клевцова Ксения Анатольевна",
+          "lastactivity": "2023-06-28 11:07:05",
+          "subs": [
+            {
+              "rid": "255319",
+              "timestamp": "01.06.2023 14:53:02",
+              "author": "Лиханов Олег Олегович",
+              "comment": "<p>Прошу приложить скан-копию документа о списании картриджей.</p>",
+              "files": []
+            },
+            {
+              "rid": "255319",
+              "timestamp": "27.06.2023 09:18:15",
+              "author": "Бурба Елена Станиславовна",
+              "comment": "<p></p><blockquote><p>Добрый день, прошу к заявке добавить еще 2 картриджа 1150</p></blockquote>",
+              "files": [
+                {
+                  "id": "63030",
+                  "name": "брак.pdf",
+                  "file_name": "https://help.knp24.ru/uploads/649a46e74ffdd.pdf"
+                }
+              ]
+            },
+            {
+              "rid": "255319",
+              "timestamp": "28.06.2023 11:07:05",
+              "author": "Лиханов Олег Олегович",
+              "comment": "<p>В приложенном документы нет картриджей из заявки.</p>",
+              "files": []
+            }
+          ],
+          "files": [],
+          "missing": true
+        },
+        {
+          "id": "261519",
+          "Name": "Нет доступа по ссылке в Exelе",
+          "Status": "Открыта",
+          "Priority": "Средний",
+          "Managers_id": null,
+          "CUsers_id": "sGorlunov",
+          "Address": null,
+          "Content": "<p>Не открывается ссылка в Exel  во вкладках с номерами азс в файле выполнение ТО и ППР в exel.</p>",
+          "service_name": "Группа УИТ - Отдел системного администрирования",
+          "timestamp": "2023-06-29 14:59:02",
+          "timestampStart": "2023-06-29 15:59:00",
+          "timestampfStart": null,
+          "timestampEnd": "2023-07-02 11:59:00",
+          "timestampfEnd": null,
+          "fullname": "Горлунов Сергей Сергеевич",
+          "gfullname": "Группа системного администрирования",
+          "creator": "Горлунов Сергей Сергеевич",
+          "lastactivity": "2023-06-29 14:59:02",
+          "subs": [],
+          "files": [],
+          "missing": true
+        },
+        null
+      ],
+      "closed": [
+        "261513",
+        "261500",
+        "261499",
+        "261495",
+        "261245",
+        "260924",
+        "261521"
+      ],
+      "transferred": []
+    }
+  },
+  "meta": null,
+  "pinData": {},
+  "versionId": "29c5c1c6-18b4-4481-b75b-3e1ce3f001b4",
+  "triggerCount": 1,
+  "tags": []
+}
