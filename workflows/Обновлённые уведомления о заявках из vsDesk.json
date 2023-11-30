@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-10-27T03:47:57.000Z",
+  "updatedAt": "2023-11-22T02:32:30.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDesk",
   "active": true,
@@ -125,7 +125,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json = {\n  wrapper: JSON.parse(JSON.stringify($input.item.json))\n};\n\nreturn $input.item;"
+        "jsCode": "$input.item.json = {\n  wrapper: JSON.parse(JSON.stringify($input.item.json))\n};\n\nreturn $input.item;"
       },
       "id": "8f4106c1-0685-49ed-a22b-f32823376b37",
       "name": "!КОСТЫЛЬ! Оборачиваем полученные данные",
@@ -345,7 +345,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const strip = input => {\n  const chars = input.split(\"\");\n  let text = true;\n  const filteredChars = chars.filter(char => {\n    if (char === \"<\") {\n      text = false;\n    } else if (char === \">\") {\n      text = true;\n      return false;\n    };\n    return text;\n  });\n  return filteredChars.join(\"\");\n};\n\nconst newlines = [\n  \"<br />\",\n  \"</p>\",\n  \"</h1>\",\n  \"</h2>\",\n  \"</h3>\",\n  \"</h4>\",\n  \"</h5>\",\n  \"</h6>\"\n];\nconst symbols = [\n  { in: \"&nbsp;\", out: \" \" },\n  { in: \"&mdash;\", out: \"—\"}\n];\nconst process = string => {\n  newlines.forEach(symbol => {\n    string = string.replaceAll(symbol, \"\\n\");\n  });\n  symbols.forEach(replacement => {\n    string = string.replaceAll(replacement.in, replacement.out);\n  });\n  return strip(string);\n};\n// console.log(`Working with ${$input.item.json.id}`);\n$input.item.json.Content = process($input.item.json.Content);\n// console.log('Finished processing content');\nif ($input.item.json.subs.length) {\n  $input.item.json.subs.forEach(sub => {\n    // console.log(`Processing comment ${sub.comment}`);\n    sub.comment = process(sub.comment);\n  });\n};\nreturn $input.item;;"
+        "jsCode": "const strip = input => {\n  const chars = input.split(\"\");\n  let text = true;\n  const filteredChars = chars.filter(char => {\n    if (char === \"<\") {\n      text = false;\n    } else if (char === \">\") {\n      text = true;\n      return false;\n    };\n    return text;\n  });\n  return filteredChars.join(\"\");\n};\n\nconst newlines = [\n  \"<br />\",\n  \"</p>\",\n  \"</h1>\",\n  \"</h2>\",\n  \"</h3>\",\n  \"</h4>\",\n  \"</h5>\",\n  \"</h6>\"\n];\nconst symbols = [\n  { in: \"&nbsp;\", out: \" \" },\n  { in: \"&mdash;\", out: \"—\"}\n];\nconst process = string => {\n  newlines.forEach(symbol => {\n    string = string.replaceAll(symbol, \"\\n\");\n  });\n  symbols.forEach(replacement => {\n    string = string.replaceAll(replacement.in, replacement.out);\n  });\n  return strip(string);\n};\n// console.log(`Working with ${$input.item.json.id}`);\n$input.item.json.Content = process($input.item.json.Content);\n// console.log('Finished processing content');\nif ($input.item.json.subs.length) {\n  $input.item.json.subs.forEach(sub => {\n    // console.log(`Processing comment ${sub.comment}`);\n    sub.comment = process(sub.comment);\n  });\n};\nreturn $input.item;"
       },
       "id": "63a8a3d1-fbb5-4298-a158-5f7d76d19afb",
       "name": "Зачищаем HTML",
@@ -526,7 +526,7 @@
             },
             {
               "name": "service_name",
-              "value": "Группа УИТ - Отдел системного администрирования"
+              "value": "УИТ - Отдел системного администрирования"
             }
           ]
         }
@@ -550,7 +550,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\n$input.item.json = {\n  wrapper: JSON.parse(JSON.stringify($input.item.json))\n};\n\nreturn $input.item;"
+        "jsCode": "$input.item.json = {\n  wrapper: JSON.parse(JSON.stringify($input.item.json))\n};\n\nreturn $input.item;"
       },
       "id": "d94ae3da-d961-4fde-9a7c-c672508c7f12",
       "name": "!КОСТЫЛЬ! Оборачиваем полученные данные1",
@@ -1230,7 +1230,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const updates = [];\nconst data = JSON.parse(JSON.stringify($input.all()));\nconst closed = data[0].json.closed;\nconst add = (request, type) => {\n  updates.push({\n    json: JSON.parse(JSON.stringify(request))\n  });\n  updates[updates.length - 1].json.type = type;\n};\nconst unmark = request => {\n  const output = JSON.parse(JSON.stringify(request));\n  delete output.transferred;\n  return output;\n};\nif (! Object.keys(data[1].json).length) {\n  const requests = JSON.parse(JSON.stringify(data[data.length - 1].json.current));\n  requests.forEach(request => add(request, \"new\"));\n};\nconst db = data[1].json;\nconst current = data[data.length - 1].json.current;\nconst find = (requests, id) => {\n  return requests.filter(request => {\n    return request.id === id;\n  });\n};\nconst isOurs = request => {\n  if (request.gfullname === \"Группа МТО\") {\n    return false;\n  } else if (request.gfullname === \"Группа системного администрирования\") {\n    return true;\n  } else if (\n    request.service_name === \"Группа УИТ - Отдел системного администрирования\" &&\n    request.gfullname === null\n  ) {\n    return true;\n  } else {\n    return false;\n  };\n};\ncurrent.forEach(request => {\n  const dbEntry = db[request.id];\n  if (\n    request?.id &&\n    ! dbEntry &&\n    $runIndex === 0\n  ) {\n    if (! isOurs(request)) {\n      return;\n    };\n    // console.log(`Found new request. DB entry is ${JSON.stringify(dbEntry)}, current data are ${JSON.stringify(request)}, ID is ${request.id}`);\n    closed.includes(request.id) ? add(request, \"reopened\") : add(request, \"new\");\n    return;\n  };\n  if (! isOurs(dbEntry) && isOurs(request) && $runIndex === 0) {\n    add(request, \"transferred_back\");\n  } else if (! isOurs(request) && dbEntry.transferred !== \"true\") {\n    add(request, \"transferred\");\n  } else if (\n    isOurs(request) &&\n    JSON.stringify(unmark(request)) !== JSON.stringify(request)\n  ) {\n    add(request, \"updated\");\n  };\n});\nObject.keys(db).forEach(key => {\n  if (\n    key.length !== 6 ||\n    ! Number.isInteger(Number.parseInt(key, 6)) ||\n    closed.includes(key) ||\n    $runIndex\n  ) {\n    return;\n  };\n  const match = find(current, key);\n  // console.log(`Key is ${key}, match is ${JSON.stringify(match)}`);\n  if (\n    match instanceof Array &&\n    match.length === 0\n  ) {\n    add(db[key], \"missed\");\n  }\n});\nreturn updates;"
+        "jsCode": "const updates = [];\nconst data = JSON.parse(JSON.stringify($input.all()));\nconst closed = data[0].json.closed;\nconst add = (request, type) => {\n  updates.push({\n    json: JSON.parse(JSON.stringify(request))\n  });\n  updates[updates.length - 1].json.type = type;\n};\nconst unmark = request => {\n  const output = JSON.parse(JSON.stringify(request));\n  delete output.transferred;\n  return output;\n};\nif (! Object.keys(data[1].json).length) {\n  const requests = JSON.parse(JSON.stringify(data[data.length - 1].json.current));\n  requests.forEach(request => add(request, \"new\"));\n};\nconst db = data[1].json;\nconst current = data[data.length - 1].json.current;\nconst find = (requests, id) => {\n  return requests.filter(request => {\n    return request.id === id;\n  });\n};\nconst isOurs = request => {\n  if (request.gfullname === \"Группа МТО\") {\n    return false;\n  } else if (request.gfullname === \"Группа системного администрирования\") {\n    return true;\n  } else if (\n    request.service_name === \"УИТ - Отдел системного администрирования\" &&\n    request.gfullname === null\n  ) {\n    return true;\n  } else {\n    return false;\n  };\n};\ncurrent.forEach(request => {\n  const dbEntry = db[request.id];\n  if (\n    request?.id &&\n    ! dbEntry &&\n    $runIndex === 0\n  ) {\n    if (! isOurs(request)) {\n      return;\n    };\n    // console.log(`Found new request. DB entry is ${JSON.stringify(dbEntry)}, current data are ${JSON.stringify(request)}, ID is ${request.id}`);\n    closed.includes(request.id) ? add(request, \"reopened\") : add(request, \"new\");\n    return;\n  };\n  if (! isOurs(dbEntry) && isOurs(request) && $runIndex === 0) {\n    add(request, \"transferred_back\");\n  } else if (! isOurs(request) && dbEntry.transferred !== \"true\") {\n    add(request, \"transferred\");\n  } else if (\n    isOurs(request) &&\n    JSON.stringify(unmark(request)) !== JSON.stringify(request)\n  ) {\n    add(request, \"updated\");\n  };\n});\nObject.keys(db).forEach(key => {\n  if (\n    key.length !== 6 ||\n    ! Number.isInteger(Number.parseInt(key, 6)) ||\n    closed.includes(key) ||\n    $runIndex\n  ) {\n    return;\n  };\n  const match = find(current, key);\n  // console.log(`Key is ${key}, match is ${JSON.stringify(match)}`);\n  if (\n    match instanceof Array &&\n    match.length === 0 &&\n    db[key]?.transferred === \"true\"\n  ) {\n    add(db[key], \"missed\");\n  }\n});\nreturn updates;"
       },
       "id": "fa818991-6bf3-4cf4-841b-2aeeb1bfa2be",
       "name": "Типирование данных",
@@ -1636,7 +1636,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1080,
+        1360,
         460
       ]
     },
@@ -1649,7 +1649,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1300,
+        1580,
         460
       ]
     },
@@ -1678,7 +1678,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1500,
+        1780,
         460
       ]
     },
@@ -2132,6 +2132,84 @@
         520
       ],
       "webhookId": "45a63e54-c01f-46d7-939f-f872505e0d9d"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.error.stack }}",
+              "operation": "contains",
+              "value2": "Error: 404"
+            },
+            {
+              "value1": "={{ $json.error.stack }}",
+              "operation": "contains",
+              "value2": "Error: 403"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "2a78ff7e-3b54-4865-b52e-0459bb33b7e6",
+      "name": "Это ошибка?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return $('Распределение заявок по типам').item;"
+      },
+      "id": "7fbd23ee-000c-4e78-8f99-165f6fa8d85b",
+      "name": "Возвращаем обратно заявку",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const prepare = list => {\n  if (list.length > $('Конфигурация').all()[0].json.backlogs.closed) {\n    return list.slice(list.length - $('Конфигурация').all()[0].json.backlogs.closed + 1);\n  };\n  return list;\n};\nif ($input.all().length === 1) {\n  return {json: {closed: JSON.stringify(prepare($input.first().json.closed))}};\n};\nconst ids = $input.last().json.ids;\nconst output = $input.all()[0].json.closed.filter(id => ! ids.includes(id));\nreturn {json: {closed: JSON.stringify(prepare(output))}};"
+      },
+      "id": "052535a0-7351-42e9-b3c7-b40d7da29f20",
+      "name": "Формируем новый список закрытых заявок1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        -1440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "closed",
+        "value": "={{ $json.closed }}",
+        "keyType": "string",
+        "expire": true,
+        "ttl": "={{ $('Конфигурация').all()[0].json.redis.expiry * 60 * 60 * 24 }}"
+      },
+      "id": "93d1ecfe-410c-4788-88c4-51c800338b50",
+      "name": "Записываем обновлённый список",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3100,
+        -1440
+      ],
+      "credentials": {
+        "redis": {
+          "id": "tpcCD5lzNvKBILry",
+          "name": "Redis vsdesk"
+        }
+      }
     }
   ],
   "connections": {
@@ -2294,6 +2372,11 @@
           },
           {
             "node": "Объединяем",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Формируем новый список закрытых заявок1",
             "type": "main",
             "index": 0
           }
@@ -2933,7 +3016,7 @@
         ],
         [
           {
-            "node": "Парсим полученный JSON1",
+            "node": "Это ошибка?",
             "type": "main",
             "index": 0
           }
@@ -3400,6 +3483,46 @@
         [
           {
             "node": "Вписываем ID последнего сообщения3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Это ошибка?": {
+      "main": [
+        [
+          {
+            "node": "Возвращаем обратно заявку",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Парсим полученный JSON1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Возвращаем обратно заявку": {
+      "main": [
+        [
+          {
+            "node": "Группировка2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Формируем новый список закрытых заявок1": {
+      "main": [
+        [
+          {
+            "node": "Записываем обновлённый список",
             "type": "main",
             "index": 0
           }
@@ -4137,7 +4260,7 @@
   },
   "meta": null,
   "pinData": {},
-  "versionId": "84d0164e-b283-4f49-85ba-81417b5129a9",
+  "versionId": "5b176fab-7192-4e2e-a41a-99b60f2a0464",
   "triggerCount": 1,
   "tags": []
 }
