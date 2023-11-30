@@ -1,0 +1,420 @@
+{
+  "createdAt": "2023-11-14T09:44:10.227Z",
+  "updatedAt": "2023-11-15T08:40:18.000Z",
+  "id": "8jTs4QM4xnicosSQ",
+  "name": "Закрытие заявок",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "httpMethod": "DELETE",
+        "path": "3b708aac-0368-406e-a7e5-7142c9fff682",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "9b663d26-adc4-46eb-9255-f812c5635bc2",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        280,
+        340
+      ],
+      "webhookId": "3b708aac-0368-406e-a7e5-7142c9fff682",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "EgZRCgDJmlkylYLj",
+          "name": "Webhooks"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "c23e2338-6a56-475d-993e-3572253de5ea",
+      "name": "Отвечаем на вебхук",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        100
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "operation": "keys",
+        "keyPattern": "request:*",
+        "getValues": false
+      },
+      "id": "d16fe6a3-5b5d-4929-8b67-17193cadc667",
+      "name": "Подгружаем список всех заявок",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        220
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "closed",
+        "key": "closed",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "4c8c82a7-1b96-42f7-9e7a-77ee74619039",
+      "name": "Берём список закрытых заявок",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        40
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "45c68e31-127b-4428-af28-74565cc84767",
+      "name": "Объединяем данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1340,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9857958b-e2d5-4257-b955-f23e198aabde",
+      "name": "Ещё раз объединяем данные",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1540,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const _ = require('lodash');\nconsole.log($input.first().json.closed);\nconst closed = $input.first().json.closed === null ? [] : JSON.parse($input.first().json.closed);\nconst requests = JSON.parse(JSON.stringify($input.last().json.body.requests));\nconst keysToDelete = $input.all()[1].json.keys.filter(key => {\n  if (key.endsWith(':messageID')) {\n    return false;\n  };\n  const request = key.split(':')[1];\n  const match = _.find(requests, { 'id': request });\n  return typeof match === 'object';\n});\nrequests.forEach(request => {\n  if (! closed.includes(request.id)) {\n    closed.push(request.id);\n  };\n});\nreturn {\n  json: {\n    keysToDelete: keysToDelete,\n    closed: closed\n  }\n}"
+      },
+      "id": "5224417e-a678-48cd-9c69-23155f642794",
+      "name": "Обработка данных",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "9dceed0e-d9ad-4c74-a777-705a56fc4a59",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        480,
+        140
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n};"
+      },
+      "id": "7f2e0a71-0d40-4dc4-b588-80c60c86c450",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "00e17bc8-546f-48e4-8f38-ff53d42c5add",
+      "name": "Объединяем, но фильтруем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const limit = $('Конфигурация').last().json.redis.backlog;\nreturn {\n  json: {\n    closed: $input.item.json.closed.length > limit ? $input.item.json.closed.slice($input.item.json.closed.length - limit - 1) : $input.item.json.closed\n  }\n};"
+      },
+      "id": "7d253517-ac27-48c7-805a-b74e1c9c5428",
+      "name": "Урезаем историю закрытых заявок",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1960,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "closed",
+        "value": "={{ JSON.stringify($json.closed) }}",
+        "keyType": "string",
+        "expire": true,
+        "ttl": "={{ $('Конфигурация').last().json.redis.expiry * 60 * 60 * 24 }}"
+      },
+      "id": "ee545d82-ec83-4186-aaa2-5595fcb061e6",
+      "name": "Записываем список закрытых заявок",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        100
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "keysToDelete",
+        "options": {
+          "destinationFieldName": "key"
+        }
+      },
+      "id": "63259097-cdc4-4821-8eb7-384e2e4a8d5e",
+      "name": "Вычленяем список полей на удаление",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1960,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $json.key }}"
+      },
+      "id": "87343fff-5749-43b8-ad33-9abc9fd5fd47",
+      "name": "Удаляем ключи",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        320
+      ],
+      "credentials": {
+        "redis": {
+          "id": "TYZwmvNO8BDDqBCs",
+          "name": "vsdesk"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Подгружаем конфигурацию",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Берём список закрытых заявок": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем список всех заявок": {
+      "main": [
+        [
+          {
+            "node": "Объединяем данные",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Объединяем данные": {
+      "main": [
+        [
+          {
+            "node": "Ещё раз объединяем данные",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ещё раз объединяем данные": {
+      "main": [
+        [
+          {
+            "node": "Обработка данных",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Обработка данных": {
+      "main": [
+        [
+          {
+            "node": "Урезаем историю закрытых заявок",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Вычленяем список полей на удаление",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем": {
+      "main": [
+        [
+          {
+            "node": "Ещё раз объединяем данные",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Подгружаем список всех заявок",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Берём список закрытых заявок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Урезаем историю закрытых заявок": {
+      "main": [
+        [
+          {
+            "node": "Записываем список закрытых заявок",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Вычленяем список полей на удаление": {
+      "main": [
+        [
+          {
+            "node": "Удаляем ключи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Записываем список закрытых заявок": {
+      "main": [
+        [
+          {
+            "node": "Отвечаем на вебхук",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "3734787c-ac73-4973-a16e-4066c53a59be",
+  "triggerCount": 1,
+  "tags": []
+}
