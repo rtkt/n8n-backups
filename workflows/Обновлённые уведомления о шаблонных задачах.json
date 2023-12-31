@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-10-09T14:05:31.043Z",
-  "updatedAt": "2023-10-24T04:28:11.000Z",
+  "updatedAt": "2023-12-21T03:08:21.000Z",
   "id": "4kNCxXHkkf3HnPU5",
   "name": "Обновлённые уведомления о шаблонных задачах",
   "active": true,
@@ -1412,7 +1412,7 @@
   },
   "meta": null,
   "pinData": {},
-  "versionId": "8882734c-282d-402f-ac36-6c7ba70c8f1a",
+  "versionId": "08f858a6-0e17-4cb8-a81d-a1f9d8e4963e",
   "triggerCount": 1,
   "tags": []
 }
