@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-10-19T20:26:10.637Z",
-  "updatedAt": "2023-10-23T14:41:42.000Z",
+  "updatedAt": "2023-12-22T02:48:09.000Z",
   "id": "EjWJgGRHhhmHo8Mg",
   "name": "Закрытие шаблонной задачи в Notion",
   "active": true,
@@ -16,7 +16,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        900,
+        500,
         540
       ],
       "webhookId": "44c7619c-a97e-4136-aed7-aac9113e892f",
@@ -203,40 +203,6 @@
     },
     {
       "parameters": {
-        "resource": "databasePage",
-        "operation": "update",
-        "pageId": {
-          "__rl": true,
-          "value": "={{ $json.id }}",
-          "mode": "id"
-        },
-        "propertiesUi": {
-          "propertyValues": [
-            {
-              "key": "Статус|select",
-              "selectValue": "Сделано 🙌"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "18628f77-03e5-4702-b05c-a777e813d664",
-      "name": "Ставим статус \"завершена\"",
-      "type": "n8n-nodes-base.notion",
-      "typeVersion": 2,
-      "position": [
-        2340,
-        320
-      ],
-      "credentials": {
-        "notionApi": {
-          "id": "4",
-          "name": "Notion"
-        }
-      }
-    },
-    {
-      "parameters": {
         "mode": "chooseBranch",
         "output": "input2"
       },
@@ -245,7 +211,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        2600,
+        2820,
         500
       ]
     },
@@ -266,7 +232,7 @@
       "typeVersion": 2,
       "position": [
         1780,
-        320
+        160
       ],
       "credentials": {
         "notionApi": {
@@ -292,8 +258,155 @@
       "typeVersion": 1,
       "position": [
         2040,
-        320
+        160
       ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "simple": false,
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "={{ $('Конфигурация').first().json.tasks.properties.closingDate }}|{{ $('Конфигурация').first().json.tasks.propertiesTypes.closingDate }}",
+              "includeTime": false,
+              "date": "={{ $now.toISODate() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1ddb5a7-63c9-4cf8-875c-d13e65f44cb2",
+      "name": "Проставляем дату закрытия",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.1,
+      "position": [
+        2280,
+        160
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $input.item.json.properties[$('Конфигурация').first().json.tasks.properties.status].select.name }}",
+              "value2": "={{ $('Конфигурация').first().json.tasks.enumerations.status.done }}"
+            },
+            {
+              "value1": "={{ $input.item.json.properties[$('Конфигурация').first().json.tasks.properties.status].select.name }}",
+              "value2": "={{ $('Конфигурация').first().json.tasks.enumerations.status.cancelled }}"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "cb7c599a-a44e-4324-866c-b178ed889bd5",
+      "name": "Задача уже закрыта?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "configuration",
+        "key": "configuration",
+        "keyType": "string",
+        "options": {}
+      },
+      "id": "385df7a7-3bb7-46d6-9760-7d1c48595043",
+      "name": "Подгружаем конфигурацию",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        640,
+        340
+      ],
+      "credentials": {
+        "redis": {
+          "id": "KLIjLiAqGZRw4s2l",
+          "name": "Notion"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: JSON.parse($input.item.json.configuration)\n};"
+      },
+      "id": "fe13908c-06a9-4417-98af-751b652466c0",
+      "name": "Конфигурация",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        820,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "input2"
+      },
+      "id": "3cd2f4c3-186e-446a-ad16-e8268fc7ef0b",
+      "name": "Объединяем, но фильтруем",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        940,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "simple": false,
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "={{ $('Конфигурация').first().json.tasks.properties.status }}|{{ $('Конфигурация').first().json.tasks.propertiesTypes.status }}",
+              "selectValue": "={{ $('Конфигурация').first().json.tasks.enumerations.status.done }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "39bb3766-f3ae-42ef-b136-c83a1ae19d4c",
+      "name": "Закрываем задачу",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.1,
+      "position": [
+        2500,
+        400
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "4",
+          "name": "Notion"
+        }
+      }
     }
   ],
   "connections": {
@@ -301,9 +414,14 @@
       "main": [
         [
           {
-            "node": "Ищем все записи",
+            "node": "Подгружаем конфигурацию",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -420,17 +538,6 @@
         ]
       ]
     },
-    "Ставим статус \"завершена\"": {
-      "main": [
-        [
-          {
-            "node": "Объединяем1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Объединяем1": {
       "main": [
         [
@@ -458,7 +565,80 @@
         [],
         [
           {
-            "node": "Ставим статус \"завершена\"",
+            "node": "Проставляем дату закрытия",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Проставляем дату закрытия": {
+      "main": [
+        [
+          {
+            "node": "Задача уже закрыта?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Задача уже закрыта?": {
+      "main": [
+        [
+          {
+            "node": "Объединяем1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Закрываем задачу",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Подгружаем конфигурацию": {
+      "main": [
+        [
+          {
+            "node": "Конфигурация",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Конфигурация": {
+      "main": [
+        [
+          {
+            "node": "Объединяем, но фильтруем",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Объединяем, но фильтруем": {
+      "main": [
+        [
+          {
+            "node": "Ищем все записи",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Закрываем задачу": {
+      "main": [
+        [
+          {
+            "node": "Объединяем1",
             "type": "main",
             "index": 0
           }
@@ -474,7 +654,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "6cee3a3f-3236-4118-af02-53f8cccd9695",
+  "versionId": "f56665e3-e980-474b-af00-de8ee0599326",
   "triggerCount": 1,
   "tags": []
 }
