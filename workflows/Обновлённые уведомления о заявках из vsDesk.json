@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-01-11T12:15:59.354Z",
-  "updatedAt": "2023-11-22T02:32:30.000Z",
+  "updatedAt": "2023-12-18T06:52:17.000Z",
   "id": "5",
   "name": "Обновлённые уведомления о заявках из vsDesk",
   "active": true,
@@ -2076,7 +2076,7 @@
     {
       "parameters": {
         "chatId": "={{ $('Конфигурация').all()[0].json.chatid }}",
-        "text": "=У заявки №{{ $json.id }} просрочена реакция!",
+        "text": "=Заявка №{{ $json.id }} автоматически принята в работу!",
         "replyMarkup": "inlineKeyboard",
         "inlineKeyboard": {
           "rows": [
@@ -2107,7 +2107,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1,
       "position": [
-        3680,
+        3940,
         520
       ],
       "retryOnFail": true,
@@ -2208,6 +2208,29 @@
         "redis": {
           "id": "tpcCD5lzNvKBILry",
           "name": "Redis vsdesk"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://help.knp24.ru/request/injob/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "id": "27a3604b-e91a-4035-bac6-71b066f3e709",
+      "name": "Принимаем в работу",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3680,
+        520
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "КНП"
         }
       }
     }
@@ -3471,7 +3494,7 @@
       "main": [
         [
           {
-            "node": "Уведомляем3",
+            "node": "Принимаем в работу",
             "type": "main",
             "index": 0
           }
@@ -3523,6 +3546,17 @@
         [
           {
             "node": "Записываем обновлённый список",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Принимаем в работу": {
+      "main": [
+        [
+          {
+            "node": "Уведомляем3",
             "type": "main",
             "index": 0
           }
@@ -4260,7 +4294,7 @@
   },
   "meta": null,
   "pinData": {},
-  "versionId": "5b176fab-7192-4e2e-a41a-99b60f2a0464",
+  "versionId": "b3f6bb5f-ae52-4ff1-b52f-58d68a599823",
   "triggerCount": 1,
   "tags": []
 }
