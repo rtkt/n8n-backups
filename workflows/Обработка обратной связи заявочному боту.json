@@ -1,9 +1,9 @@
 {
   "createdAt": "2023-11-08T07:25:58.576Z",
-  "updatedAt": "2023-11-15T04:03:51.000Z",
+  "updatedAt": "2023-12-07T03:47:29.000Z",
   "id": "50KPAx9KnvdBGQg5",
   "name": "Обработка обратной связи заявочному боту",
-  "active": true,
+  "active": false,
   "nodes": [
     {
       "parameters": {
