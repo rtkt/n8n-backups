@@ -1,6 +1,6 @@
 {
   "createdAt": "2023-10-11T13:08:48.632Z",
-  "updatedAt": "2023-11-08T08:48:38.000Z",
+  "updatedAt": "2023-12-22T02:47:36.000Z",
   "id": "GwNmDYpvrms4dPwl",
   "name": "Обработка обратной связи ассистенту",
   "active": true,
@@ -110,7 +110,8 @@
           "id": "6",
           "name": "Ассистент"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -2041,12 +2042,15 @@
   "settings": {
     "executionOrder": "v1",
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "4"
+    "errorWorkflow": "4",
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
   },
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "66f79804-44c3-474e-81c0-a1f53dd76ed5",
+  "versionId": "92c35877-f7f8-4459-89ba-f5dbff108687",
   "triggerCount": 1,
   "tags": []
 }
